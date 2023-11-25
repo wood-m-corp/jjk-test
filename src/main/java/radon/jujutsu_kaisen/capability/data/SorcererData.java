@@ -514,7 +514,7 @@ public class SorcererData implements ISorcererData {
         if (this.traits.contains(Trait.SIX_EYES) && !owner.getItemBySlot(EquipmentSlot.HEAD).is(JJKItems.SATORU_BLINDFOLD.get())) {
             owner.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, false, false, false));
         }
-
+        owner.addEffect(new MobEffectInstance(MobEffects.SATURATION, 2, 0, false, false, false));
         if (this.traits.contains(Trait.HEAVENLY_RESTRICTION)) {
             double health = Math.ceil(((this.getRealPower() - 1.0F) * 30.0D) / 20) * 20;
 
@@ -534,11 +534,11 @@ public class SorcererData implements ISorcererData {
             int resistance = Math.round(3 * (this.getRealPower() / HelperMethods.getPower(ConfigHolder.SERVER.maximumExperienceAmount.get().floatValue())));
             owner.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2, resistance, false, false, false));
 
-            owner.addEffect(new MobEffectInstance(MobEffects.JUMP_BOOST, 2, 1, false, false, false));
+            owner.addEffect(new MobEffectInstance(MobEffects.JUMP, 2, 1, false, false, false));
 
-            owner.addEffect(new MobEffectInstance(MobEffects.HASTE, 2, 0, false, false, false));
+            owner.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 2, 0, false, false, false));
 
-            owner.addEffect(new MobEffectInstance(MobEffects.SATURATION, 2, 0, false, false, false));
+            
 
             if (owner.getHealth() < owner.getMaxHealth()) {
                 owner.heal(0.8F / 20);
@@ -561,10 +561,7 @@ public class SorcererData implements ISorcererData {
             int resistance = Math.round(2 * (this.getRealPower() / HelperMethods.getPower(ConfigHolder.SERVER.maximumExperienceAmount.get().floatValue())));
             owner.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2, resistance, false, false, false));
 
-            owner.addEffect(new MobEffectInstance(MobEffects.JUMP_BOOST, 2, 1, false, false, false));
-
-            owner.addEffect(new MobEffectInstance(MobEffects.SATURATION, 2, 0, false, false, false));
-
+            owner.addEffect(new MobEffectInstance(MobEffects.JUMP, 2, 1, false, false, false));
 
         }
     }
