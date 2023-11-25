@@ -33,8 +33,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Dash extends Ability {
-    public static final double RANGE = 30.0D;
-    private static final double SPEED = 1.5D;
+    public static final double RANGE = 90.0D;
+    private static final double SPEED = 2.5D;
 
     @Override
     public boolean isScalable() {
