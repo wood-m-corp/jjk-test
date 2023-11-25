@@ -522,7 +522,7 @@ public class SorcererData implements ISorcererData {
                 owner.setHealth(owner.getMaxHealth());
             }
 
-            double damage = this.getRealPower() * 2.0D;
+            double damage = this.getRealPower() * 12.0D;
             this.applyModifier(owner, Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE_UUID, "Attack damage", damage, AttributeModifier.Operation.ADDITION);
 
             double attack = this.getRealPower() * 0.5D;
@@ -534,8 +534,14 @@ public class SorcererData implements ISorcererData {
             int resistance = Math.round(3 * (this.getRealPower() / HelperMethods.getPower(ConfigHolder.SERVER.maximumExperienceAmount.get().floatValue())));
             owner.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2, resistance, false, false, false));
 
+            owner.addEffect(new MobEffectInstance(MobEffects.JUMP_BOOST, 2, 1, false, false, false));
+
+            owner.addEffect(new MobEffectInstance(MobEffects.HASTE, 2, 0, false, false, false));
+
+            owner.addEffect(new MobEffectInstance(MobEffects.SATURATION, 2, 0, false, false, false));
+
             if (owner.getHealth() < owner.getMaxHealth()) {
-                owner.heal(1.0F / 20);
+                owner.heal(0.8F / 20);
             }
         } else {
             this.removeModifier(owner, Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED_UUID);
@@ -546,7 +552,7 @@ public class SorcererData implements ISorcererData {
                 owner.setHealth(owner.getMaxHealth());
             }
 
-            double damage = this.getRealPower();
+            double damage = this.getRealPower() * 6.0D;
             this.applyModifier(owner, Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE_UUID, "Attack damage", damage, AttributeModifier.Operation.ADDITION);
 
             double movement = this.getRealPower() * 0.025D;
@@ -554,6 +560,12 @@ public class SorcererData implements ISorcererData {
 
             int resistance = Math.round(2 * (this.getRealPower() / HelperMethods.getPower(ConfigHolder.SERVER.maximumExperienceAmount.get().floatValue())));
             owner.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2, resistance, false, false, false));
+
+            owner.addEffect(new MobEffectInstance(MobEffects.JUMP_BOOST, 2, 1, false, false, false));
+
+            owner.addEffect(new MobEffectInstance(MobEffects.SATURATION, 2, 0, false, false, false));
+
+
         }
     }
 
