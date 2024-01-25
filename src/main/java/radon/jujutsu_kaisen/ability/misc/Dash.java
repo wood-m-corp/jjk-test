@@ -27,7 +27,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 public class Dash extends Ability {
     public static final double RANGE = 80.0D;
     private static final float DASH = 2.0F;
-    private static final float MAX_DASH = 5.0F;
+    private static final float MAX_DASH = 4.0F;
 
     @Override
     public boolean isScalable(LivingEntity owner) {
@@ -101,7 +101,7 @@ public class Dash extends Ability {
             owner.setDeltaMovement(motionX, motionY, motionZ);
             owner.hurtMarked = true;
         } else if (owner.onGround() || !owner.getFeetBlockState().getFluidState().isEmpty()) {
-            float power = Math.min(MAX_DASH, DASH * (1.0F + this.getPower(owner) * 0.1F) * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F));
+            float power = Math.min(MAX_DASH, DASH * (1.0F + this.getPower(owner) * 0.1F) )* (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.25F : 1.0F);
 
             float f7 = owner.getYRot();
             float f = owner.getXRot();
