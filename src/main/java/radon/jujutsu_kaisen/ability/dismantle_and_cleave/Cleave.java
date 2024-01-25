@@ -32,7 +32,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class Cleave extends Ability implements Ability.IDomainAttack, Ability.IAttack, Ability.IToggled {
     public static final double RANGE = 30.0D;
-    private static final float MAX_DAMAGE = 35.0F;
+    private static final float MAX_DAMAGE = 25.0F;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
