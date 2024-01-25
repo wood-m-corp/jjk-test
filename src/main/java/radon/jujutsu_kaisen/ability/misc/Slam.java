@@ -142,7 +142,7 @@ public class Slam extends Ability implements Ability.ICharged {
             cap.delayTickEvent(() -> {
                 Vec3 target = this.getTarget(owner);
                 owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(5.0D)));
-            }, 10);
+            }, 20);
         }
         return true;
     }
