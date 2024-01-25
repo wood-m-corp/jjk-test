@@ -124,12 +124,12 @@ public class Slam extends Ability implements Ability.ICharged {
 
     @Override
     public boolean onRelease(LivingEntity owner) {
+        if (!owner.onGround()) {
             Vec3 target = this.getTarget(owner);
             owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(5.0D)));
             owner.swing(InteractionHand.MAIN_HAND);
         }
         else {
-        if (!owner.onGround()) {
             Vec3 direction = new Vec3(0.0D, LAUNCH_POWER, 0.0D);
             owner.setDeltaMovement(owner.getDeltaMovement().add(direction));
     
