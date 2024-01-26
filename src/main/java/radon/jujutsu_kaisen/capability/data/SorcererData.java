@@ -440,11 +440,11 @@ public class SorcererData implements ISorcererData {
 
                 if (this.owner.walkDist == this.owner.walkDistO) {
                     this.noMotionTime++;
-                } else if (this.noMotionTime == 1) {
+                } else if (this.noMotionTime > 0) {
                     this.noMotionTime = 0;
                 }
 
-                if (this.noMotionTime > 1) {
+                if (this.noMotionTime > 15) {
                     this.resetSpeedStacks();
                 }
             } else {
@@ -486,7 +486,7 @@ public class SorcererData implements ISorcererData {
             double movement = this.getRealPower() * 0.05D;
             EntityUtil.applyModifier(this.owner, Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED_UUID, "Movement speed", Math.min(this.owner.getAttributeBaseValue(Attributes.MOVEMENT_SPEED) * 2,  movement), AttributeModifier.Operation.ADDITION);
 
-            if (this.owner.getHealth() < this.owner.getMaxHealth()) {
+            if (this.owner.getHealth() != this.owner.getMaxHealth()) {
                 this.owner.heal(1.0F / 20);
             }
         } else {
@@ -495,7 +495,7 @@ public class SorcererData implements ISorcererData {
             double damage = this.getRealPower() * 1.7D;
             EntityUtil.applyModifier(this.owner, Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE_UUID, "Attack damage", damage, AttributeModifier.Operation.ADDITION);
 
-            if (this.owner.getMaxHealth() < health && EntityUtil.applyModifier(this.owner, Attributes.MAX_HEALTH, MAX_HEALTH_UUID, "Max health", health, AttributeModifier.Operation.ADDITION)) {
+            if (this.owner.getMaxHealth() != health && EntityUtil.applyModifier(this.owner, Attributes.MAX_HEALTH, MAX_HEALTH_UUID, "Max health", health, AttributeModifier.Operation.ADDITION)) {
                 this.owner.setHealth(this.owner.getMaxHealth());
             }
         }
