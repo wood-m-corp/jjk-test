@@ -27,7 +27,7 @@ public class Explode extends Ability {
     private static final double RANGE = 20.0D;
     private static final double RADIUS = 1.0D;
     private static final float EXPLOSIVE_POWER = 2F;
-    private static final float MAX_EXPLOSIVE_POWER = 20.0F;
+    private static final float MAX_EXPLOSIVE_POWER = 15.0F;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
