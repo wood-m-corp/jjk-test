@@ -43,7 +43,7 @@ public class NueTotality extends Summon<NueTotalityEntity> {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 0.2F;
+        return 2.0F;
     }
 
     @Override
