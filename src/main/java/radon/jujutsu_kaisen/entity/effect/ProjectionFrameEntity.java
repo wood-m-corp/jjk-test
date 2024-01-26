@@ -31,7 +31,7 @@ public class ProjectionFrameEntity extends Entity {
     private static final EntityDataAccessor<Integer> DATA_TIME = SynchedEntityData.defineId(ProjectionFrameEntity.class, EntityDataSerializers.INT);
 
     private static final int DURATION = 3 * 20;
-    private static final float DAMAGE = 20.0F;
+    private static final float DAMAGE = 40.0F;
 
     @Nullable
     private UUID victimUUID;
