@@ -39,7 +39,7 @@ public class GreatSerpent extends Summon<GreatSerpentEntity> {
     }
 
     public float getCost(LivingEntity owner) {
-        return this.isTamed(owner) ? 0.2F : 50.0F;
+        return this.isTamed(owner) ? 1.0F : 50.0F;
     }
 
     @Override
