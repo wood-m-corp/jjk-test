@@ -12,6 +12,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
@@ -1384,23 +1385,58 @@ public class SorcererData implements ISorcererData {
         this.shadowInventory.remove(index);
     }
 
+    private Adaptation getAdaptation(DamageSource source) {
+        RegistryAccess registry = this.owner.level().registryAccess();
+        Registry<DamageType> types = registry.registryOrThrow(Registries.DAMAGE_TYPE);
+        return new Adaptation(types.getKey(source.type()),
+                source instanceof JJKDamageSources.JujutsuDamageSource jujutsu ? jujutsu.getAbility() : null);
+    }
+
     @Override
-    public float getAdaptation(DamageSource source) {
+    public float getAdaptationProgress(DamageSource source) {
+        return this.getAdaptationProgress(this.getAdaptation(source));
+    }
+
+    @Override
+    public float getAdaptationProgress(Adaptation adaptation) {
+        return this.adapted.contains(adaptation) ? 1.0F : (float) this.adapting.getOrDefault(adaptation, 0) / JJKConstants.REQUIRED_ADAPTATION;
+    }
+
+    @Override
+    public Adaptation.Type getAdaptationType(DamageSource source) {
+        Adaptation adaptation = this.getAdaptation(source);
+        return this.getAdaptationType(adaptation);
+    }
+
+    @Override
+    public Adaptation.Type getAdaptationType(Adaptation adaptation) {
         RegistryAccess registry = this.owner.level().registryAccess();
         Registry<DamageType> types = registry.registryOrThrow(Registries.DAMAGE_TYPE);
 
-        Adaptation adaptation = new Adaptation(types.getKey(source.type()),
-                source instanceof JJKDamageSources.JujutsuDamageSource jujutsu ? jujutsu.getAbility() : null);
-        return this.isAdaptedTo(source) ? 1.0F : (float) this.adapting.getOrDefault(adaptation, 0) / JJKConstants.REQUIRED_ADAPTATION;
+        DamageType type = types.get(adaptation.getKey());
+
+        if (type == types.get(DamageTypes.MOB_ATTACK) || type == types.get(DamageTypes.PLAYER_ATTACK)) {
+            return Adaptation.Type.COUNTER;
+        }
+        return Adaptation.Type.DAMAGE;
+    }
+
+    @Override
+    public Map<Adaptation.Type, Float> getAdaptationTypes() {
+        Map<Adaptation.Type, Float> adaptations = new HashMap<>();
+
+        for (Adaptation adaptation : this.adapting.keySet()) {
+            adaptations.put(this.getAdaptationType(adaptation), this.getAdaptationProgress(adaptation));
+        }
+        for (Adaptation adaptation : this.adapted) {
+            adaptations.put(this.getAdaptationType(adaptation), this.getAdaptationProgress(adaptation));
+        }
+        return adaptations;
     }
 
     @Override
     public boolean isAdaptedTo(DamageSource source) {
-        RegistryAccess registry = this.owner.level().registryAccess();
-        Registry<DamageType> types = registry.registryOrThrow(Registries.DAMAGE_TYPE);
-
-        Adaptation adaptation = new Adaptation(types.getKey(source.type()),
-                source instanceof JJKDamageSources.JujutsuDamageSource jujutsu ? jujutsu.getAbility() : null);
+        Adaptation adaptation = this.getAdaptation(source);
         return this.adapted.contains(adaptation);
     }
 

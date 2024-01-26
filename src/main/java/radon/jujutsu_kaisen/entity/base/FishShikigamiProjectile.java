@@ -20,6 +20,7 @@ import radon.jujutsu_kaisen.ability.JJKAbilities;
 import radon.jujutsu_kaisen.capability.data.ISorcererData;
 import radon.jujutsu_kaisen.capability.data.SorcererDataHandler;
 import radon.jujutsu_kaisen.damage.JJKDamageSources;
+import radon.jujutsu_kaisen.util.EntityUtil;
 import radon.jujutsu_kaisen.util.RotationUtil;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -35,9 +36,6 @@ import java.util.UUID;
 public class FishShikigamiProjectile extends JujutsuProjectile implements GeoEntity {
     private static final EntityDataAccessor<Float> DATA_OFFSET_X = SynchedEntityData.defineId(FishShikigamiProjectile.class, EntityDataSerializers.FLOAT);
     private static final EntityDataAccessor<Float> DATA_OFFSET_Y = SynchedEntityData.defineId(FishShikigamiProjectile.class, EntityDataSerializers.FLOAT);
-    private static final EntityDataAccessor<Integer> DATA_BITE = SynchedEntityData.defineId(FishShikigamiProjectile.class, EntityDataSerializers.INT);
-
-    private static final RawAnimation BITE = RawAnimation.begin().thenPlay("attack.bite");
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
@@ -58,10 +56,10 @@ public class FishShikigamiProjectile extends JujutsuProjectile implements GeoEnt
     public FishShikigamiProjectile(EntityType<? extends Projectile> pType, LivingEntity owner, float power, LivingEntity target, float xOffset, float yOffset) {
         super(pType, owner.level(), owner, power);
 
-        this.setTarget(target);
+        this.setOffsetX(xOffset);
+        this.setOffsetY(yOffset);
 
-        this.entityData.set(DATA_OFFSET_X, xOffset);
-        this.entityData.set(DATA_OFFSET_Y, yOffset);
+        this.setTarget(target);
 
         this.applyOffset();
     }
@@ -91,15 +89,30 @@ public class FishShikigamiProjectile extends JujutsuProjectile implements GeoEnt
 
         this.entityData.define(DATA_OFFSET_X, 0.0F);
         this.entityData.define(DATA_OFFSET_Y, 0.0F);
-        this.entityData.define(DATA_BITE, 0);
+    }
+
+    private float getOffsetX() {
+        return this.entityData.get(DATA_OFFSET_X);
+    }
+
+    private void setOffsetX(float offsetX) {
+        this.entityData.set(DATA_OFFSET_X, offsetX);
+    }
+
+    private float getOffsetY() {
+        return this.entityData.get(DATA_OFFSET_Y);
+    }
+
+    private void setOffsetY(float offsetY) {
+        this.entityData.set(DATA_OFFSET_Y, offsetY);
     }
 
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
 
-        pCompound.putFloat("x_offset", this.entityData.get(DATA_OFFSET_X));
-        pCompound.putFloat("y_offset", this.entityData.get(DATA_OFFSET_Y));
+        pCompound.putFloat("x_offset", this.getOffsetX());
+        pCompound.putFloat("y_offset", this.getOffsetY());
 
         if (this.targetUUID != null) {
             pCompound.putUUID("target", this.targetUUID);
@@ -110,8 +123,8 @@ public class FishShikigamiProjectile extends JujutsuProjectile implements GeoEnt
     public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
 
-        this.entityData.set(DATA_OFFSET_X, pCompound.getFloat("x_offset"));
-        this.entityData.set(DATA_OFFSET_Y, pCompound.getFloat("y_offset"));
+        this.setOffsetX(pCompound.getFloat("x_offset"));
+        this.setOffsetY(pCompound.getFloat("y_offset"));
 
         if (pCompound.hasUUID("target")) {
             this.targetUUID = pCompound.getUUID("target");
@@ -126,32 +139,24 @@ public class FishShikigamiProjectile extends JujutsuProjectile implements GeoEnt
     private void applyRotation() {
         LivingEntity target = this.getTarget();
 
-        if (target != null) {
-            Vec3 delta = target.position().subtract(this.position());
-            double d0 = delta.horizontalDistance();
-            this.setYRot((float) (Mth.atan2(delta.x, delta.z) * (double) (180.0F / (float) Math.PI)));
-            this.setXRot((float) (Mth.atan2(delta.y, d0) * (double) (180.0F / (float) Math.PI)));
-            this.yRotO = this.getYRot();
-            this.xRotO = this.getXRot();
-        }
+        if (target == null) return;
+
+        EntityUtil.rotation(this, target.position().subtract(this.position()));
     }
 
     private void applyOffset() {
-        if (this.getOwner() instanceof LivingEntity owner) {
-            float xOffset = this.entityData.get(DATA_OFFSET_X);
-            float yOffset = this.entityData.get(DATA_OFFSET_Y);
+        if (!(this.getOwner() instanceof LivingEntity owner)) return;
 
-            Vec3 look = RotationUtil.getTargetAdjustedLookAngle(owner);
+        Vec3 look = RotationUtil.getTargetAdjustedLookAngle(owner);
 
-            this.applyRotation();
+        this.applyRotation();
 
-            Vec3 spawn = new Vec3(owner.getX(), owner.getEyeY() - (this.getBbHeight() / 2.0F), owner.getZ())
-                    .subtract(look.multiply(this.getBbWidth() * 3.0D, 0.0D, this.getBbWidth() * 3.0D))
-                    .add(look)
-                    .add(look.yRot(-90.0F).scale(xOffset))
-                    .add(new Vec3(0.0F, yOffset, 0.0F));
-            this.setPos(spawn.x, spawn.y, spawn.z);
-        }
+        Vec3 spawn = new Vec3(owner.getX(), owner.getEyeY() - (this.getBbHeight() / 2.0F), owner.getZ())
+                .subtract(look.multiply(this.getBbWidth() * 3.0D, 0.0D, this.getBbWidth() * 3.0D))
+                .add(look)
+                .add(look.yRot(-90.0F).scale(this.getOffsetX()))
+                .add(new Vec3(0.0F, this.getOffsetY(), 0.0F));
+        this.setPos(spawn.x, spawn.y, spawn.z);
     }
 
     @Override
@@ -185,14 +190,6 @@ public class FishShikigamiProjectile extends JujutsuProjectile implements GeoEnt
             return;
         }
 
-        if (!this.level().isClientSide) {
-            int bite = this.entityData.get(DATA_BITE);
-
-            if (bite > 0) {
-                this.entityData.set(DATA_BITE, --bite);
-            }
-        }
-
         if (this.getOwner() instanceof LivingEntity owner) {
             if (this.getTime() < DELAY) {
                 if (!owner.isAlive()) {
@@ -220,17 +217,9 @@ public class FishShikigamiProjectile extends JujutsuProjectile implements GeoEnt
         }
     }
 
-    private PlayState bitePredicate(AnimationState<FishShikigamiProjectile> animationState) {
-        if (this.entityData.get(DATA_BITE) > 0) {
-            return animationState.setAndContinue(BITE);
-        }
-        animationState.getController().forceAnimationReset();
-        return PlayState.STOP;
-    }
-
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "Bite", this::bitePredicate));
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+
     }
 
     @Override
