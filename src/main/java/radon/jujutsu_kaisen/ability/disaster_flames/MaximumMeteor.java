@@ -52,6 +52,11 @@ public class MaximumMeteor extends Ability {
     }
 
     @Override
+    public int getPointsCost() {
+        return 100;
+    }
+
+    @Override
     public int getCooldown() {
         return 30 * 20;
     }
