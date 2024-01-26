@@ -76,7 +76,7 @@ public class SorcererData implements ISorcererData {
     private float output;
 
     private float energy;
-    private float ;
+    private float maxEnergy;
     private float extraEnergy;
 
     private JujutsuType type;
