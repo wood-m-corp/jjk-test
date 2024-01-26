@@ -13,7 +13,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffectInstance;   
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -76,7 +76,7 @@ public class SorcererData implements ISorcererData {
     private float output;
 
     private float energy;
-    private float maxEnergy;
+    private float ;
     private float extraEnergy;
 
     private JujutsuType type;
@@ -1001,7 +1001,7 @@ public class SorcererData implements ISorcererData {
         boolean night = time >= 13000 && time < 24000;
         return (this.bindingVows.contains(BindingVow.OVERTIME) ? night ? 1.2F : 0.9F : 1.0F) *
                 ((this.maxEnergy == 0.0F ? ConfigHolder.SERVER.cursedEnergyAmount.get().floatValue() : this.maxEnergy) *
-                        this.getRealPower() * (float) (Math.log(this.getRealPower() + 1))*0.7F) + this.extraEnergy;
+                        this.getRealPower() * (float) (Math.log(this.getRealPower() + 1))*0.35F) + this.extraEnergy;
     }
 
     @Override
