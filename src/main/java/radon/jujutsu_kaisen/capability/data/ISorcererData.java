@@ -265,13 +265,13 @@ public interface ISorcererData {
 
     void revive(boolean full);
 
-    Set<Ability> getAdapted();
+    Set<Adaptation> getAdapted();
 
-    void addAdapted(Set<Ability> adaptations);
+    void addAdapted(Set<Adaptation> adaptations);
 
-    Map<Ability, Integer> getAdapting();
+    Map<Adaptation, Integer> getAdapting();
 
-    void addAdapting(Map<Ability, Integer> adapting);
+    void addAdapting(Map<Adaptation, Integer> adapting);
 
     void addShadowInventory(ItemStack stack);
 
@@ -281,9 +281,15 @@ public interface ISorcererData {
 
     void removeShadowInventory(int index);
 
-    float getAdaptation(DamageSource source);
+    float getAdaptationProgress(DamageSource source);
 
-    float getAdaptation(Ability ability);
+    float getAdaptationProgress(Adaptation adaptation);
+
+    Adaptation.Type getAdaptationType(DamageSource source);
+
+    Adaptation.Type getAdaptationType(Adaptation adaptation);
+
+    Map<Adaptation.Type, Float> getAdaptationTypes();
 
     boolean isAdaptedTo(DamageSource source);
 

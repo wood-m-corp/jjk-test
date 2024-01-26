@@ -19,6 +19,7 @@ import radon.jujutsu_kaisen.capability.data.SorcererDataHandler;
 import radon.jujutsu_kaisen.capability.data.sorcerer.Trait;
 import radon.jujutsu_kaisen.client.particle.MirageParticle;
 import radon.jujutsu_kaisen.effect.JJKEffects;
+import radon.jujutsu_kaisen.entity.base.ISorcerer;
 import radon.jujutsu_kaisen.sound.JJKSounds;
 import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
@@ -26,7 +27,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 public class Dash extends Ability {
     public static final double RANGE = 80.0D;
     private static final float DASH = 2.0F;
-    private static final float MAX_DASH = 5.0F;
+    private static final float MAX_DASH = 3.0F;
 
     @Override
     public boolean isScalable(LivingEntity owner) {
@@ -41,13 +42,7 @@ public class Dash extends Ability {
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
         if (target == null) return false;
-        if (!owner.hasLineOfSight(target)) return false;
-
-        Vec3 look = RotationUtil.getTargetAdjustedLookAngle(owner);
-        Vec3 start = owner.getEyePosition();
-        Vec3 result = target.getEyePosition().subtract(start);
-        double angle = Math.acos(look.normalize().dot(result.normalize()));
-        return angle <= 0.5D;
+        return owner.hasLineOfSight(target);
     }
 
     @Override
@@ -100,7 +95,7 @@ public class Dash extends Ability {
             owner.setDeltaMovement(motionX, motionY, motionZ);
             owner.hurtMarked = true;
         } else if (owner.onGround() || !owner.getFeetBlockState().getFluidState().isEmpty()) {
-            float power = Math.min(MAX_DASH, DASH * (1.0F + this.getPower(owner) * 0.1F) * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F));
+            float power = Math.min(MAX_DASH, DASH * (1.0F + this.getPower(owner) * 0.1F) )* (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.25F : 1.0F);
 
             float f7 = owner.getYRot();
             float f = owner.getXRot();
@@ -128,6 +123,11 @@ public class Dash extends Ability {
             Vec3 speed = look.add(x, y, z).reverse();
             level.sendParticles(ParticleTypes.CLOUD, pos.x, pos.y, pos.z, 0, speed.x, speed.y, speed.z, 1.0D);
         }
+    }
+
+    @Override
+    public boolean isValid(LivingEntity owner) {
+        return (!(owner instanceof ISorcerer sorcerer) || sorcerer.canJump()) && super.isValid(owner);
     }
 
     @Override

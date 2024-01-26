@@ -27,7 +27,9 @@ public class Barrage extends Ability {
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
-        return target != null && !target.isDeadOrDying() && HelperMethods.RANDOM.nextInt(3) == 0 && owner.hasLineOfSight(target) && owner.distanceTo(target) <= RANGE;
+        if (target == null || target.isDeadOrDying()) return false;
+        if (!owner.hasLineOfSight(target) || owner.distanceTo(target) > RANGE) return false;
+        return HelperMethods.RANDOM.nextInt(3) == 0;
     }
 
     @Override
@@ -88,7 +90,7 @@ public class Barrage extends Ability {
 
     @Override
     public boolean isValid(LivingEntity owner) {
-        return (!(owner instanceof ISorcerer sorcerer) || sorcerer.hasMeleeAttack() || !sorcerer.hasArms()) && super.isValid(owner);
+        return (!(owner instanceof ISorcerer sorcerer) || sorcerer.hasMeleeAttack() && sorcerer.hasArms()) && super.isValid(owner);
     }
 
     @Override

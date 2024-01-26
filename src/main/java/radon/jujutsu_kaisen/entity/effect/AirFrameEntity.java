@@ -32,7 +32,7 @@ import java.util.UUID;
 
 public class AirFrameEntity extends Entity {
     private static final int DURATION = 20;
-    private static final float DAMAGE = 15.0F;
+    private static final float DAMAGE = 25.0F;
     private static final double RANGE = 3.0D;
 
     @Nullable

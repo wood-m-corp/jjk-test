@@ -27,21 +27,15 @@ import java.util.*;
 
 public class Slam extends Ability implements Ability.ICharged {
     private static final double RANGE = 30.0D;
-    private static final double LAUNCH_POWER = 6.0D;
+    private static final double LAUNCH_POWER = 3.0D;
     private static final float MAX_EXPLOSION = 5.0F;
 
     public static Map<UUID, Float> TARGETS = new HashMap<>();
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
-        if (target == null) return false;
-        if (!owner.hasLineOfSight(target)) return false;
-
-        Vec3 look = RotationUtil.getTargetAdjustedLookAngle(owner);
-        Vec3 start = owner.getEyePosition();
-        Vec3 result = target.getEyePosition().subtract(start);
-        double angle = Math.acos(look.normalize().dot(result.normalize()));
-        return angle < 1.0D;
+        if (target == null || target.isDeadOrDying()) return false;
+        return owner.hasLineOfSight(target);
     }
 
     @Override
@@ -71,7 +65,7 @@ public class Slam extends Ability implements Ability.ICharged {
 
     @Override
     public boolean isValid(LivingEntity owner) {
-        return (!(owner instanceof ISorcerer sorcerer) || sorcerer.hasMeleeAttack() || !sorcerer.canJump()) && super.isValid(owner);
+        return (!(owner instanceof ISorcerer sorcerer) || sorcerer.hasMeleeAttack() && sorcerer.canJump()) && super.isValid(owner);
     }
 
     @Override
@@ -124,12 +118,12 @@ public class Slam extends Ability implements Ability.ICharged {
 
     @Override
     public boolean onRelease(LivingEntity owner) {
+        if (!owner.onGround()) {
             Vec3 target = this.getTarget(owner);
             owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(5.0D)));
             owner.swing(InteractionHand.MAIN_HAND);
         }
         else {
-        if (!owner.onGround()) {
             Vec3 direction = new Vec3(0.0D, LAUNCH_POWER, 0.0D);
             owner.setDeltaMovement(owner.getDeltaMovement().add(direction));
     
@@ -142,7 +136,7 @@ public class Slam extends Ability implements Ability.ICharged {
             cap.delayTickEvent(() -> {
                 Vec3 target = this.getTarget(owner);
                 owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(5.0D)));
-            }, 10);
+            }, 20);
         }
         return true;
     }
