@@ -476,7 +476,7 @@ public class SorcererData implements ISorcererData {
                 this.owner.setHealth(this.owner.getMaxHealth());
             }
 
-            double damage = this.getRealPower() * 3.5D;
+            double damage = this.getRealPower() * 4.5D;
             EntityUtil.applyModifier(this.owner, Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE_UUID, "Attack damage", damage, AttributeModifier.Operation.ADDITION);
 
             double speed = this.getRealPower();
