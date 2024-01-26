@@ -37,7 +37,7 @@ import java.util.List;
 public class MaxElephantEntity extends TenShadowsSummon implements PlayerRideable, IRightClickInputListener {
     private static final double EXPLOSION_FALL_DISTANCE = 10.0D;
     private static final int EXPLOSION_DURATION = 20;
-    private static final float EXPLOSION_POWER = 10.0F;
+    private static final float EXPLOSION_POWER = 15.0F;
 
     private static final EntityDataAccessor<Boolean> DATA_SHOOTING = SynchedEntityData.defineId(MaxElephantEntity.class, EntityDataSerializers.BOOLEAN);
 
