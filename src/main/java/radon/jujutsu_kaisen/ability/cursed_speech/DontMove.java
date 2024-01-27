@@ -5,6 +5,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.player.Player;
@@ -61,7 +62,7 @@ public class DontMove extends Ability {
         for (Entity entity : getEntities(owner)) {
             if (!(entity instanceof LivingEntity living)) continue;
 
-            living.addEffect(new MobEffectInstance(JJKEffects.STUN.get(), Math.round(DURATION * this.getPower(owner)), 0, false, false, false));
+            living.addEffect(new MobEffectInstance(JJKEffects.STUN.get(), Mth.clamp(Math.round(DURATION * this.getPower(owner)),2.0F,8.0F), 0, false, false, false));
 
             if (entity instanceof Player player) {
                 player.sendSystemMessage(Component.translatable(String.format("chat.%s.dont_move", JujutsuKaisen.MOD_ID), owner.getName()));
@@ -76,7 +77,7 @@ public class DontMove extends Ability {
 
     @Override
     public int getCooldown() {
-        return 10 * 20;
+        return 12 * 20;
     }
 
     @Override
