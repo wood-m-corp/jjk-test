@@ -57,10 +57,11 @@ public class DivineDogEntity extends TenShadowsSummon implements PlayerRideable 
         this.setTame(true);
         this.setOwner(owner);
 
+        Vec3 direction = RotationUtil.calculateViewVector(0.0F, owner.getYRot());
         Vec3 pos = ritual ? owner.position() : owner.position()
-                .subtract(RotationUtil.getTargetAdjustedLookAngle(owner).multiply(this.getBbWidth(), 0.0D, this.getBbWidth()))
-                .add(RotationUtil.getTargetAdjustedLookAngle(owner).yRot(90.0F).scale(this.getVariant() == Variant.WHITE ? -0.45D : 0.45D));
-        this.moveTo(pos.x, pos.y, pos.z, RotationUtil.getTargetAdjustedYRot(owner), RotationUtil.getTargetAdjustedXRot(owner));
+                .subtract(direction.multiply(this.getBbWidth(), 0.0D, this.getBbWidth()))
+                .add(direction.yRot(90.0F).scale(this.getVariant() == Variant.WHITE ? -0.45D : 0.45D));
+        this.moveTo(pos.x, pos.y, pos.z, owner.getYRot(), owner.getXRot());
 
         this.yHeadRot = this.getYRot();
         this.yHeadRotO = this.yHeadRot;
@@ -107,32 +108,8 @@ public class DivineDogEntity extends TenShadowsSummon implements PlayerRideable 
         this.entityData.set(DATA_VARIANT, variant.ordinal());
     }
 
-    public void setRitual(int index, int duration) {
-        this.setNoAi(true);
+    public void setRitual(int duration) {
         this.entityData.set(DATA_RITUAL, duration);
-
-        double x = this.getX();
-        double y = this.getY();
-        double z = this.getZ();
-
-        double distance = this.getBbWidth() * 2;
-        Vec3 look = RotationUtil.getTargetAdjustedLookAngle(this);
-        Vec3 up = new Vec3(0.0D, 1.0D, 0.0D);
-        Vec3 side = look.cross(up);
-        Vec3 offset = side.scale(distance * (index < 3 ? 1 : -1))
-                .add(look.scale(1.5D + (index % 3) * 3.0D));
-        this.setPos(x + offset.x, y, z + offset.z);
-
-        float yRot = this.getYRot();
-
-        if (index < 3) {
-            yRot -= 90.0F;
-        } else {
-            yRot += 90.0F;
-        }
-        this.setYRot(yRot);
-        this.yHeadRot = this.getYRot();
-        this.yHeadRotO = this.yHeadRot;
     }
 
     @Override
