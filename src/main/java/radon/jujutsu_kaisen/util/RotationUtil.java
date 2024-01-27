@@ -58,7 +58,7 @@ public class RotationUtil {
 
     public static Vec3 getTargetAdjustedLookAngle(Vec3 start, Entity entity) {
         Vec2 rot = getTargetAdjustedRotation(start, entity);
-        return calculateViewVector(rot.x, rot.y);
+        return calculateViewVector(rot.y, rot.x);
     }
 
     public static float getTargetAdjustedYRot(Entity entity) {
