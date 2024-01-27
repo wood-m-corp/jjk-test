@@ -88,8 +88,7 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
         int required = Math.round((victimStrength / Math.round(attackerStrength*2/10)) * 2);
 
         if (target instanceof TransfiguredSoulEntity || amplifier >= required) {
-            MobEffectInstance instance = new MobEffectInstance(JJKEffects.TRANSFIGURED_SOUL.get(), 0, 0, false, true, true);
-            target.addEffect(instance);
+            target.removeEffect(JJKEffects.TRANSFIGURED_SOUL.get());
             target.hurt(JJKDamageSources.soulAttack(owner), owner.getMaxHealth()*7/10);
         } else {
             MobEffectInstance instance = new MobEffectInstance(JJKEffects.TRANSFIGURED_SOUL.get(), 30 * 20, amplifier, false, true, true);
