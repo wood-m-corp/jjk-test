@@ -17,6 +17,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 import radon.jujutsu_kaisen.capability.data.sorcerer.CursedTechnique;
 import net.minecraft.world.phys.Vec2;
+import radon.jujutsu_kaisen.ability.JJKAbilities;
 
 import java.util.Map;
 
