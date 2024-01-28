@@ -164,6 +164,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
         }*/
 
         int delay = 0;
+        int frameCount = frames.size();
 
         AtomicBoolean cancelled = new AtomicBoolean();
         AtomicReference<Vec3> previous = new AtomicReference<>();
@@ -198,11 +199,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
                 for (Entity entity : owner.level().getEntities(owner, AABB.ofSize(frame, bounds.getXsize(), bounds.getYsize(), bounds.getZsize()))) {
                     owner.swing(InteractionHand.MAIN_HAND, true);
 
-                    if (owner instanceof Player player) {
-                        player.attack(entity);
-                    } else {
-                        owner.doHurtTarget(entity);
-                    }
+                    entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), 2.0F * this.getPower(owner))
                 }
 
                 owner.teleportTo(frame.x, frame.y, frame.z);
@@ -212,7 +209,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
             }, delay++);
         }
 
-        if (frames.size() >= 10) {
+        if (frameCount >= 10) {
             cap.addSpeedStack();
         }
     }
