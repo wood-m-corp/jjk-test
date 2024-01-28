@@ -73,24 +73,24 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
         int amplifier = 0;
 
         if (existing != null) {
-            amplifier = existing.getAmplifier() + 2;
+            amplifier = existing.getAmplifier();
         }
 
         float attackerStrength = IdleTransfiguration.calculateStrength(owner);
         float victimStrength = IdleTransfiguration.calculateStrength(target);
 
-        int required = Math.round((victimStrength / Math.round(attackerStrength*2/10)) * 2);
+        int required = 1;//Math.round((victimStrength / Math.round(attackerStrength*2/10)) * 2);
 
         if (target instanceof TransfiguredSoulEntity || amplifier >= required) {
             target.removeEffect(JJKEffects.TRANSFIGURED_SOUL.get());
-            target.hurt(JJKDamageSources.soulAttack(owner), owner.getMaxHealth()*7/10);
-        } else {
+            target.hurt(JJKDamageSources.soulAttack(owner), owner.getMaxHealth()*Math.Min(7,amplifier)/10);
+        /*} else {
             MobEffectInstance instance = new MobEffectInstance(JJKEffects.TRANSFIGURED_SOUL.get(), 30 * 20, amplifier, false, true, true);
             target.addEffect(instance);
 
             if (!owner.level().isClientSide) {
                 PacketDistributor.TRACKING_ENTITY.with(() -> target).send(new ClientboundUpdateMobEffectPacket(target.getId(), instance));
-            }
+            }*/
         }
         return true;
     }
