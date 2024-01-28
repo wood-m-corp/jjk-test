@@ -137,7 +137,7 @@ public class Dash extends Ability {
 
     @Override
     public int getCooldown() {
-        return 2 * 20;
+        return 30;
     }
 
     @Override

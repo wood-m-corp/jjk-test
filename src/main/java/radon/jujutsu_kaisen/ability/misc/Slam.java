@@ -27,7 +27,7 @@ import java.util.*;
 
 public class Slam extends Ability implements Ability.ICharged {
     private static final double RANGE = 30.0D;
-    private static final double LAUNCH_POWER = 3.0D;
+    private static final double LAUNCH_POWER = 2.5D;
     private static final float MAX_EXPLOSION = 5.0F;
 
     public static Map<UUID, Float> TARGETS = new HashMap<>();
@@ -103,7 +103,7 @@ public class Slam extends Ability implements Ability.ICharged {
     public static void onHitGround(LivingEntity owner, float distance) {
         if (owner.level().isClientSide) return;
 
-        float radius = Math.min(MAX_EXPLOSION, distance * TARGETS.get(owner.getUUID()));
+        float radius = Math.min(MAX_EXPLOSION, Math.min(1.0F,distance * TARGETS.get(owner.getUUID())));
 
         owner.swing(InteractionHand.MAIN_HAND);
 
@@ -119,6 +119,11 @@ public class Slam extends Ability implements Ability.ICharged {
     @Override
     public boolean onRelease(LivingEntity owner) {
         if (!owner.onGround()) {
+            if (!owner.level().isClientSide) {
+                TARGETS.put(owner.getUUID(), ((float) Math.min(20, this.getCharge(owner)) / 20));
+            }
+    
+            ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
             Vec3 target = this.getTarget(owner);
             owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(5.0D)));
             owner.swing(InteractionHand.MAIN_HAND);

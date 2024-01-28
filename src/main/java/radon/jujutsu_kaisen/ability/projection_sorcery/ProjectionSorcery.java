@@ -136,7 +136,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 1.0F;
+        return 1.5F;
     }
 
     @Override
@@ -145,7 +145,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
     }
 
     private static boolean isGrounded(Level level, BlockPos pos) {
-        BlockHitResult hit = level.clip(new ClipContext(pos.getCenter(), pos.below(24).getCenter(), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, null));
+        BlockHitResult hit = level.clip(new ClipContext(pos.getCenter(), pos.below(36).getCenter(), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, null));
         return hit.getType() == HitResult.Type.BLOCK;
     }
 
@@ -179,7 +179,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
 
                 boolean isOnGround = isGrounded(owner.level(), owner.blockPosition()) || (previous.get() != null && isGrounded(owner.level(), BlockPos.containing(previous.get())));
 
-                if ((!isOnGround && !owner.level().getBlockState(BlockPos.containing(frame)).canOcclude()) || frame.distanceTo(owner.position()) >= 48.0D * (cap.getSpeedStacks() + 1)) {
+                if ((!isOnGround && !owner.level().getBlockState(BlockPos.containing(frame)).canOcclude()) || frame.distanceTo(owner.position()) >= 50.0D * (cap.getSpeedStacks() + 1)) {
                     cancelled.set(true);
 
                     owner.level().addFreshEntity(new ProjectionFrameEntity(owner, owner, Ability.getPower(JJKAbilities.TWENTY_FOUR_FRAME_RULE.get(), owner)));
@@ -193,7 +193,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
                     level.sendParticles(new MirageParticle.MirageParticleOptions(owner.getId()), owner.getX(), owner.getY(), owner.getZ(),
                             0, 0.0D, 0.0D, 0.0D, 1.0D);
                 }
-                AABB bounds = owner.getBoundingBox();
+                AABB bounds = owner.getBoundingBox().inflate(3.0D);
 
                 for (Entity entity : owner.level().getEntities(owner, AABB.ofSize(frame, bounds.getXsize(), bounds.getYsize(), bounds.getZsize()))) {
                     owner.swing(InteractionHand.MAIN_HAND, true);
@@ -212,7 +212,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
             }, delay++);
         }
 
-        if (frames.size() >= 12) {
+        if (frames.size() >= 10) {
             cap.addSpeedStack();
         }
     }

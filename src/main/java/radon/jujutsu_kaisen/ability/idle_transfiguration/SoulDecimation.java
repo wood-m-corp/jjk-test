@@ -55,7 +55,7 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
 
     @Override
     public float getCost(LivingEntity owner) {
-        return JJKAbilities.IDLE_TRANSFIGURATION.get().getCost(owner) * 2;
+        return JJKAbilities.IDLE_TRANSFIGURATION.get().getCost(owner) * 3;
     }
 
     @Override
@@ -85,12 +85,13 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
         float attackerStrength = IdleTransfiguration.calculateStrength(owner);
         float victimStrength = IdleTransfiguration.calculateStrength(target);
 
-        int required = Math.round((victimStrength / attackerStrength) * 2);
+        int required = Math.round((victimStrength / Math.round(attackerStrength*2/10)) * 2);
 
         if (target instanceof TransfiguredSoulEntity || amplifier >= required) {
-            target.hurt(JJKDamageSources.soulAttack(owner), target.getMaxHealth());
+            target.removeEffect(JJKEffects.TRANSFIGURED_SOUL.get());
+            target.hurt(JJKDamageSources.soulAttack(owner), owner.getMaxHealth()*7/10);
         } else {
-            MobEffectInstance instance = new MobEffectInstance(JJKEffects.TRANSFIGURED_SOUL.get(), 60 * 20, amplifier, false, true, true);
+            MobEffectInstance instance = new MobEffectInstance(JJKEffects.TRANSFIGURED_SOUL.get(), 30 * 20, amplifier, false, true, true);
             target.addEffect(instance);
 
             if (!owner.level().isClientSide) {

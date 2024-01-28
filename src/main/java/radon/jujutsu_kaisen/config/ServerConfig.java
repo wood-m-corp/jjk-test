@@ -57,7 +57,7 @@ public class ServerConfig {
     public ServerConfig(ForgeConfigSpec.Builder builder) {
         builder.comment("Progression").push("progression");
         this.cursedEnergyAmount = builder.comment("Cursed energy amount (scales with experience)")
-                .defineInRange("cursedEnergyAmount", 1000.0F, 0.0F, 100000.0F);
+                .defineInRange("cursedEnergyAmount", 500.0F, 0.0F, 100000.0F);
         this.cursedEnergyRegenerationAmount = builder.comment("Cursed energy regeneration amount (depends on food level)")
                 .defineInRange("cursedEnergyRegenerationAmount", 0.25F, 0.0F, 100000.0F);
         this.maximumExperienceAmount = builder.comment("The maximum amount of experience one can obtain")
@@ -77,7 +77,7 @@ public class ServerConfig {
         this.deathPenalty = builder.comment("Percentage of experience lost on death")
                 .defineInRange("deathPenalty", 0.025F, 0.0F, 1.0F);
         this.blackFlashChance = builder.comment("The chance of black flash (smaller number equals bigger chance)")
-                .defineInRange("blackFlashChance", 100, 1, 1000);
+                .defineInRange("blackFlashChance", 150, 1, 1000);
         this.realisticShikigami = builder.comment("When enabled Ten Shadows shikigami will die permanently")
                 .define("realisticShikigami", true);
         this.realisticCurses = builder.comment("When enabled curses only take damage from jujutsu attacks")

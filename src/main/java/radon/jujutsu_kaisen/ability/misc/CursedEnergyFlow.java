@@ -232,11 +232,11 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                         if (!(attacker instanceof Player player) || !player.getAbilities().instabuild) {
                             /*float cost = increase * (attackerCap.hasTrait(Trait.SIX_EYES) ? 0.5F : 1.0F);
                             if (attackerCap.getEnergy() < cost) return;
-                            attackerCap.useEnergy(cost);*/
+                            attackerCap.useEnergy(cost);
 
                             if (attacker instanceof ServerPlayer player) {
                                 PacketHandler.sendToClient(new SyncSorcererDataS2CPacket(attackerCap.serializeNBT()), player);
-                            }
+                            }*/
                         }
                         event.setAmount(event.getAmount() + increase);
                     }
@@ -300,11 +300,11 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                     if (!(attacker instanceof Player player) || !player.getAbilities().instabuild) {
                         /*float cost = block * (victimCap.hasTrait(Trait.SIX_EYES) ? 0.5F : 1.0F);
                         if (victimCap.getEnergy() < cost) return;
-                        victimCap.useEnergy(cost);*/
+                        victimCap.useEnergy(cost);
 
                         if (victim instanceof ServerPlayer player) {
                             PacketHandler.sendToClient(new SyncSorcererDataS2CPacket(victimCap.serializeNBT()), player);
-                        }
+                        }*/
                     }
                     event.setAmount(blocked);
                 }

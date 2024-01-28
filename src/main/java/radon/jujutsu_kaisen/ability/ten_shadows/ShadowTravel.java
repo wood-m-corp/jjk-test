@@ -102,6 +102,11 @@ public class ShadowTravel extends Ability {
     }
 
     @Override
+    public int getCooldown() {
+        return 1 * 20;
+    }
+
+    @Override
     public Status isTriggerable(LivingEntity owner) {
         HitResult target = this.getTarget(owner);
 

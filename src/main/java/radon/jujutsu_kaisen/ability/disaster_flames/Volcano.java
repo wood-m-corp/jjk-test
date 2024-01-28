@@ -77,6 +77,11 @@ public class Volcano extends Ability {
     }
 
     @Override
+    public int getCooldown() {
+        return 1 * 20;
+    }
+
+    @Override
     public MenuType getMenuType() {
         return MenuType.MELEE;
     }

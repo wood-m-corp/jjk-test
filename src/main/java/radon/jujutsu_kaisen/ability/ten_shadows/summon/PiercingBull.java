@@ -39,7 +39,7 @@ public class PiercingBull extends Summon<PiercingBullEntity> {
     }
 
     public float getCost(LivingEntity owner) {
-        return this.isTamed(owner) ? 0.2F : 250.0F;
+        return this.isTamed(owner) ? 0.6F : 250.0F;
     }
 
     @Override
