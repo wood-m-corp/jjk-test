@@ -9,6 +9,7 @@ import radon.jujutsu_kaisen.entity.projectile.FireArrowProjectile;
 import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.capability.data.sorcerer.CursedTechnique;
 import net.minecraft.world.phys.Vec2;
+import radon.jujutsu_kaisen.ability.JJKAbilities;
 
 public class FireArrow extends Ability {
     @Override
@@ -43,7 +44,7 @@ public class FireArrow extends Ability {
     public boolean isDisplayed(LivingEntity owner) {
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
         CursedTechnique technique = cap.getTechnique();
-        return technique == CursedTechnique.DISASTER_FLAMES && super.isDisplayed(owner);
+        return technique == CursedTechnique.DISMANTLE_AND_CLEAVE && super.isDisplayed(owner);
     }
 
     @Override
