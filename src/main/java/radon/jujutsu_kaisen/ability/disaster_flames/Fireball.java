@@ -28,7 +28,7 @@ public class Fireball extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 350.0F;
+        return 275.0F;
     }
 
     @Override
