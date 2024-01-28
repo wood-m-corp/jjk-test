@@ -82,10 +82,6 @@ public class Infinity extends Ability implements Ability.IToggled {
 
     }
 
-    @Override
-    public int getCooldown() {
-        return 5 * 20;
-    }
 
     public static class FrozenProjectileData extends SavedData {
         public static final String IDENTIFIER = "frozen_projectile_data";
