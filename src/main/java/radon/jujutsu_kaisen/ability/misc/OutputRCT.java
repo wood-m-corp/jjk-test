@@ -104,7 +104,7 @@ public class OutputRCT extends Ability {
             ISorcererData targetCap = target.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
             if (targetCap.getType() == JujutsuType.CURSE) {
-                target.hurt(JJKDamageSources.jujutsuAttack(owner, this), amount * 0.86F);
+                target.hurt(JJKDamageSources.jujutsuAttack(owner, this), amount * 0.86F * 80.0F);
                 return;
             }
         }
@@ -123,7 +123,7 @@ public class OutputRCT extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 50.0F;
+        return 80.0F;
     }
 
     @Override
