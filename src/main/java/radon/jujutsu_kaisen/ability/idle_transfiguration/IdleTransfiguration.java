@@ -123,7 +123,7 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
         float attackerStrength = IdleTransfiguration.calculateStrength(owner);
         float victimStrength = IdleTransfiguration.calculateStrength(target);
 
-        int required = Math.round((victimStrength / Math.round(attackerStrength*2/10)) * 2);
+        int required = Math.round((victimStrength / Math.round(attackerStrength*2/12)) * 2);
 
         if (amplifier >= required) {
             if ((target instanceof Mob && !(target instanceof Monster)) || target instanceof Player) {
