@@ -38,7 +38,7 @@ public class PiercingWaterEntity extends BeamEntity {
 
     @Override
     protected float getDamage() {
-        return 10.0F;
+        return 15.0F;
     }
 
     @Override
