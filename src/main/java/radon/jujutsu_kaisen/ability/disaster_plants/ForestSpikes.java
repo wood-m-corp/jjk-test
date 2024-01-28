@@ -23,7 +23,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class ForestSpikes extends Ability {
     private static final double RANGE = 30.0D;
-    private static final float SPREAD = 10.0F;
+    private static final float SPREAD = 15.0F;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
