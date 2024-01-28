@@ -65,7 +65,7 @@ public class DragonBoneItem extends CursedToolItem implements GeoItem {
         if (nbt.contains("energy")) {
             energy += nbt.getFloat("energy");
         }
-        nbt.putFloat("energy", Math.min(MAX_ENERGY, energy));
+        nbt.putFloat("energy", Math.min(MAX_ENERGY, energy/4.0F));
     }
 
     public static void resetEnergy(ItemStack stack) {
@@ -90,7 +90,7 @@ public class DragonBoneItem extends CursedToolItem implements GeoItem {
                 entity.level().playSound(null, pos.x, pos.y, pos.z, SoundEvents.GENERIC_EXPLODE, SoundSource.MASTER, 1.0F, 1.0F);
 
                 ISorcererData cap = pPlayer.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-                entity.hurt(JJKDamageSources.jujutsuAttack(pPlayer, null), this.getDamage() * cap.getRealPower() * charge);
+                entity.hurt(JJKDamageSources.jujutsuAttack(pPlayer, null), (this.getDamage() * cap.getRealPower() * charge)*4.0F);
 
                 pPlayer.swing(InteractionHand.MAIN_HAND);
 
