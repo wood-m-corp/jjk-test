@@ -10,6 +10,12 @@ import radon.jujutsu_kaisen.capability.data.SorcererDataHandler;
 import radon.jujutsu_kaisen.entity.curse.base.CursedSpirit;
 import radon.jujutsu_kaisen.entity.projectile.MiniUzumakiProjectile;
 import radon.jujutsu_kaisen.util.HelperMethods;
+import radon.jujutsu_kaisen.util.RotationUtil;
+import radon.jujutsu_kaisen.capability.data.sorcerer.CursedTechnique;
+import net.minecraft.world.phys.Vec2;
+import radon.jujutsu_kaisen.ability.JJKAbilities;
+
+import java.util.Map;
 
 public class MiniUzumaki extends Ability {
     @Override
@@ -42,8 +48,31 @@ public class MiniUzumaki extends Ability {
     }
 
     @Override
+    public boolean isDisplayed(LivingEntity owner) {
+        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        CursedTechnique technique = cap.getTechnique();
+        return technique == CursedTechnique.CURSE_MANIPULATION && super.isDisplayed(owner);
+    }
+
+    @Override
     public float getCost(LivingEntity owner) {
         return 0;
+    }
+
+    @Override
+    public int getPointsCost() {
+        return 5;
+    }
+
+    @Nullable
+    @Override
+    public Ability getParent(LivingEntity owner) {
+        return JJKAbilities.MAXIMUM_UZUMAKI.get();
+    }
+
+    @Override
+    public Vec2 getDisplayCoordinates() {
+        return new Vec2(2.0F, 3.0F);
     }
 
     @Override

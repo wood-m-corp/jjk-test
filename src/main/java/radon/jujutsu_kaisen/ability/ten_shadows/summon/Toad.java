@@ -38,7 +38,7 @@ public class Toad extends Summon<ToadEntity> {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return this.isTamed(owner) ? 0.1F : 10.0F;
+        return this.isTamed(owner) ? 0.2F : 10.0F;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class BlastAway extends Ability {
     private static final double RANGE = 20.0D;
     private static final double RADIUS = 1.0D;
     private static final float DAMAGE = 5.0F;
-    private static final double LAUNCH_POWER = 2.0D;
+    private static final double LAUNCH_POWER = 5.5D;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
@@ -88,7 +88,7 @@ public class BlastAway extends Ability {
 
     @Override
     public int getCooldown() {
-        return 10 * 20;
+        return 6 * 20;
     }
 
     @Override

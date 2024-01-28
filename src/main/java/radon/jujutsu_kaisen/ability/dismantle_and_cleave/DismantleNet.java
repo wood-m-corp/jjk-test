@@ -14,9 +14,9 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class DismantleNet extends Ability {
-    private static final int MIN_SIZE = 4;
-    private static final int MAX_SIZE = 16;
-    private static final int SIZE = 4;
+    private static final int MIN_SIZE = 5;
+    private static final int MAX_SIZE = 20;
+    private static final int SIZE = 10;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
@@ -39,7 +39,7 @@ public class DismantleNet extends Ability {
 
         Vec3 center = new Vec3(owner.getX(), owner.getEyeY(), owner.getZ()).add(look);
 
-        float power = this.getPower(owner);
+        float power = this.getPower(owner)*2.0F;
 
         for (int i = 0; i < count; i++) {
             for (int j = 0; j < count; j++) {
@@ -69,12 +69,12 @@ public class DismantleNet extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 150.0F;
+        return 450.0F;
     }
 
     @Override
     public int getCooldown() {
-        return 15 * 20;
+        return 20 * 20;
     }
 
     @Override

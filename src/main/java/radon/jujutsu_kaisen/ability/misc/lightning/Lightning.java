@@ -50,12 +50,12 @@ public class Lightning extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 100.0F;
+        return 80.0F;
     }
 
     @Override
     public int getCooldown() {
-        return 10 * 20;
+        return 5 * 20;
     }
 
     @Override

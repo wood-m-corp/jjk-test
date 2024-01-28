@@ -40,7 +40,7 @@ public class WaterTorrentEntity extends BeamEntity {
 
     @Override
     protected float getDamage() {
-        return 7.5F;
+        return 8.5F;
     }
 
     @Override

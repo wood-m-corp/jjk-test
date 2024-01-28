@@ -18,7 +18,7 @@ import radon.jujutsu_kaisen.util.SorcererUtil;
 import java.util.List;
 
 public class Rika extends Summon<RikaEntity> {
-    private static final float AMOUNT = 100.0F;
+    private static final float AMOUNT = 50.0F;
     private static final int INTERVAL = 5 * 20;
 
     public Rika() {
@@ -90,6 +90,6 @@ public class Rika extends Summon<RikaEntity> {
 
     @Override
     public int getCooldown() {
-        return 30 * 20;
+        return 60 * 20;
     }
 }

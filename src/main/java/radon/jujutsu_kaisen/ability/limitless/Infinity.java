@@ -60,7 +60,7 @@ public class Infinity extends Ability implements Ability.IToggled {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 0.4F;
+        return 1.2F;
     }
 
     @Override
@@ -73,10 +73,6 @@ public class Infinity extends Ability implements Ability.IToggled {
 
     }
 
-    @Override
-    public int getCooldown() {
-        return 5 * 20;
-    }
 
     public static class FrozenProjectileData extends SavedData {
         public static final String IDENTIFIER = "frozen_projectile_data";

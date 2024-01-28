@@ -7,6 +7,11 @@ import org.jetbrains.annotations.Nullable;
 import radon.jujutsu_kaisen.ability.base.Ability;
 import radon.jujutsu_kaisen.entity.projectile.FireArrowProjectile;
 import radon.jujutsu_kaisen.util.HelperMethods;
+import radon.jujutsu_kaisen.capability.data.sorcerer.CursedTechnique;
+import net.minecraft.world.phys.Vec2;
+import radon.jujutsu_kaisen.capability.data.ISorcererData;
+import radon.jujutsu_kaisen.capability.data.SorcererDataHandler;
+import radon.jujutsu_kaisen.ability.JJKAbilities;
 
 public class FireArrow extends Ability {
     @Override
@@ -25,6 +30,23 @@ public class FireArrow extends Ability {
 
         FireArrowProjectile arrow = new FireArrowProjectile(owner, this.getPower(owner));
         owner.level().addFreshEntity(arrow);
+    }
+
+    @Override
+    public int getPointsCost() {
+        return 50;
+    }
+
+    @Override
+    public Vec2 getDisplayCoordinates() {
+        return new Vec2(1.0F, 3.0F);
+    }
+
+    @Override
+    public boolean isDisplayed(LivingEntity owner) {
+        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        CursedTechnique technique = cap.getTechnique();
+        return technique == CursedTechnique.DISMANTLE_AND_CLEAVE && super.isDisplayed(owner);
     }
 
     @Override

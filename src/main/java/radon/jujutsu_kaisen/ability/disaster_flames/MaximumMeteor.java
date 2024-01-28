@@ -15,6 +15,8 @@ import radon.jujutsu_kaisen.capability.data.SorcererDataHandler;
 import radon.jujutsu_kaisen.capability.data.sorcerer.JujutsuType;
 import radon.jujutsu_kaisen.effect.JJKEffects;
 import radon.jujutsu_kaisen.entity.effect.MeteorEntity;
+import radon.jujutsu_kaisen.capability.data.sorcerer.CursedTechnique;
+import net.minecraft.world.phys.Vec2;
 
 public class MaximumMeteor extends Ability {
     @Override
@@ -52,9 +54,27 @@ public class MaximumMeteor extends Ability {
     }
 
     @Override
+    public int getPointsCost() {
+        return 100;
+    }
+
+    @Override
+    public Vec2 getDisplayCoordinates() {
+        return new Vec2(1.0F, 3.0F);
+    }
+
+    @Override
+    public boolean isDisplayed(LivingEntity owner) {
+        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        CursedTechnique technique = cap.getTechnique();
+        return technique == CursedTechnique.DISASTER_FLAMES && super.isDisplayed(owner);
+    }
+
+    @Override
     public int getCooldown() {
         return 30 * 20;
     }
+
 
     @Override
     public Status isTriggerable(LivingEntity owner) {

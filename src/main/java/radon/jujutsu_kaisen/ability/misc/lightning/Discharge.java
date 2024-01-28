@@ -23,7 +23,7 @@ import radon.jujutsu_kaisen.sound.JJKSounds;
 import radon.jujutsu_kaisen.util.HelperMethods;
 
 public class Discharge extends Ability implements Ability.IChannelened, Ability.IDurationable {
-    private static final float DAMAGE = 10.0F;
+    private static final float DAMAGE = 15.0F;
     private static final float MAX_RADIUS = 20.0F;
 
     @Override
@@ -88,7 +88,7 @@ public class Discharge extends Ability implements Ability.IChannelened, Ability.
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 50.0F;
+        return 15.0F;
     }
 
     @Override
@@ -98,7 +98,7 @@ public class Discharge extends Ability implements Ability.IChannelened, Ability.
 
     @Override
     public int getCooldown() {
-        return 30 * 20;
+        return 20 * 20;
     }
 
     @Override

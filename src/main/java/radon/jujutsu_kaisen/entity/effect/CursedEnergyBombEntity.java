@@ -40,7 +40,7 @@ public class CursedEnergyBombEntity extends BeamEntity {
 
     @Override
     protected float getDamage() {
-        return 10.0F;
+        return 8.0F;
     }
 
     @Override

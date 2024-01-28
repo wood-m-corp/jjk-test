@@ -48,8 +48,9 @@ import java.util.UUID;
 
 public class CursedEnergyFlow extends Ability implements Ability.IToggled {
     private static final UUID MOVEMENT_SPEED_UUID = UUID.fromString("641b629b-f7b7-4066-a486-8e1d670a7439");
-
+  
     private static final double SPEED = 0.02D;
+
 
     private static final float LIGHTNING_DAMAGE = 5.0F;
 
@@ -200,7 +201,7 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                     ISorcererData attackerCap = attacker.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
                     if (HelperMethods.isMelee(source)) {
-                        float increase = attackerCap.getExperience() * 0.005F;
+                        float increase = attackerCap.getExperience() * 0.0009F;
 
                         switch (attackerCap.getNature()) {
                             case ROUGH -> increase *= 1.5F;
@@ -225,13 +226,13 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                         };
 
                         if (!(attacker instanceof Player player) || !player.getAbilities().instabuild) {
-                            float cost = increase * (attackerCap.hasTrait(Trait.SIX_EYES) ? 0.5F : 1.0F);
+                            /*float cost = increase * (attackerCap.hasTrait(Trait.SIX_EYES) ? 0.5F : 1.0F);
                             if (attackerCap.getEnergy() < cost) return;
                             attackerCap.useEnergy(cost);
 
                             if (attacker instanceof ServerPlayer player) {
                                 PacketHandler.sendToClient(new SyncSorcererDataS2CPacket(attackerCap.serializeNBT()), player);
-                            }
+                            }*/
                         }
                         event.setAmount(event.getAmount() + increase);
                     }
@@ -288,18 +289,18 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                         }
                     }
 
-                    float armor = victimCap.getExperience() * (JJKAbilities.hasToggled(victim, JJKAbilities.CURSED_ENERGY_SHIELD.get()) ? 0.05F : 0.025F);
+                    float armor = victimCap.getExperience() * (JJKAbilities.hasToggled(victim, JJKAbilities.CURSED_ENERGY_SHIELD.get()) ? 0.1F : 0.003F);
                     float blocked = CombatRules.getDamageAfterAbsorb(event.getAmount(), armor, armor * 0.1F);
                     float block = event.getAmount() - blocked;
 
                     if (!(attacker instanceof Player player) || !player.getAbilities().instabuild) {
-                        float cost = block * (victimCap.hasTrait(Trait.SIX_EYES) ? 0.5F : 1.0F);
+                        /*float cost = block * (victimCap.hasTrait(Trait.SIX_EYES) ? 0.5F : 1.0F);
                         if (victimCap.getEnergy() < cost) return;
                         victimCap.useEnergy(cost);
 
                         if (victim instanceof ServerPlayer player) {
                             PacketHandler.sendToClient(new SyncSorcererDataS2CPacket(victimCap.serializeNBT()), player);
-                        }
+                        }*/
                     }
                     event.setAmount(blocked);
                 }

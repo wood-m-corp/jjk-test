@@ -11,6 +11,8 @@ import radon.jujutsu_kaisen.capability.data.SorcererDataHandler;
 import radon.jujutsu_kaisen.capability.data.sorcerer.JujutsuType;
 import radon.jujutsu_kaisen.entity.curse.base.CursedSpirit;
 import radon.jujutsu_kaisen.entity.projectile.MaximumUzumakiProjectile;
+import radon.jujutsu_kaisen.capability.data.sorcerer.CursedTechnique;
+import net.minecraft.world.phys.Vec2;
 
 public class MaximumUzumaki extends Ability {
     @Override
@@ -46,6 +48,23 @@ public class MaximumUzumaki extends Ability {
     @Override
     public float getCost(LivingEntity owner) {
         return 0;
+    }
+
+    @Override
+    public int getPointsCost() {
+        return 50;
+    }
+
+    @Override
+    public boolean isDisplayed(LivingEntity owner) {
+        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        CursedTechnique technique = cap.getTechnique();
+        return technique == CursedTechnique.CURSE_MANIPULATION && super.isDisplayed(owner);
+    }
+
+    @Override
+    public Vec2 getDisplayCoordinates() {
+        return new Vec2(1.0F, 3.0F);
     }
 
     @Override

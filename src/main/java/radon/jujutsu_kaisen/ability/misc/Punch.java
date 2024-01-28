@@ -24,8 +24,8 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 import java.util.List;
 
 public class Punch extends Ability {
-    private static final float DAMAGE = 5.0F;
-    private static final double RANGE = 5.0D;
+    private static final float DAMAGE = 6.0F;
+    private static final double RANGE = 6.0D;
     private static final double LAUNCH_POWER = 2.5D;
 
     @Override
@@ -105,7 +105,7 @@ public class Punch extends Ability {
             entity.invulnerableTime = 0;
 
             if (JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION)) {
-                if (entity.hurt(owner instanceof Player player ? owner.damageSources().playerAttack(player) : owner.damageSources().mobAttack(owner), DAMAGE * this.getPower(owner))) {
+                if (entity.hurt(owner instanceof Player player ? owner.damageSources().playerAttack(player) : owner.damageSources().mobAttack(owner), (DAMAGE * 1.75F) * this.getPower(owner))) {
                     entity.setDeltaMovement(look.scale(LAUNCH_POWER * (1.0F + this.getPower(owner) * 0.1F) * 2.0F)
                             .multiply(1.0D, 0.25D, 1.0D));
                 }
@@ -130,7 +130,7 @@ public class Punch extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION) ? 0.0F : 30.0F;
+        return JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION) ? 0.0F : 15.0F;
     }
 
     @Override

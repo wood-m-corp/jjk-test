@@ -45,12 +45,12 @@ public class CursedEnergyBomb extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 100.0F;
+        return 120.0F;
     }
 
     @Override
     public int getCooldown() {
-        return 10 * 20;
+        return 12 * 20;
     }
 
     @Override

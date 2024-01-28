@@ -44,7 +44,7 @@ public class EmberInsectFlight extends Summon<EmberInsectFlightEntity> {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 0.1F;
+        return 0.7F;
     }
 
     @Override

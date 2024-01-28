@@ -14,7 +14,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class CursedEnergyBlastEntity extends JujutsuProjectile {
     public static final int DURATION = 20;
-    private static final float DAMAGE = 10.0F;
+    private static final float DAMAGE = 8.0F;
     public static final float RANGE = (float) Math.pow(DURATION, 0.5F) * 5.0F;
 
     public CursedEnergyBlastEntity(EntityType<? extends Projectile> pType, Level pLevel) {
@@ -52,7 +52,6 @@ public class CursedEnergyBlastEntity extends JujutsuProjectile {
 
         for (Entity entity : this.level().getEntities(owner, this.getBoundingBox())) {
             if (!entity.hurt(JJKDamageSources.jujutsuAttack(owner, JJKAbilities.CURSED_ENERGY_BLAST.get()), DAMAGE * this.getPower())) continue;
-            entity.setSecondsOnFire(5);
         }
     }
 
