@@ -26,7 +26,7 @@ public class BlueFists extends Ability implements Ability.IToggled {
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
-        return target != null && !target.isDeadOrDying() && owner.distanceTo(target) < 5.0D;
+        return target != null && !target.isDeadOrDying() && owner.distanceTo(target) < 10.0D;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class BlueFists extends Ability implements Ability.IToggled {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 1.0F;
+        return 0.6F;
     }
 
     @Override
