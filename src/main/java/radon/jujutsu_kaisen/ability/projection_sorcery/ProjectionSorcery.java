@@ -34,6 +34,7 @@ import radon.jujutsu_kaisen.network.packet.s2c.ScreenFlashS2CPacket;
 import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.ParticleUtil;
 import radon.jujutsu_kaisen.util.RotationUtil;
+import radon.jujutsu_kaisen.damage.JJKDamageSources;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
