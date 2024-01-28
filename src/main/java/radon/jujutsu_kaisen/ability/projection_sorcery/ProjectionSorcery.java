@@ -199,7 +199,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
                 for (Entity entity : owner.level().getEntities(owner, AABB.ofSize(frame, bounds.getXsize(), bounds.getYsize(), bounds.getZsize()))) {
                     owner.swing(InteractionHand.MAIN_HAND, true);
 
-                    entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), 2.0F * this.getPower(owner))
+                    entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), 2.0F * this.getPower(owner));
                 }
 
                 owner.teleportTo(frame.x, frame.y, frame.z);
