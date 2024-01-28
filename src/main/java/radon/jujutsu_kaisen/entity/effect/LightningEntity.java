@@ -66,7 +66,7 @@ public class LightningEntity extends JujutsuProjectile {
     }
 
     protected float getDamage() {
-        return 20.0F;
+        return 25.0F;
     }
 
     @Override
