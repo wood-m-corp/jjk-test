@@ -65,7 +65,7 @@ public class DragonBoneItem extends CursedToolItem implements GeoItem {
         if (nbt.contains("energy")) {
             energy += nbt.getFloat("energy");
         }
-        nbt.putFloat("energy", Math.min(MAX_ENERGY, energy/4.0F));
+        nbt.putFloat("energy", Math.min(MAX_ENERGY, energy/3.0F));
     }
 
     public static void resetEnergy(ItemStack stack) {
