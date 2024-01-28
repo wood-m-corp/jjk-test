@@ -43,7 +43,7 @@ public class PiercingWaterEntity extends BeamEntity {
 
     @Override
     public int getDuration() {
-        return 4;
+        return 12;
     }
 
     @Override
