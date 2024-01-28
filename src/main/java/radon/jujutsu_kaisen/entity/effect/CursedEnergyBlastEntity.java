@@ -58,7 +58,6 @@ public class CursedEnergyBlastEntity extends JujutsuProjectile {
 
         for (Entity entity : this.level().getEntities(owner, this.getBoundingBox())) {
             if (!entity.hurt(JJKDamageSources.jujutsuAttack(owner, JJKAbilities.CURSED_ENERGY_BLAST.get()), DAMAGE * this.getPower())) continue;
-            entity.setSecondsOnFire(5);
         }
     }
 
