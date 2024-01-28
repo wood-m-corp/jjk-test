@@ -75,7 +75,7 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
 
     @Override
     public int getCooldown() {
-        return 15 * 20;
+        return 12 * 20;
     }
 
     @Override
@@ -123,7 +123,7 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
         float attackerStrength = IdleTransfiguration.calculateStrength(owner);
         float victimStrength = IdleTransfiguration.calculateStrength(target);
 
-        int required = Math.round((victimStrength / attackerStrength) * 2);
+        int required = Math.round((victimStrength / Math.round(attackerStrength*2/10)) * 2);
 
         if (amplifier >= required) {
             if ((target instanceof Mob && !(target instanceof Monster)) || target instanceof Player) {
@@ -132,7 +132,7 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
             }
         }
 
-        MobEffectInstance instance = new MobEffectInstance(JJKEffects.TRANSFIGURED_SOUL.get(), 30 * 20, amplifier, false, true, true);
+        MobEffectInstance instance = new MobEffectInstance(JJKEffects.TRANSFIGURED_SOUL.get(), 20 * 20, amplifier, false, true, true);
         target.addEffect(instance);
 
         if (!owner.level().isClientSide) {
