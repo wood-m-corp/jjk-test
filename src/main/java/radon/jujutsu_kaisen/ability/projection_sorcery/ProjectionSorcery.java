@@ -145,7 +145,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
     }
 
     private static boolean isGrounded(Level level, BlockPos pos) {
-        BlockHitResult hit = level.clip(new ClipContext(pos.getCenter(), pos.below(24).getCenter(), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, null));
+        BlockHitResult hit = level.clip(new ClipContext(pos.getCenter(), pos.below(36).getCenter(), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, null));
         return hit.getType() == HitResult.Type.BLOCK;
     }
 
