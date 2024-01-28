@@ -18,6 +18,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 import radon.jujutsu_kaisen.capability.data.sorcerer.CursedTechnique;
 import net.minecraft.world.phys.Vec2;
 import radon.jujutsu_kaisen.ability.JJKAbilities;
+import radon.jujutsu_kaisen.capability.data.SorcererDataHandler;
 
 import java.util.Map;
 
@@ -49,6 +50,13 @@ public class MiniUzumaki extends Ability {
             return false;
         }
         return super.isValid(owner);
+    }
+
+    @Override
+    public boolean isDisplayed(LivingEntity owner) {
+        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        CursedTechnique technique = cap.getTechnique();
+        return technique == CursedTechnique.CURSE_MANIPULATION && super.isDisplayed(owner);
     }
 
     @Override
