@@ -1,11 +1,6 @@
 package radon.jujutsu_kaisen.config;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
-import radon.jujutsu_kaisen.capability.data.sorcerer.SorcererGrade;
-import radon.jujutsu_kaisen.entity.JJKEntities;
-
-import java.util.*;
 
 public class ServerConfig {
     public final ForgeConfigSpec.DoubleValue cursedEnergyAmount;
@@ -86,9 +81,9 @@ public class ServerConfig {
 
         builder.comment("Miscellaneous").push("misc");
         this.sorcererHealingAmount = builder.comment("The maximum amount of health sorcerers can heal per tick (scales with experience)")
-                .defineInRange("sorcererHealingAmount", 0.1F, 0.0F, 100.0F);
+                .defineInRange("sorcererHealingAmount", 0.05F, 0.0F, 100.0F);
         this.curseHealingAmount = builder.comment("The maximum amount of health curses can heal per tick (scales with experience)")
-                .defineInRange("curseHealingAmount", 0.15F, 0.0F, 100.0F);
+                .defineInRange("curseHealingAmount", 0.075F, 0.0F, 100.0F);
         this.uniqueTechniques = builder.comment("When enabled on servers every player will have a unique technique if any are available")
                 .define("uniqueTechniques", true);
         this.uniqueTraits = builder.comment("When enabled on servers there can be only one six eyes, heavenly restriction and vessel")
