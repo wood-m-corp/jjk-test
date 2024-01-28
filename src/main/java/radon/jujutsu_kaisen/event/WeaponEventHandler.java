@@ -154,7 +154,7 @@ public class WeaponEventHandler {
 
             if (stacks.contains(JJKItems.DRAGON_BONE.get()) && (JJKAbilities.hasToggled(victim, JJKAbilities.CURSED_ENERGY_FLOW.get()) ||
                     JJKAbilities.hasToggled(victim, JJKAbilities.FALLING_BLOSSOM_EMOTION.get()))) {
-                DragonBoneItem.addEnergy(stack, 10.0F);
+                DragonBoneItem.addEnergy(stack, 5.0F);
             }
         }
     }
