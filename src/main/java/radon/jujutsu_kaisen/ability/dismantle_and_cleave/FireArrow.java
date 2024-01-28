@@ -7,6 +7,9 @@ import org.jetbrains.annotations.Nullable;
 import radon.jujutsu_kaisen.ability.base.Ability;
 import radon.jujutsu_kaisen.entity.projectile.FireArrowProjectile;
 import radon.jujutsu_kaisen.util.HelperMethods;
+import radon.jujutsu_kaisen.entity.effect.MeteorEntity;
+import radon.jujutsu_kaisen.capability.data.sorcerer.CursedTechnique;
+import net.minecraft.world.phys.Vec2;
 
 public class FireArrow extends Ability {
     @Override
