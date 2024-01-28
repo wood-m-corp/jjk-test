@@ -41,7 +41,7 @@ import java.util.function.Consumer;
 
 public class DragonBoneItem extends CursedToolItem implements GeoItem {
     private static final float MAX_ENERGY = 100.0F;
-    private static final double RANGE = 5.0D;
+    private static final double RANGE = 16.0D;
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
