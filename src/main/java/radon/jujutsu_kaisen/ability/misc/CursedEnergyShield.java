@@ -54,7 +54,7 @@ public class CursedEnergyShield extends Ability implements Ability.IChannelened 
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 3.0F;
+        return 6.0F;
     }
 
     @Override
