@@ -9,6 +9,8 @@ import radon.jujutsu_kaisen.entity.projectile.FireArrowProjectile;
 import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.capability.data.sorcerer.CursedTechnique;
 import net.minecraft.world.phys.Vec2;
+import radon.jujutsu_kaisen.capability.data.ISorcererData;
+import radon.jujutsu_kaisen.capability.data.SorcererDataHandler;
 import radon.jujutsu_kaisen.ability.JJKAbilities;
 
 public class FireArrow extends Ability {
