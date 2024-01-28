@@ -60,7 +60,7 @@ public class MaximumMeteor extends Ability {
 
     @Override
     public Vec2 getDisplayCoordinates() {
-        return new Vec2(1.0F, 4.0F);
+        return new Vec2(1.0F, 3.0F);
     }
 
     @Override
