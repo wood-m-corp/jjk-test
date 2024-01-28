@@ -58,7 +58,7 @@ public class RotationUtil {
 
     public static Vec3 getTargetAdjustedLookAngle(Vec3 start, Entity entity) {
         Vec2 rot = getTargetAdjustedRotation(start, entity);
-        return calculateViewVector(rot.y, rot.x);
+        return calculateViewVector(rot.x, rot.y);
     }
 
     public static float getTargetAdjustedYRot(Entity entity) {
@@ -91,7 +91,7 @@ public class RotationUtil {
         return hasLineOfSight(entity.getEyePosition(), entity, target);
     }
 
-    public static Vec3 calculateViewVector(float yaw, float pitch) {
+    public static Vec3 calculateViewVector(float pitch, float yaw) {
         float f = pitch * ((float) Math.PI / 180.0F);
         float f1 = -yaw * ((float) Math.PI / 180.0F);
         float f2 = Mth.cos(f1);

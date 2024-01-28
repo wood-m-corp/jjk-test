@@ -9,10 +9,12 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
 import net.minecraft.world.entity.player.Player;
@@ -23,6 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import radon.jujutsu_kaisen.ability.JJKAbilities;
 import radon.jujutsu_kaisen.ability.base.Summon;
+import radon.jujutsu_kaisen.entity.ai.goal.SorcererGoal;
 import radon.jujutsu_kaisen.entity.ai.goal.WaterWalkingFloatGoal;
 import radon.jujutsu_kaisen.entity.ai.goal.BetterFollowOwnerGoal;
 import radon.jujutsu_kaisen.entity.base.SorcererEntity;
@@ -57,10 +60,11 @@ public class DivineDogEntity extends TenShadowsSummon implements PlayerRideable 
         this.setTame(true);
         this.setOwner(owner);
 
+        Vec3 direction = RotationUtil.calculateViewVector(0.0F, owner.getYRot());
         Vec3 pos = ritual ? owner.position() : owner.position()
-                .subtract(RotationUtil.getTargetAdjustedLookAngle(owner).multiply(this.getBbWidth(), 0.0D, this.getBbWidth()))
-                .add(RotationUtil.getTargetAdjustedLookAngle(owner).yRot(90.0F).scale(this.getVariant() == Variant.WHITE ? -0.45D : 0.45D));
-        this.moveTo(pos.x, pos.y, pos.z, RotationUtil.getTargetAdjustedYRot(owner), RotationUtil.getTargetAdjustedXRot(owner));
+                .subtract(direction.multiply(this.getBbWidth(), 0.0D, this.getBbWidth()))
+                .add(direction.yRot(90.0F).scale(this.getVariant() == Variant.WHITE ? -0.45D : 0.45D));
+        this.moveTo(pos.x, pos.y, pos.z, owner.getYRot(), owner.getXRot());
 
         this.yHeadRot = this.getYRot();
         this.yHeadRotO = this.yHeadRot;
@@ -107,32 +111,8 @@ public class DivineDogEntity extends TenShadowsSummon implements PlayerRideable 
         this.entityData.set(DATA_VARIANT, variant.ordinal());
     }
 
-    public void setRitual(int index, int duration) {
-        this.setNoAi(true);
+    public void setRitual(int duration) {
         this.entityData.set(DATA_RITUAL, duration);
-
-        double x = this.getX();
-        double y = this.getY();
-        double z = this.getZ();
-
-        double distance = this.getBbWidth() * 2;
-        Vec3 look = RotationUtil.getTargetAdjustedLookAngle(this);
-        Vec3 up = new Vec3(0.0D, 1.0D, 0.0D);
-        Vec3 side = look.cross(up);
-        Vec3 offset = side.scale(distance * (index < 3 ? 1 : -1))
-                .add(look.scale(1.5D + (index % 3) * 3.0D));
-        this.setPos(x + offset.x, y, z + offset.z);
-
-        float yRot = this.getYRot();
-
-        if (index < 3) {
-            yRot -= 90.0F;
-        } else {
-            yRot += 90.0F;
-        }
-        this.setYRot(yRot);
-        this.yHeadRot = this.getYRot();
-        this.yHeadRotO = this.yHeadRot;
     }
 
     @Override
@@ -203,15 +183,22 @@ public class DivineDogEntity extends TenShadowsSummon implements PlayerRideable 
         int goal = 1;
         int target = 1;
 
-        this.goalSelector.addGoal(goal++, new WaterWalkingFloatGoal(this));
+        this.goalSelector.addGoal(goal++, new FloatGoal(this));
+
+        if (this.hasMeleeAttack()) {
+            this.goalSelector.addGoal(goal++, new MeleeAttackGoal(this, 1.1D, true));
+        }
         this.goalSelector.addGoal(goal++, new CustomLeapAtTargetGoal(this, 0.4F));
-        this.goalSelector.addGoal(goal++, new MeleeAttackGoal(this, 1.1D, true));
-        this.goalSelector.addGoal(goal++, new BetterFollowOwnerGoal(this, 1.0D, 10.0F, 5.0F, false));
-        this.goalSelector.addGoal(goal, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(goal++, new SorcererGoal(this));
 
         this.targetSelector.addGoal(target++, new HurtByTargetGoal(this));
+
+        this.goalSelector.addGoal(goal++, new BetterFollowOwnerGoal(this, 1.0D, 25.0F, 10.0F, this.canFly()));
+
         this.targetSelector.addGoal(target++, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(target, new OwnerHurtTargetGoal(this));
+
+        this.goalSelector.addGoal(goal, new RandomLookAroundGoal(this));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
