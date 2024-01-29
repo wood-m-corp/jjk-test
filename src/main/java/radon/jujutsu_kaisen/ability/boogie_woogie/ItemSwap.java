@@ -14,7 +14,7 @@ import radon.jujutsu_kaisen.entity.projectile.CursedEnergyImbuedItemProjectile;
 import radon.jujutsu_kaisen.sound.JJKSounds;
 
 public class ItemSwap extends Ability {
-    public static final double RANGE = 30.0D;
+    public static final double RANGE = 150.0D;
 
     @Override
     public boolean isScalable(LivingEntity owner) {
