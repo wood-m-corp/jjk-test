@@ -207,6 +207,8 @@ public interface ISorcererData {
 
     void copy(@Nullable CursedTechnique technique);
 
+    void resetCopy();
+
     Set<CursedTechnique> getCopied();
 
     void setCurrentCopied(@Nullable CursedTechnique technique);
