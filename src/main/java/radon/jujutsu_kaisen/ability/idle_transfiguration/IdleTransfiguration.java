@@ -140,6 +140,7 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
                 absorb(owner, target);
                 return true;
             }
+        }
 
         if (!owner.level().isClientSide) {
             PacketDistributor.TRACKING_ENTITY.with(() -> target).send(new ClientboundUpdateMobEffectPacket(target.getId(), instance));
