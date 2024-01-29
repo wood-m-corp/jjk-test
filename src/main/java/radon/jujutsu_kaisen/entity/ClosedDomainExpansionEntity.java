@@ -3,6 +3,7 @@ package radon.jujutsu_kaisen.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -106,7 +107,7 @@ public class ClosedDomainExpansionEntity extends DomainExpansionEntity {
         return relative.distSqr(Vec3i.ZERO) < (radius - 1) * (radius - 1);
     }
 
-    private void createBlock(BlockPos pos, int radius, double distance) {
+    private void createBlock(int delay, BlockPos pos, int radius, double distance) {
         LivingEntity owner = this.getOwner();
 
         if (owner == null) return;
@@ -171,7 +172,7 @@ public class ClosedDomainExpansionEntity extends DomainExpansionEntity {
             if (distance >= radius - 1 && success) this.total++;
 
             if (this.level().getBlockEntity(pos) instanceof DomainBlockEntity be) {
-                be.create(this.uuid, state, saved);
+                be.create(this.uuid, delay, state, saved);
             }
         }
     }
@@ -185,31 +186,28 @@ public class ClosedDomainExpansionEntity extends DomainExpansionEntity {
 
         int radius = this.getRadius();
 
-        Vec3 direction = RotationUtil.getTargetAdjustedLookAngle(this);
-        Vec3 behind = this.position().add(0.0D, radius, 0.0D);
-        BlockPos center = BlockPos.containing(behind);
+        BlockPos center = BlockPos.containing(this.position().add(0.0D, radius, 0.0D));
+
+        Vec3 direction = this.getLookAngle();
+        Vec3 behind = this.position().subtract(direction.scale(radius - OFFSET)).add(0.0D, radius, 0.0D);
 
         for (int x = -radius; x <= radius; x++) {
             for (int y = -radius; y <= radius; y++) {
                 for (int z = -radius; z <= radius; z++) {
                     double distance = Math.sqrt(x * x + y * y + z * z);
 
-                    if (distance < radius) {
-                        BlockPos pos = center.offset(x, y, z);
+                    if (distance >= radius) continue;
 
-                        // Calculate the delay based on the distance from the center to the front of the wall
-                        double front = Math.sqrt((x + direction.x * radius) * (x + direction.x * radius) +
-                                (y + direction.y * radius) * (y + direction.y * radius) +
-                                (z + direction.z * radius) * (z + direction.z * radius));
-                        int delay = (int) Math.round(front) / 2;
+                    BlockPos pos = center.offset(x, y, z);
 
-                        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+                    int delay = (int) Math.round(pos.getCenter().distanceTo(behind)) / 2;
 
-                        if (instant) {
-                            this.createBlock(pos, radius, distance);
-                        } else {
-                            cap.delayTickEvent(() -> this.createBlock(pos, radius, distance), delay);
-                        }
+                    ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+
+                    if (instant) {
+                        this.createBlock(radius - delay, pos, radius, distance);
+                    } else {
+                        cap.delayTickEvent(() -> this.createBlock(radius - delay, pos, radius, distance), delay);
                     }
                 }
             }

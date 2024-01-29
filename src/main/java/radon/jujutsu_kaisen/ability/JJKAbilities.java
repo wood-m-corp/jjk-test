@@ -5,6 +5,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -43,10 +44,7 @@ import radon.jujutsu_kaisen.ability.projection_sorcery.TwentyFourFrameRule;
 import radon.jujutsu_kaisen.ability.mimicry.CommandPureLove;
 import radon.jujutsu_kaisen.ability.mimicry.Mimicry;
 import radon.jujutsu_kaisen.ability.mimicry.Rika;
-import radon.jujutsu_kaisen.ability.ten_shadows.ChimeraShadowGarden;
-import radon.jujutsu_kaisen.ability.ten_shadows.ShadowStorage;
-import radon.jujutsu_kaisen.ability.ten_shadows.SwitchMode;
-import radon.jujutsu_kaisen.ability.ten_shadows.ShadowTravel;
+import radon.jujutsu_kaisen.ability.ten_shadows.*;
 import radon.jujutsu_kaisen.ability.ten_shadows.ability.NueLightning;
 import radon.jujutsu_kaisen.ability.ten_shadows.ability.PiercingWater;
 import radon.jujutsu_kaisen.ability.ten_shadows.ability.Wheel;
@@ -165,6 +163,16 @@ public class JJKAbilities {
     public static RegistryObject<Ability> CURSED_ENERGY_BOMB = ABILITIES.register("cursed_energy_bomb", CursedEnergyBomb::new);
     public static RegistryObject<Ability> CURSED_ENERGY_BLAST = ABILITIES.register("cursed_energy_blast", CursedEnergyBlast::new);
 
+
+    public static RegistryObject<Ability> SWITCH_MODE = ABILITIES.register("switch_mode", SwitchMode::new);
+    public static RegistryObject<Ability> RELEASE_SHIKIGAMI = ABILITIES.register("release_shikigami", ReleaseShikigami::new);
+    public static RegistryObject<Ability> SHADOW_STORAGE = ABILITIES.register("shadow_storage", ShadowStorage::new);
+    public static RegistryObject<Ability> SHADOW_TRAVEL = ABILITIES.register("shadow_travel", ShadowTravel::new);
+    public static RegistryObject<Ability> NUE_LIGHTNING = ABILITIES.register("nue_lightning", NueLightning::new);
+    public static RegistryObject<Ability> NUE_TOTALITY_LIGHTNING = ABILITIES.register("nue_totality_lightning", NueTotalityLightning::new);
+    public static RegistryObject<Ability> PIERCING_WATER = ABILITIES.register("piercing_water", PiercingWater::new);
+    public static RegistryObject<Summon<?>> WHEEL = ABILITIES.register("wheel", Wheel::new);
+    public static RegistryObject<Ability> GREAT_SERPENT_GRAB = ABILITIES.register("great_serpent_grab", GreatSerpentGrab::new);
     public static RegistryObject<Summon<?>> MAHORAGA = ABILITIES.register("mahoraga", Mahoraga::new);
     public static RegistryObject<Summon<?>> DIVINE_DOGS = ABILITIES.register("divine_dogs", DivineDogs::new);
     public static RegistryObject<Summon<?>> DIVINE_DOG_TOTALITY = ABILITIES.register("divine_dog_totality", DivineDogTotality::new);
@@ -178,16 +186,8 @@ public class JJKAbilities {
     public static RegistryObject<Summon<?>> TRANQUIL_DEER = ABILITIES.register("tranquil_deer", TranquilDeer::new);
     public static RegistryObject<Summon<?>> PIERCING_BULL = ABILITIES.register("piercing_bull", PiercingBull::new);
     public static RegistryObject<Summon<?>> AGITO = ABILITIES.register("agito", Agito::new);
-    public static RegistryObject<Ability> SWITCH_MODE = ABILITIES.register("switch_mode", SwitchMode::new);
-    public static RegistryObject<Ability> RELEASE_SHIKIGAMI = ABILITIES.register("release_shikigami", ReleaseShikigami::new);
-    public static RegistryObject<Ability> SHADOW_STORAGE = ABILITIES.register("shadow_storage", ShadowStorage::new);
-    public static RegistryObject<Ability> SHADOW_TRAVEL = ABILITIES.register("shadow_travel", ShadowTravel::new);
-    public static RegistryObject<Ability> CHIMERA_SHADOW_GARDEN = ABILITIES.register("chimera_shadow_garden", ChimeraShadowGarden::new);
 
-    public static RegistryObject<Ability> NUE_LIGHTNING = ABILITIES.register("nue_lightning", NueLightning::new);
-    public static RegistryObject<Ability> NUE_TOTALITY_LIGHTNING = ABILITIES.register("nue_totality_lightning", NueTotalityLightning::new);
-    public static RegistryObject<Ability> PIERCING_WATER = ABILITIES.register("piercing_water", PiercingWater::new);
-    public static RegistryObject<Summon<?>> WHEEL = ABILITIES.register("wheel", Wheel::new);
+    public static RegistryObject<Ability> CHIMERA_SHADOW_GARDEN = ABILITIES.register("chimera_shadow_garden", ChimeraShadowGarden::new);
 
     public static RegistryObject<Ability> SHOOT_PURE_LOVE = ABILITIES.register("shoot_pure_love", ShootPureLove::new);
     public static RegistryObject<Ability> CYCLOPS_SMASH = ABILITIES.register("cyclops_smash", CyclopsSmash::new);
@@ -203,6 +203,7 @@ public class JJKAbilities {
     public static RegistryObject<Ability> ENHANCE_CURSE = ABILITIES.register("enhance_curse", EnhanceCurse::new);
     public static RegistryObject<Ability> MAXIMUM_UZUMAKI = ABILITIES.register("maximum_uzumaki", MaximumUzumaki::new);
     public static RegistryObject<Ability> MINI_UZUMAKI = ABILITIES.register("mini_uzumaki", MiniUzumaki::new);
+    public static RegistryObject<Ability> WORM_CURSE_GRAB = ABILITIES.register("worm_curse_grab", WormCurseGrab::new);
 
     public static RegistryObject<Ability> DONT_MOVE = ABILITIES.register("dont_move", DontMove::new);
     public static RegistryObject<Ability> GET_CRUSHED = ABILITIES.register("get_crushed", GetCrushed::new);
@@ -274,24 +275,26 @@ public class JJKAbilities {
         return Math.max(1.0F, getCurseExperience(curse) * 0.01F);
     }
 
-    public static void summonCurse(LivingEntity owner, AbsorbedCurse curse, boolean charge) {
+    @Nullable
+    public static Entity summonCurse(LivingEntity owner, AbsorbedCurse curse, boolean charge) {
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
         List<AbsorbedCurse> curses = cap.getCurses();
 
-        if (!curses.contains(curse)) return;
+        if (!curses.contains(curse)) return null;
 
-        summonCurse(owner, curses.indexOf(curse), charge);
+        return summonCurse(owner, curses.indexOf(curse), charge);
     }
 
-    public static void summonCurse(LivingEntity owner, int index, boolean charge) {
-        if (owner.hasEffect(JJKEffects.UNLIMITED_VOID.get()) || hasToggled(owner, DOMAIN_AMPLIFICATION.get())) return;
+    @Nullable
+    public static Entity summonCurse(LivingEntity owner, int index, boolean charge) {
+        if (owner.hasEffect(JJKEffects.UNLIMITED_VOID.get()) || hasToggled(owner, DOMAIN_AMPLIFICATION.get())) return null;
 
         ISorcererData ownerCap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
         List<AbsorbedCurse> curses = ownerCap.getCurses();
 
-        if (index >= curses.size()) return;
+        if (index >= curses.size()) return null;
 
         AbsorbedCurse curse = curses.get(index);
 
@@ -300,7 +303,7 @@ public class JJKAbilities {
 
             if (!(owner instanceof Player player) || !player.getAbilities().instabuild) {
                 if (ownerCap.getEnergy() < cost) {
-                    return;
+                    return null;
                 }
                 ownerCap.useEnergy(cost);
             }
@@ -308,7 +311,7 @@ public class JJKAbilities {
 
         CursedSpirit entity = createCurse(owner, curse);
 
-        if (entity == null) return;
+        if (entity == null) return null;
 
         owner.level().addFreshEntity(entity);
 
@@ -321,6 +324,7 @@ public class JJKAbilities {
         if (owner instanceof ServerPlayer player) {
             PacketHandler.sendToClient(new SyncSorcererDataS2CPacket(ownerCap.serializeNBT()), player);
         }
+        return entity;
     }
 
     public static Set<CursedTechnique> getTechniques(LivingEntity owner) {

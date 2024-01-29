@@ -215,10 +215,6 @@ public abstract class Ability {
 
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
-        if (!JJKAbilities.getAbilities(owner).contains(this)) {
-            return Status.UNUSUABLE;
-        }
-
         if (!(owner instanceof Player player && player.getAbilities().instabuild)) {
             if (this.isTechnique() && cap.hasBurnout()) {
                 return Status.BURNOUT;
@@ -236,6 +232,8 @@ public abstract class Ability {
     }
 
     public Status isTriggerable(LivingEntity owner) {
+        if (!JJKAbilities.getAbilities(owner).contains(this)) return Status.UNUSUABLE;
+
         MobEffectInstance instance = owner.getEffect(JJKEffects.STUN.get());
 
         if (instance != null && instance.getAmplifier() > 0) return Status.FAILURE;
@@ -250,6 +248,8 @@ public abstract class Ability {
     }
 
     public Status isStillUsable(LivingEntity owner) {
+        if (!JJKAbilities.getAbilities(owner).contains(this)) return Status.UNUSUABLE;
+
         if (this instanceof IAttack || this instanceof ICharged) {
             return this.getStatus(owner);
         }
