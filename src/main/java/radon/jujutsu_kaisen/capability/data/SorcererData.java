@@ -1072,7 +1072,6 @@ public class SorcererData implements ISorcererData {
         this.copied.remove(technique);
     }
 
-    @Override
     public void resetCopy(CursedTechnique technique) {
         this.copied.clear();
     }
