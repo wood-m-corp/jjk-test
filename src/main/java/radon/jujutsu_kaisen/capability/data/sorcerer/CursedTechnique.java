@@ -8,7 +8,7 @@ import radon.jujutsu_kaisen.ability.JJKAbilities;
 
 public enum CursedTechnique {
     CURSE_MANIPULATION(null, JJKAbilities.CURSE_ABSORPTION.get(), JJKAbilities.RELEASE_CURSE.get(), JJKAbilities.RELEASE_CURSES.get(), JJKAbilities.SUMMON_ALL.get(), JJKAbilities.ENHANCE_CURSE.get(),
-            JJKAbilities.MAXIMUM_UZUMAKI.get(), JJKAbilities.MINI_UZUMAKI.get()),
+            JJKAbilities.MAXIMUM_UZUMAKI.get(), JJKAbilities.MINI_UZUMAKI.get(), JJKAbilities.WORM_CURSE_GRAB.get()),
     LIMITLESS(JJKAbilities.UNLIMITED_VOID.get(), JJKAbilities.INFINITY.get(), JJKAbilities.RED.get(), JJKAbilities.BLUE_STILL.get(),
             JJKAbilities.BLUE_MOTION.get(), JJKAbilities.BLUE_FISTS.get(), JJKAbilities.HOLLOW_PURPLE.get(), JJKAbilities.TELEPORT.get(), JJKAbilities.FLY.get()),
     DISMANTLE_AND_CLEAVE(JJKAbilities.MALEVOLENT_SHRINE.get(), JJKAbilities.DISMANTLE.get(), JJKAbilities.DISMANTLE_NET.get(), JJKAbilities.DISMANTLE_SKATING.get(), JJKAbilities.CLEAVE.get(),
@@ -30,7 +30,7 @@ public enum CursedTechnique {
             JJKAbilities.SHADOW_STORAGE.get(),
             JJKAbilities.SHADOW_TRAVEL.get(),
 
-            JJKAbilities.NUE_LIGHTNING.get(), JJKAbilities.PIERCING_WATER.get(), JJKAbilities.WHEEL.get(),
+            JJKAbilities.NUE_LIGHTNING.get(), JJKAbilities.PIERCING_WATER.get(), JJKAbilities.WHEEL.get(), JJKAbilities.GREAT_SERPENT_GRAB.get(),
 
             JJKAbilities.DIVINE_DOGS.get(), JJKAbilities.DIVINE_DOG_TOTALITY.get(), JJKAbilities.TOAD.get(), JJKAbilities.TOAD_FUSION.get(),
             JJKAbilities.GREAT_SERPENT.get(), JJKAbilities.NUE.get(), JJKAbilities.NUE_TOTALITY.get(),

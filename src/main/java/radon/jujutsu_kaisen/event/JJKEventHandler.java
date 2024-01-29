@@ -202,7 +202,7 @@ public class JJKEventHandler {
             ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
             // If the target is dead we should not trigger any IAttack's
-            if (victim.getHealth() - event.getAmount() <= 0) return;
+            if (victim.getHealth() - event.getAmount() <= 0.0F) return;
 
             cap.attack(event.getSource(), victim);
 
@@ -245,9 +245,18 @@ public class JJKEventHandler {
                     event.setDistance(event.getDistance() * 0.33F);
                 }
             });
+            LivingEntity victim = event.getEntity();
 
-            if (Slam.TARGETS.containsKey(event.getEntity().getUUID())) {
-                Slam.onHitGround(event.getEntity(), event.getDistance());
+            if (JJKAbilities.hasToggled(victim, JJKAbilities.CURSED_ENERGY_FLOW.get())) {
+                event.setDistance(event.getDistance() * 0.5F);
+            }
+
+            if (JJKAbilities.hasTrait(victim, Trait.HEAVENLY_RESTRICTION)) {
+                event.setDistance(event.getDistance() * 0.1F);
+            }
+
+            if (Slam.TARGETS.containsKey(victim.getUUID())) {
+                Slam.onHitGround(victim, event.getDistance());
                 event.setDamageMultiplier(0.0F);
             }
         }
@@ -353,38 +362,14 @@ public class JJKEventHandler {
                 }
             }
 
-            if (event.getSource().getEntity() instanceof LivingEntity attacker) {
-                if (attacker instanceof ServerPlayer player) {
-                    if (victim instanceof HeianSukunaEntity && victimCap.getFingers() == 20) {
-                        PlayerUtil.giveAdvancement(player, "the_strongest_of_all_time");
-                    }
+            DamageSource source = event.getSource();
+
+            if (!(source.getEntity() instanceof LivingEntity attacker)) return;
+
+            if (attacker instanceof ServerPlayer player) {
+                if (victim instanceof HeianSukunaEntity && victimCap.getFingers() == 20) {
+                    PlayerUtil.giveAdvancement(player, "the_strongest_of_all_time");
                 }
-
-                if (victimCap.isUnlocked(JJKAbilities.RCT1.get())) return;
-                if (victim instanceof TamableAnimal tamable && tamable.isTame()) return;
-                if (victimCap.hasTrait(Trait.HEAVENLY_RESTRICTION)) return;
-                if (victimCap.getType() != JujutsuType.SORCERER) return;
-                if (SorcererUtil.getGrade(victimCap.getExperience()).ordinal() < SorcererGrade.GRADE_1.ordinal()) return;
-
-                int chance = ConfigHolder.SERVER.reverseCursedTechniqueChance.get();
-
-                for (InteractionHand hand : InteractionHand.values()) {
-                    ItemStack stack = victim.getItemInHand(hand);
-
-                    if (stack.is(Items.TOTEM_OF_UNDYING)) {
-                        chance /= 2;
-                    }
-                }
-
-                if (HelperMethods.RANDOM.nextInt(chance) != 0) return;
-
-                victim.setHealth(victim.getMaxHealth() / 2);
-                victimCap.unlock(JJKAbilities.RCT1.get());
-
-                if (victim instanceof ServerPlayer player) {
-                    PacketHandler.sendToClient(new SyncSorcererDataS2CPacket(victimCap.serializeNBT()), player);
-                }
-                event.setCanceled(true);
             }
         }
 

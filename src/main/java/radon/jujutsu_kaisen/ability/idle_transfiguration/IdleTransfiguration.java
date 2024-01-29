@@ -123,6 +123,13 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
             amplifier = existing.getAmplifier() + 1;
         }
 
+        MobEffectInstance instance = new MobEffectInstance(JJKEffects.TRANSFIGURED_SOUL.get(), 60 * 20, amplifier, false, true, true);
+        target.addEffect(instance);
+
+        if (!owner.level().isClientSide) {
+            PacketDistributor.TRACKING_ENTITY.with(() -> target).send(new ClientboundUpdateMobEffectPacket(target.getId(), instance));
+        }
+
         float attackerStrength = IdleTransfiguration.calculateStrength(owner);
         float victimStrength = IdleTransfiguration.calculateStrength(target);
 

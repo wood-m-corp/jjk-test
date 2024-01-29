@@ -15,6 +15,7 @@ import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -110,7 +111,7 @@ public class TwentyFourFrameRule extends Ability implements Ability.IToggled, Ab
     @Mod.EventBusSubscriber(modid = JujutsuKaisen.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class TwentyFourFrameRuleForgeEvents {
         @SubscribeEvent
-        public static void onLivingHurt(LivingHurtEvent event) {
+        public static void onLivingAttack(LivingAttackEvent event) {
             DamageSource source = event.getSource();
             if (!(source.getEntity() instanceof LivingEntity attacker)) return;
 
@@ -131,11 +132,14 @@ public class TwentyFourFrameRule extends Ability implements Ability.IToggled, Ab
 
                 LivingEntity owner = frame.getOwner();
 
-                if (owner != null) {
-                    victim.hurt(JJKDamageSources.indirectJujutsuAttack(frame, attacker, JJKAbilities.TWENTY_FOUR_FRAME_RULE.get()), DAMAGE * frame.getPower());
+                if (owner == null) continue;
+
+                if (victim.hurt(JJKDamageSources.indirectJujutsuAttack(frame, attacker, JJKAbilities.TWENTY_FOUR_FRAME_RULE.get()), DAMAGE * frame.getPower())) {
+                    if (victim.isDeadOrDying()) {
+                        event.setCanceled(true);
+                    }
                 }
-                event.setCanceled(true);
-                return;
+                break;
             }
         }
     }
