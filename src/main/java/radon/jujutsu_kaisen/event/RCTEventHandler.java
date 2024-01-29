@@ -70,7 +70,7 @@ public class RCTEventHandler {
             if (victim instanceof TamableAnimal tamable && tamable.isTame()) return;
             if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) return;
             if (cap.getType() != JujutsuType.SORCERER) return;
-            if (SorcererUtil.getGrade(cap.getExperience()).ordinal() < SorcererGrade.SEMI_GRADE_1.ordinal()) return;
+            if (SorcererUtil.getGrade(cap.getExperience()).ordinal() < SorcererGrade.SEMI_GRADE_2.ordinal()) return;
 
             int chance = ConfigHolder.SERVER.reverseCursedTechniqueChance.get();
 
