@@ -171,9 +171,9 @@ public interface ISorcererData {
 
     boolean hasBurnout();
 
-    void resetCooldowns();
+    void Cooldowns();
 
-    void resetBurnout();
+    void Burnout();
 
     float getMaxEnergy();
 
@@ -191,13 +191,13 @@ public interface ISorcererData {
 
     void addExtraEnergy(float amount);
 
-    void resetExtraEnergy();
+    void ExtraEnergy();
 
     void onBlackFlash();
 
     long getLastBlackFlashTime();
 
-    void resetBlackFlash();
+    void BlackFlash();
 
     boolean isInZone();
 
@@ -207,7 +207,7 @@ public interface ISorcererData {
 
     void copy(@Nullable CursedTechnique technique);
 
-    void resetCopy();
+    //void resetCopy();
 
     Set<CursedTechnique> getCopied();
 
