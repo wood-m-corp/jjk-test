@@ -171,9 +171,9 @@ public interface ISorcererData {
 
     boolean hasBurnout();
 
-    void Cooldowns();
+    void resetCooldowns();
 
-    void Burnout();
+    void resetBurnout();
 
     float getMaxEnergy();
 
@@ -191,13 +191,13 @@ public interface ISorcererData {
 
     void addExtraEnergy(float amount);
 
-    void ExtraEnergy();
+    void resetExtraEnergy();
 
     void onBlackFlash();
 
     long getLastBlackFlashTime();
 
-    void BlackFlash();
+    void resetBlackFlash();
 
     boolean isInZone();
 
