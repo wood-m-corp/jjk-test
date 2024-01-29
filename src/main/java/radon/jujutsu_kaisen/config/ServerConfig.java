@@ -62,7 +62,7 @@ public class ServerConfig {
         this.reverseCursedTechniqueChance = builder.comment("The chance of unlocking reverse cursed technique when dying (smaller number equals bigger chance and the value is halved when holding a totem)")
                 .defineInRange("reverseCursedTechniqueChance", 20, 1, 1000);
         this.requiredExperienceForExperienced = builder.comment("The amount of experience required for a player to be classified as experienced (for now means they can use domain amplification during a domain expansion)")
-                .defineInRange("requiredExperienceForExperienced", 3000.0F, 1.0F, 100000.0F);
+                .defineInRange("requiredExperienceForExperienced", 5000.0F, 1.0F, 100000.0F);
         this.sorcererFleshRarity = builder.comment("Rarity of sorcerers dropping flesh (bigger value means more rare)")
                 .defineInRange("sorcererFleshRarity", 20, 0, 100000);
         this.curseFleshRarity = builder.comment("Rarity of curses dropping flesh (bigger value means more rare)")
