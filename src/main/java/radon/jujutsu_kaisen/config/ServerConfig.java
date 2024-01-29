@@ -74,16 +74,16 @@ public class ServerConfig {
         this.blackFlashChance = builder.comment("The chance of black flash (smaller number equals bigger chance)")
                 .defineInRange("blackFlashChance", 150, 1, 1000);
         this.realisticShikigami = builder.comment("When enabled Ten Shadows shikigami will die permanently")
-                .define("realisticShikigami", true);
+                .define("realisticShikigami", false);
         this.realisticCurses = builder.comment("When enabled curses only take damage from jujutsu attacks")
                 .define("realisticCurses", true);
         builder.pop();
 
         builder.comment("Miscellaneous").push("misc");
         this.sorcererHealingAmount = builder.comment("The maximum amount of health sorcerers can heal per tick (scales with experience)")
-                .defineInRange("sorcererHealingAmount", 0.01F, 0.0F, 100.0F);
+                .defineInRange("sorcererHealingAmount", 0.1F, 0.0F, 2.5F);
         this.curseHealingAmount = builder.comment("The maximum amount of health curses can heal per tick (scales with experience)")
-                .defineInRange("curseHealingAmount", 0.015F, 0.0F, 100.0F);
+                .defineInRange("curseHealingAmount", 0.15F, 0.0F, 2.5F);
         this.uniqueTechniques = builder.comment("When enabled on servers every player will have a unique technique if any are available")
                 .define("uniqueTechniques", true);
         this.uniqueTraits = builder.comment("When enabled on servers there can be only one six eyes, heavenly restriction and vessel")
