@@ -210,7 +210,7 @@ public class ExperienceHandler {
             ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
             float targetStrength = calculateStrength(target) * 1.25F;
-            float ownerStrength = calculateStrength(owner); * 0.5F;
+            float ownerStrength = calculateStrength(owner) * 0.5F;
 
             float experience = Math.min(targetStrength, (targetStrength - ownerStrength) * 5.0F
                     * (this.totalDamageDealt / this.damageDealtByOwner)
