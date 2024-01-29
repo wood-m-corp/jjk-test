@@ -210,9 +210,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
             }, delay++);
         }
 
-        if (frameCount >= 10) {
-            cap.addSpeedStack();
-        }
+        cap.addSpeedStack();
     }
 
     @Mod.EventBusSubscriber(modid = JujutsuKaisen.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
