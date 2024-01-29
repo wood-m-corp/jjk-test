@@ -163,7 +163,7 @@ public class JJKEventHandler {
                 newCap.resetCooldowns();
                 newCap.resetBurnout();
                 newCap.clearToggled();
-                cap.resetCopy();
+                newCap.resetCopy();
 
                 if (!ConfigHolder.SERVER.realisticShikigami.get()) {
                     newCap.revive(false);
