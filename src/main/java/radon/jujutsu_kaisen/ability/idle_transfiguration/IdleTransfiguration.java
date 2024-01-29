@@ -37,6 +37,9 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
 
     public static float calculateStrength(LivingEntity entity) {
         float strength = entity.getHealth();
+        if (strength <= 10.0F) {
+            strength = 1.0F;
+        }
 
         if (entity.getCapability(SorcererDataHandler.INSTANCE).isPresent()) {
             if (entity.level().isClientSide) {
@@ -90,7 +93,7 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
 
     public static void absorb(LivingEntity owner, LivingEntity target) {
         ItemStack stack = new ItemStack(JJKItems.TRANSFIGURED_SOUL.get());
-
+        
         if (owner instanceof Player player) {
             player.addItem(stack);
         } else {
@@ -123,7 +126,7 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
         float attackerStrength = IdleTransfiguration.calculateStrength(owner);
         float victimStrength = IdleTransfiguration.calculateStrength(target);
 
-        int required = Math.round((victimStrength / Math.round(attackerStrength*2/12)) * 2);
+        int required = Math.round((victimStrength / Math.round(attackerStrength*2/11)) * 2);
 
         if (amplifier >= required) {
             if ((target instanceof Mob && !(target instanceof Monster)) || target instanceof Player) {
