@@ -142,7 +142,6 @@ public class JJKEventHandler {
         public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
             if (event.getEntity() instanceof ServerPlayer player) {
                 ISorcererData cap = player.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-                cap.resetCopy();
                 PacketHandler.sendToClient(new SyncSorcererDataS2CPacket(cap.serializeNBT()), player);
             }
         }
@@ -164,6 +163,7 @@ public class JJKEventHandler {
                 newCap.resetCooldowns();
                 newCap.resetBurnout();
                 newCap.clearToggled();
+                cap.resetCopy();
 
                 if (!ConfigHolder.SERVER.realisticShikigami.get()) {
                     newCap.revive(false);
