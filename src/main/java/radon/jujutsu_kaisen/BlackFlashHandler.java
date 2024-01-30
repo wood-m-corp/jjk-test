@@ -43,7 +43,7 @@ public class BlackFlashHandler {
 
             if (attacker instanceof ISorcerer sorcerer && !sorcerer.hasArms()) return;
 
-            if (SorcererUtil.getGrade(cap.getExperience()).ordinal() < SorcererGrade.GRADE_2.ordinal() ||
+            if (SorcererUtil.getGrade(cap.getExperience()).ordinal() < SorcererGrade.SEMI_GRADE_2.ordinal() ||
                     (!(source instanceof JJKDamageSources.JujutsuDamageSource) && !cap.hasToggled(JJKAbilities.CURSED_ENERGY_FLOW.get()) && !cap.hasToggled(JJKAbilities.BLUE_FISTS.get()))) return;
 
             long lastBlackFlashTime = cap.getLastBlackFlashTime();
