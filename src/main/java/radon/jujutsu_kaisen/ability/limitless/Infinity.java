@@ -60,7 +60,7 @@ public class Infinity extends Ability implements Ability.IToggled {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 1.2F;
+        return 0.75F;
     }
 
     @Override
