@@ -104,7 +104,7 @@ public class OutputRCT extends Ability {
             ISorcererData targetCap = target.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
             if (targetCap.getType() == JujutsuType.CURSE) {
-                target.hurt(JJKDamageSources.jujutsuAttack(owner, this), amount * 0.86F * 80.0F);
+                target.hurt(JJKDamageSources.jujutsuAttack(owner, this), amount * 0.86F * 1.5F);
                 return;
             }
         }
