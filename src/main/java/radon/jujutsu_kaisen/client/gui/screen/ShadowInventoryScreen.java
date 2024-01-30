@@ -13,20 +13,19 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
-import radon.jujutsu_kaisen.capability.data.ISorcererData;
-import radon.jujutsu_kaisen.capability.data.SorcererDataHandler;
+import radon.jujutsu_kaisen.capability.data.ten_shadows.ITenShadowsData;
+import radon.jujutsu_kaisen.capability.data.ten_shadows.TenShadowsDataHandler;
 import radon.jujutsu_kaisen.network.PacketHandler;
 import radon.jujutsu_kaisen.network.packet.c2s.ShadowInventoryTakeC2SPacket;
 import radon.jujutsu_kaisen.util.HelperMethods;
-import radon.jujutsu_kaisen.util.RotationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class ShadowInventoryScreen extends Screen {
-    private static final float RADIUS_IN = 50.0F;
-    private static final float RADIUS_OUT = RADIUS_IN * 2.0F;
+    private static final int RADIUS_IN = 50;
+    private static final int RADIUS_OUT = RADIUS_IN * 2;
 
     private final List<ItemStack> items = new ArrayList<>();
 
@@ -45,7 +44,7 @@ public class ShadowInventoryScreen extends Screen {
     protected void init() {
         super.init();
 
-        assert this.minecraft != null;
+        if (this.minecraft == null) return;
 
         List<ItemStack> inventory = this.getItems();
 
@@ -60,8 +59,8 @@ public class ShadowInventoryScreen extends Screen {
 
     private @Nullable List<ItemStack> getItems() {
         if (this.minecraft == null || this.minecraft.player == null) return null;
-        if (!this.minecraft.player.getCapability(SorcererDataHandler.INSTANCE).isPresent()) return null;
-        ISorcererData cap = this.minecraft.player.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        if (!this.minecraft.player.getCapability(TenShadowsDataHandler.INSTANCE).isPresent()) return null;
+        ITenShadowsData cap = this.minecraft.player.getCapability(TenShadowsDataHandler.INSTANCE).resolve().orElseThrow();
         return cap.getShadowInventory();
     }
 
@@ -132,7 +131,7 @@ public class ShadowInventoryScreen extends Screen {
 
         Tesselator tesselator = Tesselator.getInstance();
         BufferBuilder buffer = tesselator.getBuilder();
-        buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
+        buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
 
         for (int i = 0; i < this.items.size(); i++) {
             float startAngle = getAngleFor(i - 0.5F);
@@ -208,7 +207,7 @@ public class ShadowInventoryScreen extends Screen {
     }
 
     private float getAngleFor(double i) {
-        if (this.items.size() == 0) {
+        if (this.items.isEmpty()) {
             return 0;
         }
         return (float) (((i / this.items.size()) + 0.25) * Mth.TWO_PI + Math.PI);

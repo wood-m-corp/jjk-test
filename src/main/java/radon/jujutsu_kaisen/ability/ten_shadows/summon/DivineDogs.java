@@ -2,7 +2,6 @@ package radon.jujutsu_kaisen.ability.ten_shadows.summon;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,14 +9,15 @@ import net.minecraft.world.entity.PathfinderMob;
 import org.jetbrains.annotations.Nullable;
 import radon.jujutsu_kaisen.ability.JJKAbilities;
 import radon.jujutsu_kaisen.ability.base.Summon;
-import radon.jujutsu_kaisen.capability.data.ISorcererData;
-import radon.jujutsu_kaisen.capability.data.SorcererDataHandler;
+import radon.jujutsu_kaisen.capability.data.sorcerer.ISorcererData;
+import radon.jujutsu_kaisen.capability.data.sorcerer.SorcererDataHandler;
+import radon.jujutsu_kaisen.capability.data.ten_shadows.ITenShadowsData;
+import radon.jujutsu_kaisen.capability.data.ten_shadows.TenShadowsDataHandler;
 import radon.jujutsu_kaisen.entity.JJKEntities;
 import radon.jujutsu_kaisen.entity.ten_shadows.*;
 import radon.jujutsu_kaisen.network.PacketHandler;
 import radon.jujutsu_kaisen.network.packet.s2c.SyncSorcererDataS2CPacket;
 import radon.jujutsu_kaisen.util.HelperMethods;
-import radon.jujutsu_kaisen.util.RotationUtil;
 
 import java.util.List;
 
@@ -57,7 +57,7 @@ public class DivineDogs extends Summon<DivineDogEntity> {
     @Override
     protected boolean isDead(LivingEntity owner, EntityType<?> type) {
         if (!owner.getCapability(SorcererDataHandler.INSTANCE).isPresent()) return false;
-        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        ITenShadowsData cap = owner.getCapability(TenShadowsDataHandler.INSTANCE).resolve().orElseThrow();
         Registry<EntityType<?>> registry = owner.level().registryAccess().registryOrThrow(Registries.ENTITY_TYPE);
         return cap.isDead(registry, JJKEntities.DIVINE_DOG_WHITE.get()) && cap.isDead(registry, JJKEntities.DIVINE_DOG_BLACK.get());
     }
@@ -65,21 +65,22 @@ public class DivineDogs extends Summon<DivineDogEntity> {
     @Override
     public void spawn(LivingEntity owner, boolean clone) {
         if (!owner.level().isClientSide) {
-            ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+            ITenShadowsData tenShadowsCap = owner.getCapability(TenShadowsDataHandler.INSTANCE).resolve().orElseThrow();
+            ISorcererData sorcererCap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
             Registry<EntityType<?>> registry = owner.level().registryAccess().registryOrThrow(Registries.ENTITY_TYPE);
 
-            if (!cap.isDead(registry, JJKEntities.DIVINE_DOG_WHITE.get())) {
+            if (!tenShadowsCap.isDead(registry, JJKEntities.DIVINE_DOG_WHITE.get())) {
                 DivineDogWhiteEntity white = new DivineDogWhiteEntity(owner, false);
                 white.setClone(clone);
                 owner.level().addFreshEntity(white);
-                cap.addSummon(white);
+                sorcererCap.addSummon(white);
             }
-            if (!cap.isDead(registry, JJKEntities.DIVINE_DOG_BLACK.get())) {
+            if (!tenShadowsCap.isDead(registry, JJKEntities.DIVINE_DOG_BLACK.get())) {
                 DivineDogBlackEntity black = new DivineDogBlackEntity(owner, false);
                 black.setClone(clone);
                 owner.level().addFreshEntity(black);
-                cap.addSummon(black);
+                sorcererCap.addSummon(black);
             }
         }
     }

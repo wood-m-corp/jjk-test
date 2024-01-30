@@ -9,11 +9,10 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import radon.jujutsu_kaisen.ability.base.Ability;
 import radon.jujutsu_kaisen.ability.MenuType;
-import radon.jujutsu_kaisen.capability.data.ISorcererData;
-import radon.jujutsu_kaisen.capability.data.SorcererDataHandler;
+import radon.jujutsu_kaisen.capability.data.ten_shadows.ITenShadowsData;
+import radon.jujutsu_kaisen.capability.data.ten_shadows.TenShadowsDataHandler;
 import radon.jujutsu_kaisen.client.ClientWrapper;
 import radon.jujutsu_kaisen.util.HelperMethods;
-import radon.jujutsu_kaisen.util.RotationUtil;
 
 
 public class ShadowStorage extends Ability {
@@ -50,10 +49,9 @@ public class ShadowStorage extends Ability {
         if (owner.isShiftKeyDown()) {
             if (owner.getMainHandItem().isEmpty()) return;
 
-            owner.getCapability(SorcererDataHandler.INSTANCE).ifPresent(cap -> {
-                cap.addShadowInventory(owner.getMainHandItem());
-                owner.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
-            });
+            ITenShadowsData cap = owner.getCapability(TenShadowsDataHandler.INSTANCE).resolve().orElseThrow();
+            cap.addShadowInventory(owner.getMainHandItem());
+            owner.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
         } else if (owner.level().isClientSide) {
             ClientWrapper.openShadowInventory();
         }
@@ -61,13 +59,12 @@ public class ShadowStorage extends Ability {
 
     @Override
     public Status isTriggerable(LivingEntity owner) {
-        if (!owner.getCapability(SorcererDataHandler.INSTANCE).isPresent()) return Status.FAILURE;
-        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        ITenShadowsData cap = owner.getCapability(TenShadowsDataHandler.INSTANCE).resolve().orElseThrow();
 
         if (owner.isShiftKeyDown()) {
             if (owner.getMainHandItem().isEmpty()) return Status.FAILURE;
         } else {
-            if (cap.getShadowInventory().size() == 0) return Status.FAILURE;
+            if (cap.getShadowInventory().isEmpty()) return Status.FAILURE;
         }
         return super.isTriggerable(owner);
     }
