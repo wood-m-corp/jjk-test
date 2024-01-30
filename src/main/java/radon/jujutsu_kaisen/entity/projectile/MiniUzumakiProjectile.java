@@ -55,7 +55,7 @@ public class MiniUzumakiProjectile extends BeamEntity {
         if (weakest != null) {
             ISorcererData weakestCap = weakest.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
              
-            this.setPower(SorcererUtil.getPower(weakestCap.getExperience()) + power );
+            this.setPower(Math.min(MAX_POWER,SorcererUtil.getPower(weakestCap.getExperience()) + power) );
             
             if (SorcererUtil.getGrade(weakestCap.getExperience()).ordinal() >= SorcererGrade.SEMI_GRADE_1.ordinal() && weakestCap.getTechnique() != null) {
                 ownerCap.absorb(weakestCap.getTechnique());
