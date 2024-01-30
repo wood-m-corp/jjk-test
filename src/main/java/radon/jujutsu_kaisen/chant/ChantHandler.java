@@ -17,7 +17,7 @@ public class ChantHandler {
 
     public static float getOutput(LivingEntity owner, Ability ability) {
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-        return cap.getOutput() + (getChant(owner, ability) * 0.75F);
+        return cap.getOutput() + (getChant(owner, ability);
     }
 
     public static float getChant(LivingEntity owner, Ability ability) {
