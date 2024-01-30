@@ -67,7 +67,7 @@ public class TwentyFourFrameRule extends Ability implements Ability.IToggled, Ab
     
     @Override
     public int getCooldown() {
-        return 5 * 20;
+        return 3 * 20;
     }
 
     @Override

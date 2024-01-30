@@ -56,13 +56,13 @@ public class ServerConfig {
         this.cursedEnergyRegenerationAmount = builder.comment("Cursed energy regeneration amount (depends on food level)")
                 .defineInRange("cursedEnergyRegenerationAmount", 0.25F, 0.0F, 100000.0F);
         this.maximumExperienceAmount = builder.comment("The maximum amount of experience one can obtain")
-                .defineInRange("maximumExperienceAmount", 10000.0F, 1.0F, 1000000.0F);
+                .defineInRange("maximumExperienceAmount", 20000.0F, 1.0F, 1000000.0F);
         this.cursedObjectEnergyForGrade = builder.comment("The amount of energy consuming cursed objects gives to curses (multiplied by the grade of the object)")
                 .defineInRange("cursedObjectEnergyForGrade", 100.0F, 1.0F, 1000.0F);
         this.reverseCursedTechniqueChance = builder.comment("The chance of unlocking reverse cursed technique when dying (smaller number equals bigger chance and the value is halved when holding a totem)")
                 .defineInRange("reverseCursedTechniqueChance", 20, 1, 1000);
         this.requiredExperienceForExperienced = builder.comment("The amount of experience required for a player to be classified as experienced (for now means they can use domain amplification during a domain expansion)")
-                .defineInRange("requiredExperienceForExperienced", 3000.0F, 1.0F, 100000.0F);
+                .defineInRange("requiredExperienceForExperienced", 5000.0F, 1.0F, 100000.0F);
         this.sorcererFleshRarity = builder.comment("Rarity of sorcerers dropping flesh (bigger value means more rare)")
                 .defineInRange("sorcererFleshRarity", 20, 0, 100000);
         this.curseFleshRarity = builder.comment("Rarity of curses dropping flesh (bigger value means more rare)")
@@ -74,16 +74,16 @@ public class ServerConfig {
         this.blackFlashChance = builder.comment("The chance of black flash (smaller number equals bigger chance)")
                 .defineInRange("blackFlashChance", 150, 1, 1000);
         this.realisticShikigami = builder.comment("When enabled Ten Shadows shikigami will die permanently")
-                .define("realisticShikigami", true);
+                .define("realisticShikigami", false);
         this.realisticCurses = builder.comment("When enabled curses only take damage from jujutsu attacks")
                 .define("realisticCurses", true);
         builder.pop();
 
         builder.comment("Miscellaneous").push("misc");
         this.sorcererHealingAmount = builder.comment("The maximum amount of health sorcerers can heal per tick (scales with experience)")
-                .defineInRange("sorcererHealingAmount", 0.01F, 0.0F, 100.0F);
+                .defineInRange("sorcererHealingAmount", 0.1F, 0.0F, 2.5F);
         this.curseHealingAmount = builder.comment("The maximum amount of health curses can heal per tick (scales with experience)")
-                .defineInRange("curseHealingAmount", 0.015F, 0.0F, 100.0F);
+                .defineInRange("curseHealingAmount", 0.15F, 0.0F, 2.5F);
         this.uniqueTechniques = builder.comment("When enabled on servers every player will have a unique technique if any are available")
                 .define("uniqueTechniques", true);
         this.uniqueTraits = builder.comment("When enabled on servers there can be only one six eyes, heavenly restriction and vessel")

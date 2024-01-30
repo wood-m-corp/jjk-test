@@ -163,6 +163,7 @@ public class JJKEventHandler {
                 newCap.resetCooldowns();
                 newCap.resetBurnout();
                 newCap.clearToggled();
+                newCap.setCurrentCopied(null);
                 newCap.resetCopy();
 
                 if (!ConfigHolder.SERVER.realisticShikigami.get()) {
@@ -248,14 +249,6 @@ public class JJKEventHandler {
             });
             LivingEntity victim = event.getEntity();
 
-            if (JJKAbilities.hasToggled(victim, JJKAbilities.CURSED_ENERGY_FLOW.get())) {
-                event.setDistance(event.getDistance() * 0.5F);
-            }
-
-            if (JJKAbilities.hasTrait(victim, Trait.HEAVENLY_RESTRICTION)) {
-                event.setDistance(event.getDistance() * 0.1F);
-            }
-
             if (Slam.TARGETS.containsKey(victim.getUUID())) {
                 Slam.onHitGround(victim, event.getDistance());
                 event.setDamageMultiplier(0.0F);
@@ -331,7 +324,7 @@ public class JJKEventHandler {
             float armor = cap.getExperience() * 0.01F;
 
             if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
-                armor *= 3.5F;
+                armor *= 4.5F;
             }
             float blocked = CombatRules.getDamageAfterAbsorb(event.getAmount(), armor, armor * 0.1F);
             event.setAmount(blocked);

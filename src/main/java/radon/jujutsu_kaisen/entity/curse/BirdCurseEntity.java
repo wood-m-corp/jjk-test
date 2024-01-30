@@ -88,7 +88,7 @@ public class BirdCurseEntity extends CursedSpirit implements PlayerRideable, IJu
 
     @Override
     public float getExperience() {
-        return SorcererGrade.GRADE_4.getRequiredExperience();
+        return SorcererGrade.GRADE_3.getRequiredExperience()*0.5F;
     }
 
     @Override
