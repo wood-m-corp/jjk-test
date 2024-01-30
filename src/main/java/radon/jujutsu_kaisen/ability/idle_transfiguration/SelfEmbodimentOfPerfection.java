@@ -34,7 +34,7 @@ public class SelfEmbodimentOfPerfection extends DomainExpansion implements Domai
         float attackerStrength = IdleTransfiguration.calculateStrength(owner);
         float victimStrength = IdleTransfiguration.calculateStrength(entity);
 
-        int required = Math.round((victimStrength / attackerStrength) * 2);
+        int required = Math.round((victimStrength / Math.round(attackerStrength*2/7)) * 2);
 
         MobEffectInstance instance = new MobEffectInstance(JJKEffects.TRANSFIGURED_SOUL.get(), Math.round(10 * 20 * getStrength(owner, instant)),
                 required, false, true, true);
