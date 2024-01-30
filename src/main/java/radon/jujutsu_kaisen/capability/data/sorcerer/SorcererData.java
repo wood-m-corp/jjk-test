@@ -983,6 +983,7 @@ public class SorcererData implements ISorcererData {
         this.lastBlackFlashTime = this.owner.level().getGameTime();
 
         this.output = this.getMaximumOutput();
+        this.energy = Math.min(this.getMaxEnergy(), this.energy+this.getMaxEnergy()*1/15);
 
         if (this.owner instanceof ServerPlayer player) {
             PlayerUtil.giveAdvancement(player, "black_flash");
