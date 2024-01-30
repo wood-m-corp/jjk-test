@@ -78,14 +78,6 @@ public class SorcererDataHandler {
     }
 
     @SubscribeEvent
-    public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            ISorcererData cap = player.getCapability(INSTANCE).resolve().orElseThrow();
-            PacketHandler.sendToClient(new SyncSorcererDataS2CPacket(cap.serializeNBT()), player);
-        }
-    }
-
-    @SubscribeEvent
     public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
             ISorcererData cap = player.getCapability(INSTANCE).resolve().orElseThrow();
