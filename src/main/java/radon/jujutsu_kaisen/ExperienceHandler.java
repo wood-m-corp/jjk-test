@@ -44,6 +44,9 @@ public class ExperienceHandler {
     public static void onLivingDamage(LivingDamageEvent event) {
         LivingEntity victim = event.getEntity();
 
+        // Tames do not give experience
+        if (victim instanceof TamableAnimal tamable && tamable.isTame()) return;
+
         if (event.getSource().getEntity() instanceof LivingEntity attacker) {
             if (!victim.isAlive() || victim.isRemoved() || !attacker.isAlive() || attacker.isRemoved()) return;
 
@@ -209,7 +212,7 @@ public class ExperienceHandler {
 
             ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
-            float targetStrength = calculateStrength(target) * 1.25F;
+            float targetStrength = calculateStrength(target) * 1.5F;
             float ownerStrength = calculateStrength(owner);
 
             float experience = Math.min(targetStrength, (targetStrength - ownerStrength) * 5.0F
