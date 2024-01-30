@@ -1,5 +1,7 @@
  package radon.jujutsu_kaisen.ability.misc;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Cursor3D;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -8,8 +10,15 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import radon.jujutsu_kaisen.ability.JJKAbilities;
 import radon.jujutsu_kaisen.ability.MenuType;
@@ -59,8 +68,34 @@ public class Dash extends Ability {
     }
 
     private static boolean canDash(LivingEntity owner) {
-        return !owner.hasEffect(JJKEffects.STUN.get()) && (RotationUtil.getLookAtHit(owner, getRange(owner)).getType() != HitResult.Type.MISS ||
-                owner.onGround() || owner.isInFluidType() || !owner.getFeetBlockState().getFluidState().isEmpty());
+        if (owner.hasEffect(JJKEffects.STUN.get())) return false;
+
+        boolean collision = false;
+
+        AABB bounds = owner.getBoundingBox();
+        Cursor3D cursor = new Cursor3D(Mth.floor(bounds.minX - 1.0E-7D) - 1,
+                Mth.floor(bounds.minY - 1.0E-7D) - 1,
+                Mth.floor(bounds.minZ - 1.0E-7D) - 1,
+                Mth.floor(bounds.maxX + 1.0E-7D) + 1,
+                Mth.floor(bounds.maxY + 1.0E-7D) + 1,
+                Mth.floor(bounds.maxZ + 1.0E-7D) + 1);
+
+        while (cursor.advance()) {
+            int i = cursor.nextX();
+            int j = cursor.nextY();
+            int k = cursor.nextZ();
+            int l = cursor.getNextType();
+
+            if (l == 3) continue;
+
+            BlockState state = owner.level().getBlockState(new BlockPos(i, j, k));
+
+            if (!state.isAir()) {
+                collision = true;
+                break;
+            }
+        }
+        return collision || owner.getXRot() >= 15.0F;
     }
 
     private static float getRange(LivingEntity owner) {
@@ -86,10 +121,10 @@ public class Dash extends Ability {
 
         HitResult hit = RotationUtil.getLookAtHit(owner, getRange(owner));
 
-        
-        if (hit.getType() == HitResult.Type.MISS) {
-            float power = Math.min(MAX_DASH, DASH * (1.0F + this.getPower(owner) * 0.1F) * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F));
+        float power = Math.min(MAX_DASH * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F),
+                DASH * (1.0F + this.getPower(owner) * 0.1F) * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F));
 
+        if (hit.getType() == HitResult.Type.MISS) {
             float f = owner.getYRot();
             float f1 = owner.getXRot();
             float f2 = -Mth.sin(f * ((float) Math.PI / 180.0F)) * Mth.cos(f1 * ((float) Math.PI / 180.0F));
@@ -107,8 +142,6 @@ public class Dash extends Ability {
             double distanceX = target.x - owner.getX();
             double distanceY = target.y - owner.getY();
             double distanceZ = target.z - owner.getZ();
-
-            float power = Math.min(MAX_DASH, DASH * (1.0F + this.getPower(owner) * 0.1F) * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F));
 
             double distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY + distanceZ * distanceZ);
             double motionX = distanceX / distance * power;
