@@ -49,8 +49,8 @@ import radon.jujutsu_kaisen.ability.JJKAbilities;
 import radon.jujutsu_kaisen.block.JJKBlocks;
 import radon.jujutsu_kaisen.block.VeilBlock;
 import radon.jujutsu_kaisen.block.entity.JJKBlockEntities;
-import radon.jujutsu_kaisen.capability.data.ISorcererData;
-import radon.jujutsu_kaisen.capability.data.SorcererDataHandler;
+import radon.jujutsu_kaisen.capability.data.sorcerer.ISorcererData;
+import radon.jujutsu_kaisen.capability.data.sorcerer.SorcererDataHandler;
 import radon.jujutsu_kaisen.capability.data.sorcerer.Trait;
 import radon.jujutsu_kaisen.client.gui.overlay.*;
 import radon.jujutsu_kaisen.client.gui.screen.AbilityScreen;
@@ -166,20 +166,6 @@ public class JJKClientEventHandler {
 
                     event.setCanceled(custom);
                 }
-            }
-        }
-
-        @SubscribeEvent
-        public static void onMovementInput(MovementInputUpdateEvent event) {
-            Minecraft mc = Minecraft.getInstance();
-
-            if (mc.player == null) return;
-
-            if (mc.player.hasEffect(JJKEffects.STUN.get()) || mc.player.hasEffect(JJKEffects.UNLIMITED_VOID.get())) {
-                mc.player.input.forwardImpulse = 0.0F;
-                mc.player.input.leftImpulse = 0.0F;
-                mc.player.input.jumping = false;
-                mc.player.input.shiftKeyDown = false;
             }
         }
 
