@@ -177,20 +177,6 @@ public class JJKEventHandler {
         }
 
         @SubscribeEvent
-        public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
-            if (event.getObject() instanceof LivingEntity entity) {
-                if (entity instanceof Player || entity instanceof ISorcerer) {
-                    SorcererDataHandler.SorcererDataProvider provider = new SorcererDataHandler.SorcererDataProvider();
-
-                    ISorcererData cap = provider.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-                    cap.init(entity);
-
-                    event.addCapability(SorcererDataHandler.SorcererDataProvider.IDENTIFIER, provider);
-                }
-            }
-        }
-
-        @SubscribeEvent
         public static void onLivingDamage(LivingDamageEvent event) {
             LivingEntity victim = event.getEntity();
 
