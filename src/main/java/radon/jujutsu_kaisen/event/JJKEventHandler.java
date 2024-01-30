@@ -161,10 +161,7 @@ public class JJKEventHandler {
                 newCap.clearToggled();
                 newCap.setCurrentCopied(null);
                 newCap.resetCopy();
-
-                if (!ConfigHolder.SERVER.realisticShikigami.get()) {
-                    newCap.revive(false);
-                }
+                
                 newCap.resetBlackFlash();
                 newCap.resetExtraEnergy();
                 newCap.resetSpeedStacks();
