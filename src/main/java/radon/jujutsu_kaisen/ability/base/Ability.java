@@ -314,7 +314,7 @@ public abstract class Ability {
             cost *= 0.5F;
         }
         if (output > 1){
-        cost *= 0.9F;
+        cost *= 0.8F;
         }
         return Float.parseFloat(String.format(Locale.ROOT, "%.2f", cost * (this.isScalable(owner) ? output : 1.0F)));
     }
