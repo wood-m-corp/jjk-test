@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.players.GameProfileCache;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -18,6 +19,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import radon.jujutsu_kaisen.JJKConstants;
@@ -28,6 +30,8 @@ import radon.jujutsu_kaisen.ability.JJKAbilities;
 import radon.jujutsu_kaisen.client.particle.ParticleColors;
 import radon.jujutsu_kaisen.client.visual.ClientVisualHandler;
 import radon.jujutsu_kaisen.config.ConfigHolder;
+import radon.jujutsu_kaisen.config.ServerConfig;
+import radon.jujutsu_kaisen.entity.base.ISorcerer;
 import radon.jujutsu_kaisen.network.PacketHandler;
 import radon.jujutsu_kaisen.network.packet.s2c.SyncSorcererDataS2CPacket;
 import radon.jujutsu_kaisen.network.packet.s2c.SyncVisualDataS2CPacket;
@@ -1304,23 +1308,6 @@ public class SorcererData implements ISorcererData {
         this.frames.clear();
     }
 
-    private boolean isTraitAvailable(MinecraftServer server, Trait trait) {
-        for (String name : server.getPlayerNames()) {
-            ServerPlayer player;
-
-            if ((player = server.getPlayerList().getPlayerByName(name)) == null) {
-                player = server.getPlayerList().getPlayerForLogin(new GameProfile(null, name));
-                server.getPlayerList().load(player);
-            }
-            if (!player.getCapability(SorcererDataHandler.INSTANCE).isPresent()) continue;
-
-            ISorcererData cap = player.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-
-            if (cap.hasTrait(trait)) return false;
-        }
-        return true;
-    }
-
     @Override
     public void generate(ServerPlayer owner) {
         this.initialized = true;
@@ -1333,34 +1320,44 @@ public class SorcererData implements ISorcererData {
         this.traits.remove(Trait.HEAVENLY_RESTRICTION);
         this.traits.remove(Trait.VESSEL);
 
-        if ((!ConfigHolder.SERVER.uniqueTraits.get() || this.isTraitAvailable(owner.server, Trait.HEAVENLY_RESTRICTION)) &&
+        Set<CursedTechnique> taken = new HashSet<>();
+        Set<Trait> traits = new HashSet<>();
+
+        if (ConfigHolder.SERVER.uniqueTraits.get() || ConfigHolder.SERVER.uniqueTraits.get()) {
+            GameProfileCache cache = owner.server.getProfileCache();
+
+            if (cache == null) throw new NullPointerException();
+
+            for (GameProfileCache.GameProfileInfo info : cache.load()) {
+                GameProfile profile = info.getProfile();
+
+                if (profile.getId() == owner.getUUID()) continue;
+
+                ServerPlayer player;
+
+                if ((player = owner.server.getPlayerList().getPlayerByName(profile.getName())) == null) {
+                    player = owner.server.getPlayerList().getPlayerForLogin(profile);
+                    owner.server.getPlayerList().load(player);
+                }
+
+                if (!player.getCapability(SorcererDataHandler.INSTANCE).isPresent()) continue;
+
+                ISorcererData cap = player.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+                taken.addAll(cap.getTechniques());
+                traits.addAll(cap.getTraits());
+            }
+        }
+
+        if ((!ConfigHolder.SERVER.uniqueTraits.get() || traits.contains(Trait.HEAVENLY_RESTRICTION)) &&
                 HelperMethods.RANDOM.nextInt(ConfigHolder.SERVER.heavenlyRestrictionRarity.get()) == 0) {
             this.addTrait(Trait.HEAVENLY_RESTRICTION);
         } else {
+            List<CursedTechnique> unlockable = ConfigHolder.SERVER.getUnlockableTechniques();
+
             if (ConfigHolder.SERVER.uniqueTechniques.get()) {
-                Set<CursedTechnique> taken = new HashSet<>();
-
-                for (String name : owner.server.getPlayerNames()) {
-                    ServerPlayer player;
-
-                    if ((player = owner.server.getPlayerList().getPlayerByName(name)) == null) {
-                        player = owner.server.getPlayerList().getPlayerForLogin(new GameProfile(null, name));
-                        owner.server.getPlayerList().load(player);
-                    }
-                    if (!player.getCapability(SorcererDataHandler.INSTANCE).isPresent()) continue;
-
-                    ISorcererData cap = player.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-
-                    CursedTechnique current = cap.getTechnique();
-
-                    if (current == null) continue;
-
-                    taken.add(current);
-                }
-                this.technique = HelperMethods.randomEnum(CursedTechnique.class, taken);
-            } else {
-                this.technique = HelperMethods.randomEnum(CursedTechnique.class);
+                unlockable.removeAll(taken);
             }
+            this.technique = unlockable.get(HelperMethods.RANDOM.nextInt(unlockable.size()));
 
             if (HelperMethods.RANDOM.nextInt(ConfigHolder.SERVER.cursedEnergyNatureRarity.get()) == 0) {
                 this.nature = HelperMethods.randomEnum(CursedEnergyNature.class, Set.of(CursedEnergyNature.BASIC));
@@ -1368,12 +1365,12 @@ public class SorcererData implements ISorcererData {
             }
             this.type = HelperMethods.RANDOM.nextInt(ConfigHolder.SERVER.curseRarity.get()) == 0 ? JujutsuType.CURSE : JujutsuType.SORCERER;
 
-            if ((!ConfigHolder.SERVER.uniqueTraits.get() || this.isTraitAvailable(owner.server, Trait.VESSEL)) && this.type == JujutsuType.SORCERER &&
+            if ((!ConfigHolder.SERVER.uniqueTraits.get() || traits.contains(Trait.VESSEL)) && this.type == JujutsuType.SORCERER &&
                     HelperMethods.RANDOM.nextInt(ConfigHolder.SERVER.vesselRarity.get()) == 0) {
                 this.addTrait(Trait.VESSEL);
             }
 
-            if ((!ConfigHolder.SERVER.uniqueTraits.get() || this.isTraitAvailable(owner.server, Trait.SIX_EYES)) &&
+            if ((!ConfigHolder.SERVER.uniqueTraits.get() || traits.contains(Trait.SIX_EYES)) &&
                     HelperMethods.RANDOM.nextInt(ConfigHolder.SERVER.sixEyesRarity.get()) == 0) {
                 this.addTrait(Trait.SIX_EYES);
             }

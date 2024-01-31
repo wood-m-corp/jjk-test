@@ -190,6 +190,8 @@ public class WormCurseEntity extends CursedSpirit {
         this.yHeadRot = this.getYRot();
         this.moveSegments();
 
+        if (this.level().isClientSide) return;
+
         LivingEntity owner = this.getOwner();
 
         if (owner == null) return;

@@ -215,6 +215,8 @@ public class GreatSerpentEntity extends TenShadowsSummon {
         this.yHeadRot = this.getYRot();
         this.moveSegments();
 
+        if (this.level().isClientSide) return;
+
         LivingEntity owner = this.getOwner();
 
         if (owner == null) return;
