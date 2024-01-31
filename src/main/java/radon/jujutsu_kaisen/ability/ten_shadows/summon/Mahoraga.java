@@ -60,7 +60,7 @@ public class Mahoraga extends Summon<MahoragaEntity> {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return this.isTamed(owner) ? 1.0F : 1000.0F;
+        return this.isTamed(owner) ? 0.5F : 1000.0F;
     }
 
     @Override
