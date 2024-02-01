@@ -34,8 +34,12 @@ public class Heal extends Ability implements Ability.IChannelened {
 
     @Override
     public void run(LivingEntity owner) {
-        owner.heal((float) Math.min(1.0F, (ConfigHolder.SERVER.curseHealingAmount.get().floatValue() * Math.pow(this.getPower(owner), Math.log(this.getPower(owner))))));
-    }
+        if (owner instanceof Player player) {
+        owner.heal((float) Math.min(1.0F, ConfigHolder.SERVER.curseHealingAmount.get().floatValue() * Math.pow(this.getPower(owner) * 0.225F, Math.log(this.getPower(owner))) * 0.225F));
+        }
+        else {
+        owner.heal((float) Math.min(1.0F, ConfigHolder.SERVER.curseHealingAmount.get().floatValue() * Math.pow(this.getPower(owner) * 0.075F, Math.log(this.getPower(owner))) * 0.075F));
+        }
 
     @Override
     public float getCost(LivingEntity owner) {
