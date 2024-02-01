@@ -10,6 +10,7 @@ import radon.jujutsu_kaisen.ability.MenuType;
 import radon.jujutsu_kaisen.capability.data.sorcerer.ISorcererData;
 import radon.jujutsu_kaisen.capability.data.sorcerer.SorcererDataHandler;
 import radon.jujutsu_kaisen.capability.data.sorcerer.JujutsuType;
+import net.minecraft.world.entity.player.Player;
 import radon.jujutsu_kaisen.config.ConfigHolder;
 
 
