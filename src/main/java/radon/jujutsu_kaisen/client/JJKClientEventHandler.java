@@ -279,7 +279,7 @@ public class JJKClientEventHandler {
 
                     double angle = Math.acos(look.normalize().dot(result.normalize()));
 
-                    double threshold = 0.5D;
+                    double threshold = 1.0D;
 
                     if (target.getItemInHand(InteractionHand.MAIN_HAND).is(JJKItemTags.CURSED_TOOL) ||
                             target.getItemInHand(InteractionHand.OFF_HAND).is(JJKItemTags.CURSED_TOOL)) {
