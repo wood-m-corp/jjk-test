@@ -51,7 +51,7 @@ public class DeathSwarm extends Ability implements Ability.IDomainAttack {
             float xOffset = (HelperMethods.RANDOM.nextFloat() - 0.5F) * 5.0F;
             float yOffset = owner.getBbHeight() + ((HelperMethods.RANDOM.nextFloat() - 0.5F) * 5.0F);
 
-            float power = domain == null ? this.getPower(owner) : this.getPower(owner) * DomainExpansion.getStrength(owner, false);
+            float power = domain == null ? this.getPower(owner) : this.getPower(owner) * 0.7F * (DomainExpansion.getStrength(owner, false));
 
             FishShikigamiProjectile[] projectiles = new FishShikigamiProjectile[]{
                     new EelShikigamiProjectile(owner, power, target, xOffset, yOffset),
