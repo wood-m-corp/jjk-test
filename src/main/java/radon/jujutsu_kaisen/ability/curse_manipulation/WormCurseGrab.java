@@ -16,7 +16,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class WormCurseGrab extends Ability {
-    public static final double RANGE = 16.0D;
+    public static final double RANGE = 80.0D;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
