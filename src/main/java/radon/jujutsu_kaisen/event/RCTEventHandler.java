@@ -49,6 +49,10 @@ public class RCTEventHandler {
 
             int chance = ConfigHolder.SERVER.reverseCursedTechniqueChance.get();
 
+            if (cap.hasTrait(Trait.DOCTOR_HOUSE)) {
+                chance = 2;
+            }
+
             for (InteractionHand hand : InteractionHand.values()) {
                 ItemStack stack = victim.getItemInHand(hand);
 
