@@ -12,6 +12,7 @@ import radon.jujutsu_kaisen.capability.data.sorcerer.SorcererDataHandler;
 import radon.jujutsu_kaisen.capability.data.sorcerer.JujutsuType;
 import net.minecraft.world.entity.player.Player;
 import radon.jujutsu_kaisen.config.ConfigHolder;
+import radon.jujutsu_kaisen.capability.data.sorcerer.Trait;
 
 
 public class RCT1 extends Ability implements Ability.IChannelened {
