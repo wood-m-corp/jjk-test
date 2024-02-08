@@ -10,6 +10,7 @@ public enum Trait {
     SIX_EYES,
     HEAVENLY_RESTRICTION,
     VESSEL,
+    DOCTOR_HOUSE,
     PERFECT_BODY;
 
     public Component getName() {
