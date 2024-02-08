@@ -38,6 +38,11 @@ public class RCT1 extends Ability implements Ability.IChannelened {
     @Override
     public void run(LivingEntity owner) {
         if (owner instanceof Player player) {
+            float healMult = 0.225F;
+            ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+            if (cap.hasTrait(Trait.DOCTOR_HOUSE)) {
+                healMult *= 2.0F;
+            }
             owner.heal((float) Math.min(1.0F, ConfigHolder.SERVER.sorcererHealingAmount.get().floatValue() * Math.pow(this.getPower(owner) * 0.225F, Math.log(this.getPower(owner))) * 0.225F));
             }
             else {
