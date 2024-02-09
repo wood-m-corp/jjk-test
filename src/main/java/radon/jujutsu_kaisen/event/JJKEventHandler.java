@@ -183,7 +183,7 @@ public class JJKEventHandler {
             }
 
             if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
-                owner.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 2, 0, false, false, false));
+                owner.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 2, 1, false, false, false));
             }
 
             owner.addEffect(new MobEffectInstance(MobEffects.JUMP, 2, 2, false, false, false));
@@ -279,7 +279,7 @@ public class JJKEventHandler {
             float armor = cap.getExperience() * 0.01F;
 
             if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
-                armor *= 2.25F;
+                armor *= 1.65F;
             }
             float blocked = CombatRules.getDamageAfterAbsorb(event.getAmount(), armor, armor*0.001F);
             event.setAmount(blocked);
