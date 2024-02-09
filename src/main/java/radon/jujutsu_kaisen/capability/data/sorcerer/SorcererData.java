@@ -425,7 +425,7 @@ public class SorcererData implements ISorcererData {
                 this.owner.setHealth(this.owner.getMaxHealth());
             }
 
-            double damage = this.getRealPower() * 10.0D;
+            double damage = this.getRealPower() * 8.0D;
             EntityUtil.applyModifier(this.owner, Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE_UUID, "Attack damage", damage, AttributeModifier.Operation.ADDITION);
 
             double speed = this.getRealPower();
@@ -435,7 +435,7 @@ public class SorcererData implements ISorcererData {
             EntityUtil.applyModifier(this.owner, Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED_UUID, "Movement speed", Math.min(this.owner.getAttributeBaseValue(Attributes.MOVEMENT_SPEED) * 2,  movement), AttributeModifier.Operation.ADDITION);
 
             if (this.owner.getHealth() != this.owner.getMaxHealth()) {
-                this.owner.heal(0.35F / 20);
+                this.owner.heal(0.45F / 20);
             }
         } else {
             double health = Math.ceil(((this.getRealPower() - 1.0F) * 20.0D) / 20) * 20;
