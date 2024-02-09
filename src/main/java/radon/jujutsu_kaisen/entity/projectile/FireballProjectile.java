@@ -38,7 +38,7 @@ public class FireballProjectile extends JujutsuProjectile implements GeoEntity {
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
-    private static final float DAMAGE = 10.0F;
+    private static final float DAMAGE = 3.5F;
     private static final float EXPLOSIVE_POWER = 2.5F;
     private static final float MAX_EXPLOSION = 15.0F;
     private static final float SPEED = 5.0F;
