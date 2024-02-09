@@ -106,7 +106,7 @@ public class Punch extends Ability {
                             .multiply(1.0D, 0.25D, 1.0D));
                 }
             } else {
-                if (entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), DAMAGE * this.getPower(owner))) {
+                if (entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), (DAMAGE * 1.5F) * this.getPower(owner))) {
                     entity.setDeltaMovement(look.scale(LAUNCH_POWER * (1.0F + this.getPower(owner) * 0.1F))
                             .multiply(1.0D, 0.25D, 1.0D));
                 }
@@ -126,7 +126,8 @@ public class Punch extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION) ? 0.0F : 15.0F;
+        //return JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION) ? 0.0F : 15.0F;
+        RETURN 0.0F;
     }
 
     @Override
