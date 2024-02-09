@@ -27,9 +27,9 @@ import java.util.List;
 
 public class GetCrushed extends Ability {
     private static final double RANGE = 20.0D;
-    private static final double RADIUS = 1.0D;
+    private static final double RADIUS = 1.25D;
     private static final float DAMAGE = 15.0F;
-    private static final double CRUSH_POWER = 3.0D;
+    private static final double CRUSH_POWER = 9.0D;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
