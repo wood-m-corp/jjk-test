@@ -73,7 +73,7 @@ public class ForestSpikes extends Ability {
             Direction dir = hit.getDirection();
             BlockPos pos = hit.getBlockPos();
 
-            for (int i = 0; i < 16; i++) {
+            for (int i = 0; i < 24; i++) {
                 ForestSpikeEntity spike = new ForestSpikeEntity(owner, this.getPower(owner));
 
                 Vec3 center = pos.relative(dir).getCenter()
