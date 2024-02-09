@@ -290,7 +290,7 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                     }
 
                     float armor = victimCap.getExperience() * (JJKAbilities.hasToggled(victim, JJKAbilities.CURSED_ENERGY_SHIELD.get()) ? 0.2F : 0.003F);
-                    float blocked = CombatRules.getDamageAfterAbsorb(event.getAmount(), armor, 1.0F);
+                    float blocked = CombatRules.getDamageAfterAbsorb(event.getAmount(), armor, armor*0.001F);
                     float block = event.getAmount() - blocked;
 
                     if (!(attacker instanceof Player player) || !player.getAbilities().instabuild) {
