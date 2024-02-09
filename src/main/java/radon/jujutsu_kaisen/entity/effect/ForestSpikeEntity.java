@@ -36,12 +36,12 @@ public class ForestSpikeEntity extends JujutsuProjectile {
 
         if (this.getTime() >= DURATION) {
             this.discard();
-        } else if (this.getTime() - 1 == 0) {
+        } else {
             if (!(this.getOwner() instanceof LivingEntity owner)) return;
 
             if (this.level().isClientSide) return;
 
-            for (Entity entity : this.level().getEntities(owner, this.getBoundingBox().expandTowards(RotationUtil.getTargetAdjustedLookAngle(this).scale(3.0D)))) {
+            for (Entity entity : this.level().getEntities(owner, this.getBoundingBox().expandTowards(RotationUtil.getTargetAdjustedLookAngle(this).scale(4.0D)))) {
                 entity.hurt(JJKDamageSources.indirectJujutsuAttack(this, owner, JJKAbilities.FOREST_SPIKES.get()), DAMAGE * this.getPower());
             }
         }
