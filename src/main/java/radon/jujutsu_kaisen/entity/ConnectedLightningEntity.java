@@ -16,7 +16,7 @@ public class ConnectedLightningEntity extends LightningEntity {
     }
 
     public ConnectedLightningEntity(LivingEntity owner, float power, Vec3 start, Vec3 end) {
-        (super(owner, power) * 1.5F);
+        super(owner, power) * 1.5F);
 
         this.start = start;
         this.end = end;
