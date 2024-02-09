@@ -97,7 +97,7 @@ public class Discharge extends Ability implements Ability.IChannelened, Ability.
 
     @Override
     public int getCooldown() {
-        return 20 * 20;
+        return 10 * 20;
     }
 
     @Override
