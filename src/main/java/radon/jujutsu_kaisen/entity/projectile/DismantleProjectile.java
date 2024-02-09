@@ -35,7 +35,7 @@ public class DismantleProjectile extends JujutsuProjectile {
     private static final EntityDataAccessor<Float> DATE_ROLL = SynchedEntityData.defineId(DismantleProjectile.class, EntityDataSerializers.FLOAT);
     private static final EntityDataAccessor<Integer> DATA_LENGTH = SynchedEntityData.defineId(DismantleProjectile.class, EntityDataSerializers.INT);
 
-    public static final float DAMAGE = 10.0F;
+    public static final float DAMAGE = 12.5F;
     private static final int DURATION = 10;
     private static final int LINE_LENGTH = 2;
     public static final int MIN_LENGTH = 3;
