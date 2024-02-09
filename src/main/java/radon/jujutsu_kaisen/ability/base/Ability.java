@@ -312,7 +312,7 @@ public abstract class Ability {
             cost *= 1.5F;
         }
         if (cap.hasTrait(Trait.SIX_EYES)) {
-            cost *= 0.5F;
+            cost *= 0.66F;
         }
         if (output > 1){
         cost *= 0.8F;
