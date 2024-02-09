@@ -276,7 +276,7 @@ public class JJKAbilities {
     }
 
     public static float getCurseCost(AbsorbedCurse curse) {
-        return Math.max(1.0F, getCurseExperience(curse) * 0.05F);
+        return Math.max(1.0F, getCurseExperience(curse) * 0.1F);
     }
 
     @Nullable
