@@ -15,7 +15,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class ForestSpikeEntity extends JujutsuProjectile {
     private static final int DURATION = 5 * 20;
-    private static final float DAMAGE = 15.0F;
+    private static final float DAMAGE = 17.5F;
 
     public ForestSpikeEntity(EntityType<? extends Projectile> pType, Level pLevel) {
         super(pType, pLevel);
