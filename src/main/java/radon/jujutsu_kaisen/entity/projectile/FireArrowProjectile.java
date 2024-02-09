@@ -27,7 +27,7 @@ import radon.jujutsu_kaisen.util.ParticleUtil;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class FireArrowProjectile extends JujutsuProjectile {
-    private static final float DAMAGE = 7.0F;
+    private static final float DAMAGE = 5.0F;
     private static final float SPEED = 5.0F;
     private static final float EXPLOSIVE_POWER = 3.0F;
     private static final float MAX_EXPLOSION = 15.0F;
@@ -141,7 +141,7 @@ public class FireArrowProjectile extends JujutsuProjectile {
         }
 
         if (this.getOwner() instanceof LivingEntity owner) {
-            ExplosionHandler.spawn(this.level().dimension(), location, this.getExplosionRadius(), 2 * 20, this.getPower() * 0.5F,
+            ExplosionHandler.spawn(this.level().dimension(), location, this.getExplosionRadius(), 2 * 20, this.getPower() * 0.4F,
                     owner, JJKDamageSources.indirectJujutsuAttack(this, owner, JJKAbilities.FIRE_ARROW.get()), true);
         }
         this.discard();
