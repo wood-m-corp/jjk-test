@@ -29,7 +29,7 @@ public class CursedBudProjectile extends JujutsuProjectile implements GeoEntity 
     private static final int DURATION = 3 * 20;
     private static final int EFFECT = 50;
     private static final double SPEED = 3.0D;
-    private static final float DAMAGE = 5.0F;
+    private static final float DAMAGE = 22.5F;
 
     private boolean plant;
 
