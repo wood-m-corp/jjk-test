@@ -186,7 +186,7 @@ public class MaxElephantEntity extends TenShadowsSummon implements PlayerRideabl
         return SorcererEntity.createAttributes()
                 .add(Attributes.MOVEMENT_SPEED, 0.33D)
                 .add(Attributes.MAX_HEALTH, 3 * 20.0D)
-                .add(Attributes.ATTACK_DAMAGE, 3 * 2.0D);
+                .add(Attributes.ATTACK_DAMAGE, 6 * 3.5D);
     }
 
     private PlayState walkRunIdlePredicate(AnimationState<MaxElephantEntity> animationState) {
