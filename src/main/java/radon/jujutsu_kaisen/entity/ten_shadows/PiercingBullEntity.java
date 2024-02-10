@@ -22,7 +22,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 
 public class PiercingBullEntity extends TenShadowsSummon {
-    private static final float DAMAGE = 20.0F;
+    private static final float DAMAGE = 10.0F;
     private static final int INTERVAL = 50;
 
     private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("misc.idle");
@@ -115,7 +115,7 @@ public class PiercingBullEntity extends TenShadowsSummon {
         return SorcererEntity.createAttributes()
                 .add(Attributes.MAX_HEALTH, 3 * 30.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.33D)
-                .add(Attributes.ATTACK_DAMAGE, 12 * 3.5D);
+                .add(Attributes.ATTACK_DAMAGE, 6 * 3.5D);
     }
 
     private PlayState walkRunIdlePredicate(AnimationState<PiercingBullEntity> animationState) {
