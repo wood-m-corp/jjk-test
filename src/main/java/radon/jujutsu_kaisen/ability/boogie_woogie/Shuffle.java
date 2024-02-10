@@ -95,6 +95,10 @@ public class Shuffle extends Ability implements Ability.IChannelened {
         return 5.0F;
     }
 
+    public int getCooldown() {
+        return 1 * 20;
+    }
+
     @Override
     public Status isTriggerable(LivingEntity owner) {
         List<Entity> targets = this.getTargets(owner);
