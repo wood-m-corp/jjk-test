@@ -38,7 +38,7 @@ public class EmberInsectProjectile extends JujutsuProjectile implements GeoEntit
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
-    private static final float DAMAGE = 5.0F;
+    private static final float DAMAGE = 12.5F;
     private static final float SPEED = 3.0F;
     private static final float EXPLOSIVE_POWER = 1.0F;
     private static final float MAX_EXPLOSION = 5.0F;
