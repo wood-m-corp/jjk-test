@@ -13,8 +13,8 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class ForestWave extends Ability implements Ability.IChannelened, Ability.IDurationable {
-    private static final int DELAY = 3;
-    private static final int SPEED = 18;
+    private static final int DELAY = 2;
+    private static final int SPEED = 24;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
