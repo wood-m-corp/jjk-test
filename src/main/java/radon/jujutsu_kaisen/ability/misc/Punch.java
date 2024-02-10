@@ -99,16 +99,18 @@ public class Punch extends Ability {
                 owner.doHurtTarget(entity);
             }
             entity.invulnerableTime = 0;
+            int newDMG;
+            newDMG = DAMAGE;
             if (!(owner instanceof Player player)) {
-                DAMAGE/=2.35F;
+                newDMG/=2.35F;
             }
             if (JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION)) {
-                if (entity.hurt(owner instanceof Player player ? owner.damageSources().playerAttack(player) : owner.damageSources().mobAttack(owner), (DAMAGE * 4.5F) * this.getPower(owner))) {
+                if (entity.hurt(owner instanceof Player player ? owner.damageSources().playerAttack(player) : owner.damageSources().mobAttack(owner), (newDMG * 4.5F) * this.getPower(owner))) {
                     entity.setDeltaMovement(look.scale(LAUNCH_POWER * (1.0F + this.getPower(owner) * 0.1F) * 2.0F)
                             .multiply(1.0D, 0.25D, 1.0D));
                 }
             } else {
-                if (entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), (DAMAGE * 3.0F) * this.getPower(owner))) {
+                if (entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), (newDMG * 3.0F) * this.getPower(owner))) {
                     entity.setDeltaMovement(look.scale(LAUNCH_POWER * (1.0F + this.getPower(owner) * 0.1F))
                             .multiply(1.0D, 0.25D, 1.0D));
                 }
