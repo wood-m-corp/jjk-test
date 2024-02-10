@@ -99,7 +99,7 @@ public class Punch extends Ability {
                 owner.doHurtTarget(entity);
             }
             entity.invulnerableTime = 0;
-            if !(owner instanceof Player player) {
+            if (!(owner instanceof Player player)) {
                 DAMAGE/=2.35F;
             }
             if (JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION)) {
