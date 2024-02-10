@@ -1320,7 +1320,7 @@ public class SorcererData implements ISorcererData {
         this.nature = CursedEnergyNature.BASIC;
 
         this.traits.remove(Trait.SIX_EYES);
-        this.traits.remove(Trait._RESTRICTION);
+        this.traits.remove(Trait.HEAVENLY_RESTRICTION);
         this.traits.remove(Trait.VESSEL);
 
         Set<CursedTechnique> taken = new HashSet<>();
