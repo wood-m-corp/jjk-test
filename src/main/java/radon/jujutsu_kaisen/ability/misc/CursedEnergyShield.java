@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import radon.jujutsu_kaisen.ability.JJKAbilities;
 import radon.jujutsu_kaisen.ability.MenuType;
 import radon.jujutsu_kaisen.ability.base.Ability;
+import net.minecraft.world.entity.player.Player;
 import radon.jujutsu_kaisen.effect.JJKEffects;
 
 public class CursedEnergyShield extends Ability implements Ability.IChannelened {
