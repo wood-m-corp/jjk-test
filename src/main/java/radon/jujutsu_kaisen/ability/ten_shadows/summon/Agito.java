@@ -45,7 +45,7 @@ public class Agito extends Summon<AgitoEntity> {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 0.9F;
+        return 0.75F;
     }
 
     @Override
