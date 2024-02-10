@@ -441,6 +441,9 @@ public class SorcererData implements ISorcererData {
             double health = Math.ceil(((this.getRealPower() - 1.0F) * 20.0D) / 20) * 20;
 
             double damage = this.getRealPower() * 7.0D;
+            if !(this.owner instanceof Player player) {
+                damage = this.getRealPower() * 3.0D;
+            }
             EntityUtil.applyModifier(this.owner, Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE_UUID, "Attack damage", damage, AttributeModifier.Operation.ADDITION);
 
             if (this.owner.getMaxHealth() != health && EntityUtil.applyModifier(this.owner, Attributes.MAX_HEALTH, MAX_HEALTH_UUID, "Max health", health, AttributeModifier.Operation.ADDITION)) {
@@ -1317,7 +1320,7 @@ public class SorcererData implements ISorcererData {
         this.nature = CursedEnergyNature.BASIC;
 
         this.traits.remove(Trait.SIX_EYES);
-        this.traits.remove(Trait.HEAVENLY_RESTRICTION);
+        this.traits.remove(Trait._RESTRICTION);
         this.traits.remove(Trait.VESSEL);
 
         Set<CursedTechnique> taken = new HashSet<>();
