@@ -50,9 +50,9 @@ public class BlackFlashHandler {
             int seconds = (int) (attacker.level().getGameTime() - lastBlackFlashTime) / 20;
 
             if (lastBlackFlashTime == 0 || seconds > 1) {
-                int rng = ConfigHolder.SERVER.blackFlashChance.get();
+                int rng = 250;
 
-                if (cap.isInZone()) rng /= 2;
+                if (cap.isInZone()) rng = 40;
                 if (HelperMethods.RANDOM.nextInt(rng) != 0) return;
             } else {
                 return;
