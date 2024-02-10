@@ -99,7 +99,9 @@ public class Punch extends Ability {
                 owner.doHurtTarget(entity);
             }
             entity.invulnerableTime = 0;
-
+            if !(owner instanceof Player player) {
+                DAMAGE/=2.35F
+            }
             if (JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION)) {
                 if (entity.hurt(owner instanceof Player player ? owner.damageSources().playerAttack(player) : owner.damageSources().mobAttack(owner), (DAMAGE * 4.5F) * this.getPower(owner))) {
                     entity.setDeltaMovement(look.scale(LAUNCH_POWER * (1.0F + this.getPower(owner) * 0.1F) * 2.0F)
