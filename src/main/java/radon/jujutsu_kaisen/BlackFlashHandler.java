@@ -25,7 +25,7 @@ import radon.jujutsu_kaisen.util.SorcererUtil;
 public class BlackFlashHandler {
     @Mod.EventBusSubscriber(modid = JujutsuKaisen.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class BlackFlashHandlerForgeEvents {
-        private static final float MAX_DAMAGE = 50.0F;
+        private static final float MAX_DAMAGE = 40.0F;
 
         @SubscribeEvent(priority = EventPriority.LOWEST)
         public static void onLivingDamage(LivingDamageEvent event) {
