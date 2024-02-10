@@ -35,7 +35,7 @@ public class CursedEnergyShield extends Ability implements Ability.IChannelened 
 
     @Override
     public boolean isValid(LivingEntity owner) {
-        return JJKAbilities.hasToggled(owner, JJKAbilities.CURSED_ENERGY_FLOW.get()) && super.isValid(owner);
+        return JJKAbilities.hasToggled(owner, JJKAbilities.CURSED_ENERGY_FLOW.get()) && super.isValid(owner) && (owner instanceof Player player);
     }
 
     @Override
