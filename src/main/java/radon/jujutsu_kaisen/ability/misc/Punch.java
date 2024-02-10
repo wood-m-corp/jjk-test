@@ -99,7 +99,7 @@ public class Punch extends Ability {
                 owner.doHurtTarget(entity);
             }
             entity.invulnerableTime = 0;
-            int newDMG;
+            float newDMG;
             newDMG = DAMAGE;
             if (!(owner instanceof Player player)) {
                 newDMG/=2.35F;
