@@ -104,7 +104,7 @@ public class NueEntity extends TenShadowsSummon implements PlayerRideable, IJump
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
                 .add(Attributes.FLYING_SPEED)
-                .add(Attributes.MAX_HEALTH, 2 * 20.0D)
+                .add(Attributes.MAX_HEALTH, 2 * 25.0D)
                 .add(Attributes.ATTACK_DAMAGE, 6 * 2.0D);
     }
 
