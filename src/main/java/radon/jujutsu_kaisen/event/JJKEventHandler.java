@@ -282,7 +282,7 @@ public class JJKEventHandler {
                 armor *= 1.1F;
                 armor += 15.0F;
             }
-            float blocked = CombatRules.getDamageAfterAbsorb(event.getAmount(), armor, 0.0F);
+            float blocked = CombatRules.getDamageAfterAbsorb(event.getAmount(), armor, armor*0.0015F);
             event.setAmount(blocked);
         }
 
