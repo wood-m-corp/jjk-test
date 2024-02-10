@@ -115,7 +115,7 @@ public class PiercingBullEntity extends TenShadowsSummon {
         return SorcererEntity.createAttributes()
                 .add(Attributes.MAX_HEALTH, 3 * 30.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.33D)
-                .add(Attributes.ATTACK_DAMAGE, 6 * 2.5D);
+                .add(Attributes.ATTACK_DAMAGE, 8 * 4.0D);
     }
 
     private PlayState walkRunIdlePredicate(AnimationState<PiercingBullEntity> animationState) {
