@@ -102,10 +102,10 @@ public class Punch extends Ability {
             float newDMG;
             newDMG = DAMAGE;
             if (!(owner instanceof Player player)) {
-                newDMG/=2.35F;
+                newDMG/=2.65F;
             }
             if (JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION)) {
-                if (entity.hurt(owner instanceof Player player ? owner.damageSources().playerAttack(player) : owner.damageSources().mobAttack(owner), (newDMG * 4.5F) * this.getPower(owner))) {
+                if (entity.hurt(owner instanceof Player player ? owner.damageSources().playerAttack(player) : owner.damageSources().mobAttack(owner), (newDMG * 4.25F) * this.getPower(owner))) {
                     entity.setDeltaMovement(look.scale(LAUNCH_POWER * (1.0F + this.getPower(owner) * 0.1F) * 2.0F)
                             .multiply(1.0D, 0.25D, 1.0D));
                 }
