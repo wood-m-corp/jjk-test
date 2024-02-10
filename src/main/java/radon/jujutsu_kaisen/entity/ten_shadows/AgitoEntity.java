@@ -111,7 +111,7 @@ public class AgitoEntity extends TenShadowsSummon {
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
                 .add(Attributes.MAX_HEALTH, 5 * 20.0D)
-                .add(Attributes.ATTACK_DAMAGE, 8 * 5.0D);
+                .add(Attributes.ATTACK_DAMAGE, 12 * 4.5D);
     }
 
     private PlayState walkRunIdlePredicate(AnimationState<AgitoEntity> animationState) {
