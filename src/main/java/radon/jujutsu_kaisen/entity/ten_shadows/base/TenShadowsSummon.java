@@ -319,7 +319,7 @@ public abstract class TenShadowsSummon extends SummonEntity implements ICommanda
         if (owner == null) return 0.0F;
 
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-        return cap.getExperience() * 0.5F;
+        return cap.getExperience() * 0.75F;
     }
 
     @Override
