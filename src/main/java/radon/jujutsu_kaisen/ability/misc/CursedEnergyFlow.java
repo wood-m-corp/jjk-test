@@ -269,7 +269,7 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
             if (JJKAbilities.hasToggled(victim, JJKAbilities.CURSED_ENERGY_FLOW.get())) {
                 if (victim.getCapability(SorcererDataHandler.INSTANCE).isPresent()) {
                     ISorcererData victimCap = victim.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-
+                    
                     if (victimCap.getNature() == CursedEnergyNature.LIGHTNING) {
                         if ((source.getDirectEntity() instanceof JujutsuLightningEntity) || (source instanceof JJKDamageSources.JujutsuDamageSource jujutsu &&
                                 jujutsu.getAbility() != null && jujutsu.getAbility().getClassification() == Classification.LIGHTNING)) {
@@ -281,7 +281,7 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                         switch (victimCap.getNature()) {
                             case LIGHTNING -> attacker.addEffect(new MobEffectInstance(JJKEffects.STUN.get(), 20, 0,
                                     false, false, false));
-                            case ROUGH -> attacker.hurt(JJKDamageSources.jujutsuAttack(victim, this) 0.5F * this.getPower(victim)
+                            case ROUGH -> attacker.hurt(JJKDamageSources.jujutsuAttack(victim, this) 0.5F + (victimCap.getExperience() * 0.001)
                                 }
                             }
                         }
