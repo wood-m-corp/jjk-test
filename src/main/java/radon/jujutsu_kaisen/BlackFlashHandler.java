@@ -52,7 +52,7 @@ public class BlackFlashHandler {
             if (lastBlackFlashTime == 0 || seconds > 1) {
                 int rng = 250;
 
-                if (cap.isInZone()) rng = 40;
+                if (cap.isInZone()) rng = 33;
                 if (HelperMethods.RANDOM.nextInt(rng) != 0) return;
             } else {
                 return;
