@@ -77,7 +77,7 @@ public class DivineDogTotalityEntity extends TenShadowsSummon {
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes().add(Attributes.MOVEMENT_SPEED, 0.33D)
                 .add(Attributes.MAX_HEALTH, 5 * 20.0D)
-                .add(Attributes.ATTACK_DAMAGE, 12 * 5.5D);
+                .add(Attributes.ATTACK_DAMAGE, 6 * 5.0D);
     }
 
     private PlayState walkRunIdlePredicate(AnimationState<DivineDogTotalityEntity> animationState) {
