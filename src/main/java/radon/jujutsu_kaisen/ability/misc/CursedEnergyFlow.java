@@ -282,7 +282,6 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                             case LIGHTNING -> attacker.addEffect(new MobEffectInstance(JJKEffects.STUN.get(), 20, 0,
                                     false, false, false));
                             case ROUGH -> attacker.hurt(JJKDamageSources.jujutsuAttack(victim, null), 1.0F + (victimCap.getExperience() * 0.01));
-                            }
                         }
                     }
 
