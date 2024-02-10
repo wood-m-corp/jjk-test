@@ -229,6 +229,6 @@ public class RabbitEscapeEntity extends TenShadowsSummon {
         return SorcererEntity.createAttributes()
                 .add(Attributes.MOVEMENT_SPEED, 2 * 0.33D)
                 .add(Attributes.MAX_HEALTH, 10.0D)
-                .add(Attributes.ATTACK_DAMAGE, 12 * 1.0D);
+                .add(Attributes.ATTACK_DAMAGE, 6 * 1.1D);
     }
 }
