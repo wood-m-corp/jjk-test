@@ -22,7 +22,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 
 public class PiercingBullEntity extends TenShadowsSummon {
-    private static final float DAMAGE = 15.0F;
+    private static final float DAMAGE = 25.0F;
     private static final int INTERVAL = 50;
 
     private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("misc.idle");
