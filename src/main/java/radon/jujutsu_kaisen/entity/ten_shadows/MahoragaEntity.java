@@ -127,7 +127,7 @@ public class MahoragaEntity extends TenShadowsSummon {
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
                 .add(Attributes.MAX_HEALTH, 8 * 20.0D)
-                .add(Attributes.ATTACK_DAMAGE, 8 * 5.5D);
+                .add(Attributes.ATTACK_DAMAGE, 8 * 3.0D);
     }
 
     @Override
