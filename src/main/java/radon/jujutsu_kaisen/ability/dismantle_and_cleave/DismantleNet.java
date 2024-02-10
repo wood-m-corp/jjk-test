@@ -39,7 +39,7 @@ public class DismantleNet extends Ability {
 
         Vec3 center = new Vec3(owner.getX(), owner.getEyeY(), owner.getZ()).add(look);
 
-        float power = (this.getPower(owner) * 0.5F) + 2.5F;
+        float power = (this.getPower(owner) * 0.5F) + 5.5F;
 
         for (int i = 0; i < count; i++) {
             for (int j = 0; j < count; j++) {
