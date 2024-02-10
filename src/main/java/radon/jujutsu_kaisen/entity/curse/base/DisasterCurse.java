@@ -12,7 +12,7 @@ import radon.jujutsu_kaisen.capability.data.sorcerer.SorcererGrade;
 import radon.jujutsu_kaisen.util.SorcererUtil;
 
 public abstract class DisasterCurse extends CursedSpirit {
-    private static final int RARITY = 25;
+    private static final int RARITY = 12;
 
     protected DisasterCurse(EntityType<? extends TamableAnimal> pType, Level pLevel) {
         super(pType, pLevel);
