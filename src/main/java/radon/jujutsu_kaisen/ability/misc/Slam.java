@@ -103,7 +103,7 @@ public class Slam extends Ability implements Ability.ICharged {
     public static void onHitGround(LivingEntity owner, float distance) {
         if (owner.level().isClientSide) return;
 
-        float radius = Math.min(MAX_EXPLOSION, 6.5F * TARGETS.get(owner.getUUID()));
+        float radius = Math.min(MAX_EXPLOSION, 7.5F * TARGETS.get(owner.getUUID()));
         float dmgMult = 0.25F;
         if (JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION)) {
             dmgMult = 0.35F;
