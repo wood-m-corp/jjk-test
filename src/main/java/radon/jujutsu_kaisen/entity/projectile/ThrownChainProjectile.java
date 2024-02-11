@@ -31,7 +31,7 @@ public class ThrownChainProjectile extends AbstractArrow {
     private static final EntityDataAccessor<Integer> DATA_TIME = SynchedEntityData.defineId(ThrownChainProjectile.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<ItemStack> DATA_ITEM = SynchedEntityData.defineId(ThrownChainProjectile.class, EntityDataSerializers.ITEM_STACK);
 
-    private static final int DURATION = 15;
+    private static final int DURATION = 10;
 
     private boolean released;
     private boolean dealtDamage;
