@@ -275,6 +275,7 @@ public interface ISorcererData {
 
     int getSpeedStacks();
     void addSpeedStack();
+    void lowerSpeedStacks();
     void resetSpeedStacks();
 
     int getFingers();
