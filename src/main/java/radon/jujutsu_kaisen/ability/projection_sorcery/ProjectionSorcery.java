@@ -167,7 +167,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
         int delay = 0;
         int frameCount = frames.size();
 
-        if (frameCount >= 6) {
+        if (frameCount >= 12) {
             cap.addSpeedStack();
         }
         cap.resetFrames();
