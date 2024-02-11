@@ -199,12 +199,12 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
                     level.sendParticles(new MirageParticle.MirageParticleOptions(owner.getId()), owner.getX(), owner.getY(), owner.getZ(),
                             0, 0.0D, 0.0D, 0.0D, 1.0D);
                 }
-                AABB bounds = owner.getBoundingBox().inflate(3.5D);
+                AABB bounds = owner.getBoundingBox().inflate(3.65D);
 
                 for (Entity entity : owner.level().getEntities(owner, AABB.ofSize(frame, bounds.getXsize(), bounds.getYsize(), bounds.getZsize()))) {
                     owner.swing(InteractionHand.MAIN_HAND, true);
 
-                    entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), 10.0F * this.getPower(owner));
+                    entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), 11.5F * this.getPower(owner));
                 }
 
                 Set<RelativeMovement> movements = EnumSet.noneOf(RelativeMovement.class);
