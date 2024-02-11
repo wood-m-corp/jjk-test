@@ -215,7 +215,7 @@ public class ThrownChainProjectile extends AbstractArrow {
                     this.setPos(spawn.x, spawn.y, spawn.z);
                     this.setRot(-RotationUtil.getTargetAdjustedYRot(living), RotationUtil.getTargetAdjustedXRot(living));
 
-                    this.setDeltaMovement(RotationUtil.getTargetAdjustedLookAngle(living).scale(new Vec3(this.xOld, this.yOld, this.zOld).subtract(position).length()));
+                    this.setDeltaMovement(RotationUtil.getTargetAdjustedLookAngle(living).scale(new Vec3(this.xOld, this.yOld, this.zOld).subtract(position).length()*5.0F));
                     this.released = true;
                 }
             }
