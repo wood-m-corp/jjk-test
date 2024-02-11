@@ -134,7 +134,7 @@ public class ThrownChainProjectile extends AbstractArrow {
             DamageSource source = this.damageSources().arrow(this, owner == null ? this : owner);
             this.dealtDamage = true;
 
-            double speed = this.getDeltaMovement().lengthSqr();
+            float speed = this.getDeltaMovement().lengthSqr();
             ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
             DAMAGE = 9.0F*cap.getPower(owner);
 
