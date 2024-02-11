@@ -103,13 +103,13 @@ public class OutputRCT extends Ability {
         if (cap.hasTrait(Trait.DOCTOR_HOUSE)) {
             healMult *= 2.0F;
         }
-        float amount = ConfigHolder.SERVER.sorcererHealingAmount.get().floatValue() * this.getPower(owner) * 5 * 4.5F *healMult;
+        float amount = ConfigHolder.SERVER.sorcererHealingAmount.get().floatValue() * this.getPower(owner) * 5 * 3.0F *healMult;
 
         if (target.getCapability(SorcererDataHandler.INSTANCE).isPresent()) {
             ISorcererData targetCap = target.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
             if (targetCap.getType() == JujutsuType.CURSE) {
-                target.hurt(JJKDamageSources.jujutsuAttack(owner, this), amount * 0.86F * 1.5F);
+                target.hurt(JJKDamageSources.jujutsuAttack(owner, this), amount * 0.86F * 6.0F);
                 return;
             }
         }
