@@ -204,7 +204,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
                 for (Entity entity : owner.level().getEntities(owner, AABB.ofSize(frame, bounds.getXsize(), bounds.getYsize(), bounds.getZsize()))) {
                     owner.swing(InteractionHand.MAIN_HAND, true);
 
-                    entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), 11.5F * this.getPower(owner));
+                    entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), 12.0F * this.getPower(owner));
                 }
 
                 Set<RelativeMovement> movements = EnumSet.noneOf(RelativeMovement.class);
@@ -241,9 +241,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
 
             if (cap.getSpeedStacks() == 0) return;
 
-            float speed = attacker.walkDist - attacker.walkDistO;
-
-            if (speed <= 0.0F) return;
+            float speed = 1.25F;
 
             Vec3 pos = victim.position().add(0.0D, victim.getBbHeight() / 2.0F, 0.0D);
             ((ServerLevel) victim.level()).sendParticles(ParticleTypes.EXPLOSION, pos.x, pos.y, pos.z, 0, 1.0D, 0.0D, 0.0D, 1.0D);
