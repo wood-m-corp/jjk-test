@@ -103,7 +103,7 @@ public class OutputRCT extends Ability {
         if (cap.hasTrait(Trait.DOCTOR_HOUSE)) {
             healMult *= 2.5F;
         }
-        float amount = ConfigHolder.SERVER.sorcererHealingAmount.get().floatValue() * this.getPower(owner) * 5 * 3.0F *healMult;
+        float amount = ConfigHolder.SERVER.sorcererHealingAmount.get().floatValue() * this.getPower(owner) * 0.075F *healMult;
 
         if (target.getCapability(SorcererDataHandler.INSTANCE).isPresent()) {
             ISorcererData targetCap = target.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
