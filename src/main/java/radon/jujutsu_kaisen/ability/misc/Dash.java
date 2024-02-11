@@ -186,7 +186,7 @@ public class Dash extends Ability {
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
         if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
-            return 0;
+            return 0.1F;
         }
         return super.getRealCooldown(owner);
     }
