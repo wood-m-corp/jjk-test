@@ -22,9 +22,9 @@ import radon.jujutsu_kaisen.damage.JJKDamageSources;
 import radon.jujutsu_kaisen.util.HelperMethods;
 
 public class WaterShield extends Ability implements Ability.IChannelened, Ability.IDurationable {
-    private static final double RADIUS = 3.0D;
+    private static final double RADIUS = 3.5D;
     private static final double X_STEP = 0.05D;
-    private static final float DAMAGE = 10.0F;
+    private static final float DAMAGE = 12.0F;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
@@ -82,7 +82,7 @@ public class WaterShield extends Ability implements Ability.IChannelened, Abilit
             owner.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS,
                     4.0F, (1.0F + (HelperMethods.RANDOM.nextFloat() - HelperMethods.RANDOM.nextFloat()) * 0.2F) * 0.7F);
 
-            for (Entity entity : owner.level().getEntities(owner, AABB.ofSize(owner.position(), RADIUS * 2, RADIUS * 2, RADIUS * 2))) {
+            for (Entity entity : owner.level().getEntities(owner, AABB.ofSize(owner.position(), RADIUS * 3, RADIUS * 3, RADIUS * 3))) {
                 entity.hurt(JJKDamageSources.jujutsuAttack(owner, JJKAbilities.WATER_SHIELD.get()), DAMAGE * this.getPower(owner));
             }
         }
@@ -90,7 +90,7 @@ public class WaterShield extends Ability implements Ability.IChannelened, Abilit
 
     @Override
     public int getCooldown() {
-        return 15 * 20;
+        return 10 * 20;
     }
 
     @Override
