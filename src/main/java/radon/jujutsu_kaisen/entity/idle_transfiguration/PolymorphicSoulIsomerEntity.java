@@ -23,7 +23,7 @@ public class PolymorphicSoulIsomerEntity extends TransfiguredSoulEntity {
 
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
-                .add(Attributes.MAX_HEALTH, 1.0F)
+                .add(Attributes.MAX_HEALTH, 5 * 25.0F)
                 .add(Attributes.ATTACK_DAMAGE, 5 * 2.0D);
     }
 
