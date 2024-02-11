@@ -159,7 +159,6 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
 
         List<AbstractMap.SimpleEntry<Vec3, Float>> frames = new ArrayList<>(cap.getFrames());
 
-        cap.resetFrames();
 
         /*if (frames.size() < 24) {
             return;
@@ -168,9 +167,10 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
         int delay = 0;
         int frameCount = frames.size();
 
-        if (frameCount >= 5) {
+        if (frameCount >= 6) {
             cap.addSpeedStack();
         }
+        cap.resetFrames();
         AtomicBoolean cancelled = new AtomicBoolean();
         AtomicReference<Vec3> previous = new AtomicReference<>();
 
