@@ -31,7 +31,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 import java.util.UUID;
 
 public class AirFrameEntity extends Entity {
-    private static final int DURATION = 15;
+    private static final int DURATION = 8;
     private static final float DAMAGE = 18.0F;
     private static final double RANGE = 5.0D;
 
