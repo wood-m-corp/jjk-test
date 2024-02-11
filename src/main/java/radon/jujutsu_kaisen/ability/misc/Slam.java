@@ -103,13 +103,16 @@ public class Slam extends Ability implements Ability.ICharged {
     public static void onHitGround(LivingEntity owner, float distance) {
         if (owner.level().isClientSide) return;
 
-        //float radius = Math.min(MAX_EXPLOSION, Math.max(1.5F,distance * TARGETS.get(owner.getUUID())));
-        float radius = MAX_EXPLOSION;
-
+        float radius = Math.min(MAX_EXPLOSION, 1 * TARGETS.get(owner.getUUID()));
+        float dmgMult = 0.25F;
+        if (JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION)) {
+            dmgMult = 0.35F;
+            radius*=1.5F;
+        }
         owner.swing(InteractionHand.MAIN_HAND);
 
         if (!owner.level().isClientSide) {
-            ExplosionHandler.spawn(owner.level().dimension(), owner.position(), radius, 5, Ability.getPower(JJKAbilities.SLAM.get(), owner) * 0.25F, owner,
+            ExplosionHandler.spawn(owner.level().dimension(), owner.position(), radius, 5, Ability.getPower(JJKAbilities.SLAM.get(), owner) * dmgMult, owner,
                     owner instanceof Player player ? owner.damageSources().playerAttack(player) : owner.damageSources().mobAttack(owner), false);
         }
         owner.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), JJKSounds.SLAM.get(), SoundSource.MASTER, 1.0F, 1.0F);
