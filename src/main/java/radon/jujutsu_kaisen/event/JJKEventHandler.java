@@ -280,8 +280,8 @@ public class JJKEventHandler {
             float armor = cap.getExperience() * 0.01F;
 
             if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
-                armor *= 1.11F;
-                armor += 8.0F;
+                armor *= 1.2F;
+                armor += 7.5F;
             }
             float blocked = CombatRules.getDamageAfterAbsorb(event.getAmount(), armor, armor*0.0015F);
             event.setAmount(blocked);
