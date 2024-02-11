@@ -230,7 +230,7 @@ public class WormCurseEntity extends CursedSpirit {
         return SorcererGrade.GRADE_2.getRequiredExperience();
     }
 
-     public static AttributeSupplier.Builder createAttributes() {
+    public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
                 .add(Attributes.ATTACK_DAMAGE, 4 * 4.0D);
     }
