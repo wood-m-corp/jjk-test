@@ -107,7 +107,7 @@ public class Slam extends Ability implements Ability.ICharged {
         float dmgMult = 0.26F;
         if (JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION)) {
             dmgMult = 0.36F;
-            radius*=1.5F;
+            radius*=1.35F;
         }
         owner.swing(InteractionHand.MAIN_HAND);
 
