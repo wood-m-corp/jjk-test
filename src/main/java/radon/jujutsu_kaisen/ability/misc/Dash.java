@@ -121,8 +121,8 @@ public class Dash extends Ability {
 
         HitResult hit = RotationUtil.getLookAtHit(owner, getRange(owner));
 
-        float power = Math.min(MAX_DASH * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F),
-                DASH * (1.0F + this.getPower(owner) * 0.1F) * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F));
+        float power = Math.min(MAX_DASH * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.75F : 1.0F),
+                DASH * (1.0F + this.getPower(owner) * 0.1F) * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.75F : 1.0F));
 
         if (hit.getType() == HitResult.Type.MISS) {
             float f = owner.getYRot();
