@@ -135,7 +135,7 @@ public class ThrownChainProjectile extends AbstractArrow {
 
             double speed = this.getDeltaMovement().lengthSqr();
             ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-            DAMAGE = 9.0F*cap.getPower(owner)
+            DAMAGE = 9.0F*cap.getPower(owner);
 
             SwordItem sword = (SwordItem) this.getStack().getItem();
             target.hurt(source, (float) (sword.getDamage() + DAMAGE));
@@ -162,7 +162,7 @@ public class ThrownChainProjectile extends AbstractArrow {
         this.setTime(this.getTime() + 1);
 
         Entity owner = this.getOwner();
-        double speedMult = 3.0F
+        double speedMult = 3.0F;
             
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
         if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
