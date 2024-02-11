@@ -21,6 +21,8 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import radon.jujutsu_kaisen.entity.JJKEntities;
 import radon.jujutsu_kaisen.util.RotationUtil;
+import radon.jujutsu_kaisen.capability.data.sorcerer.Trait;
+import radon.jujutsu_kaisen.capability.data.sorcerer.ISorcererData;
 
 import javax.annotation.Nullable;
 
@@ -132,9 +134,11 @@ public class ThrownChainProjectile extends AbstractArrow {
             this.dealtDamage = true;
 
             double speed = this.getDeltaMovement().lengthSqr();
+            ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+            DAMAGE = 9.0F*cap.getPower(owner)
 
             SwordItem sword = (SwordItem) this.getStack().getItem();
-            target.hurt(source, (float) (sword.getDamage() * speed));
+            target.hurt(source, (float) (sword.getDamage() + DAMAGE));
 
             this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01D, -0.1D, -0.01D));
         }
@@ -158,6 +162,13 @@ public class ThrownChainProjectile extends AbstractArrow {
         this.setTime(this.getTime() + 1);
 
         Entity owner = this.getOwner();
+        double speedMult = 3.0F
+            
+        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
+            speedMult = 4.5F;
+        }
+        
 
         if (!this.level().isClientSide && (owner == null || owner.isRemoved() || !owner.isAlive() || this.inGroundTime > DURATION)) {
             this.discard();
@@ -173,7 +184,7 @@ public class ThrownChainProjectile extends AbstractArrow {
 
                 if (this.dealtDamage && this.pulled != null) {
                     if (this.pulled == living) {
-                        living.setDeltaMovement(this.position().subtract(living.position()).normalize());
+                        living.setDeltaMovement(this.position().subtract(living.position()).normalize()*(speedMult/2.5F));
 
                         if (living.distanceTo(this) <= 1.0D) {
                             this.discard();
@@ -182,7 +193,7 @@ public class ThrownChainProjectile extends AbstractArrow {
                     } else {
                         this.setPos(this.pulled.position().add(0.0D, this.pulled.getBbHeight() / 2.0F, 0.0D));
 
-                        this.pulled.setDeltaMovement(living.position().subtract(this.pulled.position()).normalize());
+                        this.pulled.setDeltaMovement(living.position().subtract(this.pulled.position()).normalize()*(speedMult/2.5F));
 
                         if (this.pulled.distanceTo(living) <= 1.0D) {
                             this.discard();
@@ -215,7 +226,7 @@ public class ThrownChainProjectile extends AbstractArrow {
                     this.setPos(spawn.x, spawn.y, spawn.z);
                     this.setRot(-RotationUtil.getTargetAdjustedYRot(living), RotationUtil.getTargetAdjustedXRot(living));
 
-                    this.setDeltaMovement(RotationUtil.getTargetAdjustedLookAngle(living).scale(new Vec3(this.xOld, this.yOld, this.zOld).subtract(position).length()*5.0F));
+                    this.setDeltaMovement(RotationUtil.getTargetAdjustedLookAngle(living).scale(new Vec3(this.xOld, this.yOld, this.zOld).subtract(position).length()*speedMult));
                     this.released = true;
                 }
             }
