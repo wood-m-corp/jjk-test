@@ -103,7 +103,8 @@ public class Slam extends Ability implements Ability.ICharged {
     public static void onHitGround(LivingEntity owner, float distance) {
         if (owner.level().isClientSide) return;
 
-        float radius = Math.min(MAX_EXPLOSION, Math.max(1.5F,distance * TARGETS.get(owner.getUUID())));
+        //float radius = Math.min(MAX_EXPLOSION, Math.max(1.5F,distance * TARGETS.get(owner.getUUID())));
+        float radius = MAX_EXPLOSION;
 
         owner.swing(InteractionHand.MAIN_HAND);
 
