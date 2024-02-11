@@ -25,6 +25,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import radon.jujutsu_kaisen.entity.sorcerer.base.SorcererEntity;
 
 public class WormCurseEntity extends CursedSpirit {
     private static final EntityDataAccessor<Boolean> DATA_GRABBING = SynchedEntityData.defineId(WormCurseEntity.class, EntityDataSerializers.BOOLEAN);
