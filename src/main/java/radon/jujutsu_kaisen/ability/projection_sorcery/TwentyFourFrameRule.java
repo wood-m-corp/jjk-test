@@ -53,7 +53,7 @@ public class TwentyFourFrameRule extends Ability implements Ability.IToggled, Ab
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 25.0F;
+        return 50.0F;
     }
 
     @Override
