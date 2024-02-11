@@ -144,7 +144,7 @@ public class DismantleProjectile extends JujutsuProjectile {
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
         DomainExpansionEntity domain = cap.getSummonByClass(DomainExpansionEntity.class);
-        entity.hurt(JJKDamageSources.indirectJujutsuAttack(domain == null ? this : domain, owner, JJKAbilities.DISMANTLE.get()), DAMAGE * this.getPower());
+        entity.hurt(JJKDamageSources.indirectJujutsuAttack(domain == null ? this.getPower() : domain, owner, JJKAbilities.DISMANTLE.get()), DAMAGE * this.getPower());
     }
 
     private Vec3 rotate(Vec3 vector, Vec3 axis, double degrees) {
