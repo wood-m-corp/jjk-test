@@ -241,7 +241,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
 
             if (cap.getSpeedStacks() == 0) return;
 
-            float speed = 1.25F;
+            float speed = 1.0F;
 
             Vec3 pos = victim.position().add(0.0D, victim.getBbHeight() / 2.0F, 0.0D);
             ((ServerLevel) victim.level()).sendParticles(ParticleTypes.EXPLOSION, pos.x, pos.y, pos.z, 0, 1.0D, 0.0D, 0.0D, 1.0D);
