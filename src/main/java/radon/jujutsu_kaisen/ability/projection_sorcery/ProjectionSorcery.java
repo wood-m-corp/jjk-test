@@ -168,6 +168,9 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
         int delay = 0;
         int frameCount = frames.size();
 
+        if (frameCount >= 5) {
+            cap.addSpeedStack();
+        }
         AtomicBoolean cancelled = new AtomicBoolean();
         AtomicReference<Vec3> previous = new AtomicReference<>();
 
@@ -196,12 +199,12 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
                     level.sendParticles(new MirageParticle.MirageParticleOptions(owner.getId()), owner.getX(), owner.getY(), owner.getZ(),
                             0, 0.0D, 0.0D, 0.0D, 1.0D);
                 }
-                AABB bounds = owner.getBoundingBox().inflate(3.0D);
+                AABB bounds = owner.getBoundingBox().inflate(3.5D);
 
                 for (Entity entity : owner.level().getEntities(owner, AABB.ofSize(frame, bounds.getXsize(), bounds.getYsize(), bounds.getZsize()))) {
                     owner.swing(InteractionHand.MAIN_HAND, true);
 
-                    entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), 3.5F * this.getPower(owner));
+                    entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), 10.0F * this.getPower(owner));
                 }
 
                 Set<RelativeMovement> movements = EnumSet.noneOf(RelativeMovement.class);
@@ -219,7 +222,6 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
             }, delay++);
         }
 
-        cap.addSpeedStack();
     }
 
     @Mod.EventBusSubscriber(modid = JujutsuKaisen.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
