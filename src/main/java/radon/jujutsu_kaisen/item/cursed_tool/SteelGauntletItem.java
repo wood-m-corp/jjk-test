@@ -33,28 +33,6 @@ public class SteelGauntletItem extends CursedToolItem implements GeoItem {
     }
 
     @Override
-    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack pStack) {
-        return UseAnim.BLOCK;
-    }
-
-    @Override
-    public int getUseDuration(@NotNull ItemStack pStack) {
-        return 72000;
-    }
-
-    @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, Player pPlayer, @NotNull InteractionHand pHand) {
-        ItemStack itemstack = pPlayer.getItemInHand(pHand);
-        pPlayer.startUsingItem(pHand);
-        return InteractionResultHolder.consume(itemstack);
-    }
-
-    @Override
-    public boolean canPerformAction(@NotNull ItemStack stack, net.minecraftforge.common.@NotNull ToolAction toolAction) {
-        return ToolActions.DEFAULT_SHIELD_ACTIONS.contains(toolAction);
-    }
-
-    @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
             private SteelGauntletRenderer renderer;
