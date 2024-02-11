@@ -387,15 +387,11 @@ public class SorcererData implements ISorcererData {
                 EntityUtil.applyModifier(this.owner, Attributes.MOVEMENT_SPEED, PROJECTION_SORCERY_MOVEMENT_SPEED_UUID, "Movement speed", this.speedStacks * 0.9D, AttributeModifier.Operation.MULTIPLY_TOTAL);
                 EntityUtil.applyModifier(this.owner, Attributes.ATTACK_SPEED, PROJECTION_ATTACK_SPEED_UUID, "Attack speed", this.speedStacks, AttributeModifier.Operation.MULTIPLY_TOTAL);
                 EntityUtil.applyModifier(this.owner, ForgeMod.STEP_HEIGHT_ADDITION.get(), PROJECTION_STEP_HEIGHT_UUID, "Step height addition", 2.0F, AttributeModifier.Operation.ADDITION);
+                
+                this.noMotionTime++;
 
-                if (this.owner.walkDist == this.owner.walkDistO) {
-                    this.noMotionTime++;
-                } else if (this.noMotionTime > 0) {
-                    this.noMotionTime = 0;
-                }
-
-                if (this.noMotionTime > 10) {
-                    this.resetSpeedStacks();
+                if (this.noMotionTime > 15*20) {
+                    this.lowerSpeedStacks();
                 }
             } else {
                 EntityUtil.removeModifier(this.owner, Attributes.MOVEMENT_SPEED, PROJECTION_SORCERY_MOVEMENT_SPEED_UUID);
@@ -1406,6 +1402,12 @@ public class SorcererData implements ISorcererData {
     @Override
     public void resetSpeedStacks() {
         this.speedStacks = 0;
+        this.noMotionTime = 0;
+    }
+
+    @Override
+    public void lowerSpeedStacks() {
+        this.speedStacks -= 1;
         this.noMotionTime = 0;
     }
 
