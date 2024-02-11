@@ -31,7 +31,7 @@ public class ThrownChainProjectile extends AbstractArrow {
     private static final EntityDataAccessor<Integer> DATA_TIME = SynchedEntityData.defineId(ThrownChainProjectile.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<ItemStack> DATA_ITEM = SynchedEntityData.defineId(ThrownChainProjectile.class, EntityDataSerializers.ITEM_STACK);
 
-    private static final int DURATION = 2 * 20;
+    private static final int DURATION = 15;
 
     private boolean released;
     private boolean dealtDamage;
@@ -166,11 +166,11 @@ public class ThrownChainProjectile extends AbstractArrow {
         this.setTime(this.getTime() + 1);
 
         Entity owner = this.getOwner();
-        float speedMult = 3.0F;
+        float speedMult = 3.5F;
             
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
         if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
-            speedMult = 4.5F;
+            speedMult = 5.0F;
         }
         
 
@@ -188,7 +188,7 @@ public class ThrownChainProjectile extends AbstractArrow {
 
                 if (this.dealtDamage && this.pulled != null) {
                     if (this.pulled == living) {
-                        speedMult*=0.4F;
+                        speedMult*=0.6F;
                         living.setDeltaMovement(this.position().subtract(living.position()).normalize().multiply(speedMult,speedMult,speedMult));
 
                         if (living.distanceTo(this) <= 1.0D) {
@@ -197,7 +197,7 @@ public class ThrownChainProjectile extends AbstractArrow {
                         }
                     } else {
                         this.setPos(this.pulled.position().add(0.0D, this.pulled.getBbHeight() / 2.0F, 0.0D));
-                        speedMult*=0.4F;
+                        speedMult*=0.6F;
                         this.pulled.setDeltaMovement(living.position().subtract(this.pulled.position()).normalize().multiply(speedMult,speedMult,speedMult));
 
                         if (this.pulled.distanceTo(living) <= 1.0D) {
