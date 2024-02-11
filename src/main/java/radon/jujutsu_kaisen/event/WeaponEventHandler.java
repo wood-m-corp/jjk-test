@@ -63,7 +63,7 @@ public class WeaponEventHandler {
 
             if (HelperMethods.isMelee(source)) {
                 if (JJKAbilities.hasTrait(attacker, Trait.HEAVENLY_RESTRICTION) && !source.is(JJKDamageSources.SPLIT_SOUL_KATANA) && stacks.contains(JJKItems.SPLIT_SOUL_KATANA.get())) {
-                    if (victim.hurt(JJKDamageSources.splitSoulKatanaAttack(attacker), event.getAmount()*0.1F)) {
+                    if (victim.hurt(JJKDamageSources.splitSoulKatanaAttack(attacker), event.getAmount()*0.25F)) {
                         if (victim.isDeadOrDying()) {
                             event.setCanceled(true);
                             return;
