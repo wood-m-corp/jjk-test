@@ -186,7 +186,7 @@ public class ThrownChainProjectile extends AbstractArrow {
                 if (this.dealtDamage && this.pulled != null) {
                     if (this.pulled == living) {
                         speedMult*=0.4F;
-                        living.setDeltaMovement((this.position().subtract(living.position())*speedMult).normalize());
+                        living.setDeltaMovement(this.position().subtract(living.position()).normalize()*speedMult);
 
                         if (living.distanceTo(this) <= 1.0D) {
                             this.discard();
@@ -195,7 +195,7 @@ public class ThrownChainProjectile extends AbstractArrow {
                     } else {
                         this.setPos(this.pulled.position().add(0.0D, this.pulled.getBbHeight() / 2.0F, 0.0D));
                         speedMult*=0.4F;
-                        this.pulled.setDeltaMovement((living.position().subtract(this.pulled.position())*speedMult).normalize());
+                        this.pulled.setDeltaMovement(living.position().subtract(this.pulled.position()).normalize()*speedMult);
 
                         if (this.pulled.distanceTo(living) <= 1.0D) {
                             this.discard();
