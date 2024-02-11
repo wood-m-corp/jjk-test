@@ -270,6 +270,7 @@ public class RainbowDragonEntity extends CursedSpirit implements PlayerRideable,
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
                 .add(Attributes.FLYING_SPEED)
+                .add(Attributes.ATTACK_DAMAGE, 4 * 3.0D)
                 .add(Attributes.ARMOR, 10.0D);
     }
 
@@ -281,11 +282,6 @@ public class RainbowDragonEntity extends CursedSpirit implements PlayerRideable,
     @Override
     public float getExperience() {
         return SorcererGrade.GRADE_1.getRequiredExperience();
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return SorcererEntity.createAttributes()
-                .add(Attributes.ATTACK_DAMAGE, 4 * 3.0D);
     }
 
     @Override
