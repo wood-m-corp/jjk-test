@@ -51,7 +51,7 @@ public class BlackFlashHandler {
             int seconds = (int) (attacker.level().getGameTime() - lastBlackFlashTime) / 20;
 
             if (lastBlackFlashTime == 0 || seconds > 1) {
-                int rng = 200;
+                int rng = 250;
 
                 if ((attacker instanceof Player player) && (cap.isInZone())) rng = 30;
                 if (HelperMethods.RANDOM.nextInt(rng) != 0) return;
