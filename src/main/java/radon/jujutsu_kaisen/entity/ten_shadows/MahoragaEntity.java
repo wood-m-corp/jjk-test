@@ -5,8 +5,12 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
@@ -121,7 +125,7 @@ public class MahoragaEntity extends TenShadowsSummon {
 
     @Override
     public float getStepHeight() {
-        return 3.0F;
+        return 6.0F;
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -202,7 +206,7 @@ public class MahoragaEntity extends TenShadowsSummon {
             this.entityData.set(DATA_SLASH, --slash);
         } else {
             if (target != null) {
-                if (this.onGround() && this.distanceTo(target) < 3.0D) {
+                if (this.onGround() && this.distanceTo(target) < 6.0D) {
                     this.entityData.set(DATA_SLASH, SLASH_DURATION);
 
                     target.setDeltaMovement(RotationUtil.getTargetAdjustedLookAngle(this).scale(SLASH_LAUNCH));
