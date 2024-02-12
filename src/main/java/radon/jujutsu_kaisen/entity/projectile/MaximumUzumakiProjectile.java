@@ -64,7 +64,12 @@ public class MaximumUzumakiProjectile extends JujutsuProjectile implements GeoEn
                     PacketHandler.sendToClient(new SyncSorcererDataS2CPacket(ownerCap.serializeNBT()), player);
                 }
             }
-            this.power = Math.min(MAX_POWER, this.power + SorcererUtil.getPower(curseCap.getExperience()));
+            float addPower = SorcererUtil.getPower(curseCap.getExperience());
+            if (addPower < 2.90F) {
+                addPower/=2.0F
+            }
+            addPower/=3.0F;
+            this.power = Math.min(MAX_POWER, this.power + addPower);
             entity.discard();
         }
     }
@@ -111,7 +116,7 @@ public class MaximumUzumakiProjectile extends JujutsuProjectile implements GeoEn
                 this.setPos(pos);
 
                 Vec3 offset = new Vec3(this.getX(), this.getY() + (this.getBbHeight() / 2.0F), this.getZ());
-                ExplosionHandler.spawn(this.level().dimension(), offset, this.power * 1.75F, 2 * 20, this.getPower() * 0.5F, owner,
+                ExplosionHandler.spawn(this.level().dimension(), offset, this.power * 1.75F, 1 * 20, this.getPower() * 0.45F, owner,
                         JJKDamageSources.indirectJujutsuAttack(this, owner, JJKAbilities.MAXIMUM_UZUMAKI.get()), false);
             }
         }
