@@ -69,6 +69,6 @@ public class MaximumUzumaki extends Ability {
 
     @Override
     public int getCooldown() {
-        return 60 * 20;
+        return 30 * 20;
     }
 }
