@@ -29,7 +29,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class MaximumUzumakiProjectile extends JujutsuProjectile implements GeoEntity {
-    private static final int DELAY = 20;
+    private static final int DELAY = 10;
     private static final double RANGE = 10.0D;
     private static final float MAX_POWER = 10.0F;
 
