@@ -33,7 +33,7 @@ public class BlueProjectile extends JujutsuProjectile {
 
     public static final double RANGE = 15.0D;
     private static final int DELAY = 20;
-    private static final float DAMAGE = 3.0F;
+    private static final float DAMAGE = 7.5F;
     private static final int DURATION = 5 * 20;
     private static final float RADIUS = 3.0F;
     private static final float MAX_RADIUS = 5.0F;
