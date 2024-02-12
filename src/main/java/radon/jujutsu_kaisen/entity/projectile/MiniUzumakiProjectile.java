@@ -85,7 +85,7 @@ public class MiniUzumakiProjectile extends BeamEntity {
 
     @Override
     protected float getDamage() {
-        return 12.5F;
+        return 10.5F;
     }
 
     @Override
