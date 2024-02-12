@@ -233,7 +233,7 @@ public class WormCurseEntity extends CursedSpirit {
 
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
-                .add(Attributes.ATTACK_DAMAGE, 5 * 5.0D);
+                .add(Attributes.ATTACK_DAMAGE, 7 * 5.0D);
     }
 
     @Override
