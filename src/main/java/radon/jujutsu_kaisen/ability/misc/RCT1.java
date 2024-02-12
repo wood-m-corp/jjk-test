@@ -1,5 +1,5 @@
 package radon.jujutsu_kaisen.ability.misc;
-
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.phys.Vec2;
@@ -27,7 +27,7 @@ public class RCT1 extends Ability implements Ability.IChannelened {
     }
 
     @Override
-    public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
+    public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity owner) {
         return owner.getHealth() < owner.getMaxHealth();
     }
 
@@ -41,18 +41,6 @@ public class RCT1 extends Ability implements Ability.IChannelened {
         if (owner instanceof Player player) {
             float healMult = 0.225F;
             ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-            for (int i = 0; i < 2; i++) {
-                ownerCap.delayTickEvent(() -> {
-                    for (int j = 0; j < 2; j++) {
-                        double x = target.getX() + (HelperMethods.RANDOM.nextDouble() - 0.5D) * (target.getBbWidth() * 1.25F) - target.getLookAngle().scale(0.35D).x;
-                        double y = target.getY() + HelperMethods.RANDOM.nextDouble() * (target.getBbHeight());
-                        double z = target.getZ() + (HelperMethods.RANDOM.nextDouble() - 0.5D) * (target.getBbWidth() * 1.25F) - target.getLookAngle().scale(0.35D).z;
-                        double speed = (target.getBbHeight() * 0.1F) * HelperMethods.RANDOM.nextDouble();
-                        level.sendParticles(new CursedEnergyParticle.CursedEnergyParticleOptions(ParticleColors.RCT, target.getBbWidth() * 0.5F,
-                                0.2F, 16), x, y, z, 0, 0.0D, speed, 0.0D, 1.0D);
-                    }
-                }, i * 2);
-            }
             if (cap.hasTrait(Trait.DOCTOR_HOUSE)) {
                 healMult *= 2.0F;
             }
@@ -61,6 +49,20 @@ public class RCT1 extends Ability implements Ability.IChannelened {
             else {
             owner.heal((float) Math.min(1.0F, ConfigHolder.SERVER.sorcererHealingAmount.get().floatValue() * Math.pow(this.getPower(owner) * 0.075F, Math.log(this.getPower(owner))) * 0.075F));
             }
+        if (!(owner.level() instanceof ServerLevel level)) return;
+        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        for (int i = 0; i < 2; i++) {
+            cap.delayTickEvent(() -> {
+                for (int j = 0; j < 2; j++) {
+                    double x = owner.getX() + (HelperMethods.RANDOM.nextDouble() - 0.5D) * (owner.getBbWidth() * 1.25F) - owner.getLookAngle().scale(0.35D).x;
+                    double y = owner.getY() + HelperMethods.RANDOM.nextDouble() * (owner.getBbHeight());
+                    double z = owner.getZ() + (HelperMethods.RANDOM.nextDouble() - 0.5D) * (owner.getBbWidth() * 1.25F) - owner.getLookAngle().scale(0.35D).z;
+                    double speed = (owner.getBbHeight() * 0.1F) * HelperMethods.RANDOM.nextDouble();
+                    level.sendParticles(new CursedEnergyParticle.CursedEnergyParticleOptions(ParticleColors.RCT, owner.getBbWidth() * 0.5F,
+                               0.2F, 16), x, y, z, 0, 0.0D, speed, 0.0D, 1.0D);
+                }
+            }, i * 2);
+         }
     }
 
     @Override
