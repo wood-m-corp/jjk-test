@@ -58,6 +58,9 @@ public class MiniUzumakiProjectile extends BeamEntity {
             if (addPower < 2.90F) {
                 addPower/=2.5F;
             }
+            if (addPower > 3.85F) {
+                addPower*=1.75F;
+            }
             addPower/=1.5F;
             this.setPower(Math.min(MAX_POWER,addPower + power) );
             
