@@ -30,6 +30,9 @@ import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import radon.jujutsu_kaisen.entity.sorcerer.base.SorcererEntity;
 
 public class FelineCurseEntity extends PackCursedSpirit implements PlayerRideable {
     private static final EntityDataAccessor<Integer> DATA_LEAP = SynchedEntityData.defineId(FelineCurseEntity.class, EntityDataSerializers.INT);
@@ -229,6 +232,11 @@ public class FelineCurseEntity extends PackCursedSpirit implements PlayerRideabl
         if (leap > 0) {
             this.entityData.set(DATA_LEAP, --leap);
         }
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return SorcererEntity.createAttributes()
+                .add(Attributes.ATTACK_DAMAGE, 5 * 5.0D);
     }
 
     private class CustomLeapAtTargetGoal extends LeapAtTargetGoal {
