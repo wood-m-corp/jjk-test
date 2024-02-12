@@ -29,7 +29,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class MaximumUzumakiProjectile extends JujutsuProjectile implements GeoEntity {
-    private static final int DELAY = 10;
+    private static final int DELAY = 20;
     private static final double RANGE = 10.0D;
     private static final float MAX_POWER = 10.0F;
 
@@ -111,7 +111,7 @@ public class MaximumUzumakiProjectile extends JujutsuProjectile implements GeoEn
                 this.setPos(pos);
 
                 Vec3 offset = new Vec3(this.getX(), this.getY() + (this.getBbHeight() / 2.0F), this.getZ());
-                ExplosionHandler.spawn(this.level().dimension(), offset, this.power * 1.25F, 3 * 20, this.getPower() * 0.5F, owner,
+                ExplosionHandler.spawn(this.level().dimension(), offset, this.power * 1.5F, 2 * 20, this.getPower() * 0.5F, owner,
                         JJKDamageSources.indirectJujutsuAttack(this, owner, JJKAbilities.MAXIMUM_UZUMAKI.get()), false);
             }
         }
