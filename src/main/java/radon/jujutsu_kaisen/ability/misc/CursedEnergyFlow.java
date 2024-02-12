@@ -204,7 +204,7 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                         float increase = attackerCap.getExperience() * 0.002F;
 
                         switch (attackerCap.getNature()) {
-                            case ROUGH -> increase *= 1.5F;
+                            case ROUGH -> increase *= 1.6F;
                             case LIGHTNING -> increase *= (attacker.getItemInHand(InteractionHand.MAIN_HAND).is(JJKItems.NYOI_STAFF.get()) ? 2.0F : 1.0F);
                             case DIVERGENT -> {
                                 Vec3 look = RotationUtil.getTargetAdjustedLookAngle(attacker);
@@ -281,7 +281,7 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                         switch (victimCap.getNature()) {
                             case LIGHTNING -> attacker.addEffect(new MobEffectInstance(JJKEffects.STUN.get(), 20, 0,
                                     false, false, false));
-                            case ROUGH -> attacker.hurt(JJKDamageSources.jujutsuAttack(victim, null), 1.0F + (victimCap.getExperience() * 0.01F));
+                            case ROUGH -> attacker.hurt(JJKDamageSources.jujutsuAttack(victim, null), 1.0F + (victimCap.getExperience() * 0.0025F));
                         }
                     }
 
