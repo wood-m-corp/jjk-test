@@ -13,6 +13,10 @@ import radon.jujutsu_kaisen.capability.data.sorcerer.JujutsuType;
 import net.minecraft.world.entity.player.Player;
 import radon.jujutsu_kaisen.config.ConfigHolder;
 import radon.jujutsu_kaisen.capability.data.sorcerer.Trait;
+import radon.jujutsu_kaisen.client.particle.CursedEnergyParticle;
+import radon.jujutsu_kaisen.client.particle.ParticleColors;
+import radon.jujutsu_kaisen.util.HelperMethods;
+import radon.jujutsu_kaisen.util.RotationUtil;
 
 
 public class RCT1 extends Ability implements Ability.IChannelened {
@@ -38,19 +42,18 @@ public class RCT1 extends Ability implements Ability.IChannelened {
 
     @Override
     public void run(LivingEntity owner) {
+        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
         if (owner instanceof Player player) {
             float healMult = 0.225F;
-            ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
             if (cap.hasTrait(Trait.DOCTOR_HOUSE)) {
                 healMult *= 2.0F;
             }
             owner.heal((float) Math.min(1.0F, ConfigHolder.SERVER.sorcererHealingAmount.get().floatValue() * Math.pow(this.getPower(owner) * healMult, Math.log(this.getPower(owner))) * healMult));
-            }
-            else {
+        }
+        else {
             owner.heal((float) Math.min(1.0F, ConfigHolder.SERVER.sorcererHealingAmount.get().floatValue() * Math.pow(this.getPower(owner) * 0.075F, Math.log(this.getPower(owner))) * 0.075F));
-            }
+        }
         if (!(owner.level() instanceof ServerLevel level)) return;
-        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
         for (int i = 0; i < 2; i++) {
             cap.delayTickEvent(() -> {
                 for (int j = 0; j < 2; j++) {
