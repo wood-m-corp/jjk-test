@@ -27,6 +27,9 @@ import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import radon.jujutsu_kaisen.entity.sorcerer.base.SorcererEntity;
 
 import java.util.List;
 
@@ -214,6 +217,11 @@ public class DinoCurseEntity extends CursedSpirit implements PlayerRideable, IRi
     @Override
     public @NotNull List<Ability> getCustom() {
         return List.of(JJKAbilities.BLUE_FIRE.get());
+    }
+    
+    public static AttributeSupplier.Builder createAttributes() {
+        return SorcererEntity.createAttributes()
+                .add(Attributes.ATTACK_DAMAGE, 6 * 5.0D);
     }
     
     @Override
