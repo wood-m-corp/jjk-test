@@ -17,6 +17,9 @@ import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import radon.jujutsu_kaisen.entity.sorcerer.base.SorcererEntity;
 
 import java.util.List;
 
@@ -83,6 +86,10 @@ public class CyclopsCurseEntity extends CursedSpirit {
         controllerRegistrar.add(new AnimationController<>(this, "Walk", this::walkPredicate));
         controllerRegistrar.add(new AnimationController<>(this, "Swing", this::swingPredicate));
     }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return SorcererEntity.createAttributes()
+                .add(Attributes.ARMOR, 12.0D);
 
     @Override
     public float getExperience() {
