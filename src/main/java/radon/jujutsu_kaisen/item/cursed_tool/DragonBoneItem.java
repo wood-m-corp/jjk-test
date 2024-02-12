@@ -73,7 +73,7 @@ public class DragonBoneItem extends CursedToolItem implements GeoItem {
         ItemStack stack = pPlayer.getItemInHand(pUsedHand);
         float charge = getEnergy(stack) / MAX_ENERGY;
 
-        if (charge > 50.0F) {
+        if (charge > 0.5F) {
             if (RotationUtil.getLookAtHit(pPlayer, RANGE) instanceof EntityHitResult hit && hit.getEntity() instanceof LivingEntity entity) {
                 pPlayer.teleportTo(entity.getX(), entity.getY(), entity.getZ());
 
@@ -85,7 +85,7 @@ public class DragonBoneItem extends CursedToolItem implements GeoItem {
                 entity.level().playSound(null, pos.x, pos.y, pos.z, SoundEvents.GENERIC_EXPLODE, SoundSource.MASTER, 1.0F, 1.0F);
 
                 ISorcererData cap = pPlayer.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-                entity.hurt(JJKDamageSources.jujutsuAttack(pPlayer, null), (this.getDamage() * cap.getRealPower() * charge)*4.5F);
+                entity.hurt(JJKDamageSources.jujutsuAttack(pPlayer, null), (this.getDamage() * cap.getRealPower() * charge)*5.0F);
 
                 pPlayer.swing(InteractionHand.MAIN_HAND);
 
