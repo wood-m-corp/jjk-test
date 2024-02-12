@@ -41,6 +41,18 @@ public class RCT1 extends Ability implements Ability.IChannelened {
         if (owner instanceof Player player) {
             float healMult = 0.225F;
             ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+            for (int i = 0; i < 2; i++) {
+                ownerCap.delayTickEvent(() -> {
+                    for (int j = 0; j < 2; j++) {
+                        double x = target.getX() + (HelperMethods.RANDOM.nextDouble() - 0.5D) * (target.getBbWidth() * 1.25F) - target.getLookAngle().scale(0.35D).x;
+                        double y = target.getY() + HelperMethods.RANDOM.nextDouble() * (target.getBbHeight());
+                        double z = target.getZ() + (HelperMethods.RANDOM.nextDouble() - 0.5D) * (target.getBbWidth() * 1.25F) - target.getLookAngle().scale(0.35D).z;
+                        double speed = (target.getBbHeight() * 0.1F) * HelperMethods.RANDOM.nextDouble();
+                        level.sendParticles(new CursedEnergyParticle.CursedEnergyParticleOptions(ParticleColors.RCT, target.getBbWidth() * 0.5F,
+                                0.2F, 16), x, y, z, 0, 0.0D, speed, 0.0D, 1.0D);
+                    }
+                }, i * 2);
+            }
             if (cap.hasTrait(Trait.DOCTOR_HOUSE)) {
                 healMult *= 2.0F;
             }
