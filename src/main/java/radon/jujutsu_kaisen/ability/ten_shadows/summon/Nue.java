@@ -40,7 +40,7 @@ public class Nue extends Summon<NueEntity> {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return this.isTamed(owner) ? 0.25F : 100.0F;
+        return this.isTamed(owner) ? 0.4F : 100.0F;
     }
 
     @Override
