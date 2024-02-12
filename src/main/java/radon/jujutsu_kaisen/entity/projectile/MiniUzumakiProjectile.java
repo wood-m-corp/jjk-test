@@ -58,7 +58,7 @@ public class MiniUzumakiProjectile extends BeamEntity {
             if (addPower < 2.90F) {
                 addPower/=2.5F;
             }
-            addPower/=1.65F;
+            addPower/=1.5F;
             this.setPower(Math.min(MAX_POWER,addPower + power) );
             
             if (SorcererUtil.getGrade(weakestCap.getExperience()).ordinal() >= SorcererGrade.SEMI_GRADE_1.ordinal() && weakestCap.getTechnique() != null) {
@@ -89,7 +89,7 @@ public class MiniUzumakiProjectile extends BeamEntity {
 
     @Override
     protected float getDamage() {
-        return 8.0F;
+        return 9.0F;
     }
 
     @Override
