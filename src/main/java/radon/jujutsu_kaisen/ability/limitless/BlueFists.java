@@ -19,7 +19,9 @@ import radon.jujutsu_kaisen.damage.JJKDamageSources;
 import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
-public class BlueFists extends Ability implements Ability.IToggled {
+public class BlueFists extends Ability implements Ability.IToggled, Ability.IAttack {
+    private static final float DAMAGE = 5.0F;
+
     @Override
     public boolean isScalable(LivingEntity owner) {
         return false;
@@ -27,7 +29,7 @@ public class BlueFists extends Ability implements Ability.IToggled {
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
-        return target != null && !target.isDeadOrDying() && owner.distanceTo(target) < 10.0D;
+        return target != null && !target.isDeadOrDying() && owner.distanceTo(target) < 5.0D;
     }
 
     @Override
@@ -42,7 +44,7 @@ public class BlueFists extends Ability implements Ability.IToggled {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 0.75F;
+        return 1.0F;
     }
 
     @Override
@@ -60,33 +62,20 @@ public class BlueFists extends Ability implements Ability.IToggled {
         return Classification.BLUE;
     }
 
-    @Mod.EventBusSubscriber(modid = JujutsuKaisen.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-    public static class BlueFistsForgeEvents {
-        @SubscribeEvent
-        public static void onLivingAttack(LivingAttackEvent event) {
-            DamageSource source = event.getSource();
-            if (!(source.getEntity() instanceof LivingEntity attacker)) return;
+    @Override
+    public boolean attack(DamageSource source, LivingEntity owner, LivingEntity target) {
+        if (owner.level().isClientSide) return false;
+        if (!HelperMethods.isMelee(source)) return false;
 
-            if (attacker.level().isClientSide) return;
+        target.setDeltaMovement(owner.position().subtract(target.position()).normalize());
+        target.hurtMarked = true;
 
-            LivingEntity victim = event.getEntity();
+        owner.level().playSound(null, target.blockPosition(), SoundEvents.PLAYER_ATTACK_CRIT, SoundSource.MASTER, 1.0F, 1.0F);
 
-            if (!HelperMethods.isMelee(source)) return;
+        ((ServerLevel) owner.level()).getChunkSource().broadcastAndSend(owner, new ClientboundAnimatePacket(target, ClientboundAnimatePacket.CRITICAL_HIT));
 
-            if (!JJKAbilities.hasToggled(attacker, JJKAbilities.BLUE_FISTS.get())) return;
+        target.hurt(JJKDamageSources.jujutsuAttack(owner, JJKAbilities.BLUE_FISTS.get()), DAMAGE * this.getPower(owner));
 
-            victim.setDeltaMovement(attacker.position().subtract(victim.position()).normalize().multiply(3.0,3.0,3.0));
-            victim.hurtMarked = true;
-
-            victim.playSound(SoundEvents.PLAYER_ATTACK_CRIT);
-
-            ((ServerLevel) attacker.level()).getChunkSource().broadcastAndSend(attacker, new ClientboundAnimatePacket(victim, ClientboundAnimatePacket.CRITICAL_HIT));
-
-            if (victim.hurt(JJKDamageSources.jujutsuAttack(attacker, JJKAbilities.BLUE_FISTS.get()), event.getAmount() * 0.75F)) {
-                if (victim.isDeadOrDying()) {
-                    event.setCanceled(true);
-                }
-            }
-        }
+        return true;
     }
 }
