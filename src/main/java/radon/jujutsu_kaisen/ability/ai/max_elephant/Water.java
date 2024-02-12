@@ -29,7 +29,7 @@ import java.util.Optional;
 public class Water extends Ability implements Ability.IChannelened, Ability.IDurationable {
     public static final double RANGE = 32;
     private static final float SCALE = 2.0F;
-    private static final float DAMAGE = 5.5F;
+    private static final float DAMAGE = 4.5F;
 
     @Override
     public boolean isScalable(LivingEntity owner) {
@@ -176,7 +176,7 @@ public class Water extends Ability implements Ability.IChannelened, Ability.IDur
 
     @Override
     public int getCooldown() {
-        return 5 * 20;
+        return 10 * 20;
     }
 
     @Override
