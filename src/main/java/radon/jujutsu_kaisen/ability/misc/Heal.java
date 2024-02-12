@@ -10,6 +10,10 @@ import radon.jujutsu_kaisen.capability.data.sorcerer.SorcererDataHandler;
 import radon.jujutsu_kaisen.capability.data.sorcerer.JujutsuType;
 import net.minecraft.world.entity.player.Player;
 import radon.jujutsu_kaisen.config.ConfigHolder;
+import radon.jujutsu_kaisen.client.particle.CursedEnergyParticle;
+import radon.jujutsu_kaisen.client.particle.ParticleColors;
+import radon.jujutsu_kaisen.util.HelperMethods;
+import radon.jujutsu_kaisen.util.RotationUtil;
 
 
 public class Heal extends Ability implements Ability.IChannelened {
@@ -41,6 +45,20 @@ public class Heal extends Ability implements Ability.IChannelened {
         else {
             owner.heal((float) Math.min(1.0F, ConfigHolder.SERVER.curseHealingAmount.get().floatValue() * Math.pow(this.getPower(owner) * 0.075F, Math.log(this.getPower(owner))) * 0.075F));
         }
+        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        if (!(owner.level() instanceof ServerLevel level)) return;
+        for (int i = 0; i < 2; i++) {
+            cap.delayTickEvent(() -> {
+                for (int j = 0; j < 2; j++) {
+                    double x = owner.getX() + (HelperMethods.RANDOM.nextDouble() - 0.5D) * (owner.getBbWidth() * 1.25F) - owner.getLookAngle().scale(0.35D).x;
+                    double y = owner.getY() + HelperMethods.RANDOM.nextDouble() * (owner.getBbHeight());
+                    double z = owner.getZ() + (HelperMethods.RANDOM.nextDouble() - 0.5D) * (owner.getBbWidth() * 1.25F) - owner.getLookAngle().scale(0.35D).z;
+                    double speed = (owner.getBbHeight() * 0.1F) * HelperMethods.RANDOM.nextDouble();
+                    level.sendParticles(new CursedEnergyParticle.CursedEnergyParticleOptions(ParticleColors.RCT, owner.getBbWidth() * 0.5F,
+                               0.2F, 16), x, y, z, 0, 0.0D, speed, 0.0D, 1.0D);
+                }
+            }, i * 2);
+         }
     }
 
     @Override
