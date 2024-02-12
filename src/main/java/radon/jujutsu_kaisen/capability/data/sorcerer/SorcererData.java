@@ -390,7 +390,7 @@ public class SorcererData implements ISorcererData {
                 
                 this.noMotionTime++;
 
-                if (this.noMotionTime > 15*20) {
+                if (this.noMotionTime > 20*20) {
                     this.lowerSpeedStacks();
                 }
             } else {
