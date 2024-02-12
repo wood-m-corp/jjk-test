@@ -31,8 +31,6 @@ import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 
 public class RainbowDragonEntity extends CursedSpirit implements PlayerRideable, IJumpInputListener {
     private static final RawAnimation BITE = RawAnimation.begin().thenPlay("attack.bite");
