@@ -67,7 +67,7 @@ public class ArmBlade extends Transformation {
 
     @Override
     public void applyModifiers(LivingEntity owner) {
-        EntityUtil.applyModifier(owner, Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE_UUID, "Attack damage", 4.0D, AttributeModifier.Operation.ADDITION);
+        EntityUtil.applyModifier(owner, Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE_UUID, "Attack damage", 8.0D, AttributeModifier.Operation.ADDITION);
     }
 
     @Override
