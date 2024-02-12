@@ -100,7 +100,7 @@ public class EnhanceCurse extends Ability implements Ability.IChannelened {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 5.0F;
+        return 1.0F;
     }
 
     @Override
