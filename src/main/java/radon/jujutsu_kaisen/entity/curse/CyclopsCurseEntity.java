@@ -90,6 +90,7 @@ public class CyclopsCurseEntity extends CursedSpirit {
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
                 .add(Attributes.ARMOR, 12.0D);
+    }
 
     @Override
     public float getExperience() {
