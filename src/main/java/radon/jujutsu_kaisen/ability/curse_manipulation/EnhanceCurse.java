@@ -90,7 +90,7 @@ public class EnhanceCurse extends Ability implements Ability.IChannelened {
         if (target == null) return;
 
         ISorcererData cap = target.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-        cap.addExperience(20.0F);
+        cap.addExperience(50.0F);
 
         if (owner instanceof ServerPlayer player) {
             PacketHandler.sendToClient(new SetOverlayMessageS2CPacket(Component.translatable(String.format("chat.%s.enhance_curse", JujutsuKaisen.MOD_ID),
