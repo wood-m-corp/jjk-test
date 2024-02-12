@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class SwapOthers extends Ability {
-    public static final double RANGE = 30.0D;
+    public static final double RANGE = 45.0D;
     private static final int EXPIRATION = 5 * 20;
 
     private static final Map<UUID, AbstractMap.SimpleEntry<UUID, Long>> TARGETS = new HashMap<>();
