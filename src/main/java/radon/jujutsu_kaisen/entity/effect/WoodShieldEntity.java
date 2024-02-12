@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class WoodShieldEntity extends Mob {
-    private static final float STRENGTH = 50.0F;
+    private static final float STRENGTH = 85.0F;
 
     @Nullable
     private Vec3 pos;
