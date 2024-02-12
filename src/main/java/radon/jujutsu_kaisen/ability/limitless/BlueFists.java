@@ -42,7 +42,7 @@ public class BlueFists extends Ability implements Ability.IToggled {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 1.0F;
+        return 0.75F;
     }
 
     @Override
@@ -75,14 +75,14 @@ public class BlueFists extends Ability implements Ability.IToggled {
 
             if (!JJKAbilities.hasToggled(attacker, JJKAbilities.BLUE_FISTS.get())) return;
 
-            victim.setDeltaMovement(attacker.position().subtract(victim.position()).normalize());
+            victim.setDeltaMovement(attacker.position().subtract(victim.position()).normalize().multiply(3.0,3.0,3.0));
             victim.hurtMarked = true;
 
             victim.playSound(SoundEvents.PLAYER_ATTACK_CRIT);
 
             ((ServerLevel) attacker.level()).getChunkSource().broadcastAndSend(attacker, new ClientboundAnimatePacket(victim, ClientboundAnimatePacket.CRITICAL_HIT));
 
-            if (victim.hurt(JJKDamageSources.jujutsuAttack(attacker, JJKAbilities.BLUE_FISTS.get()), event.getAmount() * 0.5F)) {
+            if (victim.hurt(JJKDamageSources.jujutsuAttack(attacker, JJKAbilities.BLUE_FISTS.get()), event.getAmount() * 0.75F)) {
                 if (victim.isDeadOrDying()) {
                     event.setCanceled(true);
                 }
