@@ -30,7 +30,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class MaximumUzumakiProjectile extends JujutsuProjectile implements GeoEntity {
     private static final int DELAY = 20;
-    private static final double RANGE = 10.0D;
+    private static final double RANGE = 30.0D;
     private static final float MAX_POWER = 10.0F;
 
     private float power;
@@ -66,9 +66,9 @@ public class MaximumUzumakiProjectile extends JujutsuProjectile implements GeoEn
             }
             float addPower = SorcererUtil.getPower(curseCap.getExperience());
            if (addPower < 2.90F) {
-                addPower/=2.5F;
+                addPower/=3.25F;
             }
-            addPower/=1.5F;
+            addPower/=1.35F;
             this.power = Math.min(MAX_POWER, this.power + addPower);
             entity.discard();
         }
@@ -116,7 +116,7 @@ public class MaximumUzumakiProjectile extends JujutsuProjectile implements GeoEn
                 this.setPos(pos);
 
                 Vec3 offset = new Vec3(this.getX(), this.getY() + (this.getBbHeight() / 2.0F), this.getZ());
-                ExplosionHandler.spawn(this.level().dimension(), offset, this.power * 1.75F, 1 * 20, this.getPower() * 0.45F, owner,
+                ExplosionHandler.spawn(this.level().dimension(), offset, this.power * 1.95F, 1 * 20, this.getPower() * 0.45F, owner,
                         JJKDamageSources.indirectJujutsuAttack(this, owner, JJKAbilities.MAXIMUM_UZUMAKI.get()), false);
             }
         }
