@@ -1005,7 +1005,7 @@ public class SorcererData implements ISorcererData {
 
     @Override
     public boolean isInZone() {
-        return this.lastBlackFlashTime != -1 && ((this.owner.level().getGameTime() - this.lastBlackFlashTime) / 20) < (45);
+        return this.lastBlackFlashTime != -1 && ((this.owner.level().getGameTime() - this.lastBlackFlashTime) / 20) < (60);
     }
 
     @Override
