@@ -49,7 +49,7 @@ public class AirFrame extends Ability implements Ability.IChannelened, Ability.I
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 10.0F;
+        return 15.0F;
     }
 
     @Override
