@@ -65,10 +65,10 @@ public class MaximumUzumakiProjectile extends JujutsuProjectile implements GeoEn
                 }
             }
             float addPower = SorcererUtil.getPower(curseCap.getExperience());
-            if (addPower < 2.90F) {
-                addPower/=2.0F;
+           if (addPower < 2.90F) {
+                addPower/=2.5F;
             }
-            addPower/=3.0F;
+            addPower/=1.5F;
             this.power = Math.min(MAX_POWER, this.power + addPower);
             entity.discard();
         }
