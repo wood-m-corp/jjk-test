@@ -111,7 +111,7 @@ public class MahoragaEntity extends TenShadowsSummon {
 
     @Override
     public boolean canJump() {
-        return false;
+        return true;
     }
 
     @Override
@@ -121,7 +121,7 @@ public class MahoragaEntity extends TenShadowsSummon {
 
     @Override
     public float getStepHeight() {
-        return 2.0F;
+        return 3.0F;
     }
 
     public static AttributeSupplier.Builder createAttributes() {
