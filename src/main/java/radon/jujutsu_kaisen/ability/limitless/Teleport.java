@@ -17,7 +17,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class Teleport extends Ability {
-    private static final double RANGE = 100.0D;
+    private static final double RANGE = 80.0D;
 
     @Override
     public boolean isScalable(LivingEntity owner) {
@@ -59,7 +59,7 @@ public class Teleport extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 20.0F;
+        return 50.0F;
     }
 
     @Override
