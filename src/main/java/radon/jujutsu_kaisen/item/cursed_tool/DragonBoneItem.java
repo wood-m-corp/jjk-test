@@ -85,7 +85,7 @@ public class DragonBoneItem extends CursedToolItem implements GeoItem {
                 entity.level().playSound(null, pos.x, pos.y, pos.z, SoundEvents.GENERIC_EXPLODE, SoundSource.MASTER, 1.0F, 1.0F);
 
                 ISorcererData cap = pPlayer.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-                entity.hurt(JJKDamageSources.jujutsuAttack(pPlayer, null), (this.getDamage() * cap.getRealPower() * charge)*3.0F);
+                entity.hurt(JJKDamageSources.jujutsuAttack(pPlayer, null), (this.getDamage() * cap.getRealPower() * charge)*4.5F);
 
                 pPlayer.swing(InteractionHand.MAIN_HAND);
 
