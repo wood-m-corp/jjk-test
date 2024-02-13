@@ -133,14 +133,14 @@ public class DismantleProjectile extends JujutsuProjectile {
         }
     }
 
-    public static float getPower(Ability ability, LivingEntity owner) {
+    public static float getPower(DismantleProjectile ability, LivingEntity owner) {
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
         float chantpower = (ChantHandler.getChant(owner, ability) * 1.15F);
         return cap.getAbilityPower() + chantpower;
     }
     
     public float getPower(LivingEntity owner) {
-        return this.getPower(this, owner);
+        return getPower(this, owner);
     }
 
     @Override
