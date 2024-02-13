@@ -236,7 +236,7 @@ public class ExplosionHandler {
     }
 
     public static void spawn(ResourceKey<Level> dimension, Vec3 position, float radius, int duration, float damage, @Nullable LivingEntity instigator, DamageSource source, boolean causesFire) {
-        explosions.add(new ExplosionData(dimension, position, radius, duration, damage, instigator, source, causesFire));
+        explosions.add(new ExplosionData(dimension, position, radius, duration, damage/2.0F, instigator, source, causesFire));
     }
 
     private static class ExplosionData {
