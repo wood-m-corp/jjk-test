@@ -46,13 +46,13 @@ public class PureLoveBeamEntity extends BeamEntity {
 
     @Override
     protected double getRange() {
-        return 16.0D;
+        return 20.0D;
     }
 
     @Override
     protected float getDamage() {
         if (!(this.getOwner() instanceof RikaEntity rika)) return DAMAGE;
-        return DAMAGE * (rika.isOpen() ? 1.0F : 0.5F);
+        return DAMAGE * (rika.isOpen() ? 1.5F : 0.5F);
     }
 
     @Override
