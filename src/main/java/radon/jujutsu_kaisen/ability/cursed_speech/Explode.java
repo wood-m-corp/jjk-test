@@ -26,7 +26,7 @@ import java.util.List;
 public class Explode extends Ability {
     private static final double RANGE = 20.0D;
     private static final double RADIUS = 1.0D;
-    private static final float EXPLOSIVE_POWER = 2F;
+    private static final float EXPLOSIVE_POWER = 4F;
     private static final float MAX_EXPLOSIVE_POWER = 16.0F;
 
     @Override
@@ -75,7 +75,7 @@ public class Explode extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 300.0F;
+        return 250.0F;
     }
 
     @Override
