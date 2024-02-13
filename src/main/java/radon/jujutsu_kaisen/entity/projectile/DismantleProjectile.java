@@ -28,6 +28,7 @@ import radon.jujutsu_kaisen.util.EntityUtil;
 import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 import radon.jujutsu_kaisen.ability.base.Ability;
+import radon.jujutsu_kaisen.chant.ChantHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -139,7 +140,7 @@ public class DismantleProjectile extends JujutsuProjectile {
     }
     
     public float getPower(LivingEntity owner) {
-        return getPower(this, owner);
+        return this.getPower(this, owner);
     }
 
     @Override
