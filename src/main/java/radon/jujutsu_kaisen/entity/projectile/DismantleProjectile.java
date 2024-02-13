@@ -138,7 +138,6 @@ public class DismantleProjectile extends JujutsuProjectile {
         return cap.getAbilityPower() + chantpower;
     }
     
-    @Override
     public float getPower(LivingEntity owner) {
         return getPower(this, owner);
     }
