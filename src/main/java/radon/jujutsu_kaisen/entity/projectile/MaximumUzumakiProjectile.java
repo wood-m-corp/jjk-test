@@ -69,7 +69,7 @@ public class MaximumUzumakiProjectile extends JujutsuProjectile implements GeoEn
                 addPower/=3.25F;
             }
             if (addPower > 3.85F) {
-                addPower*=1.8F;
+                addPower*=1.85F;
             }
             addPower/=1.35F;
             this.power = Math.min(MAX_POWER, this.power + addPower);
