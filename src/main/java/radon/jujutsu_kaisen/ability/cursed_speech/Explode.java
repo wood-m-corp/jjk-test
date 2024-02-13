@@ -26,7 +26,7 @@ import java.util.List;
 public class Explode extends Ability {
     private static final double RANGE = 20.0D;
     private static final double RADIUS = 1.0D;
-    private static final float EXPLOSIVE_POWER = 4F;
+    private static final float EXPLOSIVE_POWER = 3F;
     private static final float MAX_EXPLOSIVE_POWER = 16.0F;
 
     @Override
