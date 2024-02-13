@@ -55,7 +55,7 @@ public abstract class Ability {
 
     public static float getPower(Ability ability, LivingEntity owner) {
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-        float chantpower = (ChantHandler.getChant(owner, ability) * 1.15F);
+        float chantpower = (ChantHandler.getChant(owner, ability) * 1.9F);
         return cap.getAbilityPower() + chantpower;
     }
 
