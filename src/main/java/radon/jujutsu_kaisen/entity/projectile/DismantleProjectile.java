@@ -27,8 +27,6 @@ import radon.jujutsu_kaisen.entity.projectile.base.JujutsuProjectile;
 import radon.jujutsu_kaisen.util.EntityUtil;
 import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
-import radon.jujutsu_kaisen.ability.base.Ability;
-import radon.jujutsu_kaisen.chant.ChantHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,16 +129,6 @@ public class DismantleProjectile extends JujutsuProjectile {
         if (pState.getBlock().defaultDestroyTime() <= -1.0F) {
             this.discard();
         }
-    }
-
-    public static float getPower(DismantleProjectile ability, LivingEntity owner) {
-        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-        float chantpower = (ChantHandler.getChant(owner, ability) * 1.15F);
-        return cap.getAbilityPower() + chantpower;
-    }
-    
-    public float getPower(LivingEntity owner) {
-        return getPower(this, owner);
     }
 
     @Override
