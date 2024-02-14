@@ -43,6 +43,7 @@ import radon.jujutsu_kaisen.sound.JJKSounds;
 import radon.jujutsu_kaisen.util.EntityUtil;
 import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
+import radon.jujutsu_kaisen.util.SorcererUtil;
 
 import java.util.UUID;
 
@@ -285,9 +286,8 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                         }
                     }
 
-                    float armor = victimCap.getExperience() * (victimCap.isChanneling(JJKAbilities.CURSED_ENERGY_SHIELD.get()) ? 0.015F : 0.006F);
-                    float blocked = CombatRules.getDamageAfterAbsorb(event.getAmount(), armor, armor*0.0015F);
-                    float block = event.getAmount() - blocked;
+                    float armor = (victimCap.isChanneling(JJKAbilities.CURSED_ENERGY_SHIELD.get()) ? 1.85F : 1.2F);
+                    float block = event.getAmount()/armor;
 
                     if (!(attacker instanceof Player player) || !player.getAbilities().instabuild) {
                         /*float cost = block * (victimCap.hasTrait(Trait.SIX_EYES) ? 0.5F : 1.0F);
@@ -298,7 +298,7 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                             PacketHandler.sendToClient(new SyncSorcererDataS2CPacket(victimCap.serializeNBT()), player);
                         }*/
                     }
-                    event.setAmount(blocked);
+                    event.setAmount(block);
                 }
             }
         }

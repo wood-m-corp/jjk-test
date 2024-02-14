@@ -13,7 +13,10 @@ public class AbilityStopEvent extends LivingEvent {
         this.ability = ability;
     }
 
+
     public Ability getAbility() {
         return this.ability;
     }
+
+
 }

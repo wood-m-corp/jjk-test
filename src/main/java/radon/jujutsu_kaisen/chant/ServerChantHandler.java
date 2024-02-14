@@ -11,6 +11,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import radon.jujutsu_kaisen.JujutsuKaisen;
 import radon.jujutsu_kaisen.ability.AbilityTriggerEvent;
+import radon.jujutsu_kaisen.ability.AbilityStopEvent;
 import radon.jujutsu_kaisen.ability.base.Ability;
 import radon.jujutsu_kaisen.capability.data.sorcerer.ISorcererData;
 import radon.jujutsu_kaisen.capability.data.sorcerer.SorcererDataHandler;
@@ -118,8 +119,22 @@ public class ServerChantHandler {
         @SubscribeEvent
         public static void onAbilityTrigger(AbilityTriggerEvent.Post event) {
             if (event.getEntity().level().isClientSide) return;
+	        Ability ability = event.getAbility();
+            if (ChantHandler.isChanted(event.getEntity(), ability) && ability.getActivationType(event.getEntity()) == Ability.ActivationType.INSTANT) {
+                LivingEntity owner = event.getEntity();
+                messages.remove(owner.getUUID());
 
-            if (ChantHandler.isChanted(event.getEntity(), event.getAbility())) {
+                if (event.getEntity() instanceof ServerPlayer player) {
+                    PacketHandler.sendToClient(new ClearChantsC2SPacket(), player);
+                }
+            }
+        }
+
+	@SubscribeEvent
+        public static void onAbilityStop(AbilityStopEvent event) {
+            if (event.getEntity().level().isClientSide) return;
+	        Ability ability = event.getAbility();
+            if (ChantHandler.isChanted(event.getEntity(), ability)) {
                 LivingEntity owner = event.getEntity();
                 messages.remove(owner.getUUID());
 

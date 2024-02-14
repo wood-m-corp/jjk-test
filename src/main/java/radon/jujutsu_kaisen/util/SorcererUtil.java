@@ -18,4 +18,12 @@ public class SorcererUtil {
     public static float getPower(float experience) {
         return 2.2F + experience / 2400.0F;
     }
+
+    public static float getDefense(float experience) {
+        return 1.0F + experience / 3500.0F;
+    }
+
+    public static float getDefenseHR(float experience) {
+        return 1.5F + experience / 3000.0F;
+    }
 }

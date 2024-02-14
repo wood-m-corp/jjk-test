@@ -35,7 +35,6 @@ public class DismantleProjectile extends JujutsuProjectile {
     private static final EntityDataAccessor<Float> DATE_ROLL = SynchedEntityData.defineId(DismantleProjectile.class, EntityDataSerializers.FLOAT);
     private static final EntityDataAccessor<Integer> DATA_LENGTH = SynchedEntityData.defineId(DismantleProjectile.class, EntityDataSerializers.INT);
 
-    public static final float DAMAGE = 16.5F;
     private static final int DURATION = 10;
     private static final int LINE_LENGTH = 2;
     public static final int MIN_LENGTH = 3;
@@ -75,6 +74,10 @@ public class DismantleProjectile extends JujutsuProjectile {
 
         this.instant = instant;
         this.destroy = destroy;
+    }
+
+    protected float getDamage() {
+        return 15.0F;
     }
 
     @Override
@@ -144,7 +147,7 @@ public class DismantleProjectile extends JujutsuProjectile {
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
         DomainExpansionEntity domain = cap.getSummonByClass(DomainExpansionEntity.class);
-        entity.hurt(JJKDamageSources.indirectJujutsuAttack(domain == null ? this : domain, owner, JJKAbilities.DISMANTLE.get()), DAMAGE * this.getPower());
+        entity.hurt(JJKDamageSources.indirectJujutsuAttack(domain == null ? this : domain, owner, JJKAbilities.DISMANTLE.get()), this.getDamage() * this.getPower());
     }
 
     private Vec3 rotate(Vec3 vector, Vec3 axis, double degrees) {

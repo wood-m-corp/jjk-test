@@ -19,6 +19,7 @@ import radon.jujutsu_kaisen.capability.data.sorcerer.CursedTechnique;
 import radon.jujutsu_kaisen.capability.data.sorcerer.Trait;
 import radon.jujutsu_kaisen.effect.JJKEffects;
 import radon.jujutsu_kaisen.entity.base.DomainExpansionEntity;
+import net.minecraft.util.Mth;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -55,8 +56,7 @@ public abstract class Ability {
 
     public static float getPower(Ability ability, LivingEntity owner) {
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-        float chantpower = (ChantHandler.getChant(owner, ability) * 1.9F);
-        return cap.getAbilityPower() + chantpower;
+        return cap.getAbilityPower() * (1.0F+ ChantHandler.getChant(owner, ability));
     }
 
     public float getPower(LivingEntity owner) {
@@ -314,10 +314,11 @@ public abstract class Ability {
         if (cap.hasTrait(Trait.SIX_EYES)) {
             cost *= 0.66F;
         }
-        if (output > 1){
-        cost *= 0.8F;
+        if (output > 0) {
+            output = Mth.clamp(output*0.9F,1.0F,100.0F);
+	    cost*=(this.isScalable(owner) ? output : 1.0F);
         }
-        return Float.parseFloat(String.format(Locale.ROOT, "%.2f", cost * (this.isScalable(owner) ? output : 1.0F)));
+        return Float.parseFloat(String.format(Locale.ROOT, "%.2f", cost ));
     }
 
     public interface IDomainAttack {
