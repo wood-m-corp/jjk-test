@@ -113,9 +113,9 @@ public class PiercingBullEntity extends TenShadowsSummon {
 
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
-                .add(Attributes.MAX_HEALTH, 3 * 30.0D)
+                .add(Attributes.MAX_HEALTH, 3 * 20.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.33D)
-                .add(Attributes.ARMOR, 18.0D)
+                .add(Attributes.ARMOR, 14.0D)
                 .add(Attributes.ATTACK_DAMAGE, 6 * 3.5D);
     }
 
