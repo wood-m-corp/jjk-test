@@ -125,7 +125,7 @@ public class NueTotalityEntity extends TenShadowsSummon implements PlayerRideabl
         LivingEntity target = this.getTarget();
 
         if (target != null && !target.isRemoved() && target.isAlive()) {
-            if (this.getY() >= target.getY() + (this.getBbHeight() * 3.0F) && Math.sqrt(this.distanceToSqr(target.getX(), this.getY(), target.getZ())) <= 5.0D) {
+            if (this.getY() >= target.getY() + (this.getBbHeight() * 2.0F) && Math.sqrt(this.distanceToSqr(target.getX(), this.getY(), target.getZ())) <= 5.0D) {
                 if (this.random.nextInt(5) != 0) return;
 
                 if (AbilityHandler.trigger(this, JJKAbilities.NUE_TOTALITY_LIGHTNING.get()) == Ability.Status.SUCCESS) {
@@ -157,7 +157,7 @@ public class NueTotalityEntity extends TenShadowsSummon implements PlayerRideabl
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
                 .add(Attributes.FLYING_SPEED)
-                .add(Attributes.MAX_HEALTH, 4 * 20.0D);
+                .add(Attributes.MAX_HEALTH, 3 * 15.0D);
     }
 
     @Override
