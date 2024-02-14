@@ -22,7 +22,7 @@ import radon.jujutsu_kaisen.damage.JJKDamageSources;
 import radon.jujutsu_kaisen.util.HelperMethods;
 
 public class WaterShield extends Ability implements Ability.IChannelened, Ability.IDurationable {
-    private static final double RADIUS = 3.5D;
+    private static final double RADIUS = 6.0D;
     private static final double X_STEP = 0.05D;
     private static final float DAMAGE = 12.0F;
 
