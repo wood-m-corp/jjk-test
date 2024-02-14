@@ -205,7 +205,7 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                         float increase = attackerCap.getExperience() * 0.00135F;
 
                         switch (attackerCap.getNature()) {
-                            case ROUGH -> increase *= 1.6F;
+                            case ROUGH -> increase *= 1.4F;
                             case LIGHTNING -> increase *= (attacker.getItemInHand(InteractionHand.MAIN_HAND).is(JJKItems.NYOI_STAFF.get()) ? 2.0F : 1.0F);
                             case DIVERGENT -> {
                                 Vec3 look = RotationUtil.getTargetAdjustedLookAngle(attacker);
