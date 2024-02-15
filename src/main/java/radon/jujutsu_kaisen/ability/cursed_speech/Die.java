@@ -31,7 +31,7 @@ import radon.jujutsu_kaisen.util.SorcererUtil;
 import java.util.List;
 
 public class Die extends Ability {
-    private static final double RANGE = 20.0D;
+    private static final double RANGE = 25.0D;
     private static final double RADIUS = 1.0D;
     private static final float DAMAGE = 25.0F;
 
