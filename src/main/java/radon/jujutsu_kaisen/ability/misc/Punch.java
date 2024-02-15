@@ -26,7 +26,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 import java.util.List;
 
 public class Punch extends Ability {
-    private static final float DAMAGE = 8.0F;
+    private static final float DAMAGE = 7.0F;
     private static final double RANGE = 6.0D;
     private static final double LAUNCH_POWER = 2.5D;
 
@@ -105,7 +105,7 @@ public class Punch extends Ability {
                 newDMG/=1.5F;
             }
             if (JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION)) {
-                if (entity.hurt(owner instanceof Player player ? owner.damageSources().playerAttack(player) : owner.damageSources().mobAttack(owner), (newDMG * 1.5F) * this.getPower(owner))) {
+                if (entity.hurt(owner instanceof Player player ? owner.damageSources().playerAttack(player) : owner.damageSources().mobAttack(owner), (newDMG * 2.0F) * this.getPower(owner))) {
                     entity.setDeltaMovement(look.scale(LAUNCH_POWER * (1.0F + this.getPower(owner) * 0.1F) * 2.0F)
                             .multiply(1.0D, 0.25D, 1.0D));
                 }
