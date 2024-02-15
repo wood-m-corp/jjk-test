@@ -43,8 +43,8 @@ public class ToadEntity extends TenShadowsSummon {
     private static final RawAnimation TONGUE = RawAnimation.begin().thenPlayAndHold("attack.tongue");
     private static final RawAnimation HOWL = RawAnimation.begin().thenPlayAndHold("misc.howl");
 
-    private static final int RANGE = 20;
-    private static final int SHOOT_INTERVAL = 20;
+    private static final int RANGE = 30;
+    private static final int SHOOT_INTERVAL = 50;
 
     public ToadEntity(EntityType<? extends TamableAnimal> pType, Level pLevel) {
         super(pType, pLevel);
