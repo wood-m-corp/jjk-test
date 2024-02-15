@@ -25,7 +25,7 @@ public class PolymorphicSoulIsomerEntity extends TransfiguredSoulEntity {
         return SorcererEntity.createAttributes()
                 .add(Attributes.MAX_HEALTH, 5 * 25.0F)
                 .add(Attributes.ARMOR, 20.0D)
-                .add(Attributes.ATTACK_DAMAGE, 6 * 4.0D);
+                .add(Attributes.ATTACK_DAMAGE, 6 * 3.0D);
     }
 
     @Override
