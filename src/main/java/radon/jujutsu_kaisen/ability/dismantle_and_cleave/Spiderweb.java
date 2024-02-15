@@ -76,7 +76,7 @@ public class Spiderweb extends Ability {
                     BlockPos.betweenClosedStream(bounds).forEach(pos -> {
                         if (HelperMethods.RANDOM.nextInt(Math.round(radius) * 2) == 0) {
                             Vec3 current = pos.getCenter();
-                            owner.level().addFreshEntity(new DismantleProjectile(owner, this.getPower(owner),
+                            owner.level().addFreshEntity(new DismantleProjectile(owner, this.getPower(owner) * 1.33F,
                                     (HelperMethods.RANDOM.nextFloat() - 0.5F) * 360.0F, current, HelperMethods.RANDOM.nextInt(DismantleProjectile.MIN_LENGTH, DismantleProjectile.MAX_LENGTH + 1), true, true));
                         }
                     });
