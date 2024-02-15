@@ -157,7 +157,7 @@ public class NueTotalityEntity extends TenShadowsSummon implements PlayerRideabl
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
                 .add(Attributes.FLYING_SPEED)
-                .add(Attributes.MAX_HEALTH, 3 * 15.0D);
+                .add(Attributes.MAX_HEALTH, 3 * 5.0D);
     }
 
     @Override
