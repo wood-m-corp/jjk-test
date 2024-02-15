@@ -39,7 +39,7 @@ public class MaxElephant extends Summon<MaxElephantEntity> {
     }
 
     public float getCost(LivingEntity owner) {
-        return this.isTamed(owner) ? 0.65F : 250.0F;
+        return this.isTamed(owner) ? 0.75F : 250.0F;
     }
 
     @Override
