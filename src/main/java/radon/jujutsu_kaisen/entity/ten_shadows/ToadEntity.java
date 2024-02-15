@@ -156,7 +156,7 @@ public class ToadEntity extends TenShadowsSummon {
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
                 .add(Attributes.ARMOR, 6.0D)
-                .add(Attributes.MAX_HEALTH, 3 * 10.0D);
+                .add(Attributes.MAX_HEALTH, 3 * 3.0D);
     }
 
     private PlayState walkPredicate(AnimationState<ToadEntity> animationState) {
