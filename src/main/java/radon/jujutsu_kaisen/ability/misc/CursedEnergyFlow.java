@@ -50,7 +50,7 @@ import java.util.UUID;
 public class CursedEnergyFlow extends Ability implements Ability.IToggled {
     private static final UUID MOVEMENT_SPEED_UUID = UUID.fromString("641b629b-f7b7-4066-a486-8e1d670a7439");
   
-    private static final double SPEED = 0.02D;
+    private static final double SPEED = 0.035D;
 
 
     private static final float LIGHTNING_DAMAGE = 5.0F;
