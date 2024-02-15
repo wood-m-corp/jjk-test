@@ -128,7 +128,7 @@ public class Cleave extends Ability implements Ability.IDomainAttack, Ability.IA
         }
 
         cap.delayTickEvent(() -> {
-            float power = domain == null ? this.getPower(owner) : this.getPower(owner) * Math.min(1.2F,DomainExpansion.getStrength(owner, false));
+            float power = domain == null ? this.getPower(owner) : this.getPower(owner) * Math.min(0.6F,DomainExpansion.getStrength(owner, false));
 
             DamageSource source = this.getSource(owner, domain);
             float damage = this.calculateDamage(source, owner, target);
