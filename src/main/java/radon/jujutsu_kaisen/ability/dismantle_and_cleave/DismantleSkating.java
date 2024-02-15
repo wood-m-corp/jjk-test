@@ -44,6 +44,6 @@ public class DismantleSkating extends Ability implements Ability.IToggled {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 0.5F;
+        return 0.3F;
     }
 }
