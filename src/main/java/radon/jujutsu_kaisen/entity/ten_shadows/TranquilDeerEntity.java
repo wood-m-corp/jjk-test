@@ -106,7 +106,7 @@ public class TranquilDeerEntity extends TenShadowsSummon {
         return SorcererEntity.createAttributes()
                 .add(Attributes.MAX_HEALTH, 3 * 15.0D)
                 .add(Attributes.ARMOR, 6.0D)
-                .add(Attributes.ATTACK_DAMAGE, 6 * 1.5D);
+                .add(Attributes.ATTACK_DAMAGE, 5 * 2.0D);
     }
 
     private PlayState walkRunIdlePredicate(AnimationState<TranquilDeerEntity> animationState) {
