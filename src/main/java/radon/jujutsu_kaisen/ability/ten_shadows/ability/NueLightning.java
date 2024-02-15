@@ -22,7 +22,7 @@ import radon.jujutsu_kaisen.entity.JJKEntities;
 import radon.jujutsu_kaisen.util.HelperMethods;
 
 public class NueLightning extends Ability implements Ability.IToggled, Ability.IAttack {
-    private static final float DAMAGE = 2.5F;
+    private static final float DAMAGE = 3.0F;
     private static final int STUN = 20;
 
     @Override
@@ -51,7 +51,7 @@ public class NueLightning extends Ability implements Ability.IToggled, Ability.I
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 50.0F;
+        return 35.0F;
     }
 
 
