@@ -64,7 +64,7 @@ public class Spiderweb extends Ability {
             float radius = Math.min(MAX_EXPLOSIVE_POWER, EXPLOSIVE_POWER * this.getPower(owner));
             float real = (radius % 2 == 0) ? radius + 1 : radius;
 
-            Vec3 center = hit.getBlockPos().getCenter().add(RotationUtil.getTargetAdjustedLookAngle(owner).scale(real * 0.5F));
+            Vec3 center = hit.getBlockPos().getCenter().add(RotationUtil.getTargetAdjustedLookAngle(owner).scale(real * 0.01F));
 
             AABB bounds = AABB.ofSize(center, real, real, real);
 
