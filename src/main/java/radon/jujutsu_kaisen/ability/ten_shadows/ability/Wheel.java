@@ -84,7 +84,7 @@ public class Wheel extends Summon<WheelEntity> {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 0.25;
+        return 0.25F;
     }
 
     @Override
