@@ -76,7 +76,7 @@ public class DisasterFlames extends Ability {
         for (Entity entity : this.getTargets(owner)) {
             entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.FIRECHARGE_USE, SoundSource.MASTER, 1.0F, 1.0F);
 
-            if (entity.hurt(JJKDamageSources.indirectJujutsuAttack(owner, owner, this), DAMAGE * this.getPower(owner) * (float) (1.0F - (entity.distanceTo(owner) / AOE_RANGE)))) {
+            if (entity.hurt(JJKDamageSources.indirectJujutsuAttack(owner, owner, this), DAMAGE * this.getPower(owner) * (float) (1.0F - (entity.distanceTo(owner) / (AOE_RANGE/2.0D))))) {
                 entity.setSecondsOnFire(5);
                 this.spawnParticles(entity);
             }
