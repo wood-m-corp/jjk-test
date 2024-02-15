@@ -19,7 +19,7 @@ import java.util.UUID;
 
 public class ToadTongueProjectile extends JujutsuProjectile {
     public static final float SPEED = 2.5F;
-    private static final int DURATION = 2 * 20;
+    private static final int DURATION = 3 * 20;
 
     private int range;
     private UUID target;
