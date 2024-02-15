@@ -113,7 +113,7 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
     public boolean attack(DamageSource source, LivingEntity owner, LivingEntity target) {
         if (owner.level().isClientSide) return false;
         if (!HelperMethods.isMelee(source)) return false;
-        if (!owner.getMainHandItem().isEmpty()) return false;
+        //if (!owner.getMainHandItem().isEmpty()) return false;
 
         MobEffectInstance existing = target.getEffect(JJKEffects.TRANSFIGURED_SOUL.get());
 
