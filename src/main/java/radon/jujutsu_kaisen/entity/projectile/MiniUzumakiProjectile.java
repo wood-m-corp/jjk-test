@@ -21,7 +21,7 @@ import radon.jujutsu_kaisen.util.SorcererUtil;
 
 public class MiniUzumakiProjectile extends BeamEntity {
     public static final double RANGE = 24.0D;
-    private static final float MAX_POWER = 10.0F;
+    private static final float MAX_POWER = 5.0F;
     public MiniUzumakiProjectile(EntityType<? extends Projectile> pType, Level pLevel) {
         super(pType, pLevel);
 
@@ -59,9 +59,9 @@ public class MiniUzumakiProjectile extends BeamEntity {
                 addPower/=2.5F;
             }
             if (addPower > 3.85F) {
-                addPower*=1.75F;
+                addPower*=1.25F;
             }
-            addPower/=1.5F;
+            addPower/=4.0F;
             this.setPower(Math.min(MAX_POWER,addPower + power) );
             
             if (SorcererUtil.getGrade(weakestCap.getExperience()).ordinal() >= SorcererGrade.SEMI_GRADE_1.ordinal() && weakestCap.getTechnique() != null) {
@@ -92,7 +92,7 @@ public class MiniUzumakiProjectile extends BeamEntity {
 
     @Override
     protected float getDamage() {
-        return 11.25F;
+        return 10.5F;
     }
 
     @Override
