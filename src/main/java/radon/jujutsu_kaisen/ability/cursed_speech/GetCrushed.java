@@ -73,7 +73,7 @@ public class GetCrushed extends Ability {
             owner.level().playSound(null, center.x, center.y, center.z, SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS,
                     4.0F, (1.0F + (HelperMethods.RANDOM.nextFloat() - HelperMethods.RANDOM.nextFloat()) * 0.2F) * 0.7F);
 
-            float radius = Math.min(10.0F, entity.getBbWidth() * entity.getBbHeight() * 2.0F);
+            float radius = 5.0F;//Math.min(10.0F, entity.getBbWidth() * entity.getBbHeight() * 2.0F);
             int minX = Mth.floor(entity.getX() - radius - 1.0F);
             int maxX = Mth.floor(entity.getX() + radius + 1.0F);
             int minY = Mth.floor(entity.getY() - radius - 1.0F);
