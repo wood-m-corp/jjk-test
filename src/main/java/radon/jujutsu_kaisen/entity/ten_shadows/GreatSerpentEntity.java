@@ -251,7 +251,7 @@ public class GreatSerpentEntity extends TenShadowsSummon {
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
                 .add(Attributes.MAX_HEALTH, 3 * 20.0D)
-                .add(Attributes.MOVEMENT_SPEED, 1.25D)
+                .add(Attributes.MOVEMENT_SPEED, 0.5D)
                 .add(Attributes.ARMOR, 10.0D)
                 .add(Attributes.ATTACK_DAMAGE, 5 * 4.0D);
     }
