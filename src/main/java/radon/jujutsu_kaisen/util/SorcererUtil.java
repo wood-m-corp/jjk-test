@@ -24,6 +24,6 @@ public class SorcererUtil {
     }
 
     public static float getDefenseHR(float experience) {
-        return 1.8F + experience / 3700.0F;
+        return 1.8F + experience / 3600.0F;
     }
 }
