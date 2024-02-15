@@ -43,7 +43,7 @@ public class WaterShield extends Ability implements Ability.IChannelened, Abilit
                 for (double phi = 0.0D; phi < Math.PI * 2.0D; phi += X_STEP) {
                     for (int i = 0; i < RADIUS; i++) {
                         double x = owner.getX() + RADIUS * Math.cos(phi);
-                        double y = owner.getY() + i * 1.5F;
+                        double y = owner.getY() + i;
                         double z = owner.getZ() + RADIUS * Math.sin(phi);
 
                         BlockPos pos = BlockPos.containing(x, y, z);
