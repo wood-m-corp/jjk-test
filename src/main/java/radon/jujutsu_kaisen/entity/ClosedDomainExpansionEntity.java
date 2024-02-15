@@ -246,7 +246,7 @@ public class ClosedDomainExpansionEntity extends DomainExpansionEntity {
     @Override
     public boolean checkSureHitEffect() {
         int radius = this.getRadius();
-        boolean completed = this.getTime() >= radius * 2;
+        boolean completed = this.getTime() >= 1+radius * 2;
 
         if (!completed) return false;
 
