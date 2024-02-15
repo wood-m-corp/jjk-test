@@ -27,7 +27,7 @@ import java.util.List;
 
 public class Punch extends Ability {
     private static final float DAMAGE = 7.5F;
-    private static final double RANGE = 6.0D;
+    private static final double RANGE = 5.0D;
     private static final double LAUNCH_POWER = 2.5D;
 
     @Override
