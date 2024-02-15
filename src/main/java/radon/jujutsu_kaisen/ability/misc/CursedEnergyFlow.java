@@ -202,7 +202,7 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                     ISorcererData attackerCap = attacker.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
                     if (HelperMethods.isMelee(source)) {
-                        float increase = 2.5F * attackerCap.getPower();
+                        float increase = 2.5F * SorcererUtil.getPower(attackerCap.getExperience());
 
                         switch (attackerCap.getNature()) {
                             case ROUGH -> increase *= 1.5F;
