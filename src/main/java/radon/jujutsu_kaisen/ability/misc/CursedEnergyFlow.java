@@ -202,11 +202,11 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                     ISorcererData attackerCap = attacker.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
                     if (HelperMethods.isMelee(source)) {
-                        float increase = 2.5F * SorcererUtil.getPower(attackerCap.getExperience());
+                        float increase = 2.0F * SorcererUtil.getPower(attackerCap.getExperience());
 
                         switch (attackerCap.getNature()) {
                             case ROUGH -> increase *= 1.5F;
-                            case LIGHTNING -> increase *= (attacker.getItemInHand(InteractionHand.MAIN_HAND).is(JJKItems.NYOI_STAFF.get()) ? 2.0F : 1.0F);
+                            case LIGHTNING -> increase *= (attacker.getItemInHand(InteractionHand.MAIN_HAND).is(JJKItems.NYOI_STAFF.get()) ? 1.5F : 1.0F);
                             case DIVERGENT -> {
                                 Vec3 look = RotationUtil.getTargetAdjustedLookAngle(attacker);
 
