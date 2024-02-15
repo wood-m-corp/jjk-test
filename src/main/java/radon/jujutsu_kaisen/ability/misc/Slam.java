@@ -104,9 +104,9 @@ public class Slam extends Ability implements Ability.ICharged {
         if (owner.level().isClientSide) return;
 
         float radius = Math.min(MAX_EXPLOSION, 2.0F+7.5F * TARGETS.get(owner.getUUID()));
-        float dmgMult = 0.5F;
+        float dmgMult = 0.45F;
         if (JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION)) {
-            dmgMult = 0.75F;
+            dmgMult = 0.65F;
             radius*=1.35F;
         }
         owner.swing(InteractionHand.MAIN_HAND);
