@@ -130,7 +130,7 @@ public class MahoragaEntity extends TenShadowsSummon {
 
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
-                .add(Attributes.MAX_HEALTH, 6 * 15.0D)
+                .add(Attributes.MAX_HEALTH, 6 * 14.0D)
                 .add(Attributes.ARMOR, 20.0D)
                 .add(Attributes.ATTACK_DAMAGE, 7 * 2.5D);
     }
@@ -309,7 +309,7 @@ public class MahoragaEntity extends TenShadowsSummon {
         super.tick();
 
         if (this.healing) {
-            this.heal(4.0F / 20);
+            this.heal(8.0F / 20);
             this.healing = this.getHealth() < this.getMaxHealth();
         }
     }
