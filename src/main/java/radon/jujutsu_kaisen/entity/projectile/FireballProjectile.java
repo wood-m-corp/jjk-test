@@ -38,7 +38,7 @@ public class FireballProjectile extends JujutsuProjectile implements GeoEntity {
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
-    private static final float DAMAGE = 12.5F;
+    private static final float DAMAGE = 17.5F;
     private static final float EXPLOSIVE_POWER = 2.5F;
     private static final float MAX_EXPLOSION = 15.0F;
     private static final float SPEED = 5.0F;
@@ -148,7 +148,7 @@ public class FireballProjectile extends JujutsuProjectile implements GeoEntity {
 
         if (this.getOwner() instanceof LivingEntity owner) {
             ExplosionHandler.spawn(this.level().dimension(), location, this.getExplosionRadius(),
-                    20, this.getPower() * 0.5F, owner, JJKDamageSources.indirectJujutsuAttack(this, owner, JJKAbilities.FIREBALL.get()), true);
+                    20, this.getPower() * 0.33F, owner, JJKDamageSources.indirectJujutsuAttack(this, owner, JJKAbilities.FIREBALL.get()), true);
         }
         this.discard();
     }
