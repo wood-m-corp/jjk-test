@@ -25,7 +25,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import java.util.UUID;
 
 public class RabbitEscapeEntity extends TenShadowsSummon {
-    private static final int COUNT = 16;
+    private static final int COUNT = 24;
 
     private static final RawAnimation WALK = RawAnimation.begin().thenLoop("move.walk");
     private static final RawAnimation SWING = RawAnimation.begin().thenPlay("attack.swing");
