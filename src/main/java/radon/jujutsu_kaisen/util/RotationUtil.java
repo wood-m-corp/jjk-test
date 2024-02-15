@@ -119,7 +119,7 @@ public class RotationUtil {
         }
 
         HitResult entityHit = ProjectileUtil.getEntityHitResult(level, entity, start, end, entity.getBoundingBox()
-                .expandTowards(end.subtract(start)).inflate(2.0D), filter);
+                .expandTowards(end.subtract(start)).inflate(4.0D), filter);
 
         if (entityHit != null) {
             return entityHit;
