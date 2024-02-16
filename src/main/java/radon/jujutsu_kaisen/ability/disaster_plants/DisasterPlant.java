@@ -26,7 +26,8 @@ public class DisasterPlant extends Ability {
     }
 
     private @Nullable LivingEntity getTarget(LivingEntity owner) {
-        if (RotationUtil.getLookAtHit(owner, RANGE) instanceof EntityHitResult hit && hit.getEntity() instanceof LivingEntity target) {
+        LivingEntity target = (RotationUtil.getExpandedLookAt(owner, RANGE));
+        if (target != null) {
             if (!owner.canAttack(target)) return null;
             
             return target;
