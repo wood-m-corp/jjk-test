@@ -21,7 +21,7 @@ import radon.jujutsu_kaisen.util.SorcererUtil;
 
 public class MiniUzumakiProjectile extends BeamEntity {
     public static final double RANGE = 24.0D;
-    private static final float MAX_POWER = 3.5F;
+    private static final float MAX_POWER = 4.0F;
     public MiniUzumakiProjectile(EntityType<? extends Projectile> pType, Level pLevel) {
         super(pType, pLevel);
 
@@ -92,7 +92,7 @@ public class MiniUzumakiProjectile extends BeamEntity {
 
     @Override
     protected float getDamage() {
-        return 13.0F;
+        return 18.0F;
     }
 
     @Override
