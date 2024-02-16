@@ -58,7 +58,7 @@ public class FishShikigami extends Ability {
                 new PiranhaShikigamiProjectile(owner, getPower(owner), target, xOffset, yOffset)
         };
         owner.level().addFreshEntity(projectiles[HelperMethods.RANDOM.nextInt(projectiles.length)]);
-        target = null;
+        enemy = null;
     }
 
     @Override
