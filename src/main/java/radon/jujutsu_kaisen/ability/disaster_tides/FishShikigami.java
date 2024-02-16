@@ -35,7 +35,7 @@ public class FishShikigami extends Ability {
 
         if (owner instanceof Player) {
             LivingEntity target = (RotationUtil.getExpandedLookAt(owner, RANGE));
-            if (target) {
+            if (target != null) {
                 if (owner.canAttack(target)) {
                     result = target;
                 }
