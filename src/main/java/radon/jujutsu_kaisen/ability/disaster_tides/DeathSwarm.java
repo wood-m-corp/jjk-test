@@ -61,7 +61,7 @@ public class DeathSwarm extends Ability implements Ability.IDomainAttack {
                     new PiranhaShikigamiProjectile(owner, power, target, xOffset, yOffset)
             };
 
-            int delay = i * 2;
+            int delay = i * 3;
 
             cap.delayTickEvent(() -> {
                 if (target.isAlive() && !target.isRemoved()) {
