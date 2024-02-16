@@ -74,7 +74,7 @@ public class DragonBoneItem extends CursedToolItem implements GeoItem {
         float charge = getEnergy(stack) / MAX_ENERGY;
 
         if (charge > 0.5F) {
-            LivingEntity entity = (RotationUtil.getExpandedLookAt(owner, RANGE));
+            LivingEntity entity = (RotationUtil.getExpandedLookAt(pPlayer, RANGE));
             if (entity != null) {
                 pPlayer.teleportTo(entity.getX(), entity.getY(), entity.getZ());
 
