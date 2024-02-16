@@ -12,7 +12,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class ForestRoots extends Ability {
-    public static final double RANGE = 15.0D;
+    public static final double RANGE = 20.0D;
 
 
 
