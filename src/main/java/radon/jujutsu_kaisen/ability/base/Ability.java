@@ -242,8 +242,8 @@ public abstract class Ability {
 
         if (status == Status.SUCCESS && this.getActivationType(owner) == ActivationType.INSTANT) {
             this.charge(owner);
-       	    this.addDuration(owner);
         }
+       	this.addDuration(owner);
         return status;
     }
 
