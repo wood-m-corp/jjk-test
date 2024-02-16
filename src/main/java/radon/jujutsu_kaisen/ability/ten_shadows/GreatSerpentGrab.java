@@ -17,6 +17,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class GreatSerpentGrab extends Ability {
     public static final double RANGE = 80.0D;
+    public LivingEntity enemy = null;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
@@ -47,7 +48,7 @@ public class GreatSerpentGrab extends Ability {
     public void run(LivingEntity owner) {
         if (owner.level().isClientSide) return;
 
-        LivingEntity target = this.getTarget(owner);
+        LivingEntity target = enemy;
 
         if (target == null) return;
 
@@ -60,11 +61,13 @@ public class GreatSerpentGrab extends Ability {
         if (serpent == null) return;
 
         serpent.grab(target);
+        target = null;
     }
 
     @Override
     public Status isTriggerable(LivingEntity owner) {
         LivingEntity target = this.getTarget(owner);
+        enemy = target;
 
         if (target == null) {
             return Status.FAILURE;
