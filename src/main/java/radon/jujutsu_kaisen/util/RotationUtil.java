@@ -139,12 +139,12 @@ public class RotationUtil {
         AABB bounds = AABB.ofSize(start,4.0D,4.0D,1.0D).expandTowards(end.subtract(start)).inflate(2.0D);
         LivinEntity target = null;
         for (LivingEntity select : level.getEntitiesOfClass(LivingEntity.class, bounds,
-            select -> select != owner )) {
+            select -> select != entity )) {
             if (target == null) {
                 target = select;
             } else {
-                Float dist1 = entity.getDistancetoEntity(select);
-                Float dist2 = entity.getDistancetoEntity(target);
+                Float dist1 = entity.distanceTo(select);
+                Float dist2 = entity.distanceTo(target);
                 if (dist2 > dist1) {
                     target = select;
                 }
