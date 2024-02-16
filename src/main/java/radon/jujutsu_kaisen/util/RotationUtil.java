@@ -137,7 +137,7 @@ public class RotationUtil {
             end = blockHit.getLocation();
         }
         AABB bounds = AABB.ofSize(start,4.0D,4.0D,1.0D).expandTowards(end.subtract(start)).inflate(2.0D);
-        LivinEntity target = null;
+        LivingEntity target = null;
         for (LivingEntity select : level.getEntitiesOfClass(LivingEntity.class, bounds,
             select -> select != entity )) {
             if (target == null) {
