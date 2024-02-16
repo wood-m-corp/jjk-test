@@ -19,7 +19,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class DeathSwarm extends Ability implements Ability.IDomainAttack {
-    public static final double RANGE = 60.0D;
+    public static final double RANGE = 40.0D;
     public LivingEntity enemy = null;
 
     @Override
@@ -36,7 +36,8 @@ public class DeathSwarm extends Ability implements Ability.IDomainAttack {
         LivingEntity result = null;
 
         if (owner instanceof Player) {
-            if (RotationUtil.getLookAtHit(owner, RANGE) instanceof EntityHitResult hit && hit.getEntity() instanceof LivingEntity target) {
+            LivingEntity target = (RotationUtil.getExpandedLookAt(owner, RANGE));
+            if (target != null) {
                 if (owner.canAttack(target)) {
                     result = target;
                 }
