@@ -23,6 +23,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class SwapSelf extends Ability {
     public static final double RANGE = 60.0D;
+    public LivingEntity enemy = null;
 
     @Override
     public boolean isScalable(LivingEntity owner) {
@@ -58,7 +59,7 @@ public class SwapSelf extends Ability {
 
         if (owner.level().isClientSide) return;
 
-        Entity target = this.getTarget(owner);
+        Entity target = enemy;
 
         if (target != null) {
             owner.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), JJKSounds.CLAP.get(), SoundSource.MASTER, 2.0F, 1.0F);
@@ -78,6 +79,7 @@ public class SwapSelf extends Ability {
             owner.setYRot(targetRot.y);
             owner.setXRot(targetRot.x);
         }
+        enemy = null;
     }
 
     @Override
@@ -88,6 +90,7 @@ public class SwapSelf extends Ability {
     @Override
     public Status isTriggerable(LivingEntity owner) {
         Entity target = this.getTarget(owner);
+        enemy = target;
 
         if (target == null) {
             return Status.FAILURE;
