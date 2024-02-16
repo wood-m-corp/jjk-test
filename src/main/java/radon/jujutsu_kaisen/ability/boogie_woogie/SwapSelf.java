@@ -46,8 +46,8 @@ public class SwapSelf extends Ability {
     }
 
     private @Nullable Entity getTarget(LivingEntity owner) {
-        if (RotationUtil.getLookAtHit(owner, RANGE, target -> !target.isSpectator()) instanceof EntityHitResult hit) {
-            Entity target = hit.getEntity();
+        LivingEntity target = (RotationUtil.getExpandedLookAt(owner, RANGE));
+        if (target != null) {
             return canSwap(target) ? target : null;
         }
         return null;
