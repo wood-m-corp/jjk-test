@@ -30,7 +30,7 @@ public class FireBeamEntity extends BeamEntity {
 
     @Override
     public float getScale() {
-        return 1.0F;
+        return 2.0F;
     }
 
     @Override
