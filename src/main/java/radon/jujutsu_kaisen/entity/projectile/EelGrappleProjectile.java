@@ -18,7 +18,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class EelGrappleProjectile extends JujutsuProjectile implements GeoEntity {
-    public static final float SPEED = 4.0F;
+    public static final float SPEED = 6.0F;
     private static final int DURATION = 5 * 20;
     public static final double RANGE = 50.0D;
 
