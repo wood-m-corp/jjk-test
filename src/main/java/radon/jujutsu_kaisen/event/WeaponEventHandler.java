@@ -153,7 +153,7 @@ public class WeaponEventHandler {
 
             if (stacks.contains(JJKItems.DRAGON_BONE.get()) && (JJKAbilities.hasToggled(victim, JJKAbilities.CURSED_ENERGY_FLOW.get()) ||
                     JJKAbilities.hasToggled(victim, JJKAbilities.FALLING_BLOSSOM_EMOTION.get()))) {
-                float Amount = Math.min(10.0F,event.getAmount()*0.1F);
+                float Amount = Math.min(5.0F,event.getAmount()*0.1F);
                 DragonBoneItem.addEnergy(stack, Amount);
             }
         }
