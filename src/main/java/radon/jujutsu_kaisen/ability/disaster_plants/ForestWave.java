@@ -14,7 +14,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class ForestWave extends Ability implements Ability.IChannelened, Ability.IDurationable {
     private static final int DELAY = 2;
-    private static final int SPEED = 24;
+    private static final int SPEED = 20;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
@@ -50,8 +50,8 @@ public class ForestWave extends Ability implements Ability.IChannelened, Ability
                     .add(look.scale(charge + i * forest.getBbWidth()));
             forest.moveTo(spawn.x, spawn.y, spawn.z, yRot, xRot);
 
-            if (charge != 0 && owner.level().getEntitiesOfClass(ForestWaveEntity.class, forest.getBoundingBox()).isEmpty())
-                continue;
+            //if (charge != 0 && owner.level().getEntitiesOfClass(ForestWaveEntity.class, forest.getBoundingBox()).isEmpty())
+                //continue;
 
             forest.setDamage(charge >= DELAY);
 
@@ -66,8 +66,8 @@ public class ForestWave extends Ability implements Ability.IChannelened, Ability
                     .add(look.scale(charge + i * forest.getBbWidth()));
             forest.moveTo(spawn.x, spawn.y, spawn.z, yRot, xRot);
 
-            if (charge != 0 && owner.level().getEntitiesOfClass(ForestWaveEntity.class, forest.getBoundingBox()).isEmpty())
-                continue;
+            //if (charge != 0 && owner.level().getEntitiesOfClass(ForestWaveEntity.class, forest.getBoundingBox()).isEmpty())
+                //continue;
 
             forest.setDamage(charge >= DELAY);
 
