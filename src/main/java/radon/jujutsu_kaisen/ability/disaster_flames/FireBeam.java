@@ -36,7 +36,7 @@ public class FireBeam extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 50.0F;
+        return 100.0F;
     }
 
     @Override
