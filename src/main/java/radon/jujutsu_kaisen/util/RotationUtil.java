@@ -139,11 +139,11 @@ public class RotationUtil {
         return getLookAtHit(entity, range, target -> !target.isSpectator() && target.isPickable());
     }
 
-    public static HitResult getExpandedHit(Entity entity, Vec3 start, Vec3 end) {
+    public static LivingEntity getExpandedHit(Entity entity, Vec3 start, Vec3 end) {
         return getExpandedHit(entity, start, end, target -> !target.isSpectator() && target.isPickable());
     }
 
-    public static HitResult getExpandedHit(Entity entity, Vec3 start, Vec3 end, Predicate<Entity> filter) {
+    public static LivingEntity getExpandedHit(Entity entity, Vec3 start, Vec3 end, Predicate<Entity> filter) {
         Level level = entity.level();
 
         HitResult blockHit = level.clip(new ClipContext(start, end, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity));
@@ -172,14 +172,14 @@ public class RotationUtil {
         //return blockHit;
     }
 
-    public static HitResult getExpandedLookAt(Entity entity, double range, Predicate<Entity> filter) {
+    public static LivingEntity getExpandedLookAt(Entity entity, double range, Predicate<Entity> filter) {
         Vec3 start = entity.getEyePosition();
         Vec3 look = getTargetAdjustedLookAngle(entity);
         Vec3 end = start.add(look.scale(range));
         return getExpandedHit(entity, start, end, filter);
     }
 
-    public static HitResult getExpandedLookAt(Entity entity, double range) {
+    public static LivingEntity getExpandedLookAt(Entity entity, double range) {
         return getExpandedLookAt(entity, range, target -> !target.isSpectator() && target.isPickable());
     }
 }
