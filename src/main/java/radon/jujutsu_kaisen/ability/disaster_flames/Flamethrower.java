@@ -17,7 +17,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class Flamethrower extends Ability implements Ability.IChannelened, Ability.IDurationable {
-    private static final float DAMAGE = 12.0F;
+    private static final float DAMAGE = 11.0F;
     private static final double RANGE = 8.0D;
 
     @Override
