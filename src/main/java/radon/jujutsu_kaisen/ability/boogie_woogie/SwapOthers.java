@@ -60,8 +60,7 @@ public class SwapOthers extends Ability {
 
         if (!(owner.level() instanceof ServerLevel level)) return;
 
-        Entity first = this.getTarget(owner);
-        first = enemy;
+        Entity first = enemy;
 
         if (first != null) {
             if (TARGETS.containsKey(owner.getUUID())) {
