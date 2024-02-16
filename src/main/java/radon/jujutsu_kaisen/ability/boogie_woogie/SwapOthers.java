@@ -23,7 +23,7 @@ import java.util.UUID;
 public class SwapOthers extends Ability {
     public static final double RANGE = 60.0D;
     private static final int EXPIRATION = 5 * 20;
-    public LivingEntity enemy = null;
+    public Entity enemy = null;
 
     private static final Map<UUID, AbstractMap.SimpleEntry<UUID, Long>> TARGETS = new HashMap<>();
 
