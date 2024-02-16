@@ -16,7 +16,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class WormCurseGrab extends Ability {
-    public static final double RANGE = 80.0D;
+    public static final double RANGE = 60.0D;
     public LivingEntity enemy = null;
 
     @Override
@@ -37,7 +37,8 @@ public class WormCurseGrab extends Ability {
     }
 
     private @Nullable LivingEntity getTarget(LivingEntity owner) {
-        if (RotationUtil.getLookAtHit(owner, RANGE) instanceof EntityHitResult hit && hit.getEntity() instanceof LivingEntity target) {
+        LivingEntity target = (RotationUtil.getExpandedLookAt(owner, RANGE));
+        if (target != null) {
             if (!owner.canAttack(target)) return null;
 
             return target;
