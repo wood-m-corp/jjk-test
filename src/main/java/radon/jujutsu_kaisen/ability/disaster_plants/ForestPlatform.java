@@ -33,7 +33,7 @@ public class ForestPlatform extends Ability implements Ability.IToggled {
 
         BlockPos center = owner.blockPosition().below(owner.isShiftKeyDown() ? 2 : 1);
 
-        int i = 4;
+        int i = 1;
 
         for (int x = -i; x <= i; x++) {
             for (int y = -i; y <= 0; y++) {
