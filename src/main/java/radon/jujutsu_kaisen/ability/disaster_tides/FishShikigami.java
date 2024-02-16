@@ -15,7 +15,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class FishShikigami extends Ability {
-    public static final double RANGE = 60.0D;
+    public static final double RANGE = 40.0D;
     public LivingEntity enemy = null;
 
 
