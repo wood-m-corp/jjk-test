@@ -118,9 +118,9 @@ public class RotationUtil {
         if (blockHit.getType() != HitResult.Type.MISS) {
             end = blockHit.getLocation();
         }
-        AABB bounds = AABB.ofSize(start,32.0D,32.0D,32.0D);
+        AABB bounds = AABB.ofSize(start,3200000.0D,3200000.0D,3200000.0D);
         HitResult entityHit = ProjectileUtil.getEntityHitResult(level, entity, start, end, bounds
-                .expandTowards(end.subtract(start)).inflate(2.0D), filter);
+                .expandTowards(end.subtract(start)).inflate(2000000.0D), filter);
 
         if (entityHit != null) {
             return entityHit;
