@@ -157,6 +157,17 @@ public class RotationUtil {
         return blockHit;
     }
 
+    public static HitResult getExpandedLookAt(Entity entity, double range, Predicate<Entity> filter) {
+        Vec3 start = entity.getEyePosition();
+        Vec3 look = getTargetAdjustedLookAngle(entity);
+        Vec3 end = start.add(look.scale(range));
+        return getExpandedHit(entity, start, end, filter);
+    }
+
+    public static HitResult getExpandedLookAt(Entity entity, double range) {
+        return getExpandedHit(entity, range, target -> !target.isSpectator() && target.isPickable());
+    }
+
     public static HitResult getLookAtHit(Entity entity, double range, Predicate<Entity> filter) {
         Vec3 start = entity.getEyePosition();
         Vec3 look = getTargetAdjustedLookAngle(entity);
