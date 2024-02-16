@@ -38,8 +38,8 @@ public class FishShikigamiProjectile extends JujutsuProjectile implements GeoEnt
 
     private static final float DAMAGE = 13.5F;
     private static final int DELAY = 20;
-    private static final int DURATION = 20*3;
-    private static final double SPEED = 3.0D;
+    private static final int DURATION = 20*2;
+    private static final double SPEED = 2.5D;
 
     @Nullable
     private UUID targetUUID;
