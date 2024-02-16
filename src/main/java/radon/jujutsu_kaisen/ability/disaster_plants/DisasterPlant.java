@@ -13,7 +13,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class DisasterPlant extends Ability {
     public static final double RANGE = 32.0D;
-    enemy = target;
+    public LivingEntity enemy = null;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
