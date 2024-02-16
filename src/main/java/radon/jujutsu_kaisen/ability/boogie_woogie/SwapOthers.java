@@ -23,6 +23,7 @@ import java.util.UUID;
 public class SwapOthers extends Ability {
     public static final double RANGE = 60.0D;
     private static final int EXPIRATION = 5 * 20;
+    public LivingEntity enemy = null;
 
     private static final Map<UUID, AbstractMap.SimpleEntry<UUID, Long>> TARGETS = new HashMap<>();
 
@@ -60,6 +61,7 @@ public class SwapOthers extends Ability {
         if (!(owner.level() instanceof ServerLevel level)) return;
 
         Entity first = this.getTarget(owner);
+        first = enemy;
 
         if (first != null) {
             if (TARGETS.containsKey(owner.getUUID())) {
@@ -95,6 +97,7 @@ public class SwapOthers extends Ability {
             } else {
                 TARGETS.put(owner.getUUID(), new AbstractMap.SimpleEntry<>(first.getUUID(), owner.level().getGameTime()));
             }
+            enemy = null;
         }
     }
 
@@ -106,6 +109,7 @@ public class SwapOthers extends Ability {
     @Override
     public Status isTriggerable(LivingEntity owner) {
         Entity target = this.getTarget(owner);
+        enemy = target;
 
         if (target == null) {
             return Status.FAILURE;
