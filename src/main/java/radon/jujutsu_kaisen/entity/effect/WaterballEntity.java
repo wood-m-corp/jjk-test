@@ -35,9 +35,9 @@ public class WaterballEntity extends JujutsuProjectile implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     private static final int DURATION = 3 * 20;
-    private static final int INTERVAL = 15;
-    private static final int WIDTH = 20;
-    private static final int HEIGHT = 8;
+    private static final int INTERVAL = 12;
+    private static final int WIDTH = 25;
+    private static final int HEIGHT = 10;
     private static final float DAMAGE = 14.5F;
 
     public WaterballEntity(EntityType<? extends Projectile> pType, Level pLevel) {
