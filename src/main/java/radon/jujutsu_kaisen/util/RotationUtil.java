@@ -159,7 +159,7 @@ public class RotationUtil {
                 targeted = select;
             } else {
                 Float dist1 = entity.distanceTo(select);
-                Float dist2 = entity.distanceTo(target);
+                Float dist2 = entity.distanceTo(targeted);
                 if (dist2 > dist1) {
                     targeted = select;
                 }
