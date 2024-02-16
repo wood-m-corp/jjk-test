@@ -151,8 +151,8 @@ public class RotationUtil {
             }
         }
 
-        if (entityHit != null) {
-            return entityHit;
+        if (target != null) {
+            return target;
         }
         return blockHit;
     }
