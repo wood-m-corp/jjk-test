@@ -17,6 +17,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class WormCurseGrab extends Ability {
     public static final double RANGE = 80.0D;
+    public LivingEntity enemy = null;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
@@ -46,7 +47,7 @@ public class WormCurseGrab extends Ability {
 
     @Override
     public void run(LivingEntity owner) {
-        LivingEntity target = this.getTarget(owner);
+        LivingEntity target = enemy;
 
         if (target == null) return;
 
@@ -57,11 +58,13 @@ public class WormCurseGrab extends Ability {
         if (!(JJKAbilities.summonCurse(owner, curse, false) instanceof WormCurseEntity worm)) return;
 
         worm.grab(target);
+        enemy = null;
     }
 
     @Override
     public Status isTriggerable(LivingEntity owner) {
         LivingEntity target = this.getTarget(owner);
+        enemy = target;
 
         if (target == null) {
             return Status.FAILURE;
