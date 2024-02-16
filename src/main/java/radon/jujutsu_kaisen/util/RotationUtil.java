@@ -152,22 +152,22 @@ public class RotationUtil {
             end = blockHit.getLocation();
         }
         AABB bounds = AABB.ofSize(start,4.0D,4.0D,1.0D).expandTowards(end.subtract(start)).inflate(2.0D);
-        LivingEntity target = null;
+        LivingEntity targeted = null;
         for (LivingEntity select : level.getEntitiesOfClass(LivingEntity.class, bounds,
             select -> select != entity )) {
-            if (target == null) {
-                target = select;
+            if (targeted == null) {
+                targeted = select;
             } else {
                 Float dist1 = entity.distanceTo(select);
                 Float dist2 = entity.distanceTo(target);
                 if (dist2 > dist1) {
-                    target = select;
+                    targeted = select;
                 }
             }
         }
 
-        if (target != null) {
-            return target;
+        if (targeted != null) {
+            return targeted;
         }
         //return blockHit;
     }
