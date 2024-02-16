@@ -19,7 +19,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import java.util.List;
 
 public class DisasterFlames extends Ability {
-    private static final double AOE_RANGE = 5.0D;
+    private static final double AOE_RANGE = 6.0D;
     private static final float DAMAGE = 18.0F;
 
     @Override
