@@ -140,7 +140,7 @@ public class RotationUtil {
     }
 
     public static HitResult getExpandedHit(Entity entity, Vec3 start, Vec3 end) {
-        return getHitResult(entity, start, end, target -> !target.isSpectator() && target.isPickable());
+        return getExpandedHit(entity, start, end, target -> !target.isSpectator() && target.isPickable());
     }
 
     public static HitResult getExpandedHit(Entity entity, Vec3 start, Vec3 end, Predicate<Entity> filter) {
