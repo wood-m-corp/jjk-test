@@ -16,6 +16,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class FishShikigami extends Ability {
     public static final double RANGE = 60.0D;
+    public LivingEntity enemy = null;
 
 
 
@@ -44,7 +45,7 @@ public class FishShikigami extends Ability {
 
     @Override
     public void run(LivingEntity owner) {
-        LivingEntity target = this.getTarget(owner);
+        LivingEntity target = enemy;
 
         if (target == null) return;
 
@@ -57,11 +58,12 @@ public class FishShikigami extends Ability {
                 new PiranhaShikigamiProjectile(owner, getPower(owner), target, xOffset, yOffset)
         };
         owner.level().addFreshEntity(projectiles[HelperMethods.RANDOM.nextInt(projectiles.length)]);
+        target = null;
     }
 
     @Override
     public Status isTriggerable(LivingEntity owner) {
-        LivingEntity target = this.getTarget(owner);
+        LivingEntity target = enemy;
 
         if (target == null) {
             return Status.FAILURE;
