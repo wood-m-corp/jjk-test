@@ -59,11 +59,6 @@ public class FireBeamEntity extends BeamEntity {
     }
 
     @Override
-    protected boolean isStill() {
-        return true;
-    }
-
-    @Override
     protected @Nullable Ability getSource() {
         return JJKAbilities.FIRE_BEAM.get();
     }
