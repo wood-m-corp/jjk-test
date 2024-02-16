@@ -20,6 +20,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class DeathSwarm extends Ability implements Ability.IDomainAttack {
     public static final double RANGE = 60.0D;
+    public LivingEntity enemy = null;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
@@ -78,17 +79,19 @@ public class DeathSwarm extends Ability implements Ability.IDomainAttack {
 
     @Override
     public void run(LivingEntity owner) {
-        LivingEntity target = this.getTarget(owner);
+        LivingEntity target = enemy;
 
         if (target == null) return;
 
         this.perform(owner, target, null);
+        enemy = null;
     }
 
     @Override
     public Status isTriggerable(LivingEntity owner) {
         LivingEntity target = this.getTarget(owner);
-
+        enemy = target;
+        
         if (target == null) {
             return Status.FAILURE;
         }
