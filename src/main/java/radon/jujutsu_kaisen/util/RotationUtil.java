@@ -165,7 +165,7 @@ public class RotationUtil {
     }
 
     public static HitResult getExpandedLookAt(Entity entity, double range) {
-        return getExpandedHit(entity, range, target -> !target.isSpectator() && target.isPickable());
+        return getExpandedLookAt(entity, range, target -> !target.isSpectator() && target.isPickable());
     }
 
     public static HitResult getLookAtHit(Entity entity, double range, Predicate<Entity> filter) {
