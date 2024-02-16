@@ -61,7 +61,7 @@ public class MiniUzumakiProjectile extends BeamEntity {
             if (addPower > 3.85F) {
                 addPower*=1.25F;
             }
-            addPower/3.5F;
+            addPower/=3.5F;
             this.setPower(Math.min(MAX_POWER,addPower + power) );
             
             if (SorcererUtil.getGrade(weakestCap.getExperience()).ordinal() >= SorcererGrade.SEMI_GRADE_1.ordinal() && weakestCap.getTechnique() != null) {
