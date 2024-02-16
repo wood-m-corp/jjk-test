@@ -63,7 +63,7 @@ public class FishShikigami extends Ability {
 
     @Override
     public Status isTriggerable(LivingEntity owner) {
-        LivingEntity target = enemy;
+        LivingEntity target = this.getTarget(owner);
 
         if (target == null) {
             return Status.FAILURE;
