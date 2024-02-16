@@ -254,10 +254,10 @@ public abstract class BeamEntity extends JujutsuProjectile {
         AABB bounds = new AABB(Math.min(this.getX(), this.collidePosX), Math.min(this.getY(), this.collidePosY),
                 Math.min(this.getZ(), this.collidePosZ), Math.max(this.getX(), this.collidePosX),
                 Math.max(this.getY(), this.collidePosY), Math.max(this.getZ(), this.collidePosZ))
-                .inflate(this.getScale());
+                .inflate(this.getScale()*1.5D);
 
         for (Entity entity : this.level().getEntities(this.getOwner(), bounds)) {
-            float pad = entity.getPickRadius() + 0.5F;
+            float pad = entity.getPickRadius() + 1.25F;
             AABB padded = entity.getBoundingBox().inflate(pad, pad, pad);
             Optional<Vec3> hit = padded.clip(from, to);
 
