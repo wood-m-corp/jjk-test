@@ -104,7 +104,7 @@ public class ForestSpikes extends Ability {
 
     @Override
     public int getCooldown() {
-        return 8 * 20;
+        return 15 * 20;
     }
 
     @Override
