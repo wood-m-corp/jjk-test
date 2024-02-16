@@ -141,7 +141,7 @@ public class FireArrowProjectile extends JujutsuProjectile {
         }
 
         if (this.getOwner() instanceof LivingEntity owner) {
-            ExplosionHandler.spawn(this.level().dimension(), location, this.getExplosionRadius(), 2 * 20, this.getPower() * 0.5F,
+            ExplosionHandler.spawn(this.level().dimension(), location, this.getExplosionRadius(), 2 * 20, this.getPower() * 0.75F,
                     owner, JJKDamageSources.indirectJujutsuAttack(this, owner, JJKAbilities.FIRE_ARROW.get()), true);
         }
         this.discard();
