@@ -23,7 +23,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class SwapSelf extends Ability {
     public static final double RANGE = 60.0D;
-    public LivingEntity enemy = null;
+    public Entity enemy = null;
 
     @Override
     public boolean isScalable(LivingEntity owner) {
