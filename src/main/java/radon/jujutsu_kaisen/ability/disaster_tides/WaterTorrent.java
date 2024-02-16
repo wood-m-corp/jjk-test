@@ -33,12 +33,12 @@ public class WaterTorrent extends Ability {
 
     @Override
     public int getCooldown() {
-        return 5 * 20;
+        return 7 * 20;
     }
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 50.0F;
+        return 75.0F;
     }
 
     @Override
