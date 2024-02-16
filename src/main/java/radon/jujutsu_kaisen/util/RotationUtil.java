@@ -169,7 +169,7 @@ public class RotationUtil {
         if (targeted != null) {
             return targeted;
         }
-        //return blockHit;
+        return null;
     }
 
     public static LivingEntity getExpandedLookAt(Entity entity, double range, Predicate<Entity> filter) {
