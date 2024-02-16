@@ -128,6 +128,35 @@ public class RotationUtil {
         return blockHit;
     }
 
+    public static HitResult getExpandedHit(Entity entity, Vec3 start, Vec3 end, Predicate<Entity> filter) {
+        Level level = entity.level();
+
+        HitResult blockHit = level.clip(new ClipContext(start, end, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity));
+
+        if (blockHit.getType() != HitResult.Type.MISS) {
+            end = blockHit.getLocation();
+        }
+        AABB bounds = AABB.ofSize(start,4.0D,4.0D,1.0D).expandTowards(end.subtract(start)).inflate(2.0D);
+        LivinEntity target = null;
+        for (LivingEntity select : level.getEntitiesOfClass(LivingEntity.class, bounds,
+            select -> select != owner )) {
+            if target == null {
+                target = select;
+            } else {
+                Float dist1 = entity.getDistancetoEntity(select);
+                Float dist2 = entity.getDistancetoEntity(target);
+                if dist2 > dist1 {
+                    target = select;
+                }
+            }
+        }
+
+        if (entityHit != null) {
+            return entityHit;
+        }
+        return blockHit;
+    }
+
     public static HitResult getLookAtHit(Entity entity, double range, Predicate<Entity> filter) {
         Vec3 start = entity.getEyePosition();
         Vec3 look = getTargetAdjustedLookAngle(entity);
