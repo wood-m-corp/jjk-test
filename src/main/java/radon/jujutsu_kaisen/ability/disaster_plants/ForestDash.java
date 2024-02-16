@@ -47,7 +47,7 @@ public class ForestDash extends Ability implements Ability.IChannelened {
 
     @Override
     public int getCooldown() {
-        return 3 * 20;
+        return 6 * 20;
     }
 
     @Override
