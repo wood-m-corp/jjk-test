@@ -58,12 +58,12 @@ public abstract class RadialScreen extends Screen {
     public boolean mouseScrolled(double x, double y, double z) {
         if (this.pages.size() > 1) {
             if (this.pages.size() - 1 > page) {
-                if (y < 0) {
+                if (x < 0) {
                     page++;
                 }
             }
             if (page > 0) {
-                if (y > 0) {
+                if (x > 0) {
                     page--;
                 }
             }
