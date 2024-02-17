@@ -402,6 +402,16 @@ public abstract class RadialScreen extends Screen {
         }
     }
 
+    public static void scroll(int i) {
+        if (this.pages.size() > 1) {
+            if (i>0) {
+                this.page++;
+            } else {
+                this.page--;
+            }
+        }
+    }
+
     private float getAngleFor(double i) {
         if (this.getCurrent().isEmpty()) {
             return 0;
