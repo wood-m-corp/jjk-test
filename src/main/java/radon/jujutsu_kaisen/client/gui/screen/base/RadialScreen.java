@@ -403,11 +403,11 @@ public abstract class RadialScreen extends Screen {
     }
 
     public void scroll(int i) {
-        if (this.pages.size() > 1) {
+        if (pages.size() > 1) {
             if (i>0) {
-                this.page++;
+                page++;
             } else {
-                this.page--;
+                page--;
             }
         }
     }
