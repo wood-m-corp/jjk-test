@@ -45,7 +45,7 @@ public class DomainAmplification extends Ability implements Ability.IToggled {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 0.2F;
+        return 0.25F;
     }
 
     @Override
