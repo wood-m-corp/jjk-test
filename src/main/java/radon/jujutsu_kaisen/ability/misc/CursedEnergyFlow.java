@@ -141,7 +141,7 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
         double newSpeed = SPEED;
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
         if (cap.getNature() == Nature.DIVERGENT) {
-            newSpeed*=1.12
+            newSpeed*=1.12;
         }
         EntityUtil.applyModifier(owner, Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED_UUID, "Movement speed",
                 newSpeed * this.getPower(owner), AttributeModifier.Operation.ADDITION);
@@ -227,7 +227,7 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                                         victim.setDeltaMovement(look.scale(1.0F + (attackerCap.getAbilityPower() * 0.1F)));
                                         victim.hurtMarked = true;
                                     }
-                                }, 5);
+                                }, 3);
                             }
                         };
 
