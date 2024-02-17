@@ -197,7 +197,7 @@ public class JJKClientEventHandler {
                         }
                     }
                 } else {
-                    NyoiStaffEntity target = (RotationUtil.getExpandedLookAt(owner, 100.0D));
+                    NyoiStaffEntity target = (RotationUtil.getNyoiLookAt(mc.player, 100.0D));
                     if (target != null) {
                         PacketHandler.sendToServer(new NyoiStaffSummonLightningC2SPacket(target.getUUID()));
                     } else {
