@@ -182,4 +182,48 @@ public class RotationUtil {
     public static LivingEntity getExpandedLookAt(Entity entity, double range) {
         return getExpandedLookAt(entity, range, target -> !target.isSpectator() && target.isPickable());
     }
+
+    public static NyoiStaffEntity getNyoiHit(Entity entity, Vec3 start, Vec3 end) {
+        return getExpandedHit(entity, start, end, target -> !target.isSpectator() && target.isPickable());
+    }
+
+    public static NyoiStaffEntity getNyoiHit(Entity entity, Vec3 start, Vec3 end, Predicate<Entity> filter) {
+        Level level = entity.level();
+
+        HitResult blockHit = level.clip(new ClipContext(start, end, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity));
+
+        if (blockHit.getType() != HitResult.Type.MISS) {
+            end = blockHit.getLocation();
+        }
+        AABB bounds = AABB.ofSize(start,1.0D,1.0D,1.0D).expandTowards(end.subtract(start)).inflate(0.25D);
+        NyoiStaffEntity targeted = null;
+        for (NyoiStaffEntity select : level.getEntitiesOfClass(NyoiStaffEntity.class, bounds,
+            select -> select != entity )) {
+            if (targeted == null) {
+                targeted = select;
+            } else {
+                Float dist1 = entity.distanceTo(select);
+                Float dist2 = entity.distanceTo(targeted);
+                if (dist2 > dist1) {
+                    targeted = select;
+                }
+            }
+        }
+
+        if (targeted != null) {
+            return targeted;
+        }
+        return null;
+    }
+
+    public static NyoiStaffEntity getNyoiLookAt(Entity entity, double range, Predicate<Entity> filter) {
+        Vec3 start = entity.getEyePosition();
+        Vec3 look = getTargetAdjustedLookAngle(entity);
+        Vec3 end = start.add(look.scale(range));
+        return getExpandedHit(entity, start, end, filter);
+    }
+
+    public static NyoiStaffEntity getNyoiLookAt(Entity entity, double range) {
+        return getExpandedLookAt(entity, range, target -> !target.isSpectator() && target.isPickable());
+    }
 }
