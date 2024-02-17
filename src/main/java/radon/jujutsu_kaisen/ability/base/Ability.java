@@ -165,7 +165,7 @@ public abstract class Ability {
         if (this.isMelee() && cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
             return this.getCooldown() / 2;
         }
-	if (this.isMelee() && cap.getNature() == Nature.DIVERGENT) {
+	if (this.isMelee() && cap.getNature() == CursedEnergyNature.DIVERGENT) {
             return this.getCooldown() * 3 / 4;
         }
         return this.getCooldown();
