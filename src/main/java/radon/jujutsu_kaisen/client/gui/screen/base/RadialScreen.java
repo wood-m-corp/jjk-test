@@ -400,6 +400,26 @@ public abstract class RadialScreen extends Screen {
         }
     }
 
+    @SubscribeEvent
+    public static void onMouseScroll(InputEvent.MouseScrollingEvent event) {
+
+        double delta = event.getScrollDelta();
+
+        int i = (int) Math.signum(delta);
+
+        if (i == 0) {
+            return;
+        }
+        if (this.pages.size() > 1) {
+            if (i>0) {
+                page++;
+            } else {
+                page--;
+            }
+        }
+        
+    }
+
     private float getAngleFor(double i) {
         if (this.getCurrent().isEmpty()) {
             return 0;
