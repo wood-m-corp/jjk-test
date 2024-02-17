@@ -34,7 +34,7 @@ public class ForestSpikeEntity extends JujutsuProjectile {
     public void tick() {
         super.tick();
 
-        if (this.getTime() >= 1.5) {
+        if (this.getTime() >= DURATION) {
             this.discard();
         } else {
             if (this.getTime() >= DURATION/2) return;
