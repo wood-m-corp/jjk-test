@@ -15,7 +15,7 @@ import radon.jujutsu_kaisen.config.ConfigHolder;
 public class MouseHandler {
     @SubscribeEvent
     public static void onMouseScroll(InputEvent.MouseScrollingEvent event) {
-
+        if (ConfigHolder.CLIENT.meleeMenuType.get() != MeleeMenuType.SCROLL) return;
         double delta = event.getScrollDelta();
 
         int i = (int) Math.signum(delta);
@@ -23,10 +23,6 @@ public class MouseHandler {
         if (i == 0) {
             return;
         }
-
-        RadialScreen.scroll(i);
-        
-        if (ConfigHolder.CLIENT.meleeMenuType.get() != MeleeMenuType.SCROLL) return;
         if (JJKKeys.ACTIVATE_MELEE_MENU.isDown()) {
             if (AbilityOverlay.scroll(i)) {
                 event.setCanceled(true);
