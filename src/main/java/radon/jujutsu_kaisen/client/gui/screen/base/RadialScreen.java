@@ -403,7 +403,7 @@ public abstract class RadialScreen extends Screen {
     }
 
     @SubscribeEvent
-    public static void onMouseScroll(InputEvent.MouseScrollingEvent event) {
+    public void onMouseScroll(InputEvent.MouseScrollingEvent event) {
 
         double delta = event.getScrollDelta();
 
