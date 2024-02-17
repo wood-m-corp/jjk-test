@@ -29,6 +29,7 @@ import radon.jujutsu_kaisen.network.PacketHandler;
 import radon.jujutsu_kaisen.network.packet.c2s.*;
 import radon.jujutsu_kaisen.util.HelperMethods;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
