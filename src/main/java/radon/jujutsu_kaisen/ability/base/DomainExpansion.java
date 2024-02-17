@@ -141,7 +141,7 @@ public abstract class DomainExpansion extends Ability implements Ability.IToggle
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 2.0F;
+        return 4.0F;
     }
 
     public void onHitEntity(DomainExpansionEntity domain, LivingEntity owner, LivingEntity entity, boolean instant) {
