@@ -101,6 +101,10 @@ public class Slam extends Ability implements Ability.ICharged {
     }
 
     public static void onHitGround(LivingEntity owner, float distance) {
+        slamCrater(owner,distance)
+    }
+
+    public static void slamCrater(LivingEntity owner, float distance) {
         if (owner.level().isClientSide) return;
 
         float radius = Math.min(MAX_EXPLOSION, 2.0F+7.5F * TARGETS.get(owner.getUUID()));
@@ -122,30 +126,44 @@ public class Slam extends Ability implements Ability.ICharged {
 
     @Override
     public boolean onRelease(LivingEntity owner) {
+        double launchPower = 1.5D + 2.5D * (Math.min(20, this.getCharge(owner)) / 20);
         if (!owner.onGround()) {
             if (!owner.level().isClientSide) {
                 TARGETS.put(owner.getUUID(), ((float) Math.min(20, this.getCharge(owner)) / 20));
             }
-    
+            
             ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
             Vec3 target = this.getTarget(owner);
-            owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(3.85D)));
+            owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(launchPower)));
             owner.swing(InteractionHand.MAIN_HAND);
+            cap.delayTickEvent(() -> {
+                TARGETS.remove(owner.getUUID());
+            }, 20*3);
         }
         else {
-            Vec3 direction = new Vec3(0.0D, LAUNCH_POWER, 0.0D);
-            owner.setDeltaMovement(owner.getDeltaMovement().add(direction));
-    
-            if (!owner.level().isClientSide) {
-                TARGETS.put(owner.getUUID(), ((float) Math.min(20, this.getCharge(owner)) / 20));
+            if (owner.isShiftKeyDown()) {
+                if (!owner.level().isClientSide) {
+                    TARGETS.put(owner.getUUID(), ((float) Math.min(20, this.getCharge(owner)) / 20));
+                }
+                slamCrater(owner,1);
+            else {
+                Vec3 direction = new Vec3(0.0D, launchPower, 0.0D);
+                owner.setDeltaMovement(owner.getDeltaMovement().add(direction));
+        
+                if (!owner.level().isClientSide) {
+                    TARGETS.put(owner.getUUID(), ((float) Math.min(20, this.getCharge(owner)) / 20));
+                }
+        
+                ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        
+                cap.delayTickEvent(() -> {
+                    Vec3 target = this.getTarget(owner);
+                    owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(launchPower)));
+                    cap.delayTickEvent(() -> {
+                        TARGETS.remove(owner.getUUID());
+                    }, 20*3);
+                }, 20);
             }
-    
-            ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-    
-            cap.delayTickEvent(() -> {
-                Vec3 target = this.getTarget(owner);
-                owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(3.85D)));
-            }, 20);
         }
         return true;
     }
