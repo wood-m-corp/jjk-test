@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 import radon.jujutsu_kaisen.JujutsuKaisen;
 import radon.jujutsu_kaisen.client.gui.MeleeMenuType;
 import radon.jujutsu_kaisen.client.gui.overlay.AbilityOverlay;
+import radon.jujutsu_kaisen.client.gui.screen.JujutsuScreen;
 import radon.jujutsu_kaisen.config.ConfigHolder;
 
 @Mod.EventBusSubscriber(modid = JujutsuKaisen.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
@@ -21,6 +22,10 @@ public class MouseHandler {
 
         if (i == 0) {
             return;
+        }
+
+        if (JujutsuScreen.scroll(i)) {
+            event.setCanceled(true);
         }
 
         if (JJKKeys.ACTIVATE_MELEE_MENU.isDown()) {
