@@ -11,6 +11,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.AABB;
+import radon.jujutsu_kaisen.entity.NyoiStaffEntity;
 
 import java.util.function.Predicate;
 
