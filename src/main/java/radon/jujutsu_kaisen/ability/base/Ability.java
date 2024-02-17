@@ -20,6 +20,7 @@ import radon.jujutsu_kaisen.capability.data.sorcerer.Trait;
 import radon.jujutsu_kaisen.effect.JJKEffects;
 import radon.jujutsu_kaisen.entity.base.DomainExpansionEntity;
 import net.minecraft.util.Mth;
+import radon.jujutsu_kaisen.capability.data.sorcerer.CursedEnergyNature;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -163,6 +164,9 @@ public abstract class Ability {
 
         if (this.isMelee() && cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
             return this.getCooldown() / 2;
+        }
+	if (this.isMelee() && cap.getNature() == Nature.DIVERGENT) {
+            return this.getCooldown() * 3 / 4;
         }
         return this.getCooldown();
     }
