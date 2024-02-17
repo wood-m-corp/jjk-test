@@ -12,7 +12,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class ForestRoots extends Ability {
-    public static final double RANGE = 20.0D;
+    public static final double RANGE = 18.0D;
 
 
 
@@ -38,12 +38,12 @@ public class ForestRoots extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 100.0F;
+        return 150.0F;
     }
 
     @Override
     public int getCooldown() {
-        return 10 * 20;
+        return 12 * 20;
     }
 
 
