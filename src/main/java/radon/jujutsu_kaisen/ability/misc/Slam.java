@@ -145,6 +145,7 @@ public class Slam extends Ability implements Ability.ICharged {
                 if (!owner.level().isClientSide) {
                     TARGETS.put(owner.getUUID(), ((float) Math.min(20, this.getCharge(owner)) / 20));
                 }
+                owner.swing(InteractionHand.MAIN_HAND);
                 slamCrater(owner,1);
             }
             else {
