@@ -117,8 +117,9 @@ public class JujutsuScreen extends Screen {
             int j = (this.height - WINDOW_HEIGHT) / 2;
             this.selectedTab.mouseClicked(pMouseX - i - 9, pMouseY - j - 18, pButton);
         }
-
+        
         if (pButton == 0) {
+            tabPage = Math.min(tabPage + 1, maxPages);
             int i = (this.width - WINDOW_WIDTH) / 2;
             int j = (this.height - WINDOW_HEIGHT) / 2;
 
@@ -128,6 +129,8 @@ public class JujutsuScreen extends Screen {
                     break;
                 }
             }
+        } else {
+            tabPage = Math.max(tabPage - 1, 0);
         }
         return super.mouseClicked(pMouseX, pMouseY, pButton);
     }
@@ -155,18 +158,6 @@ public class JujutsuScreen extends Screen {
         this.renderWindow(pGuiGraphics, i, j);
         this.renderTooltips(pGuiGraphics, pMouseX, pMouseY, i, j);
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
-    }
-
-    @SubscribeEvent
-    public static void onMouseScroll(InputEvent.MouseScrollingEvent event) {
-        double delta = event.getScrollDelta();
-
-        int i = (int) Math.signum(delta);
-
-        if (i == 0) {
-            return;
-        }
-        tabPage = Mth.clamp(tabPage + i, 0, maxPages);
     }
 
     private void renderInside(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, int pOffsetX, int pOffsetY) {
