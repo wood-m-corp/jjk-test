@@ -32,7 +32,7 @@ public class JujutsuScreen extends Screen {
     public static final int BACKGROUND_TILE_WIDTH = 16;
     public static final int BACKGROUND_TILE_HEIGHT = 16;
 
-    private static final List<JJKTab> tabs = new ArrayList<>();
+    private final List<JJKTab> tabs = new ArrayList<>();
 
     @Nullable
     private JJKTab selectedTab;
