@@ -138,7 +138,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 6.5F;
+        return 4.0F;
     }
 
     @Override
@@ -204,7 +204,12 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
                 for (Entity entity : owner.level().getEntities(owner, AABB.ofSize(frame, bounds.getXsize(), bounds.getYsize(), bounds.getZsize()))) {
                     owner.swing(InteractionHand.MAIN_HAND, true);
 
-                    entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), 12.0F * this.getPower(owner));
+                    entity.hurt(JJKDamageSources.jujutsuAttack(owner, this), 11.0F * this.getPower(owner));
+                    if (owner instanceof Player player) {
+                        player.attack(entity);
+                    } else {
+                        owner.doHurtTarget(entity);
+                    }
                 }
 
                 Set<RelativeMovement> movements = EnumSet.noneOf(RelativeMovement.class);
