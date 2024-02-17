@@ -134,7 +134,7 @@ public class Slam extends Ability implements Ability.ICharged {
             
             ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
             Vec3 target = this.getTarget(owner);
-            owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(launchPower)));
+            owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(launchPower)).multiply(1.0D, 0.5D, 1.0D));
             owner.swing(InteractionHand.MAIN_HAND);
             cap.delayTickEvent(() -> {
                 TARGETS.remove(owner.getUUID());
@@ -160,7 +160,7 @@ public class Slam extends Ability implements Ability.ICharged {
         
                 cap.delayTickEvent(() -> {
                     Vec3 target = this.getTarget(owner);
-                    owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(launchPower)).multiply(1.0D, 0.25D, 1.0D));
+                    owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(launchPower)).multiply(1.0D, 0.5D, 1.0D));
                     cap.delayTickEvent(() -> {
                         TARGETS.remove(owner.getUUID());
                     }, 20*3);
