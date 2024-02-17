@@ -86,7 +86,9 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
             Vec3 movement = owner.getDeltaMovement();
 
             if (movement.y < 0.0D) {
-                owner.setDeltaMovement(movement.x, 0.1D, movement.z);
+                double amount = -movement.y;
+                
+                owner.setDeltaMovement(movement.x, amount, movement.z);
             }
             owner.setOnGround(true);
         }
