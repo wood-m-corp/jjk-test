@@ -39,7 +39,7 @@ public abstract class RadialScreen extends Screen {
     protected static final int RADIUS_IN = 30;
     protected static final int RADIUS_OUT = 200;
 
-    private static final List<List<DisplayItem>> pages = new ArrayList<>();
+    private final List<List<DisplayItem>> pages = new ArrayList<>();
 
     protected int hovered = -1;
     private static int page;
@@ -398,16 +398,6 @@ public abstract class RadialScreen extends Screen {
                     }
                 }
                 if (this.hover > 0) this.hover = 0;
-            }
-        }
-    }
-
-    public static void scroll(int i) {
-        if (pages.size() > 1) {
-            if (i>0) {
-                page++;
-            } else {
-                page--;
             }
         }
     }
