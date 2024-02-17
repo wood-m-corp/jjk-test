@@ -52,6 +52,15 @@ public abstract class RadialScreen extends Screen {
         return false;
     }
 
+    public static boolean scroll(int direction) {
+        if (tabs.size() > JJKTabType.MAX_TABS) {
+            int i = -(int) Math.signum(direction);
+            page = page+i;
+            return true;
+        }
+        return false;
+    }
+
     @Override
     protected void init() {
         super.init();
