@@ -13,7 +13,7 @@ import radon.jujutsu_kaisen.config.ConfigHolder;
 @Mod.EventBusSubscriber(modid = JujutsuKaisen.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class MouseHandler {
     @SubscribeEvent
-    public  void onMouseScroll(InputEvent.MouseScrollingEvent event) {
+    public static void onMouseScroll(InputEvent.MouseScrollingEvent event) {
         if (ConfigHolder.CLIENT.meleeMenuType.get() != MeleeMenuType.SCROLL) return;
 
         double delta = event.getScrollDelta();
