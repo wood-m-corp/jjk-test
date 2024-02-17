@@ -101,7 +101,7 @@ public class Slam extends Ability implements Ability.ICharged {
     }
 
     public static void onHitGround(LivingEntity owner, float distance) {
-        slamCrater(owner,distance)
+        slamCrater(owner,distance);
     }
 
     public static void slamCrater(LivingEntity owner, float distance) {
@@ -146,6 +146,7 @@ public class Slam extends Ability implements Ability.ICharged {
                     TARGETS.put(owner.getUUID(), ((float) Math.min(20, this.getCharge(owner)) / 20));
                 }
                 slamCrater(owner,1);
+            }
             else {
                 Vec3 direction = new Vec3(0.0D, launchPower, 0.0D);
                 owner.setDeltaMovement(owner.getDeltaMovement().add(direction));
