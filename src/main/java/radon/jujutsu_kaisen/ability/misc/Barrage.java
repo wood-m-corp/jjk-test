@@ -52,7 +52,8 @@ public class Barrage extends Ability {
 
         for (int i = 0; i < DURATION; i++) {
             cap.delayTickEvent(() -> {
-                if (i%2 == 0) {
+                int num = i;
+                if (num%2 == 0) {
                     owner.swing(InteractionHand.OFF_HAND, true);
                 }
                 else {
