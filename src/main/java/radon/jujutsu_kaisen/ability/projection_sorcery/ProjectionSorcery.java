@@ -189,7 +189,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
                     cancelled.set(true);
 
                     owner.level().addFreshEntity(new ProjectionFrameEntity(owner, owner, Ability.getPower(JJKAbilities.TWENTY_FOUR_FRAME_RULE.get(), owner)));
-
+                    cap.resetSpeedStacks();
                     if (owner instanceof ServerPlayer player) {
                         PacketHandler.sendToClient(new ScreenFlashS2CPacket(), player);
                     }
