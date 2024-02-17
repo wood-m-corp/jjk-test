@@ -52,7 +52,12 @@ public class Barrage extends Ability {
 
         for (int i = 0; i < DURATION; i++) {
             cap.delayTickEvent(() -> {
-                owner.swing(InteractionHand.MAIN_HAND, true);
+                if (i%2 == 0) {
+                    owner.swing(InteractionHand.OFF_HAND, true);
+                }
+                else {
+                    owner.swing(InteractionHand.MAIN_HAND, true);
+                }
 
                 Vec3 look = RotationUtil.getTargetAdjustedLookAngle(owner);
 
