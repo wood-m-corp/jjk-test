@@ -24,9 +24,7 @@ public class MouseHandler {
             return;
         }
 
-        if (JujutsuScreen.scroll(i)) {
-            event.setCanceled(true);
-        }
+        JujutsuScreen.scroll(i);
 
         if (JJKKeys.ACTIVATE_MELEE_MENU.isDown()) {
             if (AbilityOverlay.scroll(i)) {
