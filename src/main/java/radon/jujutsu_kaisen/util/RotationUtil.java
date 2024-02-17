@@ -185,7 +185,7 @@ public class RotationUtil {
     }
 
     public static NyoiStaffEntity getNyoiHit(Entity entity, Vec3 start, Vec3 end) {
-        return getExpandedHit(entity, start, end, target -> !target.isSpectator() && target.isPickable());
+        return getNyoiHit(entity, start, end, target -> !target.isSpectator() && target.isPickable());
     }
 
     public static NyoiStaffEntity getNyoiHit(Entity entity, Vec3 start, Vec3 end, Predicate<Entity> filter) {
@@ -221,10 +221,10 @@ public class RotationUtil {
         Vec3 start = entity.getEyePosition();
         Vec3 look = getTargetAdjustedLookAngle(entity);
         Vec3 end = start.add(look.scale(range));
-        return getExpandedHit(entity, start, end, filter);
+        return getNyoiHit(entity, start, end, filter);
     }
 
     public static NyoiStaffEntity getNyoiLookAt(Entity entity, double range) {
-        return getExpandedLookAt(entity, range, target -> !target.isSpectator() && target.isPickable());
+        return getNyoiLookAt(entity, range, target -> !target.isSpectator() && target.isPickable());
     }
 }
