@@ -197,8 +197,9 @@ public class JJKClientEventHandler {
                         }
                     }
                 } else {
-                    if (RotationUtil.getLookAtHit(mc.player, 64.0D, target -> target instanceof NyoiStaffEntity) instanceof EntityHitResult hit) {
-                        PacketHandler.sendToServer(new NyoiStaffSummonLightningC2SPacket(hit.getEntity().getUUID()));
+                    NyoiStaffEntity target = (RotationUtil.getExpandedLookAt(owner, 100.0D));
+                    if (target != null) {
+                        PacketHandler.sendToServer(new NyoiStaffSummonLightningC2SPacket(target.getUUID()));
                     } else {
                         ISorcererData cap = mc.player.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
