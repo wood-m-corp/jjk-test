@@ -140,7 +140,7 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
     public void applyModifiers(LivingEntity owner) {
         double newSpeed = SPEED;
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-        if (cap.getNature() == Nature.DIVERGENT) {
+        if (cap.getNature() == CursedEnergyNature.DIVERGENT) {
             newSpeed*=1.12;
         }
         EntityUtil.applyModifier(owner, Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED_UUID, "Movement speed",
