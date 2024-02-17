@@ -155,6 +155,19 @@ public class JujutsuScreen extends Screen {
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
     }
 
+    @SubscribeEvent
+    public static void onMouseScroll(InputEvent.MouseScrollingEvent event) {
+        double delta = event.getScrollDelta();
+
+        int i = (int) Math.signum(delta);
+
+        if (i == 0) {
+            return;
+        }
+        tabPage = Mth.min(tabPage + i, 0, MaxPages);
+        event.setCanceled(true);
+    }
+
     private void renderInside(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, int pOffsetX, int pOffsetY) {
         if (this.selectedTab != null) {
             this.selectedTab.drawContents(pGuiGraphics, pOffsetX + WINDOW_INSIDE_X, pOffsetY + WINDOW_INSIDE_Y);
