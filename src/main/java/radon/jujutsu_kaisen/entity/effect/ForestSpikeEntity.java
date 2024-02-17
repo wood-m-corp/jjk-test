@@ -15,7 +15,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class ForestSpikeEntity extends JujutsuProjectile {
     private static final int DURATION = 5 * 20;
-    private static final float DAMAGE = 11.0F;
+    private static final float DAMAGE = 12.5F;
 
     public ForestSpikeEntity(EntityType<? extends Projectile> pType, Level pLevel) {
         super(pType, pLevel);
@@ -37,13 +37,13 @@ public class ForestSpikeEntity extends JujutsuProjectile {
         if (this.getTime() >= DURATION) {
             this.discard();
         } else {
-            if (this.getTime() >= DURATION/2) return;
             if (!(this.getOwner() instanceof LivingEntity owner)) return;
 
             if (this.level().isClientSide) return;
 
             for (Entity entity : this.level().getEntities(owner, this.getBoundingBox().expandTowards(RotationUtil.getTargetAdjustedLookAngle(this).scale(5.0D)))) {
                 entity.hurt(JJKDamageSources.indirectJujutsuAttack(this, owner, JJKAbilities.FOREST_SPIKES.get()), DAMAGE * this.getPower());
+                this.discard()
             }
         }
     }
