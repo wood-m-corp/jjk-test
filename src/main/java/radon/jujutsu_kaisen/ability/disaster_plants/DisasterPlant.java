@@ -68,7 +68,7 @@ public class DisasterPlant extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 300.0F;
+        return 200.0F;
     }
 
     @Override
