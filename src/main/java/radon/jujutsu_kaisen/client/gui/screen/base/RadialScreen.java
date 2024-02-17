@@ -412,7 +412,7 @@ public abstract class RadialScreen extends Screen {
         if (i == 0) {
             return;
         }
-        if (this.pages.size() > 1) {
+        if (pages.size() > 1) {
             if (i>0) {
                 page++;
             } else {
