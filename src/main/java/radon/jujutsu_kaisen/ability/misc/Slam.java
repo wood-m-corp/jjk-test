@@ -126,7 +126,7 @@ public class Slam extends Ability implements Ability.ICharged {
 
     @Override
     public boolean onRelease(LivingEntity owner) {
-        double launchPower = 1.5D + 2.5D * (Math.min(20, this.getCharge(owner)) / 20);
+        double launchPower = 2.0D + 2.25D * (Math.min(20, this.getCharge(owner)) / 20);
         if (!owner.onGround()) {
             if (!owner.level().isClientSide) {
                 TARGETS.put(owner.getUUID(), ((float) Math.min(20, this.getCharge(owner)) / 20));
@@ -148,7 +148,7 @@ public class Slam extends Ability implements Ability.ICharged {
                 slamCrater(owner,1);
             }
             else {
-                Vec3 direction = new Vec3(0.0D, Math.min(3.0D,launchPower*0.75D), 0.0D);
+                Vec3 direction = new Vec3(0.0D, Math.min(2.5D,launchPower*0.75D), 0.0D);
                 owner.setDeltaMovement(owner.getDeltaMovement().add(direction));
         
                 if (!owner.level().isClientSide) {
