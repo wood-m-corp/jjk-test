@@ -22,6 +22,7 @@ import radon.jujutsu_kaisen.network.PacketHandler;
 import radon.jujutsu_kaisen.network.packet.s2c.SyncSorcererDataS2CPacket;
 import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.SorcererUtil;
+import radon.jujutsu_kaisen.capability.data.sorcerer.CursedEnergyNature;
 
 public class BlackFlashHandler {
     @Mod.EventBusSubscriber(modid = JujutsuKaisen.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -50,9 +51,11 @@ public class BlackFlashHandler {
             long lastBlackFlashTime = cap.getLastBlackFlashTime();
             int seconds = (int) (attacker.level().getGameTime() - lastBlackFlashTime) / 20;
 
-            if (lastBlackFlashTime == 0 || seconds > 1) {
+            if (lastBlackFlashTime == 0 || seconds >= 1) {
                 int rng = 250;
-
+                if (cap.getNature() == CursedEnergyNature.DIVERGENT) {
+                    rng = 200;
+                }
                 if ((attacker instanceof Player player) && (cap.isInZone())) rng = 30;
                 if (HelperMethods.RANDOM.nextInt(rng) != 0) return;
             } else {
