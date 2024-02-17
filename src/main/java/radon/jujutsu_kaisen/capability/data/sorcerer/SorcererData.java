@@ -1407,7 +1407,7 @@ public class SorcererData implements ISorcererData {
 
     @Override
     public void lowerSpeedStacks() {
-        this.speedStacks -= 1;
+       this.speedStacks = Math.min(0, this.speedStacks - 1);
         this.noMotionTime = 0;
     }
 
