@@ -54,10 +54,6 @@ public class Barrage extends Ability {
             cap.delayTickEvent(() -> {
                 
                 owner.swing(InteractionHand.MAIN_HAND, true);
-                
-                cap.delayTickEvent(() -> {
-                    owner.swing(InteractionHand.OFF_HAND, true);
-                }, 1);
 
                 Vec3 look = RotationUtil.getTargetAdjustedLookAngle(owner);
 
