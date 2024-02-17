@@ -22,8 +22,6 @@ public class MouseHandler {
         if (i == 0) {
             return;
         }
-
-        RadialScreen.scroll(i);
         
         if (ConfigHolder.CLIENT.meleeMenuType.get() != MeleeMenuType.SCROLL) return;
         
