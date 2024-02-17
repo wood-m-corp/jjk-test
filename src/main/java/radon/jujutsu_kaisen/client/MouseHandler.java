@@ -23,13 +23,7 @@ public class MouseHandler {
             return;
         }
 
-        if (RadialScreen.pages.size() > 1) {
-            if (i>0) {
-                RadialScreen.page++;
-            } else {
-                RadialScreen.page--;
-            }
-        }
+        RadialScreen.scroll(i);
         
         if (ConfigHolder.CLIENT.meleeMenuType.get() != MeleeMenuType.SCROLL) return;
         
