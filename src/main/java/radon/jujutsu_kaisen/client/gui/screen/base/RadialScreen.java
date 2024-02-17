@@ -36,8 +36,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class RadialScreen extends Screen {
-    protected static final int RADIUS_IN = 40;
-    protected static final int RADIUS_OUT = 200;
+    protected static final int RADIUS_IN = 50;
+    protected static final int RADIUS_OUT = 100;
 
     private final List<List<DisplayItem>> pages = new ArrayList<>();
 
@@ -394,7 +394,7 @@ public abstract class RadialScreen extends Screen {
                 float currentStart = this.getAngleFor(i - 0.5F);
                 float currentEnd = this.getAngleFor(i + 0.5F);
 
-                if (mouseAngle >= currentStart && mouseAngle < currentEnd && mousePos >= RADIUS_IN && mousePos < RADIUS_OUT) {
+                if (mouseAngle >= currentStart && mouseAngle < currentEnd && mousePos >= RADIUS_IN) {
                     this.hovered = i;
                     break;
                 }
