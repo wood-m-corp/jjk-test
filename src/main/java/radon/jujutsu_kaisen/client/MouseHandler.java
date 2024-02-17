@@ -8,6 +8,7 @@ import radon.jujutsu_kaisen.JujutsuKaisen;
 import radon.jujutsu_kaisen.client.gui.MeleeMenuType;
 import radon.jujutsu_kaisen.client.gui.overlay.AbilityOverlay;
 import radon.jujutsu_kaisen.client.gui.screen.JujutsuScreen;
+import radon.jujutsu_kaisen.client.gui.base.RadialScreen;
 import radon.jujutsu_kaisen.config.ConfigHolder;
 
 @Mod.EventBusSubscriber(modid = JujutsuKaisen.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
@@ -23,7 +24,7 @@ public class MouseHandler {
             return;
         }
 
-        JujutsuScreen.scroll(i);
+        RadialScreen.scroll(i);
         
         if (ConfigHolder.CLIENT.meleeMenuType.get() != MeleeMenuType.SCROLL) return;
         if (JJKKeys.ACTIVATE_MELEE_MENU.isDown()) {
