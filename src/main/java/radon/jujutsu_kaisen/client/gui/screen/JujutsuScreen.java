@@ -166,7 +166,7 @@ public class JujutsuScreen extends Screen {
         if (i == 0) {
             return;
         }
-        tabPage = Mth.min(tabPage + i, 0, maxPages);
+        tabPage = Mth.clamp(tabPage + i, 0, maxPages);
         event.setCanceled(true);
     }
 
