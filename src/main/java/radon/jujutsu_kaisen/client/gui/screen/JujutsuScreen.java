@@ -66,7 +66,6 @@ public class JujutsuScreen extends Screen {
             maxPages = tabs.size() / JJKTabType.MAX_TABS;
             int i = -(int) Math.signum(direction);
             tabPage = Mth.clamp(tabPage + i, 0, maxPages);
-            tabPage = maxPages;
             return true;
         }
         return false;
