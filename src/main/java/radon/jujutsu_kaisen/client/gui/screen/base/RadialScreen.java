@@ -59,12 +59,12 @@ public abstract class RadialScreen extends Screen {
         int i = (int) Math.signum(delta);
         if (this.pages.size() > 1 && !(i == 0)) {
             if (this.pages.size() - 1 > page) {
-                if (delta > 0) {
+                if (delta < 0) {
                     page++;
                 }
             }
             if (page > 0) {
-                if (delta < 0) {
+                if (delta > 0) {
                     page--;
                 }
             }
