@@ -12,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import radon.jujutsu_kaisen.client.gui.screen.tab.*;
+import net.minecraft.util.Mth;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class JujutsuScreen extends Screen {
         if (this.tabs.size() > JJKTabType.MAX_TABS) {
             maxPages = this.tabs.size() / JJKTabType.MAX_TABS;
             int i = -(int) Math.signum(direction);
-            tabPage = Mth.clamp(tabPage + 1, 0, maxPages));
+            tabPage = Mth.clamp(tabPage + 1, 0, maxPages);
             return true;
         }
         return false;
