@@ -186,8 +186,8 @@ public class RikaEntity extends SummonEntity implements ICommandable, ISorcerer 
             }
 
             if (!this.level().isClientSide) {
-                if (this.owner.getHealth() != this.owner.getMaxHealth()) {
-                    this.owner.heal(0.5F / 20);
+                if (this.getHealth() != this.getMaxHealth()) {
+                    this.heal(0.5F / 20);
                 }
                 int remaining = this.getOpen();
 
