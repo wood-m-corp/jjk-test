@@ -167,7 +167,6 @@ public class JujutsuScreen extends Screen {
             return;
         }
         tabPage = Mth.clamp(tabPage + i, 0, maxPages);
-        event.setCanceled(true);
     }
 
     private void renderInside(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, int pOffsetX, int pOffsetY) {
