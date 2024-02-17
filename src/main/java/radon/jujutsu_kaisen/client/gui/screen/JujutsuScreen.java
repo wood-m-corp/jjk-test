@@ -119,7 +119,6 @@ public class JujutsuScreen extends Screen {
         }
         
         if (pButton == 0) {
-            tabPage = Math.min(tabPage + 1, maxPages);
             int i = (this.width - WINDOW_WIDTH) / 2;
             int j = (this.height - WINDOW_HEIGHT) / 2;
 
@@ -129,8 +128,6 @@ public class JujutsuScreen extends Screen {
                     break;
                 }
             }
-        } else {
-            tabPage = Math.max(tabPage - 1, 0);
         }
         return super.mouseClicked(pMouseX, pMouseY, pButton);
     }
