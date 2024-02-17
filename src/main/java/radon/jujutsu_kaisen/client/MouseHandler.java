@@ -8,7 +8,7 @@ import radon.jujutsu_kaisen.JujutsuKaisen;
 import radon.jujutsu_kaisen.client.gui.MeleeMenuType;
 import radon.jujutsu_kaisen.client.gui.overlay.AbilityOverlay;
 import radon.jujutsu_kaisen.client.gui.screen.JujutsuScreen;
-import radon.jujutsu_kaisen.client.gui.base.RadialScreen;
+import radon.jujutsu_kaisen.client.gui.screen.base.RadialScreen;
 import radon.jujutsu_kaisen.config.ConfigHolder;
 
 @Mod.EventBusSubscriber(modid = JujutsuKaisen.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
