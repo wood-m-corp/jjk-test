@@ -32,7 +32,7 @@ public class DisasterTides extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 150.0F;
+        return 250.0F;
     }
 
     @Override
