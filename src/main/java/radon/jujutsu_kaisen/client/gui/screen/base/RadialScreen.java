@@ -62,8 +62,8 @@ public abstract class RadialScreen extends Screen {
                     page++;
                 }
             }
-            if (y > 0) {
-                if (pMouseX > 0 && pMouseX < (double) this.width / 2 && pMouseY > 0 && pMouseY < this.height) {
+            if (page > 0) {
+                if (y > 0) {
                     page--;
                 }
             }
