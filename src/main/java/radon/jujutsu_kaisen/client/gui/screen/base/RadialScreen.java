@@ -55,6 +55,12 @@ public abstract class RadialScreen extends Screen {
     }
 
     @Override
+    public boolean mouseScrolled(double x, double y, double z) {
+        page++;
+        return false;
+    }
+
+    @Override
     protected void init() {
         super.init();
 
