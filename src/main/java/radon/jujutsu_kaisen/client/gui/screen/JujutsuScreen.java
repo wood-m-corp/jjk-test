@@ -61,7 +61,7 @@ public class JujutsuScreen extends Screen {
         }
     }
 
-    public boolean scroll(int direction) {
+    public static boolean scroll(int direction) {
         if (this.tabs.size() > JJKTabType.MAX_TABS) {
             maxPages = this.tabs.size() / JJKTabType.MAX_TABS;
             int i = -(int) Math.signum(direction);
