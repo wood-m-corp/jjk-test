@@ -51,7 +51,6 @@ public class CursedBudProjectile extends JujutsuProjectile implements GeoEntity 
         super(JJKEntities.CURSED_BUD.get(), owner.level(), owner, power);
         Vec3 look = RotationUtil.getTargetAdjustedLookAngle(plant);
         EntityUtil.offset(this, look, new Vec3(plant.getX(), plant.getEyeY() - (this.getBbHeight() / 2.0F), plant.getZ()).add(look));
-
         this.setDeltaMovement(look.scale(SPEED));
 
         this.plant = true;

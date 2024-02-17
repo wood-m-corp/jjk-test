@@ -32,6 +32,7 @@ public class ThrownChainProjectile extends AbstractArrow {
     private static final EntityDataAccessor<ItemStack> DATA_ITEM = SynchedEntityData.defineId(ThrownChainProjectile.class, EntityDataSerializers.ITEM_STACK);
 
     private static final int DURATION = 10;
+    private int flightTime = 0;
 
     private boolean released;
     private boolean dealtDamage;
@@ -182,6 +183,12 @@ public class ThrownChainProjectile extends AbstractArrow {
             if (this.released) {
                 super.tick();
 
+                flightTime++;
+                if (flightTime > 2*20) {
+                    this.discard();
+                    return;
+                }
+                
                 if (this.inGroundTime > 4) {
                     this.dealtDamage = true;
                 }
@@ -233,6 +240,7 @@ public class ThrownChainProjectile extends AbstractArrow {
 
                     this.setDeltaMovement(RotationUtil.getTargetAdjustedLookAngle(living).scale(new Vec3(this.xOld, this.yOld, this.zOld).subtract(position).length()*speedMult));
                     this.released = true;
+                    flightTime = 0;
                 }
             }
         }

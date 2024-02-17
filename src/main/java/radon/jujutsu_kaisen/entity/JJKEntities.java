@@ -343,7 +343,7 @@ public class JJKEntities {
                             .toString()));
     public static RegistryObject<EntityType<ThrownChainProjectile>> THROWN_CHAIN = ENTITIES.register("throw_chain", () ->
             EntityType.Builder.<ThrownChainProjectile>of(ThrownChainProjectile::new, MobCategory.MISC)
-                    .sized(1.0F, 1.0F)
+                    .sized(1.5F, 1.5F)
                     .build(new ResourceLocation(JujutsuKaisen.MOD_ID, "throw_chain")
                             .toString()));
     public static RegistryObject<EntityType<ScissorEntity>> SCISSOR = ENTITIES.register("scissor", () ->
@@ -426,7 +426,7 @@ public class JJKEntities {
                             .toString()));
     public static RegistryObject<EntityType<CursedBudProjectile>> CURSED_BUD = ENTITIES.register("cursed_bud", () ->
             EntityType.Builder.<CursedBudProjectile>of(CursedBudProjectile::new, MobCategory.MISC)
-                    .sized(0.5F, 0.5F)
+                    .sized(1.0F, 1.0F)
                     .build(new ResourceLocation(JujutsuKaisen.MOD_ID, "cursed_bud")
                             .toString()));
     public static RegistryObject<EntityType<ForestWaveEntity>> FOREST_WAVE = ENTITIES.register("forest_wave", () ->
