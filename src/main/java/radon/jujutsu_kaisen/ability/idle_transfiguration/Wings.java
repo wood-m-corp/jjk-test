@@ -46,7 +46,7 @@ public class Wings extends Transformation {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 1.0F;
+        return 2.0F;
     }
 
     @Override
