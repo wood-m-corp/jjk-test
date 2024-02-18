@@ -112,7 +112,7 @@ public class Dash extends Ability {
 
         if (cap.getSpeedStacks() > 0 || cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
             owner.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), JJKSounds.DASH.get(), SoundSource.MASTER, 1.0F, 1.0F);
-            owner.addEffect(new MobEffectInstance(JJKEffects.INVISIBILITY.get(), 5, 0, false, false, false));
+            owner.addEffect(new MobEffectInstance(JJKEffects.INVISIBILITY.get(), 4, 0, false, false, false));
             level.sendParticles(new MirageParticle.MirageParticleOptions(owner.getId()), owner.getX(), owner.getY(), owner.getZ(),
                     0, 0.0D, 0.0D, 0.0D, 1.0D);
         }
@@ -121,8 +121,8 @@ public class Dash extends Ability {
 
         HitResult hit = RotationUtil.getLookAtHit(owner, getRange(owner));
 
-        float power = Math.min(MAX_DASH * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.35F : 1.0F),
-                DASH * (1.0F + this.getPower(owner) * 0.1F) * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.35F : 1.0F));
+        float power = Math.min(MAX_DASH * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.45F : 1.0F),
+                DASH * (1.0F + this.getPower(owner) * 0.1F) * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.45F : 1.0F));
 
         if (hit.getType() == HitResult.Type.MISS) {
             float f = owner.getYRot();
