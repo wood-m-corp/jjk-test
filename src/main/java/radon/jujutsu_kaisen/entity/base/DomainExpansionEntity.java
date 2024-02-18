@@ -215,7 +215,7 @@ public abstract class DomainExpansionEntity extends Entity {
     }
 
     public boolean shouldCollapse(float strength) {
-        return (strength / this.getStrength()) > 1.75F;
+        return (strength / this.getStrength()) > 3.0F;
     }
 
     public float getStrength() {
