@@ -245,7 +245,7 @@ public class MeteorEntity extends JujutsuProjectile {
 
     private void hurtEntities() {
         double radius = this.getSize();
-        AABB bounds = this.getBoundingBox().inflate(radius * 1.25F);
+        AABB bounds = this.getBoundingBox().inflate(radius * 1.5F);
 
         if (this.getOwner() instanceof LivingEntity owner) {
             for (Entity entity : this.level().getEntities(owner, bounds)) {
