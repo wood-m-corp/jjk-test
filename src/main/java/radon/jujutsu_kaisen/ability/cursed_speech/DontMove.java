@@ -61,8 +61,8 @@ public class DontMove extends Ability {
 
         for (Entity entity : getEntities(owner)) {
             if (!(entity instanceof LivingEntity living)) continue;
-
-            living.addEffect(new MobEffectInstance(JJKEffects.STUN.get(), Mth.clamp(Math.round(DURATION * this.getPower(owner)),3*20,10*20), 1, false, false, false));
+            float stun = (this.getPower(owner) * 0.5F);
+            living.addEffect(new MobEffectInstance(JJKEffects.STUN.get(), Mth.clamp(Math.round(DURATION * stun,3*20,10*20), 1, false, false, false));
 
             if (entity instanceof Player player) {
                 player.sendSystemMessage(Component.translatable(String.format("chat.%s.dont_move", JujutsuKaisen.MOD_ID), owner.getName()));
@@ -72,12 +72,12 @@ public class DontMove extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 100.0F;
+        return 150.0F;
     }
 
     @Override
     public int getCooldown() {
-        return 12 * 20;
+        return 16 * 20;
     }
 
     @Override
