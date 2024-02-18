@@ -27,7 +27,7 @@ import java.util.List;
 
 public class GetCrushed extends Ability {
     private static final double RANGE = 25.0D;
-    private static final double RADIUS = 1.0D;
+    private static final double RADIUS = 3.0D;
     private static final float DAMAGE = 19.0F;
     private static final double CRUSH_POWER = 15.0D;
 
