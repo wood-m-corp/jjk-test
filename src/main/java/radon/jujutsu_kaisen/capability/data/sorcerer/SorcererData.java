@@ -1396,6 +1396,7 @@ public class SorcererData implements ISorcererData {
 
     @Override
     public void addSpeedStack() {
+        this.noMotionTime = 0;
         this.speedStacks = Math.min(JJKConstants.MAX_PROJECTION_SORCERY_STACKS, this.speedStacks + 1);
     }
 
