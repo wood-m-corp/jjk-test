@@ -61,7 +61,7 @@ public class DontMove extends Ability {
 
         for (Entity entity : getEntities(owner)) {
             if (!(entity instanceof LivingEntity living)) continue;
-            float stun = (this.getPower(owner) * 0.5F);
+            float stun = this.getPower(owner) * 0.5F;
             living.addEffect(new MobEffectInstance(JJKEffects.STUN.get(), Mth.clamp(Math.round(DURATION * stun,3*20,10*20), 1, false, false, false)));
 
             if (entity instanceof Player player) {
