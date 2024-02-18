@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class LightningEntity extends JujutsuProjectile {
-    public static final float SCALE = 4.0F;
+    public static final float SCALE = 3.0F;
     public static final double RANGE = 40;
 
     public double endPosX, endPosY, endPosZ;
