@@ -32,7 +32,7 @@ import java.util.List;
 
 public class Die extends Ability {
     private static final double RANGE = 30.0D;
-    private static final double RADIUS = 3.0D;
+    private static final double RADIUS = 2.0D;
     private static final float DAMAGE = 25.0F;
 
     @Override
