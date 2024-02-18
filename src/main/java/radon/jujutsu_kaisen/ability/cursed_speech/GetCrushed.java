@@ -99,6 +99,7 @@ public class GetCrushed extends Ability {
                 }
             }
             entity.setDeltaMovement(0.0D, CRUSH_POWER * this.getPower(owner) * -1.0D, 0.0D);
+            entity.addEffect(new MobEffectInstance(JJKEffects.STUN.get(), 8, 0, false, false, false);
             entity.hurtMarked = true;
 
             if (entity instanceof Player player) {
