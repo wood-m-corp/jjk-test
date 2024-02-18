@@ -61,7 +61,7 @@ public class DontMove extends Ability {
 
         for (Entity entity : getEntities(owner)) {
             if (!(entity instanceof LivingEntity living)) continue;
-            living.addEffect(new MobEffectInstance(JJKEffects.STUN.get(), Mth.clamp(Math.round(DURATION * this.getPower(owner), 3*20,10*20), 1, false, false, false)));
+            living.addEffect(new MobEffectInstance(JJKEffects.STUN.get(), Mth.clamp(Math.round(DURATION * this.getPower(owner)), 3*20,10*20), 1, false, false, false)));
 
             if (entity instanceof Player player) {
                 player.sendSystemMessage(Component.translatable(String.format("chat.%s.dont_move", JujutsuKaisen.MOD_ID), owner.getName()));
