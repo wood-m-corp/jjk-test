@@ -78,7 +78,7 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
 
     @Override
     public int getCooldown() {
-        return 9 * 20;
+        return 8 * 20;
     }
 
     @Override
