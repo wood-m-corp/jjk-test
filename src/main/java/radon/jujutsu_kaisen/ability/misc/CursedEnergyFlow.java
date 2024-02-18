@@ -231,7 +231,7 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                                         victim.setDeltaMovement(look.scale(1.0F + (attackerCap.getAbilityPower() * 0.1F)));
                                         victim.hurtMarked = true;
                                     }
-                                }, 3);
+                                }, 4);
                             }
                         };
 
