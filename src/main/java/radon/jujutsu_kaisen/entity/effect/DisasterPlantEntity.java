@@ -42,7 +42,7 @@ public class DisasterPlantEntity extends JujutsuProjectile implements GeoEntity 
     }
 
     public DisasterPlantEntity(LivingEntity owner, float power, LivingEntity target) {
-        super(JJKEntities.DISASTER_PLANT.get(), owner.level(), owner, power * 0.3F);
+        super(JJKEntities.DISASTER_PLANT.get(), owner.level(), owner, power * 0.4F);
 
         this.setTarget(target);
 
