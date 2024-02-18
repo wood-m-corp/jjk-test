@@ -87,8 +87,8 @@ public class RikaEntity extends SummonEntity implements ICommandable, ISorcerer 
     public static AttributeSupplier.Builder createAttributes() {
         return SorcererEntity.createAttributes()
                 .add(Attributes.FLYING_SPEED)
-                .add(Attributes.MAX_HEALTH, 5 * 20.0D)
-                .add(Attributes.ARMOR, 20.0D)
+                .add(Attributes.MAX_HEALTH, 6 * 20.0D)
+                .add(Attributes.ARMOR, 30.0D)
                 .add(Attributes.ATTACK_DAMAGE, 1.0D)
                 .add(Attributes.FOLLOW_RANGE);
     }
@@ -187,7 +187,7 @@ public class RikaEntity extends SummonEntity implements ICommandable, ISorcerer 
 
             if (!this.level().isClientSide) {
                 if (this.getHealth() != this.getMaxHealth()) {
-                    this.heal(1.0F / 20);
+                    this.heal(1.5F / 20);
                 }
                 int remaining = this.getOpen();
 
