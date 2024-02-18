@@ -23,7 +23,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 import java.util.List;
 
 public class DontMove extends Ability {
-    private static final double RANGE = 20.0D;
+    private static final double RANGE = 25.0D;
     private static final double RADIUS = 1.0D;
     private static final int DURATION = 20;
 
