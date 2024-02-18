@@ -87,7 +87,7 @@ public class ForestWave extends Ability implements Ability.IChannelened, Ability
 
     @Override
     public int getDuration() {
-        return 4.0;
+        return 4.0F;
     }
 
     @Override
