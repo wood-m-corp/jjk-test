@@ -37,7 +37,7 @@ public class MeteorEntity extends JujutsuProjectile {
 
     public static final int SIZE = 5;
     public static final int HEIGHT = 30;
-    private static final int MAX_SIZE = 20;
+    private static final int MAX_SIZE = 30;
     public static final int DELAY = 3 * 20;
     private static final double SPEED = 3.0D;
     private static final int DURATION = 5 * 20;
