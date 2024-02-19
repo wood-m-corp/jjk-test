@@ -160,6 +160,6 @@ public class TransfiguredSoulProjectile extends Projectile {
 
         if (entity == owner) return;
 
-        entity.hurt(this.damageSources().thrown(this, owner), DAMAGE * this.getPower());
+        entity.hurt(this.damageSources().thrown(this, owner), DAMAGE * this.getPower(owner));
     }
 }
