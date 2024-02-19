@@ -17,7 +17,7 @@ import radon.jujutsu_kaisen.entity.curse.CyclopsCurseEntity;
 import radon.jujutsu_kaisen.util.HelperMethods;
 
 public class Shockwave extends Ability {
-    private static final double RADIUS = 14.0D;
+    private static final double RADIUS = 15.0D;
     private static final float DAMAGE = 14.0F;
 
     @Override
