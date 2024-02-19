@@ -215,7 +215,7 @@ public abstract class Ability {
     }
 
     public Status getStatus(LivingEntity owner) {
-        if (this != JJKAbilities.WHEEL.get() && owner.hasEffect(JJKEffects.UNLIMITED_VOID.get())) return Status.FAILURE;
+        if (this != JJKAbilities.WHEEL.get() && this != JJKAbilities.CURSED_ENERGY_FLOW.get() && owner.hasEffect(JJKEffects.UNLIMITED_VOID.get())) return Status.FAILURE;
 
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
