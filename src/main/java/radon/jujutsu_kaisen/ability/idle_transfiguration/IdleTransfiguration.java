@@ -37,7 +37,7 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
 
     public static float calculateStrength(LivingEntity entity) {
         float strength = entity.getHealth();
-        if ((entity instanceof Player player) && (strength <= 30.0F)) {
+        if (!(entity instanceof Player player) && (strength <= 30.0F)) {
             strength = 1.0F;
         }
 
