@@ -213,6 +213,10 @@ public class CursedEnergyFlow extends Ability implements Ability.IToggled {
                     if (HelperMethods.isMelee(source)) {
                         float increase = 2.0F * SorcererUtil.getPower(attackerCap.getExperience());
 
+                        if (JJKAbilities.hasToggled(attacker, JJKAbilities.ARM_BLADE.get())) {
+                            increase*=1.5F;
+                        }
+
                         switch (attackerCap.getNature()) {
                             case ROUGH -> increase *= 1.5F;
                             case LIGHTNING -> increase *= (attacker.getItemInHand(InteractionHand.MAIN_HAND).is(JJKItems.NYOI_STAFF.get()) ? 1.5F : 1.0F);
