@@ -14,6 +14,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
+import radon.jujutsu_kaisen.capability.data.sorcerer.ISorcererData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
@@ -26,6 +27,7 @@ import radon.jujutsu_kaisen.entity.JJKEntities;
 import radon.jujutsu_kaisen.item.JJKItems;
 import radon.jujutsu_kaisen.util.EntityUtil;
 import radon.jujutsu_kaisen.util.RotationUtil;
+import radon.jujutsu_kaisen.util.SorcererUtil;
 
 public class TransfiguredSoulProjectile extends Projectile {
     private static final EntityDataAccessor<Integer> DATA_TIME = SynchedEntityData.defineId(TransfiguredSoulProjectile.class, EntityDataSerializers.INT);
@@ -159,7 +161,8 @@ public class TransfiguredSoulProjectile extends Projectile {
         if (!(this.getOwner() instanceof LivingEntity owner)) return;
 
         if (entity == owner) return;
-
-        entity.hurt(this.damageSources().thrown(this, owner), DAMAGE * this.getPower(owner));
+        ISorcererData ownerCap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        
+        entity.hurt(this.damageSources().thrown(this, owner), DAMAGE * SorcererUtil.getPower(ownerCap.getExperience()));
     }
 }
