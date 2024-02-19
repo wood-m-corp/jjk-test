@@ -37,7 +37,7 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
 
     public static float calculateStrength(LivingEntity entity) {
         float strength = entity.getHealth();
-        if (strength <= 10.0F) {
+        if ((entity instanceof Player player) && (strength <= 30.0F)) {
             strength = 1.0F;
         }
 
@@ -135,7 +135,7 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
 
         int required = Math.round((victimStrength / Math.round(attackerStrength*2/11)) * 2);
 
-        if (amplifier >= required) {
+        if (amplifier >= required || victimStrength <= 1.0F) {
             if ((target instanceof Mob && !(target instanceof Monster)) || target instanceof Player) {
                 absorb(owner, target);
                 return true;
