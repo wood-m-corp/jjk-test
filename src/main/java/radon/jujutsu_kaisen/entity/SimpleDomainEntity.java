@@ -122,7 +122,7 @@ public class SimpleDomainEntity extends Entity {
         ISorcererData cap = this.getOwner().getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
         cap.delayTickEvent(() -> {
             invuln = false;
-        }, 5);
+        }, 10);
         return true;
     }
 
