@@ -33,7 +33,7 @@ import radon.jujutsu_kaisen.capability.data.sorcerer.SorcererDataHandler;
 public class TransfiguredSoulProjectile extends Projectile {
     private static final EntityDataAccessor<Integer> DATA_TIME = SynchedEntityData.defineId(TransfiguredSoulProjectile.class, EntityDataSerializers.INT);
 
-    private static final double SPEED = 8.0D;
+    private static final double SPEED = 10.0D;
     private static final float DAMAGE = 20.0F;
     private static final int DURATION = 5 * 20;
 
