@@ -113,7 +113,7 @@ public class SimpleDomain extends Summon<SimpleDomainEntity> {
             for (SimpleDomainEntity simple : victim.level().getEntitiesOfClass(SimpleDomainEntity.class, AABB.ofSize(victim.position(), 8.0D, 8.0D, 8.0D))) {
                 if (victim.distanceTo(simple) < simple.getRadius()) {
                     event.setAmount(event.getAmount() * 0.5F);
-                    simple.hurt(event.getSource(), event.getAmount());
+                    simple.hurt(event.getSource(), event.getAmount()*2.5F); //multiply dmg to be applied to simple by 2.5x
                 }
             }
         }
