@@ -111,9 +111,9 @@ public class SimpleDomainEntity extends Entity {
 
     @Override
     public boolean hurt(@NotNull DamageSource pSource, float pAmount) {
-        if (invuln) return;
+        if (invuln) return false;
         invuln = true;
-        if ((pSource.getEntity() && pSource.getEntity() instanceof LivingEntity attacker)) {
+        if ((pSource.getEntity() instanceof LivingEntity attacker)) {
             if (attacker == this.getOwner()) {
                 pAmount = 0.0F;
             }
