@@ -38,6 +38,7 @@ public class SimpleDomainEntity extends Entity {
     public static final float RADIUS = 2.0F;
     private static final float MAX_RADIUS = 4.0F;
     private static final float DAMAGE = 10.0F;
+    private static boolean invuln = false;
 
     @Nullable
     private UUID ownerUUID;
@@ -110,7 +111,18 @@ public class SimpleDomainEntity extends Entity {
 
     @Override
     public boolean hurt(@NotNull DamageSource pSource, float pAmount) {
+        if (invuln) return;
+        invuln = true;
+        if ((source.getEntity() && source.getEntity() instanceof LivingEntity attacker)) {
+            if (attacker == this.getOwner()) {
+                pAmount = 0.0F;
+            }
+        }
         this.setHealth(this.getHealth() - pAmount);
+        ISorcererData cap = this.getOwner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        cap.delayTickEvent(() -> {
+            invuln = false;
+        }, 5);
         return true;
     }
 
