@@ -113,13 +113,13 @@ public class SimpleDomainEntity extends Entity {
     public boolean hurt(@NotNull DamageSource pSource, float pAmount) {
         if (invuln) return;
         invuln = true;
-        if ((source.getEntity() && source.getEntity() instanceof LivingEntity attacker)) {
+        if ((pSource.getEntity() && pSource.getEntity() instanceof LivingEntity attacker)) {
             if (attacker == this.getOwner()) {
                 pAmount = 0.0F;
             }
         }
         this.setHealth(this.getHealth() - pAmount);
-        ISorcererData cap = this.getOwner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        ISorcererData cap = this.getOwner().getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
         cap.delayTickEvent(() -> {
             invuln = false;
         }, 5);
