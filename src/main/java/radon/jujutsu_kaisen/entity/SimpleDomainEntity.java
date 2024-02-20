@@ -150,7 +150,10 @@ public class SimpleDomainEntity extends Entity {
                 for (DomainExpansionEntity domain : VeilHandler.getDomains(level, owner.blockPosition())) {
                     if (domain.checkSureHitEffect()) {
                         LivingEntity target = domain.getOwner();
-
+                        float baseDMG = DAMAGE;
+                        if (domain.ability == JJKAbilities.UNLIMITED_VOID.get() || domain.ability == JJKAbilities.SELF_EMBODIMENT_OF_PERFECTION.get()) {
+                            baseDMG*=0.5F;
+                        } 
                         if (target != null) {
                             ISorcererData targetCap = target.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
                             this.hurt(JJKDamageSources.indirectJujutsuAttack(domain, target, null), DAMAGE * (1.0F + Math.max(0.0F, targetCap.getAbilityPower() - ownerCap.getAbilityPower())));
