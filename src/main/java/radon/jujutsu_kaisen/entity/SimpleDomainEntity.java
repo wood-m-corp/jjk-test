@@ -39,6 +39,7 @@ public class SimpleDomainEntity extends Entity {
     private static final float MAX_RADIUS = 4.0F;
     private static final float DAMAGE = 3.0F;
     private static boolean invuln = false;
+    private static boolean domainInvuln = false;
 
     @Nullable
     private UUID ownerUUID;
@@ -110,9 +111,9 @@ public class SimpleDomainEntity extends Entity {
     }
 
     @Override
-    public boolean hurt(@NotNull DamageSource pSource, float pAmount) {
-        if (invuln) return false;
-        invuln = true;
+    public boolean hurt(@NotNull DamageSource pSource, float pAmount, boolean domain) {
+        if (!domain && invuln) return false;
+        if (domain && domainInvuln) return false;
         if ((pSource.getEntity() instanceof LivingEntity attacker)) {
             if (attacker == this.getOwner()) {
                 pAmount = 0.0F;
@@ -120,9 +121,18 @@ public class SimpleDomainEntity extends Entity {
         }
         this.setHealth(this.getHealth() - pAmount);
         ISorcererData cap = this.getOwner().getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-        cap.delayTickEvent(() -> {
-            invuln = false;
-        }, 5);
+        if (domain) {
+            domainInvuln = true;
+            cap.delayTickEvent(() -> {
+                domainInvuln = false;
+            }, 10);
+        }
+        if (!domain) {
+            invuln = true;
+            cap.delayTickEvent(() -> {
+                invuln = false;
+            }, 5);
+        }
         return true;
     }
 
@@ -156,7 +166,7 @@ public class SimpleDomainEntity extends Entity {
                         } 
                         if (target != null) {
                             ISorcererData targetCap = target.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-                            this.hurt(JJKDamageSources.indirectJujutsuAttack(domain, target, null), baseDMG * (1.0F + Math.max(0.0F, targetCap.getAbilityPower() - ownerCap.getAbilityPower())));
+                            this.hurt(JJKDamageSources.indirectJujutsuAttack(domain, target, null), baseDMG * (1.0F + Math.max(0.0F, targetCap.getAbilityPower() - ownerCap.getAbilityPower())),true);
                         }
                     }
                 }
