@@ -38,7 +38,7 @@ public abstract class DomainExpansionEntity extends Entity {
     @Nullable
     private LivingEntity cachedOwner;
 
-    protected DomainExpansion ability;
+    public DomainExpansion ability;
     protected boolean first = true;
 
     protected DomainExpansionEntity(EntityType<?> pType, Level pLevel) {
