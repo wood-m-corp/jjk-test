@@ -37,7 +37,7 @@ public class SimpleDomainEntity extends Entity {
     private static final double X_STEP = 0.025D;
     public static final float RADIUS = 2.0F;
     private static final float MAX_RADIUS = 4.0F;
-    private static final float DAMAGE = 10.0F;
+    private static final float DAMAGE = 7.0F;
     private static boolean invuln = false;
 
     @Nullable
@@ -156,7 +156,7 @@ public class SimpleDomainEntity extends Entity {
                         } 
                         if (target != null) {
                             ISorcererData targetCap = target.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-                            this.hurt(JJKDamageSources.indirectJujutsuAttack(domain, target, null), DAMAGE * (1.0F + Math.max(0.0F, targetCap.getAbilityPower() - ownerCap.getAbilityPower())));
+                            this.hurt(JJKDamageSources.indirectJujutsuAttack(domain, target, null), baseDMG * (1.0F + Math.max(0.0F, targetCap.getAbilityPower() - ownerCap.getAbilityPower())));
                         }
                     }
                 }
