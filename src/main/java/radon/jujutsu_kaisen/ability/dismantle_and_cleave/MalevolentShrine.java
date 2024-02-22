@@ -48,7 +48,7 @@ public class MalevolentShrine extends DomainExpansion implements DomainExpansion
 
     @Override
     public int getWidth() {
-        return 133;
+        return 112;
     }
 
     @Override
