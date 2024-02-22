@@ -164,6 +164,9 @@ public class SimpleDomainEntity extends Entity {
                         if (domain.ability == JJKAbilities.UNLIMITED_VOID.get() || domain.ability == JJKAbilities.SELF_EMBODIMENT_OF_PERFECTION.get()) {
                             baseDMG*=0.5F;
                         } 
+                        if (domain.ability == JJKAbilities.MALEVOLENT_SHRINE.get() {
+                            baseDMG*=2.0F;
+                        } 
                         if (target != null) {
                             ISorcererData targetCap = target.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
                             this.hurt(JJKDamageSources.indirectJujutsuAttack(domain, target, null), baseDMG * (1.0F + Math.max(0.0F, targetCap.getAbilityPower() - ownerCap.getAbilityPower())),true);
