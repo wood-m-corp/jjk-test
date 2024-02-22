@@ -164,7 +164,7 @@ public class SimpleDomainEntity extends Entity {
                         if (domain.ability == JJKAbilities.UNLIMITED_VOID.get() || domain.ability == JJKAbilities.SELF_EMBODIMENT_OF_PERFECTION.get()) {
                             baseDMG*=0.5F;
                         } 
-                        if (domain.ability == JJKAbilities.MALEVOLENT_SHRINE.get() {
+                        if (domain.ability == JJKAbilities.MALEVOLENT_SHRINE.get()) {
                             baseDMG*=2.0F;
                         } 
                         if (target != null) {
