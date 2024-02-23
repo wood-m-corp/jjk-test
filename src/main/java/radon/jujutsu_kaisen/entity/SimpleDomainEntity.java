@@ -165,7 +165,7 @@ public class SimpleDomainEntity extends Entity {
                             baseDMG*=0.5F;
                         } 
                         if (domain.ability == JJKAbilities.MALEVOLENT_SHRINE.get()) {
-                            baseDMG*=6.0F;
+                            baseDMG*=7.0F;
                         } 
                         if (target != null) {
                             ISorcererData targetCap = target.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
