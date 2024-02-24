@@ -38,6 +38,19 @@ public class WaterShield extends Ability implements Ability.IChannelened, Abilit
 
     @Override
     public void run(LivingEntity owner) {
+        owner.resetFallDistance();
+
+        Vec3 movement = owner.getDeltaMovement();
+        owner.setDeltaMovement(movement.x, 0.01, movement.z);
+
+        float f = owner.xxa * 0.5F;
+        float f1 = owner.zza;
+
+        if (f1 <= 0.0F) {
+            f1 *= 0.25F;
+        }
+        owner.moveRelative(SPEED, new Vec3(f, 0.0F, f1));
+        
         owner.getCapability(SorcererDataHandler.INSTANCE).ifPresent(cap -> {
             if (!owner.level().isClientSide) {
                 for (double phi = 0.0D; phi < Math.PI * 2.0D; phi += X_STEP) {
