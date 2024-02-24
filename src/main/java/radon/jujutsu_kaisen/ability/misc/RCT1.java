@@ -72,7 +72,7 @@ public class RCT1 extends Ability implements Ability.IChannelened {
     @Override
     public float getCost(LivingEntity owner) {
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-        if (cap.getEnergy() < 100.0F) return;
+        if (cap.getEnergy() < 100.0F) return 0.0F;
         if (owner.getHealth() < owner.getMaxHealth()) {
             return (float) Math.min(5.0F, (ConfigHolder.SERVER.sorcererHealingAmount.get().floatValue() * Math.pow(this.getPower(owner), Math.log(this.getPower(owner)))) * this.getMultiplier());
         }
