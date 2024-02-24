@@ -133,7 +133,7 @@ public class OutputRCT extends Ability {
 
     @Override
     public int getCooldown() {
-        return 15;
+        return 100;
     }
 
     @Override
