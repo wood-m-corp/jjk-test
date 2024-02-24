@@ -31,7 +31,7 @@ public class Barrage extends Ability {
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
         if (target == null || target.isDeadOrDying()) return false;
         if (!owner.hasLineOfSight(target) || owner.distanceTo(target) > RANGE) return false;
-        return HelperMethods.RANDOM.nextInt(3) == 0;
+        return HelperMethods.RANDOM.nextInt(6) == 0;
     }
 
     @Override
