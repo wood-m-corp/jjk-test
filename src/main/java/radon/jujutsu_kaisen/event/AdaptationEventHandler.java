@@ -103,7 +103,7 @@ public class AdaptationEventHandler {
             if (!attacker.getCapability(TenShadowsDataHandler.INSTANCE).isPresent()) return;
             ITenShadowsData attackerCap = attacker.getCapability(TenShadowsDataHandler.INSTANCE).resolve().orElseThrow();
 
-            if (!JJKAbilities.hasToggled(attacker, JJKAbilities.DOMAIN_AMPLIFICATION.get()) && JJKAbilities.hasToggled(attacker, JJKAbilities.WHEEL.get())) {
+            if (JJKAbilities.hasToggled(attacker, JJKAbilities.WHEEL.get())) {
                 if (victimCap.hasToggled(JJKAbilities.INFINITY.get())) {
                     attackerCap.tryAdapt(JJKAbilities.INFINITY.get());
                 }
