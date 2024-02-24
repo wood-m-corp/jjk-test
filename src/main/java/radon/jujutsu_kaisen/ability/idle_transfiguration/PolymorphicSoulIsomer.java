@@ -40,7 +40,7 @@ public class PolymorphicSoulIsomer extends TransfiguredSoul<PolymorphicSoulIsome
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 250.0F;
+        return 300.0F;
     }
 
     @Override
