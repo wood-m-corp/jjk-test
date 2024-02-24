@@ -88,20 +88,25 @@ public class SorcererGoal extends Goal {
                 if (success) {
                     if (!JJKAbilities.hasToggled(this.mob, ability)) {
                         AbilityHandler.trigger(this.mob, ability);
+                        return;
                     }
                 } else if (JJKAbilities.hasToggled(this.mob, ability)) {
                     AbilityHandler.untrigger(this.mob, ability);
+                    return;
                 }
             } else if (ability.getActivationType(this.mob) == Ability.ActivationType.CHANNELED) {
                 if (success) {
                     if (!JJKAbilities.isChanneling(this.mob, ability)) {
                         AbilityHandler.trigger(this.mob, ability);
+                        return;
                     }
                 } else if (JJKAbilities.isChanneling(this.mob, ability)) {
                     AbilityHandler.untrigger(this.mob, ability);
+                    return;
                 }
             } else if (success) {
                 AbilityHandler.trigger(this.mob, ability);
+                return;
             }
         }
     }
