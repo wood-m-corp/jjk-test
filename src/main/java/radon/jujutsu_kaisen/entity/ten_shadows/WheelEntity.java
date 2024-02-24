@@ -5,6 +5,8 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
+import radon.jujutsu_kaisen.capability.data.ten_shadows.ITenShadowsData;
+import radon.jujutsu_kaisen.capability.data.ten_shadows.TenShadowsDataHandler;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
@@ -91,10 +93,18 @@ public class WheelEntity extends Entity implements GeoEntity {
     public void tick() {
         LivingEntity owner = this.getOwner();
 
-        if (!this.level().isClientSide && (owner == null || owner.isRemoved() || !owner.isAlive() ||
-                !JJKAbilities.hasToggled(owner, JJKAbilities.WHEEL.get()))) {
-            this.discard();
-        } else {
+        if (!this.level().isClientSide && (owner != null) {
+            ITenShadowsData cap = owner.getCapability(TenShadowsDataHandler.INSTANCE).resolve().orElseThrow();
+            
+            if (!JJKAbilities.hasToggled(owner, JJKAbilities.WHEEL.get())) {
+                this.discard();
+                return;
+            }
+        }
+
+            if (!this.level().isClientSide && (owner == null || owner.isRemoved() || !owner.isAlive() || !this.isPassenger())) {
+                this.discard();
+         } else {
             super.tick();
 
             if (!this.level().isClientSide) {
@@ -134,6 +144,8 @@ public class WheelEntity extends Entity implements GeoEntity {
 
         LivingEntity owner = this.getOwner();
 
+        if (owner == null) return;
+
         if (owner != null) {
             if (JJKAbilities.hasToggled(owner, JJKAbilities.WHEEL.get())) {
                 ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
@@ -146,7 +158,6 @@ public class WheelEntity extends Entity implements GeoEntity {
         int spin = this.entityData.get(DATA_SPIN);
 
         if (spin > 0) {
-            System.out.println(1337);
             return animationState.setAndContinue(SPIN);
         }
         animationState.getController().forceAnimationReset();
