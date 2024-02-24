@@ -1020,7 +1020,7 @@ public class SorcererData implements ISorcererData {
 
     @Override
     public void resetCopy() {
-        this.copied.clear();
+        this.copied = new LinkedHashSet<>();
     }
 
     @Override
