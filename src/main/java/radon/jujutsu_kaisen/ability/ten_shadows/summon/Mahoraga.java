@@ -65,7 +65,7 @@ public class Mahoraga extends Summon<MahoragaEntity> {
 
     @Override
     public int getCooldown() {
-        return 30 * 20;
+        return 35 * 20;
     }
 
     @Override
