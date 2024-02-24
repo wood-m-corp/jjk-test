@@ -93,7 +93,7 @@ public class WheelEntity extends Entity implements GeoEntity {
     public void tick() {
         LivingEntity owner = this.getOwner();
 
-        if (!this.level().isClientSide && (owner != null) {
+        if (!this.level().isClientSide && (owner != null)) {
             ITenShadowsData cap = owner.getCapability(TenShadowsDataHandler.INSTANCE).resolve().orElseThrow();
             
             if (!JJKAbilities.hasToggled(owner, JJKAbilities.WHEEL.get())) {
