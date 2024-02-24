@@ -40,7 +40,7 @@ public class TransfiguredSoulLarge extends TransfiguredSoul<TransfiguredSoulLarg
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 100.0F;
+        return 150.0F;
     }
 
     @Override
