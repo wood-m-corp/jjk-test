@@ -22,7 +22,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class ShadowTravel extends Ability {
-    private static final double RANGE = 100.0D;
+    private static final double RANGE = 75.0D;
 
     @Override
     public boolean isScalable(LivingEntity owner) {
@@ -97,7 +97,7 @@ public class ShadowTravel extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 10.0F;
+        return 40.0F;
     }
 
     @Override
