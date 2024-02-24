@@ -44,7 +44,7 @@ public class GreatSerpent extends Summon<GreatSerpentEntity> {
 
     @Override
     public int getCooldown() {
-        return 15 * 20;
+        return 20 * 20;
     }
 
     @Override
