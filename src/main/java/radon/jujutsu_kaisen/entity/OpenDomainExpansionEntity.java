@@ -130,6 +130,7 @@ public abstract class OpenDomainExpansionEntity extends DomainExpansionEntity {
             if (owner != null) {
                 owner.getCapability(SorcererDataHandler.INSTANCE).ifPresent(cap -> {
                     cap.setBurnout(DomainExpansion.BURNOUT);
+                    cap.resetSpeedStacks();
 
                     if (owner instanceof ServerPlayer player) {
                         PacketHandler.sendToClient(new SyncSorcererDataS2CPacket(cap.serializeNBT()), player);
