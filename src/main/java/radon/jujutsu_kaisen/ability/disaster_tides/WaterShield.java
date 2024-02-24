@@ -25,7 +25,7 @@ public class WaterShield extends Ability implements Ability.IChannelened, Abilit
     private static final double RADIUS = 8.0D;
     private static final double X_STEP = 0.05D;
     private static final float DAMAGE = 12.0F;
-    privat static final float SPEED = 0.1F;
+    private static final float SPEED = 0.1F;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
