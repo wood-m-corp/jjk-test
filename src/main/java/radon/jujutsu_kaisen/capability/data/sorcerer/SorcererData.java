@@ -58,7 +58,7 @@ public class SorcererData implements ISorcererData {
 
     private @Nullable CursedTechnique additional;
 
-    private final Set<CursedTechnique> copied;
+    private Set<CursedTechnique> copied;
     private @Nullable CursedTechnique currentCopied;
 
     private final Set<CursedTechnique> absorbed;
