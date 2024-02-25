@@ -106,7 +106,9 @@ public class SorcererGoal extends Goal {
                 }
             } else if (success) {
                 AbilityHandler.trigger(this.mob, ability);
-                return;
+                if (ability != JJKAbilities.DASH.get()) {
+                    return;
+                }
             }
         }
     }
