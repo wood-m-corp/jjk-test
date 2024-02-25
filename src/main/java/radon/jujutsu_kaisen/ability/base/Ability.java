@@ -319,7 +319,7 @@ public abstract class Ability {
             cost *= 0.66F;
         }
         if (output > 0) {
-            output = Mth.clamp(output*0.9F,1.0F,100.0F);
+            output = Mth.clamp(output*0.8F,1.0F,100.0F);
 	    cost*=(this.isScalable(owner) ? output : 1.0F);
         }
         return Float.parseFloat(String.format(Locale.ROOT, "%.2f", cost ));
