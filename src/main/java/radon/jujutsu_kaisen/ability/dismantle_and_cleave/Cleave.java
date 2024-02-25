@@ -82,7 +82,7 @@ public class Cleave extends Ability implements Ability.IDomainAttack, Ability.IA
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 125.0F;
+        return 100.0F;
     }
 
     @Override
