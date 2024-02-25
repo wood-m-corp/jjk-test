@@ -92,7 +92,7 @@ public abstract class DomainExpansion extends Ability implements Ability.IToggle
     public static float getStrength(LivingEntity owner, boolean instant) {
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
         float size = (cap.getDomainSize() * 0.5F) - 0.15F;
-        return ((ConfigHolder.SERVER.maximumDomainSize.get().floatValue() + 0.1F) - size * (instant ? 1.0F : 1.0F));
+        return ((ConfigHolder.SERVER.maximumDomainSize.get().floatValue() + 0.1F) - size * (instant ? 0.25F : 1.0F));
     }
 
     @Override
