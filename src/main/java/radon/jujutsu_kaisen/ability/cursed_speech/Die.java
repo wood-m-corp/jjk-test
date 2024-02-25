@@ -121,7 +121,7 @@ public class Die extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 500.0F;
+        return 450.0F;
     }
 
     @Override
