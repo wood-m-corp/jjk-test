@@ -83,7 +83,7 @@ public class BlastAway extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 100.0F;
+        return 75.0F;
     }
 
     @Override
