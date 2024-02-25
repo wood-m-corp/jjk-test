@@ -43,7 +43,7 @@ public class ForestRoots extends Ability {
 
     @Override
     public int getCooldown() {
-        return 12 * 20;
+        return 16 * 20;
     }
 
 
