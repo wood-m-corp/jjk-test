@@ -128,7 +128,7 @@ public class OutputRCT extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 80.0F;
+        return 65.0F;
     }
 
     @Override
