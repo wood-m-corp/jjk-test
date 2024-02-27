@@ -53,9 +53,10 @@ public class CursedBudEffect extends JJKEffect {
         ISorcererData cap = pLivingEntity.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
         float previous = AMOUNTS.getOrDefault(pLivingEntity.getUUID(), cap.getEnergy());
-
+        float dmg = (previous - cap.getEnergy()) * 0.05F;
+        
         if (previous > cap.getEnergy()) {
-            pLivingEntity.hurt(pLivingEntity.level().damageSources().generic(), (previous - (cap.getEnergy()) * 0.05F) + 0.25F);
+            pLivingEntity.hurt(pLivingEntity.level().damageSources().generic(), (dmg) + 0.5F);
         }
         AMOUNTS.put(pLivingEntity.getUUID(), cap.getEnergy());
     }
