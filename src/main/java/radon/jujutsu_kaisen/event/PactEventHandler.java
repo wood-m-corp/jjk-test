@@ -68,7 +68,7 @@ public class PactEventHandler {
                 ISorcererData attackerCap = attacker.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
                 if (victimCap.hasPact(attacker.getUUID(), Pact.INVULNERABILITY) && attackerCap.hasPact(victim.getUUID(), Pact.INVULNERABILITY)) {
-                    event.setCanceled(true);
+                    //event.setCanceled(true);
                 }
             }
         }
