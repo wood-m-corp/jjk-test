@@ -1,108 +1,139 @@
-package radon.jujutsu_kaisen.ability.misc;
+package radon.jujutsu_kaisen.entity.ai.goal;
 
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.phys.Vec2;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import org.jetbrains.annotations.Nullable;
-import radon.jujutsu_kaisen.JujutsuKaisen;
-import radon.jujutsu_kaisen.ability.JJKAbilities;
-import radon.jujutsu_kaisen.ability.MenuType;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.item.ItemStack;
 import radon.jujutsu_kaisen.ability.base.Ability;
+import radon.jujutsu_kaisen.ability.AbilityHandler;
+import radon.jujutsu_kaisen.ability.JJKAbilities;
 import radon.jujutsu_kaisen.capability.data.sorcerer.ISorcererData;
 import radon.jujutsu_kaisen.capability.data.sorcerer.SorcererDataHandler;
+import radon.jujutsu_kaisen.capability.data.sorcerer.AbsorbedCurse;
 import radon.jujutsu_kaisen.capability.data.sorcerer.CursedTechnique;
-import radon.jujutsu_kaisen.config.ConfigHolder;
-import radon.jujutsu_kaisen.damage.JJKDamageSources;
+import radon.jujutsu_kaisen.item.CursedSpiritOrbItem;
+import radon.jujutsu_kaisen.item.JJKItems;
+import radon.jujutsu_kaisen.util.HelperMethods;
 
-public class DomainAmplification extends Ability implements Ability.IToggled {
-    @Override
-    public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
-        return target != null && !target.isDeadOrDying() && JJKAbilities.hasToggled(target, JJKAbilities.INFINITY.get()) && owner.distanceTo(target) <= 3.0D;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SorcererGoal extends Goal {
+    private static final int CHANGE_COPIED_TECHNIQUE_INTERVAL = 10 * 20;
+
+    private final PathfinderMob mob;
+    private long lastCanUseCheck;
+
+    public SorcererGoal(PathfinderMob mob) {
+        this.mob = mob;
     }
 
     @Override
-    public boolean isTechnique() {
-        return false;
+    public void tick() {
+        List<Ability> abilities = JJKAbilities.getAbilities(this.mob);
+
+        ISorcererData cap = this.mob.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+
+        if (cap.hasToggled(JJKAbilities.RIKA.get())) {
+            if (cap.getCurrentCopied() == null || this.mob.tickCount % CHANGE_COPIED_TECHNIQUE_INTERVAL == 0) {
+                List<CursedTechnique> copied = new ArrayList<>(cap.getCopied());
+
+                if (!copied.isEmpty()) {
+                    cap.setCurrentCopied(copied.get(HelperMethods.RANDOM.nextInt(copied.size())));
+                }
+            }
+        }
+
+        if (cap.hasTechnique(CursedTechnique.CURSE_MANIPULATION)) {
+            LivingEntity target = this.mob.getTarget();
+
+            if (target != null && HelperMethods.RANDOM.nextInt(5) == 0) {
+                List<AbsorbedCurse> curses = cap.getCurses();
+
+                if (target.getCapability(SorcererDataHandler.INSTANCE).isPresent()) {
+                    ISorcererData targetCap = target.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+
+                    AbsorbedCurse closest = null;
+
+                    for (AbsorbedCurse curse : curses) {
+                        float diff = Math.abs(JJKAbilities.getCurseExperience(curse) - targetCap.getExperience());
+
+                        if (closest == null || diff < Math.abs(JJKAbilities.getCurseExperience(closest) - targetCap.getExperience())) {
+                            closest = curse;
+                        }
+                    }
+
+                    if (closest != null) {
+                        JJKAbilities.summonCurse(this.mob, closest, true);
+                    }
+                } else if (!curses.isEmpty()) {
+                    JJKAbilities.summonCurse(this.mob, HelperMethods.RANDOM.nextInt(curses.size()), true);
+                }
+            }
+
+            ItemStack stack = this.mob.getItemInHand(InteractionHand.MAIN_HAND);
+
+            if (stack.is(JJKItems.CURSED_SPIRIT_ORB.get())) {
+                this.mob.playSound(this.mob.getEatingSound(stack), 1.0F, 1.0F + (HelperMethods.RANDOM.nextFloat() - HelperMethods.RANDOM.nextFloat()) * 0.4F);
+                cap.addCurse(CursedSpiritOrbItem.getAbsorbed(stack));
+                this.mob.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+            }
+        }
+
+        for (Ability ability : abilities) {
+            boolean success = ability.shouldTrigger(this.mob, this.mob.getTarget());
+            LivingEntity target = this.mob.getTarget();
+            Ability infinite = JJKAbilities.INFINITY.get();
+
+            if (ability.getActivationType(this.mob) == Ability.ActivationType.TOGGLED) {
+                if (success) {
+                    if (!JJKAbilities.hasToggled(this.mob, ability)){
+                        AbilityHandler.trigger(this.mob, ability);
+                    }
+
+                } else if (JJKAbilities.hasToggled(this.mob, ability)) {
+                        AbilityHandler.untrigger(this.mob, ability);
+                        return;
+                    }
+            } else if (ability.getActivationType(this.mob) == Ability.ActivationType.CHANNELED) {
+                if (success) {
+                    if (!JJKAbilities.isChanneling(this.mob, ability)) {
+                        AbilityHandler.trigger(this.mob, ability);
+                        if (ability != JJKAbilities.HEAL.get() && ability != JJKAbilities.RCT1.get()) {
+                        return;
+                    }
+                }
+                } else if (JJKAbilities.isChanneling(this.mob, ability)) {
+                    AbilityHandler.untrigger(this.mob, ability);
+                    if (ability != JJKAbilities.HEAL.get() && ability != JJKAbilities.RCT1.get()) {
+                    return;
+                    }
+                }
+
+            } else if (success) {
+                AbilityHandler.trigger(this.mob, ability);
+                if (ability != JJKAbilities.DASH.get() && ability != JJKAbilities.SLAM.get() && ability != JJKAbilities.PUNCH.get())  {
+                return;
+                }
+                }
+        }
     }
 
     @Override
-    public ActivationType getActivationType(LivingEntity owner) {
-        return ActivationType.TOGGLED;
-    }
-
-    @Override
-    public boolean isCursedEnergyColor() {
+    public boolean requiresUpdateEveryTick() {
         return true;
     }
 
-    @Override
-    public void run(LivingEntity owner) {
-
+   @Override
+   public boolean canUse() {
+        long i = this.mob.level().getGameTime();
+        if (i - this.lastCanUseCheck > 20L) {
+            this.lastCanUseCheck = i;
+            return true;
+        } else {
+            return false;
     }
+}
 
-    @Override
-    public float getCost(LivingEntity owner) {
-        return 0.25F;
-    }
-
-    @Override
-    public void onEnabled(LivingEntity owner) {
-
-    }
-
-    @Override
-    public void onDisabled(LivingEntity owner) {
-
-    }
-
-    @Override
-    public MenuType getMenuType() {
-        return MenuType.DOMAIN;
-    }
-
-    @Nullable
-    @Override
-    public Ability getParent(LivingEntity owner) {
-        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-        CursedTechnique technique = cap.getTechnique();
-        return technique == null || technique.getDomain() == null ? JJKAbilities.CURSED_ENERGY_FLOW.get() : technique.getDomain();
-    }
-
-    @Override
-    public Vec2 getDisplayCoordinates() {
-        return new Vec2(4.0F, 1.0F);
-    }
-
-    @Override
-    public boolean isScalable(LivingEntity owner) {
-        return false;
-    }
-
-    @Override
-    public int getPointsCost() {
-        return ConfigHolder.SERVER.domainAmplificationCost.get();
-    }
-
-    @Mod.EventBusSubscriber(modid = JujutsuKaisen.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-    public static class DomainAmplificationForgeEvents {
-        @SubscribeEvent
-        public static void onLivingHurt(LivingHurtEvent event) {
-            if (!(event.getSource() instanceof JJKDamageSources.JujutsuDamageSource source)) return;
-
-            LivingEntity victim = event.getEntity();
-
-            if (!JJKAbilities.hasToggled(victim, JJKAbilities.DOMAIN_AMPLIFICATION.get())) return;
-
-            Ability ability = source.getAbility();
-
-            if (ability == null) return;
-
-            if (ability.isTechnique()) {
-                event.setAmount(event.getAmount() * (ability.getRequirements().contains(JJKAbilities.RCT1.get()) ? 0.8F : 0.85F));
-            }
-        }
-    }
 }
