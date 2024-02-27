@@ -83,33 +83,40 @@ public class SorcererGoal extends Goal {
 
         for (Ability ability : abilities) {
             boolean success = ability.shouldTrigger(this.mob, this.mob.getTarget());
+            LivingEntity target = this.mob.getTarget();
+            Ability infinite = JJKAbilities.INFINITY.get();
 
             if (ability.getActivationType(this.mob) == Ability.ActivationType.TOGGLED) {
                 if (success) {
-                    if (!JJKAbilities.hasToggled(this.mob, ability)) {
+                    if (!JJKAbilities.hasToggled(this.mob, ability)){
                         AbilityHandler.trigger(this.mob, ability);
+                    }
+
+                } else if (JJKAbilities.hasToggled(this.mob, ability)) {
+                        AbilityHandler.untrigger(this.mob, ability);
                         return;
                     }
-                } else if (JJKAbilities.hasToggled(this.mob, ability)) {
-                    AbilityHandler.untrigger(this.mob, ability);
-                    return;
-                }
             } else if (ability.getActivationType(this.mob) == Ability.ActivationType.CHANNELED) {
                 if (success) {
                     if (!JJKAbilities.isChanneling(this.mob, ability)) {
                         AbilityHandler.trigger(this.mob, ability);
+                        if (ability != JJKAbilities.HEAL.get() && ability != JJKAbilities.RCT1.get()) {
                         return;
                     }
+                }
                 } else if (JJKAbilities.isChanneling(this.mob, ability)) {
                     AbilityHandler.untrigger(this.mob, ability);
+                    if (ability != JJKAbilities.HEAL.get() && ability != JJKAbilities.RCT1.get()) {
                     return;
+                    }
                 }
+
             } else if (success) {
                 AbilityHandler.trigger(this.mob, ability);
-                if (ability != JJKAbilities.DASH.get()) {
-                    return;
+                if (ability != JJKAbilities.DASH.get() && ability != JJKAbilities.SLAM.get() && ability != JJKAbilities.PUNCH.get())  {
+                return;
                 }
-            }
+                }
         }
     }
 
@@ -118,17 +125,15 @@ public class SorcererGoal extends Goal {
         return true;
     }
 
-    @Override
-    public boolean canUse() {
-        return true;
-
-        /*long i = this.mob.level().getGameTime();
-
-        if (i - this.lastCanUseCheck < 20L) {
-            return false;
-        } else {
+   @Override
+   public boolean canUse() {
+        long i = this.mob.level().getGameTime();
+        if (i - this.lastCanUseCheck > 20L) {
             this.lastCanUseCheck = i;
             return true;
-        }*/
+        } else {
+            return false;
     }
+}
+
 }
