@@ -21,7 +21,7 @@ import radon.jujutsu_kaisen.util.RotationUtil;
 import radon.jujutsu_kaisen.capability.data.sorcerer.Trait;
 
 public class OutputRCT extends Ability {
-    public static final float RANGE = 5.0F;
+    public static final float RANGE = 7.0F;
 
     @Override
     public boolean isScalable(LivingEntity owner) {
@@ -133,7 +133,7 @@ public class OutputRCT extends Ability {
 
     @Override
     public int getCooldown() {
-        return 100;
+        return 80;
     }
 
     @Override
