@@ -24,7 +24,7 @@ import radon.jujutsu_kaisen.network.packet.s2c.ScreenFlashS2CPacket;
 import radon.jujutsu_kaisen.util.HelperMethods;
 
 public class TwentyFourFrameRule extends Ability implements Ability.IToggled, Ability.IAttack {
-    private static final float DAMAGE = 12.0F;
+    private static final float DAMAGE = 11.0F;
 
     @Override
     public boolean isScalable(LivingEntity owner) {
