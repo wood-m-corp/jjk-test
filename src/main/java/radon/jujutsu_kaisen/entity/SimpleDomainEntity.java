@@ -111,28 +111,28 @@ public class SimpleDomainEntity extends Entity {
     }
 
     //@Override
-    public boolean hurt(@NotNull DamageSource pSource, float pAmount, boolean domain) {
-        if (!domain && invuln) return false;
-        if (domain && domainInvuln) return false;
+    public boolean hurt(@NotNull DamageSource pSource, float pAmount, boolean isDomainAttack) {
+        if (!isDomainAttack && invuln) return false;
+        if (isDomainAttack && domainInvuln) return false;
         if ((pSource.getEntity() instanceof LivingEntity attacker)) {
             if (attacker == this.getOwner()) {
-                pAmount = 0.0F;
+                return false;
             }
         }
-        this.setHealth(this.getHealth() - pAmount);
         ISorcererData cap = this.getOwner().getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-        if (domain) {
+        if (isDomainAttack) {
             domainInvuln = true;
             cap.delayTickEvent(() -> {
                 domainInvuln = false;
             }, 10);
         }
-        if (!domain) {
+        if (!isDomainAttack) {
             invuln = true;
             cap.delayTickEvent(() -> {
                 invuln = false;
             }, 5);
         }
+        this.setHealth(this.getHealth() - pAmount);
         return true;
     }
 
