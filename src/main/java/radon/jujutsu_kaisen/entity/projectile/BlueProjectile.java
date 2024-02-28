@@ -36,7 +36,7 @@ public class BlueProjectile extends JujutsuProjectile {
     private static final float DAMAGE = 5.0F;
     private static final int DURATION = 5 * 20;
     private static final float RADIUS = 3.0F;
-    private static final float MAX_RADIUS = 5.0F;
+    private static final float MAX_RADIUS = 6.0F;
     private static final double OFFSET = 8.0D;
 
     public BlueProjectile(EntityType<? extends BlueProjectile> pType, Level level) {
