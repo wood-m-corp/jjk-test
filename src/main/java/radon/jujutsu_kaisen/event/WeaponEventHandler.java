@@ -62,14 +62,14 @@ public class WeaponEventHandler {
                     .stream().map(ItemStack::getItem).toList());
 
             if (HelperMethods.isMelee(source)) {
-                if (JJKAbilities.hasTrait(attacker, Trait.HEAVENLY_RESTRICTION) && !source.is(JJKDamageSources.SPLIT_SOUL_KATANA) && stacks.contains(JJKItems.SPLIT_SOUL_KATANA.get())) {
-                    if (victim.hurt(JJKDamageSources.splitSoulKatanaAttack(attacker), event.getAmount()*0.15F)) {
+                /* if (JJKAbilities.hasTrait(attacker, Trait.HEAVENLY_RESTRICTION) && !source.is(JJKDamageSources.SPLIT_SOUL_KATANA) && stacks.contains(JJKItems.SPLIT_SOUL_KATANA.get())) {
+                   / if (victim.hurt(JJKDamageSources.splitSoulKatanaAttack(attacker), event.getAmount()*0.15F)) {
                         if (victim.isDeadOrDying()) {
                             event.setCanceled(true);
                             return;
                         }
                     }
-                }
+                } */
 
                 if (stacks.contains(JJKItems.PLAYFUL_CLOUD.get())) {
                     Vec3 pos = attacker.getEyePosition().add(RotationUtil.getTargetAdjustedLookAngle(attacker));
