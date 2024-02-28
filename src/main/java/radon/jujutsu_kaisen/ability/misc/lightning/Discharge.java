@@ -23,7 +23,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 
 public class Discharge extends Ability implements Ability.IChannelened, Ability.IDurationable {
     private static final float DAMAGE = 12.0F;
-    private static final float MAX_RADIUS = 25.0F;
+    private static final float MAX_RADIUS = 20.0F;
 
     @Override
     public boolean isScalable(LivingEntity owner) {
