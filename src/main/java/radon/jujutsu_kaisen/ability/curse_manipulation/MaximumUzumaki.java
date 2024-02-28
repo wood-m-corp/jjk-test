@@ -30,7 +30,7 @@ public class MaximumUzumaki extends Ability {
     @Override
     public void run(LivingEntity owner) {
         owner.swing(InteractionHand.MAIN_HAND);
-
+        owner.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), JJKSounds.SPARK.get(), SoundSource.MASTER, 2.0F, 1.0F);
         MaximumUzumakiProjectile uzumaki = new MaximumUzumakiProjectile(owner, this.getPower(owner));
         owner.level().addFreshEntity(uzumaki);
     }
