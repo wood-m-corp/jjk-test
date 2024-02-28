@@ -42,8 +42,8 @@ public class KamutokeDaggerItem extends CursedToolItem implements GeoItem {
     private static final int COUNT = 20;
     public static final float MELEE_COST = 10.0F;
     private static final float RANGE_COST = 500.0F;
-    public static final float MELEE_DAMAGE = 5.0F;
-    private static final float RANGE_DAMAGE = 20.0F;
+    public static final float MELEE_DAMAGE = 5.5F;
+    private static final float RANGE_DAMAGE = 25.0F;
     public static final int STUN = 10;
     private static final int DURATION = 3 * 20;
 
