@@ -240,7 +240,7 @@ public abstract class Ability {
 
         MobEffectInstance instance = owner.getEffect(JJKEffects.STUN.get());
 
-        if (instance != null && instance.getAmplifier() > 0 && this != JJKAbilities.HEAL.get() && this != JJKAbilities.RCT1.get() && this != JJKAbilities.CURSED_ENERGY_SHIELD.get()) return Status.FAILURE;
+        if (instance != null && instance.getAmplifier() > 0 && this != JJKAbilities.HEAL.get() && this != JJKAbilities.RCT1.get() && this != JJKAbilities.RCT2.get() && this != JJKAbilities.RCT3.get() && this != JJKAbilities.CURSED_ENERGY_SHIELD.get()) return Status.FAILURE;
 
         Status status = this.getStatus(owner);
 
