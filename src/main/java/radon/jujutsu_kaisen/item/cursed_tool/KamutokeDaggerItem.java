@@ -39,7 +39,7 @@ import java.util.function.Consumer;
 
 public class KamutokeDaggerItem extends CursedToolItem implements GeoItem {
     public static final double RANGE = 30.0D;
-    private static final int COUNT = 16;
+    private static final int COUNT = 20;
     public static final float MELEE_COST = 10.0F;
     private static final float RANGE_COST = 500.0F;
     public static final float MELEE_DAMAGE = 5.0F;
