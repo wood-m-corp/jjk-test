@@ -53,7 +53,7 @@ public class NyoiStaffItem extends CursedToolItem implements GeoItem {
         ISorcererData cap = player.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
         if (cap.getNature() == CursedEnergyNature.LIGHTNING) {
-            float cost = JJKAbilities.LIGHTNING.get().getRealCost(player) * 0.5F;
+            float cost = JJKAbilities.LIGHTNING.get().getRealCost(player) * 0.75F;
 
             boolean success = player.getAbilities().instabuild;
 
