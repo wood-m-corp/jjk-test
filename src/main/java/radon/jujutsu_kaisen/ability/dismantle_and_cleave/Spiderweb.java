@@ -98,12 +98,12 @@ public class Spiderweb extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 100.0F;
+        return 150.0F;
     }
 
     @Override
     public int getCooldown() {
-        return 5 * 20;
+        return 10 * 20;
     }
 
     @Override
