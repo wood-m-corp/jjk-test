@@ -76,7 +76,7 @@ public class DontMove extends Ability {
 
     @Override
     public int getCooldown() {
-        return 16 * 20;
+        return 20 * 20;
     }
 
     @Override
