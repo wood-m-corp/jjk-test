@@ -138,7 +138,7 @@ public class ProjectionSorcery extends Ability implements Ability.IChannelened, 
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 7.0F;
+        return 8.0F;
     }
 
     @Override
