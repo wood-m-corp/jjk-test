@@ -120,7 +120,7 @@ public class GetCrushed extends Ability {
 
     @Override
     public int getCooldown() {
-        return 6 * 20;
+        return 12 * 20;
     }
 
     @Override
