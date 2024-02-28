@@ -85,13 +85,13 @@ public class DeathSwarm extends Ability implements Ability.IDomainAttack {
         //if (target == null) return;
 
         this.perform(owner, newEnemy, null);
-        enemy = null;
+        this.enemy = null;
     }
 
     @Override
     public Status isTriggerable(LivingEntity owner) {
         LivingEntity target = this.getTarget(owner);
-        enemy = target;
+        this.enemy = target;
         
         if (target == null) {
             return Status.FAILURE;
