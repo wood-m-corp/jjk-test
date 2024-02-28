@@ -13,6 +13,7 @@ import radon.jujutsu_kaisen.entity.curse.base.CursedSpirit;
 import radon.jujutsu_kaisen.entity.projectile.MaximumUzumakiProjectile;
 import radon.jujutsu_kaisen.capability.data.sorcerer.CursedTechnique;
 import net.minecraft.world.phys.Vec2;
+import radon.jujutsu_kaisen.sound.JJKSounds;
 
 public class MaximumUzumaki extends Ability {
     @Override
