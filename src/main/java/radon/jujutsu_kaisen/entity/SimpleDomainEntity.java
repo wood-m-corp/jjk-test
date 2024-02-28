@@ -121,15 +121,15 @@ public class SimpleDomainEntity extends Entity {
         }
         ISorcererData cap = this.getOwner().getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
         if (isDomainAttack) {
-            domainInvuln = true;
+            this.domainInvuln = true;
             cap.delayTickEvent(() -> {
-                domainInvuln = false;
+                this.domainInvuln = false;
             }, 10);
         }
         if (!isDomainAttack) {
-            invuln = true;
+            this.invuln = true;
             cap.delayTickEvent(() -> {
-                invuln = false;
+                this.invuln = false;
             }, 5);
         }
         this.setHealth(this.getHealth() - pAmount);
