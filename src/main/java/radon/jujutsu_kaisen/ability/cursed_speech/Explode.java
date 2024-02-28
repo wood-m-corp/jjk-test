@@ -75,7 +75,7 @@ public class Explode extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 125.0F;
+        return 100.0F;
     }
 
     @Override
