@@ -25,7 +25,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 public class WaterShield extends Ability implements Ability.IChannelened, Ability.IDurationable {
     private static final double RADIUS = 8.0D;
     private static final double X_STEP = 0.05D;
-    private static final float DAMAGE = 12.0F;
+    private static final float DAMAGE = 15.0F;
     private static final float SPEED = 0.1F;
 
     @Override
