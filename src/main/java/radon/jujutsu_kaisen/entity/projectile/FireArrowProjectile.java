@@ -27,7 +27,7 @@ import radon.jujutsu_kaisen.util.ParticleUtil;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class FireArrowProjectile extends JujutsuProjectile {
-    private static final float DAMAGE = 27.5F;
+    private static final float DAMAGE = 32.5F;
     private static final float SPEED = 5.0F;
     private static final float EXPLOSIVE_POWER = 3.0F;
     private static final float MAX_EXPLOSION = 15.0F;
