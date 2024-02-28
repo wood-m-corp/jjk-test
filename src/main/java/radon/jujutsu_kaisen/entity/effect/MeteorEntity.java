@@ -36,12 +36,12 @@ public class MeteorEntity extends JujutsuProjectile {
     private static final EntityDataAccessor<Integer> DATA_EXPLOSION_TIME = SynchedEntityData.defineId(MeteorEntity.class, EntityDataSerializers.INT);
 
     public static final int SIZE = 5;
-    public static final int HEIGHT = 30;
-    private static final int MAX_SIZE = 30;
+    public static final int HEIGHT = 20;
+    private static final int MAX_SIZE = 25;
     public static final int DELAY = 3 * 20;
     private static final double SPEED = 1.5D;
     private static final int DURATION = 5 * 20;
-    private static final float DAMAGE = 25.0F;
+    private static final float DAMAGE = 20.0F;
 
     private int lerpSteps;
     private double lerpX;
