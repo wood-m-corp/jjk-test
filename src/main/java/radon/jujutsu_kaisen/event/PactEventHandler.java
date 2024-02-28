@@ -33,8 +33,8 @@ public class PactEventHandler {
                     ISorcererData cap = attacker.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
                     if (cap.hasBindingVow(BindingVow.RECOIL)) {
-                        attacker.hurt(JJKDamageSources.self(victim), event.getAmount() * 0.25F);
-                        event.setAmount(event.getAmount() * 1.25F);
+                        attacker.hurt(JJKDamageSources.self(victim), event.getAmount() * 0.2F);
+                        event.setAmount(event.getAmount() * 1.15F);
                     }
                 }
             }
