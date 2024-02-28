@@ -64,7 +64,7 @@ public class Explode extends Ability {
         for (Entity entity : getEntities(owner)) {
             if (!(entity instanceof LivingEntity living) || JJKAbilities.hasToggled(living, JJKAbilities.INFINITY.get())) continue;
 
-            ExplosionHandler.spawn(owner.level().dimension(), entity.position().add(0.0D, entity.getBbHeight() / 2.0F, 0.0D), Math.min(MAX_EXPLOSIVE_POWER, (EXPLOSIVE_POWER * 1.1F) * (this.getPower(owner)),
+            ExplosionHandler.spawn(owner.level().dimension(), entity.position().add(0.0D, entity.getBbHeight() / 2.0F, 0.0D), Math.min(MAX_EXPLOSIVE_POWER, ((EXPLOSIVE_POWER) * (this.getPower(owner)))*1.1F,
                     20, owner, JJKDamageSources.jujutsuAttack(owner, this), false);
 
             if (entity instanceof Player player) {
