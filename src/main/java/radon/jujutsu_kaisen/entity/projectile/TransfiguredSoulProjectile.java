@@ -34,7 +34,7 @@ public class TransfiguredSoulProjectile extends Projectile {
     private static final EntityDataAccessor<Integer> DATA_TIME = SynchedEntityData.defineId(TransfiguredSoulProjectile.class, EntityDataSerializers.INT);
 
     private static final double SPEED = 10.0D;
-    private static final float DAMAGE = 20.0F;
+    private static final float DAMAGE = 18.0F;
     private static final int DURATION = 5 * 20;
 
     public TransfiguredSoulProjectile(EntityType<? extends Projectile> pEntityType, Level pLevel) {
