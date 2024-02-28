@@ -1,6 +1,8 @@
 package radon.jujutsu_kaisen.ability.curse_manipulation;
 
 import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import org.jetbrains.annotations.Nullable;
@@ -31,7 +33,7 @@ public class MaximumUzumaki extends Ability {
     @Override
     public void run(LivingEntity owner) {
         owner.swing(InteractionHand.MAIN_HAND);
-        owner.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), JJKSounds.SPARK.get(), SoundSource.MASTER, 2.0F, 1.0F);
+        owner.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), JJKSounds.GHAST_SCREAM.get(), SoundSource.MASTER, 2.0F, 0.85F);
         MaximumUzumakiProjectile uzumaki = new MaximumUzumakiProjectile(owner, this.getPower(owner));
         owner.level().addFreshEntity(uzumaki);
     }
