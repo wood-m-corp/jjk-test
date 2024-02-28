@@ -22,7 +22,6 @@ public class RCT2 extends RCT1 {
         HARMFUL.add(MobEffects.POISON);
         HARMFUL.add(MobEffects.WITHER);
         HARMFUL.add(MobEffects.CONFUSION);
-        HARMFUL.add(MobEffects.WEAKNESS);
     }
 
     @Override
