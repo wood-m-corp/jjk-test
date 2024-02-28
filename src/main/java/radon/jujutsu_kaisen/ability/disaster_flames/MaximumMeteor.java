@@ -17,6 +17,7 @@ import radon.jujutsu_kaisen.effect.JJKEffects;
 import radon.jujutsu_kaisen.entity.effect.MeteorEntity;
 import radon.jujutsu_kaisen.capability.data.sorcerer.CursedTechnique;
 import net.minecraft.world.phys.Vec2;
+import radon.jujutsu_kaisen.sound.JJKSounds;
 
 public class MaximumMeteor extends Ability {
     @Override
@@ -42,7 +43,7 @@ public class MaximumMeteor extends Ability {
     public void run(LivingEntity owner) {
         if (canSpawn(owner, this.getPower(owner))) {
             owner.swing(InteractionHand.MAIN_HAND);
-
+            owner.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), JJKSounds.SPARK.get(), SoundSource.MASTER, 2.0F, 1.0F);
             MeteorEntity meteor = new MeteorEntity(owner, this.getPower(owner));
             owner.level().addFreshEntity(meteor);
         }
