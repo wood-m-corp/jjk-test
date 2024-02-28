@@ -201,7 +201,7 @@ public class LightningEntity extends JujutsuProjectile {
                 .inflate(SCALE);
 
         for (Entity entity : this.level().getEntities(this.getOwner(), bounds)) {
-            float pad = entity.getPickRadius() + 3.0F;
+            float pad = entity.getPickRadius() + 2.0F;
             AABB padded = entity.getBoundingBox().inflate(pad, pad, pad);
             Optional<Vec3> hit = padded.clip(from, to);
 
