@@ -55,7 +55,7 @@ public class Lightning extends Ability {
 
     @Override
     public int getCooldown() {
-        return 5 * 20;
+        return 8 * 20;
     }
 
     @Override
