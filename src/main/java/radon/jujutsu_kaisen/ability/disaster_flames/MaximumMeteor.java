@@ -53,7 +53,7 @@ public class MaximumMeteor extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 1000.0F;
+        return 800.0F;
     }
 
     @Override
