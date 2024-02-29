@@ -142,7 +142,7 @@ public class Dash extends Ability {
         }
         velocity = velocity.add(new Vec3(0.0D,0.2D,0.0D));
         if (!owner.onGround()) {
-           velocity = velocity.add(new Vec3(0.0D,-2.0D,0.0D));
+           velocity = velocity.add(new Vec3(0.0D,-1.0D,0.0D));
         }
         owner.setDeltaMovement(velocity);
         /*if (hit.getType() == HitResult.Type.MISS) {
