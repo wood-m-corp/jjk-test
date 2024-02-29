@@ -95,7 +95,7 @@ public class Dash extends Ability {
                 break;
             }
         }
-        return collision || owner.getXRot() >= 15.0F;
+        return collision || owner.getXRot() >= 25.0F;
     }
 
     private static float getRange(LivingEntity owner) {
@@ -138,9 +138,12 @@ public class Dash extends Ability {
            velocity = velocity.multiply(new Vec3(1.0D, 0.5D, 1.0D));
         }
         if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
-            velocity = velocity.multiply(new Vec3(1.5D, 1.25D, 1.5D)).add(new Vec3(0.0D, 0.1D,0.0D));
+            velocity = velocity.multiply(new Vec3(1.5D, 1.25D, 1.5D)).add(new Vec3(0.0D, 0.05D,0.0D));
         }
-        velocity = velocity.add(new Vec3(0.0D,0.3D,0.0D));
+        velocity = velocity.add(new Vec3(0.0D,0.2D,0.0D));
+        if (!owner.onGround()) {
+           velocity = velocity.add(new Vec3(0.0D,-2.0D,0.0D));
+        }
         owner.setDeltaMovement(velocity);
         /*if (hit.getType() == HitResult.Type.MISS) {
             float f = owner.getYRot();
