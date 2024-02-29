@@ -141,7 +141,7 @@ public class Dash extends Ability {
             if (velocity.y > 0) {
                 velocity.multiply(1.0D, 0.5D, 1.0D);
             }
-            owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(launchPower)).multiply(1.0D, 0.5D, 1.0D));
+            owner.setDeltaMovement(velocity);
         } else {
             Vec3 target = hit.getLocation();
 
