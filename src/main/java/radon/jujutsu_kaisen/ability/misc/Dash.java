@@ -34,7 +34,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class Dash extends Ability {
-    public static final double RANGE = 32.0D;
+    public static final double RANGE = 80.0D;
     private static final float DASH = 2.0F;
     private static final float MAX_DASH = 3.0F;
 
@@ -99,7 +99,7 @@ public class Dash extends Ability {
     }
 
     private static float getRange(LivingEntity owner) {
-        return (float) (RANGE * (JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION) ? 2.0F : 1.0F));
+        return (float) (RANGE * (JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F));
     }
 
     @Override
@@ -125,7 +125,7 @@ public class Dash extends Ability {
                 DASH * (1.0F + this.getPower(owner) * 0.1F) * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F));
 
         if (hit.getType() == HitResult.Type.MISS) {
-            float f = owner.getYRot();
+            /*float f = owner.getYRot();
             float f1 = owner.getXRot();
             float f2 = -Mth.sin(f * ((float) Math.PI / 180.0F)) * Mth.cos(f1 * ((float) Math.PI / 180.0F));
             float f3 = -Mth.sin(f1 * ((float) Math.PI / 180.0F));
@@ -135,9 +135,15 @@ public class Dash extends Ability {
             f3 *= power / f5;
             f4 *= power / f5;
             owner.push(f2, f3, f4);
-            owner.move(MoverType.SELF, new Vec3(0.0D, 1.1999999F, 0.0D));
+            owner.move(MoverType.SELF, new Vec3(0.0D, 1.1999999F, 0.0D));*/
+            Vec3 target = this.getTarget(owner);
+            Vec3 velocity = owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(power));
+            if (velocity.y > 0) {
+                velocity.multiply(1.0D, 0.5D, 1.0D);
+            }
+            owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(launchPower)).multiply(1.0D, 0.5D, 1.0D));
         } else {
-            Vec3 target = hit.getLocation();
+            /*Vec3 target = hit.getLocation();
 
             double distanceX = target.x - owner.getX();
             double distanceY = target.y - owner.getY();
@@ -147,7 +153,6 @@ public class Dash extends Ability {
             double motionX = distanceX / distance * power;
             double motionY = distanceY / distance * power;
             double motionZ = distanceZ / distance * power;
-
             owner.setDeltaMovement(motionX, motionY, motionZ);
         }
         owner.hurtMarked = true;
