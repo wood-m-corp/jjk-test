@@ -102,6 +102,14 @@ public class Dash extends Ability {
         return (float) (RANGE * (JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F));
     }
 
+   private Vec3 getTarget(LivingEntity owner) {
+        Vec3 start = owner.getEyePosition();
+        Vec3 look = RotationUtil.getTargetAdjustedLookAngle(owner);
+        Vec3 end = start.add(look.scale(RANGE));
+        HitResult result = RotationUtil.getHitResult(owner, start, end);
+        return result.getType() == HitResult.Type.MISS ? end : result.getLocation();
+    }
+
     @Override
     public void run(LivingEntity owner) {
         if (!(owner.level() instanceof ServerLevel level)) return;
