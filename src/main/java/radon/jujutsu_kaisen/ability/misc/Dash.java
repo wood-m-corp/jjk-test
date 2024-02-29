@@ -135,7 +135,7 @@ public class Dash extends Ability {
         Vec3 velocity = target.subtract(owner.position()).normalize().scale(power);
         velocity = velocity.multiply(new Vec3(1.2D, 1.0D, 1.2D));
         if (velocity.y > 0) {
-           velocity = velocity.multiply(new Vec3(1.0D, 0.5D, 1.0D));
+           velocity = velocity.multiply(new Vec3(1.0D, 0.7D, 1.0D));
         }
         if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
             velocity = velocity.multiply(new Vec3(1.5D, 1.25D, 1.5D)).add(new Vec3(0.0D, 0.05D,0.0D));
