@@ -153,7 +153,7 @@ public class Slam extends Ability implements Ability.ICharged {
                 slamCrater(owner,1);
             }
             else {
-                Vec3 direction = new Vec3(0.0D, Math.min(1.85D,launchPower*0.75D), 0.0D);
+                Vec3 direction = new Vec3(0.0D, Math.min(2.0D,launchPower*0.75D), 0.0D);
                 owner.setDeltaMovement(owner.getDeltaMovement().add(direction));
         
                 if (!owner.level().isClientSide) {
