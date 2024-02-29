@@ -118,12 +118,12 @@ public class Dash extends Ability {
 
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
-        /*if (cap.getSpeedStacks() > 0 || cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
+        if (cap.getSpeedStacks() > 0 || cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
             owner.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), JJKSounds.DASH.get(), SoundSource.MASTER, 1.0F, 1.0F);
             owner.addEffect(new MobEffectInstance(JJKEffects.INVISIBILITY.get(), 3, 0, false, false, false));
             level.sendParticles(new MirageParticle.MirageParticleOptions(owner.getId()), owner.getX(), owner.getY(), owner.getZ(),
                     0, 0.0D, 0.0D, 0.0D, 1.0D);
-        }*/
+        }
 
         Vec3 look = RotationUtil.getTargetAdjustedLookAngle(owner);
 
@@ -132,8 +132,16 @@ public class Dash extends Ability {
         float power = Math.min(MAX_DASH * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F),
                 DASH * (1.0F + this.getPower(owner) * 0.1F) * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F));
 
-        if (hit.getType() == HitResult.Type.MISS) {
-            /*float f = owner.getYRot();
+        Vec3 target = this.getTarget(owner);
+        Vec3 velocity = target.subtract(owner.position()).normalize().scale(power);
+        velocity.multiply(0.001D, 1.0D, 0.001D);
+        if (velocity.y > 0) {
+           velocity.multiply(1.0D, 500.0D, 1.0D);
+        }
+        velocity.add(0.0D,50.0D,0.0D);
+        owner.setDeltaMovement(velocity);
+        /*if (hit.getType() == HitResult.Type.MISS) {
+            float f = owner.getYRot();
             float f1 = owner.getXRot();
             float f2 = -Mth.sin(f * ((float) Math.PI / 180.0F)) * Mth.cos(f1 * ((float) Math.PI / 180.0F));
             float f3 = -Mth.sin(f1 * ((float) Math.PI / 180.0F));
@@ -143,21 +151,7 @@ public class Dash extends Ability {
             f3 *= power / f5;
             f4 *= power / f5;
             owner.push(f2, f3, f4);
-            owner.move(MoverType.SELF, new Vec3(0.0D, 1.1999999F, 0.0D));*/
-            Vec3 target = this.getTarget(owner);
-            Vec3 velocity = target.subtract(owner.position()).normalize().scale(power);
-            velocity.multiply(0.001D, 1.0D, 0.001D);
-            if (velocity.y > 0) {
-                velocity.multiply(1.0D, 500.0D, 1.0D);
-            }
-            velocity.add(0.0D,20.0D,0.0D);
-            owner.setDeltaMovement(velocity);
-         if (cap.getSpeedStacks() > 0 || cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
-            owner.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), JJKSounds.DASH.get(), SoundSource.MASTER, 1.0F, 1.0F);
-            owner.addEffect(new MobEffectInstance(JJKEffects.INVISIBILITY.get(), 3, 0, false, false, false));
-            level.sendParticles(new MirageParticle.MirageParticleOptions(owner.getId()), owner.getX(), owner.getY(), owner.getZ(),
-                    0, 0.0D, 0.0D, 0.0D, 1.0D);
-        }
+            owner.move(MoverType.SELF, new Vec3(0.0D, 1.1999999F, 0.0D));
         } else {
             Vec3 target = hit.getLocation();
 
@@ -170,7 +164,7 @@ public class Dash extends Ability {
             double motionY = distanceY / distance * power;
             double motionZ = distanceZ / distance * power;
             owner.setDeltaMovement(motionX, motionY, motionZ);
-        }
+        }*/
         owner.hurtMarked = true;
 
         Vec3 pos = owner.position();
