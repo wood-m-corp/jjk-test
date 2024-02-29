@@ -73,12 +73,12 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 50.0F;
+        return 40.0F;
     }
 
     @Override
     public int getCooldown() {
-        return 8 * 20;
+        return 5 * 20;
     }
 
     @Override
@@ -123,7 +123,7 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
             amplifier = existing.getAmplifier() + 1;
         }
 
-        MobEffectInstance instance = new MobEffectInstance(JJKEffects.TRANSFIGURED_SOUL.get(), 25 * 20, amplifier, false, true, true);
+        MobEffectInstance instance = new MobEffectInstance(JJKEffects.TRANSFIGURED_SOUL.get(), 15 * 20, amplifier, false, true, true);
         target.addEffect(instance);
 
         if (!owner.level().isClientSide) {
