@@ -54,7 +54,10 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
         if (stacks != null) {
         amp = stacks.getAmplifier();
         }
-        return 20 * amp
+
+        int lecost = 20 * amp
+
+        return lecost
     }
 
     @Override
