@@ -22,6 +22,8 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
         return false;
     }
 
+    private int realcost = 0;
+
     @Override
     public ActivationType getActivationType(LivingEntity owner) {
         return ActivationType.TOGGLED;
@@ -49,7 +51,7 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
 
     @Override
     public float getCost(LivingEntity owner, LivingEntity target) {
-        return 80;
+        return realcost;
     }
 
     @Override
@@ -75,6 +77,8 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
         if (existing != null) {
             amplifier = existing.getAmplifier();
         }
+
+        realcost = amplifier * 25;
 
         float attackerStrength = IdleTransfiguration.calculateStrength(owner);
         float victimStrength = IdleTransfiguration.calculateStrength(target);
