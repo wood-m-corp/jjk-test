@@ -136,7 +136,7 @@ public class Dash extends Ability {
         Vec3 velocity = target.subtract(owner.position()).normalize().scale(power);
         velocity = velocity.multiply(new Vec3(1.3D, 1.0D, 1.3D));
         if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
-            velocity = velocity.multiply(new Vec3(1.5D,1.25D,1.5D);
+            velocity = velocity.multiply(new Vec3(1.5D,1.25D,1.5D));
         }
         if (velocity.y > 0) {
            velocity = velocity.multiply(new Vec3(1.0D, 0.5D, 1.0D));
@@ -173,14 +173,17 @@ public class Dash extends Ability {
         Vec3 pos = owner.position();
 
         for (int i = 0; i < 32; i++) {
+            double xPos = owner.getX() + (HelperMethods.RANDOM.nextDouble() - 0.5D) * (owner.getBbWidth() * 1.25F) - owner.getLookAngle().scale(0.35D).x;
+            double yPos= owner.getY() + HelperMethods.RANDOM.nextDouble() * (owner.getBbHeight());
+            double zPos = owner.getZ() + (HelperMethods.RANDOM.nextDouble() - 0.5D) * (owner.getBbWidth() * 1.25F) - owner.getLookAngle().scale(0.35D).z;
             double theta = HelperMethods.RANDOM.nextDouble() * 2 * Math.PI;
             double phi = HelperMethods.RANDOM.nextDouble() * Math.PI;
-            double r = HelperMethods.RANDOM.nextDouble() * 0.8D;
+            double r = HelperMethods.RANDOM.nextDouble() * 0.2D;
             double x = r * Math.sin(phi) * Math.cos(theta);
             double y = r * Math.sin(phi) * Math.sin(theta);
             double z = r * Math.cos(phi);
             Vec3 speed = look.add(x, y, z).reverse();
-            level.sendParticles(ParticleTypes.CLOUD, pos.x, pos.y, pos.z, 0, speed.x, speed.y, speed.z, 1.0D);
+            level.sendParticles(ParticleTypes.CLOUD, xPos, yPos, zPos, 0, speed.x, speed.y, speed.z, 1.0D);
         }
     }
 
