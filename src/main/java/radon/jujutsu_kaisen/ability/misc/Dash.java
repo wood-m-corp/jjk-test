@@ -141,7 +141,7 @@ public class Dash extends Ability {
             velocity = velocity.multiply(new Vec3(1.5D, 1.25D, 1.5D)).add(new Vec3(0.0D, 0.1D,0.0D));
         }
         velocity = velocity.add(new Vec3(0.0D,0.3D,0.0D));
-        owner.move(MoverType.Self, velocity);
+        owner.move(MoverType.SELF, velocity);
         /*if (hit.getType() == HitResult.Type.MISS) {
             float f = owner.getYRot();
             float f1 = owner.getXRot();
