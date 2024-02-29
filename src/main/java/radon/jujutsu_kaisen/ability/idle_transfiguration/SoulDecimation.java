@@ -22,7 +22,6 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
         return false;
     }
 
-    private int realcost = 0;
 
     @Override
     public ActivationType getActivationType(LivingEntity owner) {
@@ -51,7 +50,7 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
 
     @Override
     public float getCost(LivingEntity owner) {
-        return realcost;
+        return 0.0F;
     }
 
     @Override
@@ -78,14 +77,16 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
             amplifier = existing.getAmplifier();
         }
 
-        realcost = amplifier * 25;
-
         float attackerStrength = IdleTransfiguration.calculateStrength(owner);
         float victimStrength = IdleTransfiguration.calculateStrength(target);
 
         int required = 1;//Math.round((victimStrength / Math.round(attackerStrength*2/10)) * 2);
-
-        if (target instanceof TransfiguredSoulEntity || amplifier >= required) {
+        ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+        int required = 1;//Math.round((victimStrength / Math.round(attackerStrength*2/10)) * 2);
+        float cost = Math.min(4,amplifier)*20;
+        
+        if ((target instanceof TransfiguredSoulEntity || amplifier >= required) && cap.getEnergy() >= cost) {
+            cap.useEnergy(cost);
             target.removeEffect(JJKEffects.TRANSFIGURED_SOUL.get());
             target.hurt(JJKDamageSources.soulAttack(owner), target.getMaxHealth()*Math.min(8,amplifier*2)/10);
         /*} else {
