@@ -48,9 +48,7 @@ public class WormCurseGrab extends Ability {
 
     @Override
     public void run(LivingEntity owner) {
-        LivingEntity target = enemy;
-
-        if (target == null) return;
+        LivingEntity target = this.enemy;
 
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
 
@@ -59,13 +57,13 @@ public class WormCurseGrab extends Ability {
         if (!(JJKAbilities.summonCurse(owner, curse, false) instanceof WormCurseEntity worm)) return;
 
         worm.grab(target);
-        enemy = null;
+        this.enemy = null;
     }
 
     @Override
     public Status isTriggerable(LivingEntity owner) {
         LivingEntity target = this.getTarget(owner);
-        enemy = target;
+        this.enemy = target;
 
         if (target == null) {
             return Status.FAILURE;
