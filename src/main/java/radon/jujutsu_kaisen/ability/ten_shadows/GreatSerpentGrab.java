@@ -49,9 +49,7 @@ public class GreatSerpentGrab extends Ability {
     public void run(LivingEntity owner) {
         if (owner.level().isClientSide) return;
 
-        LivingEntity target = enemy;
-
-        if (target == null) return;
+        LivingEntity target = this.enemy;
 
         AbilityHandler.trigger(owner, JJKAbilities.GREAT_SERPENT.get());
 
@@ -68,7 +66,7 @@ public class GreatSerpentGrab extends Ability {
     @Override
     public Status isTriggerable(LivingEntity owner) {
         LivingEntity target = this.getTarget(owner);
-        enemy = target;
+        this.enemy = target;
 
         if (target == null) {
             return Status.FAILURE;
