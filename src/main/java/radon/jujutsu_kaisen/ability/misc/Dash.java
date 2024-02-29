@@ -134,11 +134,11 @@ public class Dash extends Ability {
 
         Vec3 target = this.getTarget(owner);
         Vec3 velocity = target.subtract(owner.position()).normalize().scale(power);
-        velocity = velocity.multiply(new Vec3(1.0D, 1.0D, 1.0D));
+        velocity = velocity.multiply(new Vec3(1.25D, 1.0D, 1.25D));
         if (velocity.y > 0) {
            velocity = velocity.multiply(new Vec3(1.0D, 0.5D, 1.0D));
         }
-        velocity = velocity.add(new Vec3(0.0D,0.25D,0.0D));
+        velocity = velocity.add(new Vec3(0.0D,0.3D,0.0D));
         owner.setDeltaMovement(velocity);
         /*if (hit.getType() == HitResult.Type.MISS) {
             float f = owner.getYRot();
