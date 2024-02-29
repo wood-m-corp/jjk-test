@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class RadialScreen extends Screen {
-    protected static final int RADIUS_IN = 30;
+    protected static final int RADIUS_IN = 20;
     protected static final int RADIUS_OUT = 100;
 
     private final List<List<DisplayItem>> pages = new ArrayList<>();
