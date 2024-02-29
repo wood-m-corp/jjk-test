@@ -143,7 +143,7 @@ public class Dash extends Ability {
             }
             owner.setDeltaMovement(owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(launchPower)).multiply(1.0D, 0.5D, 1.0D));
         } else {
-            /*Vec3 target = hit.getLocation();
+            Vec3 target = hit.getLocation();
 
             double distanceX = target.x - owner.getX();
             double distanceY = target.y - owner.getY();
