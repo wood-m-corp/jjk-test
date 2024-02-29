@@ -80,7 +80,7 @@ public class DeathSwarm extends Ability implements Ability.IDomainAttack {
 
     @Override
     public void run(LivingEntity owner) {
-        LivingEntity newEnemy = enemy;
+        LivingEntity newEnemy = this.enemy;
 
         //if (target == null) return;
 
