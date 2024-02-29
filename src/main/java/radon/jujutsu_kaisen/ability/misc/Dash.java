@@ -129,12 +129,15 @@ public class Dash extends Ability {
 
         HitResult hit = RotationUtil.getLookAtHit(owner, getRange(owner));
 
-        float power = Math.min(MAX_DASH * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F),
-                DASH * (1.0F + this.getPower(owner) * 0.1F) * (cap.hasTrait(Trait.HEAVENLY_RESTRICTION) ? 1.5F : 1.0F));
+        float power = Math.min(MAX_DASH,
+                DASH * (1.0F + this.getPower(owner) * 0.1F));
 
         Vec3 target = this.getTarget(owner);
         Vec3 velocity = target.subtract(owner.position()).normalize().scale(power);
-        velocity = velocity.multiply(new Vec3(1.25D, 1.0D, 1.25D));
+        velocity = velocity.multiply(new Vec3(1.3D, 1.0D, 1.3D));
+        if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
+            velocity = velocity.multiply(new Vec3(1.5D,1.25D,1.5D);
+        }
         if (velocity.y > 0) {
            velocity = velocity.multiply(new Vec3(1.0D, 0.5D, 1.0D));
         }
