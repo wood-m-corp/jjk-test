@@ -146,9 +146,9 @@ public class Dash extends Ability {
             owner.move(MoverType.SELF, new Vec3(0.0D, 1.1999999F, 0.0D));*/
             Vec3 target = this.getTarget(owner);
             Vec3 velocity = owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(power));
-            velocity.multiply(0.1D, 1.0D, 0.1D);
+            velocity.multiply(0.001D, 1.0D, 0.001D);
             if (velocity.y > 0) {
-                velocity.multiply(1.0D, 5.0D, 1.0D);
+                velocity.multiply(1.0D, 500.0D, 1.0D);
             }
             velocity.add(0.0D,20.0D,0.0D);
             owner.setDeltaMovement(velocity);
