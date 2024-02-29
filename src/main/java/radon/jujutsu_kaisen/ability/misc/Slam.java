@@ -153,7 +153,7 @@ public class Slam extends Ability implements Ability.ICharged {
                 slamCrater(owner,1);
             }
             else {
-                Vec3 direction = new Vec3(0.0D, Math.min(2.0D,launchPower*0.75D), 0.0D);
+                Vec3 direction = new Vec3(0.0D, Math.min(1.85D,launchPower*0.75D), 0.0D);
                 owner.setDeltaMovement(owner.getDeltaMovement().add(direction));
         
                 if (!owner.level().isClientSide) {
@@ -166,7 +166,7 @@ public class Slam extends Ability implements Ability.ICharged {
                     Vec3 target = this.getTarget(owner);
                     Vec3 velocity = owner.getDeltaMovement().add(target.subtract(owner.position()).normalize().scale(launchPower));
                     if (velocity.y > 0) {
-                        velocity.multiply(1.0D, 0.5D, 1.0D);
+                        velocity.multiply(1.0D, 0.25D, 1.0D);
                     }
                     owner.setDeltaMovement(velocity);
                     cap.delayTickEvent(() -> {
