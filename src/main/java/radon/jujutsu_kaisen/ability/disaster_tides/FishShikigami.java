@@ -46,9 +46,7 @@ public class FishShikigami extends Ability {
 
     @Override
     public void run(LivingEntity owner) {
-        LivingEntity target = enemy;
-
-        if (target == null) return;
+        LivingEntity target = this.enemy;
 
         float xOffset = (HelperMethods.RANDOM.nextFloat() - 0.5F) * 5.0F;
         float yOffset = owner.getBbHeight() + ((HelperMethods.RANDOM.nextFloat() - 0.5F) * 5.0F);
@@ -59,13 +57,13 @@ public class FishShikigami extends Ability {
                 new PiranhaShikigamiProjectile(owner, getPower(owner), target, xOffset, yOffset)
         };
         owner.level().addFreshEntity(projectiles[HelperMethods.RANDOM.nextInt(projectiles.length)]);
-        enemy = null;
+        this.enemy = null;
     }
 
     @Override
     public Status isTriggerable(LivingEntity owner) {
         LivingEntity target = this.getTarget(owner);
-        enemy = target;
+        this.enemy = target;
 
         if (target == null) {
             return Status.FAILURE;
