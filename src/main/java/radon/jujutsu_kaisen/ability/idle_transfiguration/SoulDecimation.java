@@ -82,7 +82,7 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
 
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
         int required = 1;//Math.round((victimStrength / Math.round(attackerStrength*2/10)) * 2);
-        float cost = Math.min(4,amplifier)*20;
+        float cost = Math.min(4,amplifier)*25;
         
         if ((target instanceof TransfiguredSoulEntity || amplifier >= required) && cap.getEnergy() >= cost) {
             cap.useEnergy(cost);
