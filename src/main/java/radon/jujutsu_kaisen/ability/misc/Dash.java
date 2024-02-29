@@ -74,7 +74,7 @@ public class Dash extends Ability {
 
         AABB bounds = owner.getBoundingBox();
         Cursor3D cursor = new Cursor3D(Mth.floor(bounds.minX - 1.0E-7D) - 1,
-                Mth.floor(bounds.minY - 1.0E-7D) - 1,
+                Mth.floor(bounds.minY - 1.0E-7D) - 3,
                 Mth.floor(bounds.minZ - 1.0E-7D) - 1,
                 Mth.floor(bounds.maxX + 1.0E-7D) + 1,
                 Mth.floor(bounds.maxY + 1.0E-7D) + 1,
@@ -95,7 +95,7 @@ public class Dash extends Ability {
                 break;
             }
         }
-        return collision || owner.getXRot() >= 5.0F;
+        return collision || owner.getXRot() >= 10.0F;
     }
 
     private static float getRange(LivingEntity owner) {
