@@ -133,11 +133,11 @@ public class Dash extends Ability {
                 DASH * (1.0F + this.getPower(owner) * 0.1F));
 
         Vec3 target = this.getTarget(owner);
-        if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
-            power*=2.0F
-        }
         Vec3 velocity = target.subtract(owner.position()).normalize().scale(power);
         velocity = velocity.multiply(new Vec3(1.3D, 1.0D, 1.3D));
+        if (cap.hasTrait(Trait.HEAVENLY_RESTRICTION)) {
+            velocity = velocity.multiply(new Vec3(1.5D, 1.25D, 1.5D)).add(new Vec3(0.0D, 0.1D,0.0D));
+        }
         if (velocity.y > 0) {
            velocity = velocity.multiply(new Vec3(1.0D, 0.5D, 1.0D));
         }
