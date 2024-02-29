@@ -38,8 +38,8 @@ public class SimpleDomainEntity extends Entity {
     public static final float RADIUS = 2.0F;
     private static final float MAX_RADIUS = 4.0F;
     private static final float DAMAGE = 3.0F;
-    private static boolean invuln = false;
-    private static boolean domainInvuln = false;
+    private boolean invuln = false;
+    private boolean domainInvuln = false;
 
     @Nullable
     private UUID ownerUUID;
