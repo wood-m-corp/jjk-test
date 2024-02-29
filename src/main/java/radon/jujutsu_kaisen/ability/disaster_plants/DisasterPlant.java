@@ -41,19 +41,19 @@ public class DisasterPlant extends Ability {
 
         if (owner.level().isClientSide) return;
 
-        LivingEntity target = enemy;
+        LivingEntity target = this.enemy;
 
         if (target == null) return;
 
         DisasterPlantEntity plant = new DisasterPlantEntity(owner, this.getPower(owner), target);
         owner.level().addFreshEntity(plant);
-        enemy = null;
+        this.enemy = null;
     }
 
     @Override
     public Status isTriggerable(LivingEntity owner) {
         LivingEntity target = this.getTarget(owner);
-        enemy = target;
+        this.enemy = target;
 
         if (target == null) {
             return Status.FAILURE;
