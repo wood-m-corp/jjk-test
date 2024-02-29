@@ -110,7 +110,7 @@ public class SimpleDomainEntity extends Entity {
         return Vec3.ZERO;
     }
 
-    //@Override
+    @Override
     public boolean hurt(@NotNull DamageSource pSource, float pAmount, boolean isDomainAttack) {
         if (!isDomainAttack && invuln) return false;
         if (isDomainAttack && domainInvuln) return false;
