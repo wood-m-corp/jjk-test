@@ -43,8 +43,6 @@ public class DisasterPlant extends Ability {
 
         LivingEntity target = this.enemy;
 
-        if (target == null) return;
-
         DisasterPlantEntity plant = new DisasterPlantEntity(owner, this.getPower(owner), target);
         owner.level().addFreshEntity(plant);
         this.enemy = null;
