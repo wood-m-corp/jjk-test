@@ -50,7 +50,7 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
     }
 
     @Override
-    public float getCost(LivingEntity owner, LivingEntity target) {
+    public float getCost(LivingEntity owner) {
         return realcost;
     }
 
