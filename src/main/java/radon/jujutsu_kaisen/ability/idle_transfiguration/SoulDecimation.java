@@ -80,7 +80,6 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
         float attackerStrength = IdleTransfiguration.calculateStrength(owner);
         float victimStrength = IdleTransfiguration.calculateStrength(target);
 
-        int required = 1;//Math.round((victimStrength / Math.round(attackerStrength*2/10)) * 2);
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
         int required = 1;//Math.round((victimStrength / Math.round(attackerStrength*2/10)) * 2);
         float cost = Math.min(4,amplifier)*20;
