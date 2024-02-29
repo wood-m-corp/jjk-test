@@ -136,7 +136,10 @@ public class Slam extends Ability implements Ability.ICharged {
             Vec3 target = this.getTarget(owner);
             Vec3 velocity = (target.subtract(owner.position()).normalize().scale(launchPower));
             if (velocity.y > 0) {
-                velocity = velocity.multiply(1.0D, 0.75D, 1.0D);
+                velocity = velocity.multiply(1.0D, 0.6D, 1.0D);
+            }
+            else {
+                velocity = velocity.multiply(1.0D, 1.35D, 1.0D);
             }
             owner.setDeltaMovement(velocity);
             owner.swing(InteractionHand.MAIN_HAND);
