@@ -141,7 +141,7 @@ public class Dash extends Ability {
             velocity = velocity.multiply(new Vec3(1.5D, 1.25D, 1.5D)).add(new Vec3(0.0D, 0.05D,0.0D));
         }
         velocity = velocity.add(new Vec3(0.0D,0.2D,0.0D));
-        if (!owner.onGround() && !owner.level().getBlockState(owner.blockPosition()).getFluidState().isEmpty()) {
+        if (!owner.onGround() && owner.level().getBlockState(owner.blockPosition()).getFluidState().isEmpty()) {
            velocity = velocity.add(new Vec3(0.0D,-0.6D,0.0D));
         }
         owner.setDeltaMovement(velocity);
