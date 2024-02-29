@@ -95,7 +95,7 @@ public class Dash extends Ability {
                 break;
             }
         }
-        return collision || owner.getXRot() >= 25.0F;
+        return collision || owner.getXRot() >= 5.0F;
     }
 
     private static float getRange(LivingEntity owner) {
