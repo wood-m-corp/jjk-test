@@ -167,10 +167,7 @@ public class RotationUtil {
             }
         }
 
-        if (targeted != null) {
-            return targeted;
-        }
-        return null;
+        return targeted;
     }
 
     public static LivingEntity getExpandedLookAt(Entity entity, double range, Predicate<Entity> filter) {
@@ -211,10 +208,7 @@ public class RotationUtil {
             }
         }
 
-        if (targeted != null) {
-            return targeted;
-        }
-        return null;
+        return targeted;
     }
 
     public static NyoiStaffEntity getNyoiLookAt(Entity entity, double range, Predicate<Entity> filter) {
