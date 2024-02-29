@@ -68,10 +68,13 @@ public class OutputRCT extends Ability {
     }
 
     private @Nullable LivingEntity getTarget(LivingEntity owner) {
-        if (RotationUtil.getLookAtHit(owner, RANGE) instanceof EntityHitResult hit && hit.getEntity() instanceof LivingEntity target) {
-            return target;
+        LivingEntity target = (RotationUtil.getExpandedLookAt(owner, RANGE));
+        if (target != null) {
+            if (owner.canAttack(target)) {
+                result = target;
+            }
         }
-        return null;
+        return result;
     }
 
     @Override
