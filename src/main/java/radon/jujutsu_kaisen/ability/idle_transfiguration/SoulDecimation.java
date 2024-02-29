@@ -49,8 +49,12 @@ public class SoulDecimation extends Ability implements Ability.IToggled, Ability
 
     @Override
     public float getCost(LivingEntity owner, LivingEntity target) {
-        float decimationcost = target.getEffect(JJKEffects.TRANSFIGURED_SOUL.get());
-        return 20 * decimationcost;
+        float stacks = target.getEffect(JJKEffects.TRANSFIGURED_SOUL.get());
+        int amp = 0;
+        if (stacks != null) {
+        amp = stacks.getAmplifier();
+        }
+        return 20 * amp
     }
 
     @Override
