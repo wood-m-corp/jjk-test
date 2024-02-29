@@ -73,12 +73,12 @@ public class Dash extends Ability {
         boolean collision = false;
 
         AABB bounds = owner.getBoundingBox();
-        Cursor3D cursor = new Cursor3D(Mth.floor(bounds.minX - 1.0E-7D) - 1,
-                Mth.floor(bounds.minY - 1.0E-7D) - 3,
-                Mth.floor(bounds.minZ - 1.0E-7D) - 1,
-                Mth.floor(bounds.maxX + 1.0E-7D) + 1,
-                Mth.floor(bounds.maxY + 1.0E-7D) + 1,
-                Mth.floor(bounds.maxZ + 1.0E-7D) + 1);
+        Cursor3D cursor = new Cursor3D(Mth.floor(bounds.minX - 1.0E-7D) - 2,
+                Mth.floor(bounds.minY - 1.0E-7D) - 2,
+                Mth.floor(bounds.minZ - 1.0E-7D) - 2,
+                Mth.floor(bounds.maxX + 1.0E-7D) + 2,
+                Mth.floor(bounds.maxY + 1.0E-7D) + 2,
+                Mth.floor(bounds.maxZ + 1.0E-7D) + 2);
 
         while (cursor.advance()) {
             int i = cursor.nextX();
@@ -95,7 +95,7 @@ public class Dash extends Ability {
                 break;
             }
         }
-        return collision || owner.getXRot() >= 10.0F;
+        return collision || owner.getXRot() >= 15.0F;
     }
 
     private static float getRange(LivingEntity owner) {
