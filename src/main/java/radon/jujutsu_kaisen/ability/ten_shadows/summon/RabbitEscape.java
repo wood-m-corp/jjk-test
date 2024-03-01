@@ -37,7 +37,7 @@ public class RabbitEscape extends Summon<RabbitEscapeEntity> {
     public void run(LivingEntity owner) {
         super.run(owner);
 
-        owner.addEffect(new MobEffectInstance(JJKEffects.INVISIBILITY.get(), 3 * 20, 0, false, false, false));
+        owner.addEffect(new MobEffectInstance(JJKEffects.INVISIBILITY.get(), 60, 0, false, false, false));
     }
 
     @Override
