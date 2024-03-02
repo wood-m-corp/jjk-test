@@ -19,7 +19,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class Spiderweb extends Ability {
-    private static final int RANGE = 6;
+    private static final int RANGE = 7;
     private static final int DELAY = 20;
     private static final float EXPLOSIVE_POWER = 3.0F;
     private static final float MAX_EXPLOSIVE_POWER = 30.0F;
