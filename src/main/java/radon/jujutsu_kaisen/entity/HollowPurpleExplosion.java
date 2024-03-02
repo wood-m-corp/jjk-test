@@ -57,7 +57,7 @@ public class HollowPurpleExplosion extends JujutsuProjectile {
         }
 
         if (this.getTime() - 1 == 0) {
-            if (!(this.getOwner() instanceof LivingEntity owner)) {
+            if (!(this.getOwner() instanceof LivingEntity owner)) return;
 
             
             this.playSound(JJKSounds.HOLLOW_PURPLE_EXPLOSION.get(), 3.0F, 1.0F);
@@ -66,7 +66,7 @@ public class HollowPurpleExplosion extends JujutsuProjectile {
             int duration = (int) (radius / 5.0F * 20);
             ExplosionHandler.spawn(this.level().dimension(), this.position().add(0.0D, this.getBbHeight() / 2.0F, 0.0D), radius,
                     duration, this.getPower() * 0.5F, owner, JJKDamageSources.indirectJujutsuAttack(this, owner, JJKAbilities.HOLLOW_PURPLE.get()), false);
-            }
+            
         }
     }
 }
