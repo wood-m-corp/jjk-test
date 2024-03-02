@@ -10,6 +10,7 @@ import radon.jujutsu_kaisen.ability.JJKAbilities;
 import radon.jujutsu_kaisen.damage.JJKDamageSources;
 import radon.jujutsu_kaisen.entity.projectile.base.JujutsuProjectile;
 import radon.jujutsu_kaisen.sound.JJKSounds;
+import net.minecraft.util.Mth;
 
 public class HollowPurpleExplosion extends JujutsuProjectile {
     public static final int DURATION = 3 * 20;
