@@ -50,9 +50,9 @@ public class FishShikigami extends Ability {
         float yOffset = owner.getBbHeight() + ((HelperMethods.RANDOM.nextFloat() - 0.5F) * 5.0F);
 
         FishShikigamiProjectile[] projectiles = new FishShikigamiProjectile[]{
-                new EelShikigamiProjectile(owner, this.getPower(owner), target, xOffset, yOffset),
-                new SharkShikigamiProjectile(owner, this.getPower(owner), target, xOffset, yOffset),
-                new PiranhaShikigamiProjectile(owner, getPower(owner), target, xOffset, yOffset)
+                new EelShikigamiProjectile(owner, this.getPower(owner) * 1.1F, target, xOffset, yOffset),
+                new SharkShikigamiProjectile(owner, this.getPower(owner) * 1.1F, target, xOffset, yOffset),
+                new PiranhaShikigamiProjectile(owner, getPower(owner) * 1.1F, target, xOffset, yOffset)
         };
         owner.level().addFreshEntity(projectiles[HelperMethods.RANDOM.nextInt(projectiles.length)]);
         this.enemy = null;
@@ -71,7 +71,7 @@ public class FishShikigami extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 50.0F;
+        return 80.0F;
     }
 
     @Override
