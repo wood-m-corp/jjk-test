@@ -99,7 +99,7 @@ public class DeathSwarm extends Ability implements Ability.IDomainAttack {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 300.0F;
+        return 275.0F;
     }
 
     @Override
