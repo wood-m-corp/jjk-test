@@ -18,6 +18,7 @@ import radon.jujutsu_kaisen.capability.data.sorcerer.CursedTechnique;
 import radon.jujutsu_kaisen.config.ConfigHolder;
 import radon.jujutsu_kaisen.entity.base.DomainExpansionEntity;
 import radon.jujutsu_kaisen.sound.JJKSounds;
+import radon.jujutsu_kaisen.capability.data.sorcerer.Trait;
 
 public class ZeroPointTwoSecondDomainExpansion extends Ability {
     @Override
@@ -92,9 +93,11 @@ public class ZeroPointTwoSecondDomainExpansion extends Ability {
             if (domain == null) return;
 
             cap.delayTickEvent(() -> {
-                for (Entity entity : domain.getAffected()) {
-                    if (entity instanceof LivingEntity living) {
-                        ability.onHitEntity(domain, owner, living, true);
+                for (LivingEntity entity : domain.getAffected()) {
+                    if (JJKAbilities.hasTrait(entity, Trait.HEAVENLY_RESTRICTION)) {
+                        ability.onHitBlock(domain, owner, entity.blockPosition());
+                    } else {
+                        ability.onHitEntity(domain, owner, entity, false);
                     }
                 }
                 domain.discard();
