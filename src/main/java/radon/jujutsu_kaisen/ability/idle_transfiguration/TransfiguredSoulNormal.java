@@ -40,11 +40,11 @@ public class TransfiguredSoulNormal extends TransfiguredSoul<TransfiguredSoulNor
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 75.0F;
+        return 50.0F;
     }
 
     @Override
     public int getSoulCost() {
-        return 1;
+        return 2;
     }
 }
