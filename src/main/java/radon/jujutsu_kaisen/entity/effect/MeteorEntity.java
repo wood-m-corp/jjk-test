@@ -41,7 +41,7 @@ public class MeteorEntity extends JujutsuProjectile {
     public static final int DELAY = 4 * 20;
     private static final double SPEED = 2.0D;
     private static final int DURATION = 5 * 20;
-    private static final float DAMAGE = 20.0F;
+    private static final float DAMAGE = 18.0F;
 
     private int lerpSteps;
     private double lerpX;
@@ -145,7 +145,7 @@ public class MeteorEntity extends JujutsuProjectile {
                     }
 
                     if (j > i - 1) {
-                        this.hurt(this.damageSources().cramming(), 6.0F);
+                        this.hurt(this.damageSources().cramming(), 4.0F);
                     }
                 }
 
