@@ -13,7 +13,7 @@ import radon.jujutsu_kaisen.entity.JJKEntities;
 import radon.jujutsu_kaisen.entity.projectile.base.JujutsuProjectile;
 
 public class ForestWaveEntity extends JujutsuProjectile {
-    private static final float DAMAGE = 14.0F;
+    private static final float DAMAGE = 16.0F;
 
     private boolean damage;
 
