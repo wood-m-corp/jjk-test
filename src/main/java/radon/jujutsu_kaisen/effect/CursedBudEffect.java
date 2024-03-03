@@ -56,7 +56,7 @@ public class CursedBudEffect extends JJKEffect {
         float dmg = (previous - cap.getEnergy()) * 0.05F;
         
         if (previous > cap.getEnergy()) {
-            pLivingEntity.hurt(pLivingEntity.level().damageSources().generic(), (dmg) + 0.5F);
+            pLivingEntity.hurt(pLivingEntity.level().damageSources().generic(), (dmg) + 1.0F);
         }
         AMOUNTS.put(pLivingEntity.getUUID(), cap.getEnergy());
     }
