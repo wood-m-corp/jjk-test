@@ -104,7 +104,7 @@ public class Barrage extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 0;
+        return JJKAbilities.hasTrait(owner, Trait.HEAVENLY_RESTRICTION) ? 0.0F : 15.0F;
     }
 
     public int getCooldown() {
