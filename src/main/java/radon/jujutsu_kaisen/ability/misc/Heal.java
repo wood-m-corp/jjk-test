@@ -67,7 +67,7 @@ public class Heal extends Ability implements Ability.IChannelened {
         ISorcererData cap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
         if (cap.getEnergy() < 100.0F) return 0.0F;
         if (owner.getHealth() < owner.getMaxHealth()) {
-            return (float) Math.min(10.0F, (ConfigHolder.SERVER.curseHealingAmount.get().floatValue() * Math.pow(this.getPower(owner), Math.log(this.getPower(owner))))*3.0F);
+            return (float) Math.min(9.0F, (ConfigHolder.SERVER.curseHealingAmount.get().floatValue() * Math.pow(this.getPower(owner), Math.log(this.getPower(owner))))*3.0F);
         }
         return 0.0F;
     }
