@@ -73,7 +73,7 @@ public class IdleTransfiguration extends Ability implements Ability.IToggled, Ab
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 40.0F;
+        return 100.0F;
     }
 
     @Override
