@@ -128,7 +128,7 @@ public class SorcererGoal extends Goal {
    @Override
    public boolean canUse() {
         long i = this.mob.level().getGameTime();
-        if (i - this.lastCanUseCheck > 10L) {
+        if (i - this.lastCanUseCheck > 12L) {
             this.lastCanUseCheck = i;
             return true;
         } else {
