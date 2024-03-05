@@ -27,7 +27,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 
 public class Cleave extends Ability implements Ability.IDomainAttack, Ability.IAttack, Ability.IToggled {
     public static final double RANGE = 30.0D;
-    private static final float MAX_DAMAGE = 22.5F;
+    private static final float MAX_DAMAGE = 30.0F;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
@@ -82,12 +82,12 @@ public class Cleave extends Ability implements Ability.IDomainAttack, Ability.IA
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 100.0F;
+        return 200.0F;
     }
 
     @Override
     public int getCooldown() {
-        return 10 * 20;
+        return 20 * 20;
     }
 
     @Override
