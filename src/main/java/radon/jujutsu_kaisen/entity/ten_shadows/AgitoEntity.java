@@ -112,7 +112,7 @@ public class AgitoEntity extends TenShadowsSummon {
         return SorcererEntity.createAttributes()
                 .add(Attributes.MAX_HEALTH, 5 * 10.0D)
                 .add(Attributes.ARMOR, 16.0D)
-                .add(Attributes.ATTACK_DAMAGE, 6 * 1.5D);
+                .add(Attributes.ATTACK_DAMAGE, 7 * 1.5D);
         
     }
 
