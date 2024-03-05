@@ -14,7 +14,7 @@ import radon.jujutsu_kaisen.util.HelperMethods;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
 public class NueTotalityLightning extends Ability {
-    private static final float DAMAGE = 7.5F;
+    private static final float DAMAGE = 10.0F;
 
     @Override
     public boolean isScalable(LivingEntity owner) {
