@@ -253,7 +253,7 @@ public class GreatSerpentEntity extends TenShadowsSummon {
                 .add(Attributes.MAX_HEALTH, 3 * 13.0D)
                 .add(Attributes.MOVEMENT_SPEED, 1.2 * 0.33D)
                 .add(Attributes.ARMOR, 10.0D)
-                .add(Attributes.ATTACK_DAMAGE, 5 * 4.0D);
+                .add(Attributes.ATTACK_DAMAGE, 6 * 4.0D);
     }
 
     @Override
