@@ -20,7 +20,7 @@ import java.util.List;
 
 public class DisasterFlames extends Ability {
     private static final double AOE_RANGE = 6.0D;
-    private static final float DAMAGE = 18.0F;
+    private static final float DAMAGE = 17.0F;
 
     @Override
     public boolean shouldTrigger(PathfinderMob owner, @Nullable LivingEntity target) {
@@ -85,7 +85,7 @@ public class DisasterFlames extends Ability {
 
     @Override
     public float getCost(LivingEntity owner) {
-        return 125.0F;
+        return 100.0F;
     }
 
     @Override
